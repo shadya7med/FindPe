@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">FindPe</string>
+    <string name="createAccountText">Create An Account</string>
+    <string name="JoinCommunityText">Join Our Community with any method you want</string>
+    <string name="createAccText">Create New Account</string>
+    <string name="agreeTermsMsgText">By clicking \'Create New Account\' you agree on our</string>
+    <string name="tosText">Terms of Service</string>
+    <string name="signGoogle">Sign in with Google</string>
+    <string name="signFb">Sign in with Facebook</string>
 </resources>
