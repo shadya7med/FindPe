@@ -18,6 +18,10 @@ class CreateAccountActivity : AppCompatActivity() {
 
     private val RC_SIGN_IN: Int = 9001
     private val TAG = "msg"
+    companion object {
+        const val USER_EMAIL:String = "USER_EMAIL"
+    }
+
 
     private lateinit var googleSignInClient:GoogleSignInClient
     private lateinit var auth:FirebaseAuth
@@ -41,7 +45,9 @@ class CreateAccountActivity : AppCompatActivity() {
         val facebookButton : Button = findViewById(R.id.btn_fb_CreateAccount)
         val createAccButton : Button = findViewById(R.id.btn_NewAccount_CreateAccount)
 
-        googleButton.setOnClickListener { Log.i(TAG, "onCreate: Clicked") }
+        googleButton.setOnClickListener {
+            googleSignIn()
+        }
 
 
     }
@@ -51,6 +57,10 @@ class CreateAccountActivity : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         //update UI
+        if (currentUser != null){
+            //return to login and terminate current Activity
+            finish()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -71,7 +81,7 @@ class CreateAccountActivity : AppCompatActivity() {
         }
     }
 
-    private fun signIn() {
+    private fun googleSignIn() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
@@ -83,7 +93,8 @@ class CreateAccountActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
                     val user = auth.currentUser
-                    //Update UI
+                    //return to Login
+                    finish()
 
                 } else {
                     // If sign in fails, display a message to the user.
@@ -92,4 +103,6 @@ class CreateAccountActivity : AppCompatActivity() {
                 }
             }
     }
+
+
 }

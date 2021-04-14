@@ -3,8 +3,14 @@
     <string name="createAccountText">Create An Account</string>
     <string name="JoinCommunityText">Join Our Community with any method you want</string>
     <string name="createAccText">Create New Account</string>
-    <string name="agreeTermsMsgText">By clicking \'Create New Account\' you agree on our</string>
+    <string name="agreeTermsMsgText">By clicking \&apos;Create New Account\&apos; you agree on our</string>
     <string name="tosText">Terms of Service</string>
     <string name="signGoogle">Sign in with Google</string>
     <string name="signFb">Sign in with Facebook</string>
+    <string name="LoginText">Login</string>
+    <string name="emailHint">Email Address</string>
+    <string name="passText">Password (+8 Characters)</string>
+    <string name="noAccText">Don\&apos;t have an account ? </string>
+    <string name="signupText">Sign Up</string>
+    <string name="createnewAccText">Create One</string>
 </resources>
