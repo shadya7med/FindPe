@@ -26,8 +26,6 @@
         android:ems="10"
         android:hint="@string/emailHint"
         android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edtText_FullName_signup"
         app:layout_constraintTop_toBottomOf="@+id/edtText_FullName_signup" />
 
@@ -39,8 +37,6 @@
         android:ems="10"
         android:hint="@string/fullName"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/SignUpText"
         app:layout_constraintTop_toBottomOf="@+id/userImage" />
 
@@ -52,8 +48,6 @@
         android:ems="10"
         android:hint="@string/passText"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edtText_email_signup"
         app:layout_constraintTop_toBottomOf="@+id/edtText_email_signup" />
 
@@ -91,27 +85,25 @@
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/btn_signup_signup" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/userImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-
+        android:scaleType="matrix"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SignUpText"
-        android:src="@tools:sample/avatars"
-        app:civ_border_width="2dp"
-        app:civ_border_color="#FF000000"/>
+        android:src="@drawable/ic_launcher_background" />
 
     <ImageView
-        android:id="@+id/addImage"
+        android:id="@+id/addImage_btn"
         android:layout_width="61dp"
         android:layout_height="54dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="72dp"
         android:src="@drawable/ic_baseline_add_circle_24"
         app:layout_constraintStart_toStartOf="@+id/userImage"
         app:layout_constraintTop_toTopOf="@+id/userImage" />

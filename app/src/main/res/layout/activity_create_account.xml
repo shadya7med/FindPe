@@ -34,9 +34,7 @@
         android:layout_marginTop="40dp"
         android:text="@string/createAccText"
         app:backgroundTint="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btn_fb_CreateAccount"
         app:layout_constraintTop_toBottomOf="@+id/btn_fb_CreateAccount" />
 
     <TextView
@@ -67,7 +65,6 @@
         android:layout_width="wrap_content"
         android:layout_height="55dp"
         android:layout_marginTop="88dp"
-        android:layout_marginEnd="24dp"
         android:width="370dp"
         android:background="@color/white"
         android:shadowColor="#121111"
@@ -75,8 +72,6 @@
         android:textAlignment="textStart"
         android:textColor="@color/black"
         app:backgroundTint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -85,12 +80,9 @@
         android:layout_width="wrap_content"
         android:layout_height="55dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="24dp"
         android:width="370dp"
         android:text="@string/signFb"
         app:backgroundTint="@color/blue_fb"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/btn_google_CreateAccount"
         app:layout_constraintTop_toBottomOf="@+id/btn_google_CreateAccount" />
 

@@ -44,7 +44,9 @@ class CreateAccountActivity : AppCompatActivity() {
         val googleButton:Button  = findViewById(R.id.btn_google_CreateAccount)
         val facebookButton : Button = findViewById(R.id.btn_fb_CreateAccount)
         val createAccButton : Button = findViewById(R.id.btn_NewAccount_CreateAccount)
-
+        createAccButton.setOnClickListener{
+            startActivity(Intent(this,SignUpActivity::class.java))
+        }
         googleButton.setOnClickListener {
             googleSignIn()
         }
