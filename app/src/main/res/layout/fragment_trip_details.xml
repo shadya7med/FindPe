@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/trip_image"
+                android:layout_width="match_parent"
+                android:layout_height="333dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/trip_pic" />
+
+            <TextView
+                android:id="@+id/trip_name_text"
+                style="@style/trip_name_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/trip_name"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/trip_image" />
+
+            <TextView
+                android:id="@+id/trip_price_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/trip_price"
+                app:layout_constraintStart_toStartOf="@+id/trip_name_text"
+                app:layout_constraintTop_toBottomOf="@+id/trip_name_text" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintTop_toBottomOf="@+id/trip_price_text"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <TextView
+                android:id="@+id/trip_about"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/about_trip"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider"
+                style="@style/title_style" />
+
+            <TextView
+                android:id="@+id/trip_about_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/about_trip_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@+id/trip_about"
+                app:layout_constraintTop_toBottomOf="@+id/trip_about" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/save_trip_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="312dp"
+                android:layout_marginEnd="16dp"
+                android:clickable="true"
+                app:backgroundTint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:rippleColor="@color/black"
+                app:srcCompat="@drawable/ic_baseline_save_24" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/temp_rate_card"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/browser_actions_bg_grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/trip_about_text">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/temp_degree_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/degree"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toTopOf="@+id/temp_type_text"
+                        app:layout_constraintStart_toEndOf="@+id/temp_image"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed" />
+
+                    <TextView
+                        android:id="@+id/temp_type_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/temp_type"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/temp_degree_text"
+                        app:layout_constraintTop_toBottomOf="@+id/temp_degree_text" />
+
+                    <ImageView
+                        android:id="@+id/temp_image"
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="24dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.509"
+                        app:srcCompat="@drawable/ic_baseline_wb_sunny_24" />
+
+                    <View
+                        android:id="@+id/divider2"
+                        android:layout_width="1dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="30dp"
+                        android:background="?android:attr/listDivider"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/temp_type_text"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/trip_rate_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:text="@string/trip_rate"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toTopOf="@+id/trip_rate_ratingbar"
+                        app:layout_constraintStart_toEndOf="@+id/divider2"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed" />
+
+                    <RatingBar
+                        android:id="@+id/trip_rate_ratingbar"
+                        style="@style/Widget.AppCompat.RatingBar.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:numStars="5"
+                        android:rating="4"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/trip_rate_text"
+                        app:layout_constraintTop_toBottomOf="@+id/trip_rate_text" />
+
+                    <TextView
+                        android:id="@+id/votes_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/votes"
+                        app:layout_constraintBottom_toBottomOf="@+id/trip_rate_text"
+                        app:layout_constraintStart_toEndOf="@+id/trip_rate_text"
+                        app:layout_constraintTop_toTopOf="@+id/trip_rate_text" />
+
+                    <TextView
+                        android:id="@+id/votes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/votess"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/votes_text"
+                        app:layout_constraintStart_toEndOf="@+id/votes_text" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/timeline_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="70dp"
+                android:text="@string/see_timeline"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/amenities_card" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/amenities_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/browser_actions_bg_grey"
+                app:layout_constraintTop_toBottomOf="@+id/temp_rate_card">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/trip_amenities"
+                        style="@style/title_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="24dp"
+                        android:text="@string/amenities"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/amenity1_text"
+                        style="@style/amenity_style"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:text="@string/Wifi"
+                        android:textSize="18sp"
+                        app:drawableTopCompat="@drawable/ic_baseline_wifi_24"
+                        app:layout_constraintEnd_toStartOf="@+id/amenity2_text"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/trip_amenities" />
+
+                    <TextView
+                        android:id="@+id/amenity2_text"
+                        style="@style/amenity_style"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/food"
+                        android:textSize="18sp"
+                        app:drawableTopCompat="@drawable/ic_baseline_restaurant_menu_24"
+                        app:layout_constraintEnd_toStartOf="@+id/amenity3_text"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/amenity1_text"
+                        app:layout_constraintTop_toTopOf="@+id/amenity1_text" />
+
+                    <TextView
+                        android:id="@+id/amenity3_text"
+                        style="@style/amenity_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pool"
+                        android:textSize="18sp"
+                        app:drawableTopCompat="@drawable/ic_baseline_pool_24"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/amenity2_text"
+                        app:layout_constraintTop_toTopOf="@+id/amenity2_text" />
+
+                    <TextView
+                        android:id="@+id/amenity4_text"
+                        style="@style/amenity_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:text="@string/drinks"
+                        android:textSize="18sp"
+                        app:drawableTopCompat="@drawable/ic_baseline_local_bar_24"
+                        app:layout_constraintEnd_toStartOf="@+id/amenity5_text"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/amenity1_text" />
+
+                    <TextView
+                        android:id="@+id/amenity5_text"
+                        style="@style/amenity_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/parking"
+                        android:textSize="18sp"
+                        app:drawableTopCompat="@drawable/ic_baseline_local_parking_24"
+                        app:layout_constraintEnd_toStartOf="@+id/amenity6_text"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/amenity4_text"
+                        app:layout_constraintTop_toTopOf="@+id/amenity4_text" />
+
+                    <TextView
+                        android:id="@+id/amenity6_text"
+                        style="@style/amenity_style"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="24dp"
+                        android:text="@string/nightClub"
+                        android:textSize="18sp"
+                        app:drawableTopCompat="@drawable/ic_baseline_speaker_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/amenity5_text"
+                        app:layout_constraintTop_toTopOf="@+id/amenity5_text" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
