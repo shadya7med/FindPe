@@ -8,31 +8,31 @@
     <fragment
         android:id="@+id/chatFragmentHome"
         android:name="com.iti.example.findpe.Home.Chat.Views.ChatFragment"
-        android:label="fragment_chat"
+        android:label="@string/chat_text"
         tools:layout="@layout/fragment_chat" />
     <fragment
         android:id="@+id/exploreFragmentHome"
         android:name="com.iti.example.findpe.Home.Explore.Views.ExploreFragment"
-        android:label="fragment_explore"
+        android:label="@string/explore_text"
         tools:layout="@layout/fragment_explore" />
     <fragment
         android:id="@+id/profileFragmentHome"
         android:name="com.iti.example.findpe.Home.Profile.Views.ProfileFragment"
-        android:label="fragment_profile"
+        android:label="@string/profile_text"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/savedFragmentHome"
         android:name="com.iti.example.findpe.Home.Saved.Views.SavedFragment"
-        android:label="fragment_saved"
+        android:label="@string/saved_text"
         tools:layout="@layout/fragment_saved" />
     <fragment
         android:id="@+id/travelingFragmentHome"
         android:name="com.iti.example.findpe.Home.Traveling.Views.TravelingFragment"
-        android:label="fragment_traveling"
+        android:label="@string/traveling_text"
         tools:layout="@layout/fragment_traveling" />
     <fragment
-        android:id="@+id/searchFragmentHome"
-        android:name="com.iti.example.findpe.Home.Search.SearchFragment"
-        android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        android:id="@+id/notificationFragmentHome"
+        android:name="com.iti.example.findpe.Home.Notification.Views.NotificationFragment"
+        android:label="@string/notification_text"
+        tools:layout="@layout/fragment_notification" />
 </navigation>

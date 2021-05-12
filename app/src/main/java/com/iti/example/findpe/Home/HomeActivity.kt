@@ -6,7 +6,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.onNavDestinationSelected
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.iti.example.findpe.R
 import com.iti.example.findpe.databinding.ActivityHomeBinding
@@ -29,16 +29,24 @@ class HomeActivity : AppCompatActivity() {
         binder.homeBottomNavigation.setupWithNavController(navController)
         //enable options menu
         //options menu enabled directly for activites
+        //setup the up Button for non-Top level destinations will change for up button automatically for non-Top level
+        NavigationUI.setupActionBarWithNavController(this,navController)
+
         //add root as Top Active View
         setContentView(binder.root)
     }
 
+    /*options menu lifecycle*/
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.home_options_menu,menu)
         return true
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return item.onNavDestinationSelected(navController)||super.onOptionsItemSelected(item)
+        return NavigationUI.onNavDestinationSelected(item,navController)||super.onOptionsItemSelected(item)
+    }
+
+    /*up Button */
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp()
     }
 }
