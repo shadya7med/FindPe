@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="250dp">
+
+    <ImageView
+        android:id="@+id/userImage_imgView_navHeader_home"
+        android:layout_width="78dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="40dp"
+        android:contentDescription="@string/image_nav_header_contentDesc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/nav_header" />
+
+    <TextView
+        android:id="@+id/username_txtView_navHeader_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:contentDescription="@string/username_holder"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userImage_imgView_navHeader_home"
+        tools:text="@string/username_holder" />
+
+    <Button
+        android:id="@+id/edit_btn_navHeader_home"
+        android:layout_width="62dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/edit_btn_text"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userTitle_txtView_navHeader_home" />
+
+    <TextView
+        android:id="@+id/userTitle_txtView_navHeader_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username_txtView_navHeader_home"
+        tools:text="@string/userTitle_holder" />
+</androidx.constraintlayout.widget.ConstraintLayout>

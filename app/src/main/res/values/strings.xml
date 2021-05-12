@@ -26,6 +26,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="notification_text">Notification</string>
     <string name="search_text">Search</string>
+
     <string name="trip_name">Trip Name</string>
     <string name="trip_price">$359</string>
     <string name="about_trip">ABOUT TRIP</string>
@@ -47,4 +48,19 @@
     <string name="num_of_trips">215</string>
     <string name="trips">Trips</string>
     <string name="filter">Filter</string>
+
+    <string name="activites_text">Activites</string>
+    <string name="nearme_text">Near Me</string>
+    <string name="map_text">Map</string>
+    <string name="bookings_text">Bookings</string>
+    <string name="discover_text">Discover</string>
+    <string name="subscription_text">Subscription</string>
+    <string name="settings_text">Settings</string>
+    <string name="logout_text">Logout</string>
+    <string name="open_home_drawer_contentDesc">home drawer is opened</string>
+    <string name="close_home_drawer_contentDesc">home drawer is closed</string>
+    <string name="image_nav_header_contentDesc">this is the profile image</string>
+    <string name="username_holder">Bernard Cerny</string>
+    <string name="userTitle_holder">DJ/TRAVELER</string>
+    <string name="edit_btn_text">Edit</string>
 </resources>
