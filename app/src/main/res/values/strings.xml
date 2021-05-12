@@ -17,4 +17,13 @@
     <string name="signinText">Sign In</string>
     <string name="fullName">Full Name</string>
     <string name="signoutText">signout</string>
+    <string name="traveling_text">Traveling</string>
+    <string name="explore_text">Explore</string>
+    <string name="saved_text">Saved</string>
+    <string name="chat_text">Chat</string>
+    <string name="profile_text">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="notification_text">Notification</string>
+    <string name="search_text">Search</string>
 </resources>

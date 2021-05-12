@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav_graph"
+    app:startDestination="@id/travelingFragmentHome">
+
+    <fragment
+        android:id="@+id/chatFragmentHome"
+        android:name="com.iti.example.findpe.Home.Chat.Views.ChatFragment"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" />
+    <fragment
+        android:id="@+id/exploreFragmentHome"
+        android:name="com.iti.example.findpe.Home.Explore.Views.ExploreFragment"
+        android:label="fragment_explore"
+        tools:layout="@layout/fragment_explore" />
+    <fragment
+        android:id="@+id/profileFragmentHome"
+        android:name="com.iti.example.findpe.Home.Profile.Views.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/savedFragmentHome"
+        android:name="com.iti.example.findpe.Home.Saved.Views.SavedFragment"
+        android:label="fragment_saved"
+        tools:layout="@layout/fragment_saved" />
+    <fragment
+        android:id="@+id/travelingFragmentHome"
+        android:name="com.iti.example.findpe.Home.Traveling.Views.TravelingFragment"
+        android:label="fragment_traveling"
+        tools:layout="@layout/fragment_traveling" />
+    <fragment
+        android:id="@+id/searchFragmentHome"
+        android:name="com.iti.example.findpe.Home.Search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+</navigation>

@@ -1,9 +1,7 @@
-package com.iti.example.findpe
+package com.iti.example.findpe.Authentication
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -19,6 +17,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import com.iti.example.findpe.R
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var signupBtn : Button

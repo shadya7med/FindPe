@@ -1,4 +1,4 @@
-package com.iti.example.findpe
+package com.iti.example.findpe.Authentication
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.iti.example.findpe.R
 
 class CreateAccountActivity : AppCompatActivity() {
 
@@ -45,7 +46,7 @@ class CreateAccountActivity : AppCompatActivity() {
         val facebookButton : Button = findViewById(R.id.btn_fb_CreateAccount)
         val createAccButton : Button = findViewById(R.id.btn_NewAccount_CreateAccount)
         createAccButton.setOnClickListener{
-            startActivity(Intent(this,SignUpActivity::class.java))
+            startActivity(Intent(this, SignUpActivity::class.java))
         }
         googleButton.setOnClickListener {
             googleSignIn()

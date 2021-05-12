@@ -1,4 +1,4 @@
-package com.iti.example.findpe
+package com.iti.example.findpe.Authentication
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.iti.example.findpe.MainActivity
+import com.iti.example.findpe.R
 
 class LoginActivity : AppCompatActivity() {
 
@@ -20,7 +22,7 @@ class LoginActivity : AppCompatActivity() {
 
         val signUpTextView :TextView = findViewById(R.id.txtView_createOne_login)
         signUpTextView.setOnClickListener {
-            val openCreateAccount : Intent = Intent(this,CreateAccountActivity::class.java)
+            val openCreateAccount : Intent = Intent(this, CreateAccountActivity::class.java)
             startActivity(openCreateAccount)
         }
     }
@@ -30,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
         val currentUser = auth.currentUser
         if(currentUser != null){
             //there's a user navigate to Main and terminate login Act
-            val openMain = Intent(this,MainActivity::class.java)
+            val openMain = Intent(this, MainActivity::class.java)
             openMain.putExtra(CreateAccountActivity.USER_EMAIL,currentUser.email)
             startActivity(openMain)
             finish()
