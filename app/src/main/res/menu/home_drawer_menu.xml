@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/home_drawer_group_1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/discoverFragmentHome"
+            android:icon="@drawable/ic_baseline_add_circle_24"
+            android:title="@string/discover_text" />
+        <item
+            android:id="@+id/nearmeFragmentHome"
+            android:icon="@drawable/ic_baseline_add_circle_24"
+            android:title="@string/nearme_text" />
+        <item
+            android:id="@+id/activitesFragmentHome"
+            android:icon="@drawable/ic_baseline_add_circle_24"
+            android:title="@string/activites_text" />
+        <item
+            android:id="@+id/mapFragmentHome"
+            android:icon="@drawable/ic_baseline_add_circle_24"
+            android:title="@string/map_text" />
+        <item
+            android:id="@+id/bookingsFragmentHome"
+            android:icon="@drawable/ic_baseline_add_circle_24"
+            android:title="@string/bookings_text" />
+        <item
+            android:id="@+id/subscriptionFragmentHome"
+            android:icon="@drawable/ic_baseline_add_circle_24"
+            android:title="@string/subscription_text" />
+    </group>
+    <group
+        android:id="@+id/home_drawer_group_2"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/settingsFragmentHome"
+            android:icon="@drawable/ic_baseline_add_circle_24"
+            android:title="@string/settings_text" />
+        <item
+            android:id="@+id/logoutFragmentHome"
+            android:icon="@drawable/ic_baseline_add_circle_24"
+            android:title="@string/logout_text" />
+    </group>
+
+
+</menu>
