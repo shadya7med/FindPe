@@ -13,4 +13,8 @@
     <string name="noAccText">Don\&apos;t have an account ? </string>
     <string name="signupText">Sign Up</string>
     <string name="createnewAccText">Create One</string>
+    <string name="haveAccText">Already have an account ?</string>
+    <string name="signinText">Sign In</string>
+    <string name="fullName">Full Name</string>
+    <string name="signoutText">signout</string>
 </resources>
