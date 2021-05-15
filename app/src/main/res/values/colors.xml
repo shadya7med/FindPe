@@ -8,4 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue_fb">#3b5998</color>
+    <color name="filter_background_grey">#707070</color>
+    <color name="fliter_title_text_black">#444444</color>
+    <color name="feature_unselected_btn_background">#707070</color>
+    <color name="feature_unselected_btn_icon">#222222</color>
+    <color name="feature_selected_btn_background">#D23078</color>
+    <color name="feature_selected_btn_icon">#FFFFFF</color>
 </resources>

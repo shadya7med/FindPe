@@ -63,6 +63,7 @@
     <string name="username_holder">Bernard Cerny</string>
     <string name="userTitle_holder">DJ/TRAVELER</string>
     <string name="edit_btn_text">Edit</string>
+
     <string name="time">9:00 AM</string>
     <string name="timeline_title">Breakfast</string>
     <string name="dayplans">Day Plans</string>
@@ -71,4 +72,26 @@
     <string name="cultural">Cultural</string>
     <string name="populartity">Populartity</string>
     <string name="sun_sand"><![CDATA[Sun & Sand]]></string>
+
+    <string name="features_text">Features</string>
+    <string name="price_range_text">Price Range</string>
+    <string name="room_text">Room</string>
+    <string name="time_period_text">Time Period</string>
+    <string name="wifi_toggle_btn_text">WI-FI</string>
+    <string name="hotel_toggle_btn_text">Hotel</string>
+    <string name="restaurant_toggle_btn_text">Restaurant</string>
+    <string name="swimming_toggle_btn_text">Swimming</string>
+    <string name="pool_toggle_btn_text">Pools</string>
+    <string name="parking_toggle_btn_text">Parking</string>
+    <string name="spot_toggle_btn_text">Spot</string>
+    <string name="inn_toggle_btn_text">Inn-Bar</string>
+    <string name="slider_desc">this price range</string>
+    <string name="price_range_start">0</string>
+    <string name="price_range_end">5K</string>
+    <string name="from_text">From</string>
+    <string name="to_text">To</string>
+    <string name="data_placeholder_text">T</string>
+    <string name="number_placeholder_text">25</string>
+    <string name="day_circle_contentDESC">this is the day circle</string>
+
 </resources>

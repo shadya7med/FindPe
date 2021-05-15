@@ -12,7 +12,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".Home.HomeActivity">
+            tools:context=".home.HomeActivity">
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/home_nav_host_fragment"
@@ -44,6 +44,6 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             app:menu="@menu/home_drawer_menu"
-            app:headerLayout = "@layout/home_drawer_header"/>
+            />
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>
