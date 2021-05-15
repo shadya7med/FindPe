@@ -1,10 +1,12 @@
 package com.iti.example.findpe.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -12,9 +14,10 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.iti.example.findpe.R
 import com.iti.example.findpe.databinding.ActivityHomeBinding
+import com.iti.example.findpe.databinding.HomeDrawerHeaderBinding
 
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(){
 
     lateinit var binder: ActivityHomeBinding
     lateinit var navController: NavController
@@ -59,6 +62,17 @@ class HomeActivity : AppCompatActivity() {
                 homeDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
             }
         }*/
+        val drawerHeaderBinder = HomeDrawerHeaderBinding.inflate(layoutInflater)
+        drawerHeaderBinder.lifecycleOwner = this
+        drawerHeaderBinder.homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+
+        binder.homeDrawerNavView.addHeaderView(drawerHeaderBinder.root)
+        binder.homeDrawerNavView.setNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.logoutFragmentHome -> Log.i("FiHome", "log out")
+            }
+            true
+        }
         //add root as Top Active View
         setContentView(binder.root)
     }
