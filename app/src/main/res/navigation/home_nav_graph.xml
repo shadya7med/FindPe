@@ -7,32 +7,49 @@
 
     <fragment
         android:id="@+id/chatFragmentHome"
-        android:name="com.iti.example.findpe.Home.Chat.Views.ChatFragment"
+        android:name="com.iti.example.findpe.home.chat.views.ChatFragment"
         android:label="@string/chat_text"
         tools:layout="@layout/fragment_chat" />
     <fragment
         android:id="@+id/exploreFragmentHome"
-        android:name="com.iti.example.findpe.Home.Explore.Views.ExploreFragment"
+        android:name="com.iti.example.findpe.home.explore.views.ExploreFragment"
         android:label="@string/explore_text"
         tools:layout="@layout/fragment_explore" />
     <fragment
         android:id="@+id/profileFragmentHome"
-        android:name="com.iti.example.findpe.Home.Profile.Views.ProfileFragment"
+        android:name="com.iti.example.findpe.home.profile.views.ProfileFragment"
         android:label="@string/profile_text"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/savedFragmentHome"
-        android:name="com.iti.example.findpe.Home.Saved.Views.SavedFragment"
+        android:name="com.iti.example.findpe.home.saved.views.SavedFragment"
         android:label="@string/saved_text"
-        tools:layout="@layout/fragment_saved" />
+        tools:layout="@layout/fragment_saved" >
+        <action
+            android:id="@+id/action_savedFragmentHome_to_filterFragment"
+            app:destination="@id/filterFragment"
+            app:popUpTo="@id/savedFragmentHome"
+            app:popUpToInclusive="false" />
+    </fragment>
     <fragment
         android:id="@+id/travelingFragmentHome"
-        android:name="com.iti.example.findpe.Home.Traveling.Views.TravelingFragment"
+        android:name="com.iti.example.findpe.home.traveling.views.TravelingFragment"
         android:label="@string/traveling_text"
-        tools:layout="@layout/fragment_traveling" />
+        tools:layout="@layout/fragment_traveling" >
+        <action
+            android:id="@+id/action_travelingFragmentHome_to_filterFragment"
+            app:destination="@id/filterFragment"
+            app:popUpTo="@id/travelingFragmentHome"
+            app:popUpToInclusive="false" />
+    </fragment>
     <fragment
         android:id="@+id/notificationFragmentHome"
         android:name="com.iti.example.findpe.Home.Notification.Views.NotificationFragment"
         android:label="@string/notification_text"
         tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="com.iti.example.findpe.home.filter.views.FilterFragment"
+        android:label="@string/filter"
+        tools:layout="@layout/fragment_filter"/>
 </navigation>

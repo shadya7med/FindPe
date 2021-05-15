@@ -1,4 +1,4 @@
-package com.iti.example.findpe.Home.Chat.Views
+package com.iti.example.findpe.home.chat.views
 
 import android.os.Bundle
 import android.view.LayoutInflater

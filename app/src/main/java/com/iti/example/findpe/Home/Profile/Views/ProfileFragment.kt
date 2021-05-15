@@ -1,4 +1,4 @@
-package com.iti.example.findpe.Home.Profile.Views
+package com.iti.example.findpe.home.profile.views
 
 import android.os.Bundle
 import android.view.LayoutInflater

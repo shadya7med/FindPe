@@ -1,4 +1,4 @@
-package com.iti.example.findpe.Home
+package com.iti.example.findpe.home
 
 import android.os.Bundle
 import android.view.Menu

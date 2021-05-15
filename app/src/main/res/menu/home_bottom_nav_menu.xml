@@ -6,27 +6,31 @@
         android:id="@+id/travelingFragmentHome"
         android:checkable="false"
         android:enabled="true"
+        android:icon="@drawable/ic_baseline_airplane_ticket_24"
         android:title="@string/traveling_text"
         android:visible="true" />
     <item
         android:id="@+id/exploreFragmentHome"
         android:enabled="true"
-        android:icon="@android:drawable/ic_menu_compass"
+        android:icon="@drawable/ic_outline_explore_24"
         android:title="@string/explore_text"
         android:visible="true" />
     <item
         android:id="@+id/savedFragmentHome"
         android:enabled="true"
+        android:icon="@drawable/ic_outline_book_24"
         android:title="@string/saved_text"
         android:visible="true" />
     <item
         android:id="@+id/chatFragmentHome"
         android:enabled="true"
+        android:icon="@drawable/ic_outline_chat_24"
         android:title="@string/chat_text"
         android:visible="true" />
     <item
         android:id="@+id/profileFragmentHome"
         android:enabled="true"
+        android:icon="@drawable/ic_outline_person_pin_circle_24"
         android:title="@string/profile_text"
         android:visible="true" />
 </menu>
