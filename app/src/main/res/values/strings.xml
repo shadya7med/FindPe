@@ -63,4 +63,12 @@
     <string name="username_holder">Bernard Cerny</string>
     <string name="userTitle_holder">DJ/TRAVELER</string>
     <string name="edit_btn_text">Edit</string>
+    <string name="time">9:00 AM</string>
+    <string name="timeline_title">Breakfast</string>
+    <string name="dayplans">Day Plans</string>
+    <string name="nature">Nature\'s Light</string>
+    <string name="modern">Modern Life</string>
+    <string name="cultural">Cultural</string>
+    <string name="populartity">Populartity</string>
+    <string name="sun_sand"><![CDATA[Sun & Sand]]></string>
 </resources>
