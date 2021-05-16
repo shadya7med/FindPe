@@ -93,5 +93,7 @@
     <string name="data_placeholder_text">T</string>
     <string name="number_placeholder_text">25</string>
     <string name="day_circle_contentDESC">this is the day circle</string>
+    <string name="see_all">See All</string>
+    <string name="places_to_visit">Places to Visit</string>
 
 </resources>

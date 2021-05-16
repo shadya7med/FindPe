@@ -90,4 +90,9 @@ dependencies {
     //bottom nav
     implementation "com.google.android.material:material:$material_version"
 
+    //Create swipe views with tabs using ViewPager2
+    //viewpager2
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+
+
 }
