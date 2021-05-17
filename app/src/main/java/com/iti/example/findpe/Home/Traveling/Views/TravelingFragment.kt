@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.iti.example.findpe.databinding.FragmentTravelingBinding
@@ -42,11 +43,15 @@ class TravelingFragment : Fragment() {
         }
         // saved State handle is  a map for returning date between fragments
         navController.currentBackStackEntry?.savedStateHandle?.getLiveData<MutableMap<String,Any>>(FilterViewModel.FULL_MAP_KEY)?.observe(
-            viewLifecycleOwner) { result ->
-            // Do something with the result.
-            Log.i("FiTrav", "${result[FilterViewModel.TO_DATE_KEY] as Long}")
-        }
+            viewLifecycleOwner, Observer { result ->
+                Log.i("FiTrav", "${result[FilterViewModel.TO_DATE_KEY] as Long}")
+            })
     }
 
+    override fun onStop() {
+        super.onStop()
+        navController.currentBackStackEntry?.savedStateHandle?.getLiveData<MutableMap<String,Any>>(FilterViewModel.FULL_MAP_KEY)?.removeObservers(viewLifecycleOwner)
+
+    }
 
 }
