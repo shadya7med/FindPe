@@ -1,5 +1,6 @@
 package com.iti.example.findpe.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -12,17 +13,22 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
+import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
+import com.iti.example.findpe.Authentication.LoginActivity
 import com.iti.example.findpe.R
 import com.iti.example.findpe.databinding.ActivityHomeBinding
 import com.iti.example.findpe.databinding.HomeDrawerHeaderBinding
 
 
-class HomeActivity : AppCompatActivity(){
+class HomeActivity : AppCompatActivity() {
 
     lateinit var binder: ActivityHomeBinding
     lateinit var navController: NavController
     lateinit var appBarConfiguration: AppBarConfiguration
     lateinit var homeDrawerLayout: DrawerLayout
+    lateinit var homeViewModel: HomeViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //refer to the Activity Binder
@@ -48,10 +54,10 @@ class HomeActivity : AppCompatActivity(){
             R.id.travelingFragmentHome
         )
         //configure the Top-Level destinations with DrawerLayout
-        appBarConfiguration = AppBarConfiguration(topLevelDestinationsSet,homeDrawerLayout)
+        appBarConfiguration = AppBarConfiguration(topLevelDestinationsSet, homeDrawerLayout)
         //setup the up Button for non-Top level destinations will change for up button automatically for non-Top level
         //hook DrawerLayout with the navController via NavigationUI --> modify View
-        NavigationUI.setupActionBarWithNavController(this, navController,appBarConfiguration)
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
         //hook navigationView with the navController via NavigationUI
         NavigationUI.setupWithNavController(binder.homeDrawerNavView, navController)
         //lock swipe behaviour except for home
@@ -62,17 +68,31 @@ class HomeActivity : AppCompatActivity(){
                 homeDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
             }
         }*/
+        //inflate the drawer header layout
         val drawerHeaderBinder = HomeDrawerHeaderBinding.inflate(layoutInflater)
         drawerHeaderBinder.lifecycleOwner = this
-        drawerHeaderBinder.homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-
+        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        drawerHeaderBinder.homeViewModel = homeViewModel
+        //add header view for the drawer navigation
         binder.homeDrawerNavView.addHeaderView(drawerHeaderBinder.root)
-        binder.homeDrawerNavView.setNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.logoutFragmentHome -> Log.i("FiHome", "log out")
+        //update the nav   header image with the user image
+        Glide.with(this)
+            .load(homeViewModel.userPhotoUrl.value)
+            .circleCrop()
+            .placeholder(R.drawable.ic_launcher_background)
+            .into(drawerHeaderBinder.userImageImgViewNavHeaderHome);
+
+       /* binder.homeDrawerNavView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.logoutFragmentHome -> {
+                    homeViewModel.logout()
+                    val signoutIntent = Intent(this@HomeActivity,LoginActivity::class.java)
+                    startActivity(signoutIntent)
+                    finish()
+                }
             }
             true
-        }
+        }*/
         //add root as Top Active View
         setContentView(binder.root)
     }
@@ -95,6 +115,6 @@ class HomeActivity : AppCompatActivity(){
     /*up Button */
     override fun onSupportNavigateUp(): Boolean {
         // modify behaviour
-        return NavigationUI.navigateUp(navController,appBarConfiguration)
+        return NavigationUI.navigateUp(navController, appBarConfiguration)
     }
 }

@@ -95,5 +95,7 @@
     <string name="day_circle_contentDESC">this is the day circle</string>
     <string name="see_all">See All</string>
     <string name="places_to_visit">Places to Visit</string>
+    <string name="login_with_pe_text">Sign in with PE Account</string>
+
 
 </resources>

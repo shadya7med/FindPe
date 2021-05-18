@@ -31,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:contentDescription="@string/username_holder"
+            android:text="@{homeViewModel.username}"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

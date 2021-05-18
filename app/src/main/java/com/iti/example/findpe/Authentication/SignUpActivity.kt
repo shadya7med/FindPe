@@ -18,59 +18,66 @@ import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.iti.example.findpe.R
+import com.iti.example.findpe.databinding.ActivitySignUpBinding
 
 class SignUpActivity : AppCompatActivity() {
-    private lateinit var signupBtn : Button
-    private lateinit var addImageBtn : ImageView
-    private lateinit var fullNameField : EditText
-    private lateinit var emailField : EditText
-    private lateinit var passwordField : EditText
-    private lateinit var userImage : ImageView
+    private lateinit var binder:ActivitySignUpBinding
     private lateinit var auth: FirebaseAuth
     private var imageUri : Uri? = null
     private val TAG = "SIGNUP_ACTIVITY"
     private val RESULT_GET_IMAGE = 1050
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
+        binder = ActivitySignUpBinding.inflate(layoutInflater)
+        setContentView(binder.root)
 
         auth = Firebase.auth
-        signupBtn = findViewById(R.id.btn_signup_signup)
-        emailField = findViewById(R.id.edtText_email_signup)
-        passwordField = findViewById(R.id.edtText_password_signup)
-        fullNameField = findViewById(R.id.edtText_FullName_signup)
-        userImage = findViewById(R.id.userImage)
-        addImageBtn = findViewById(R.id.addImage_btn)
 
-        addImageBtn.setOnClickListener{
+        binder.addImageBtnSignup.setOnClickListener{
             var pickImageIntent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(pickImageIntent,RESULT_GET_IMAGE)
         }
-        signupBtn.setOnClickListener{
-            auth.createUserWithEmailAndPassword(emailField.text.toString(), passwordField.text.toString())
+        binder.signinTxtViewSignup.setOnClickListener{
+            finish()
+        }
+        binder.signupBtnSignup.setOnClickListener{
+            //validate user data
+            binder.emailEdtTextSignup.apply {
+                if (!text.isValidEmail()){
+                    error = "Entered Email is not valid"
+                    requestFocus()
+                    return@setOnClickListener
+                }
+
+            }
+            binder.passwordEdtTextSignup.apply {
+                if(text.length < 8 ){
+                    error = "Password is not valid"
+                    requestFocus()
+                    return@setOnClickListener
+                }
+            }
+            //authenticate user data
+            auth.createUserWithEmailAndPassword(binder.emailEdtTextSignup.text.toString(), binder.passwordEdtTextSignup.text.toString())
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success")
                             val user = auth.currentUser
                             //upload image to firebase storage
                             var ref = FirebaseStorage.getInstance().reference.child("Profile Pics").child(user.uid)
                             val upload = ref.putFile(imageUri!!)
-                            Log.i(TAG, "onCreate: 1")
                             upload.addOnCompleteListener{
                                 if(it.isSuccessful){
                                     ref.downloadUrl.addOnCompleteListener{
-                                        Log.i(TAG, "onCreate: 2")
                                         val profileUpdates = userProfileChangeRequest {
-                                            displayName = fullNameField.text.toString()
-                                            Log.i(TAG, "onCreate: "+imageUri)
+                                            displayName = binder.fullNameEdtTextSignup.text.toString()
                                             photoUri = it.result
                                         }
 
                                         user!!.updateProfile(profileUpdates)
                                             .addOnCompleteListener { task ->
                                                 if (task.isSuccessful) {
-                                                    Log.d(TAG, "User profile updated.")
+
                                                 }
                                             }
 
@@ -100,7 +107,7 @@ class SignUpActivity : AppCompatActivity() {
                 .load(imageUri)
                 .circleCrop()
                 .placeholder(R.drawable.ic_launcher_background)
-                .into(userImage);
+                .into(binder.userImageImgViewSignup);
         }
     }
 }

@@ -9,18 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FindPe">
-        <activity android:name=".home.HomeActivity">
+        <activity android:name=".home.HomeActivity" />
+        <activity android:name=".Authentication.CreateAccountActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Authentication.CreateAccountActivity" />
         <activity android:name=".Authentication.SignUpActivity" />
-        <activity android:name=".Authentication.LoginActivity">
-
-        </activity>
+        <activity android:name=".Authentication.LoginActivity" />
         <activity android:name=".MainActivity"></activity>
     </application>
 

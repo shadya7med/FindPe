@@ -14,6 +14,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.iti.example.findpe.R
+import com.iti.example.findpe.home.HomeActivity
 
 class CreateAccountActivity : AppCompatActivity() {
 
@@ -46,11 +47,12 @@ class CreateAccountActivity : AppCompatActivity() {
         val facebookButton : Button = findViewById(R.id.btn_fb_CreateAccount)
         val createAccButton : Button = findViewById(R.id.btn_NewAccount_CreateAccount)
         createAccButton.setOnClickListener{
-            startActivity(Intent(this, SignUpActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
         }
         googleButton.setOnClickListener {
             googleSignIn()
         }
+        //facebook login
 
 
     }
@@ -62,6 +64,7 @@ class CreateAccountActivity : AppCompatActivity() {
         //update UI
         if (currentUser != null){
             //return to login and terminate current Activity
+            startActivity(Intent(this,HomeActivity::class.java))
             finish()
         }
     }
