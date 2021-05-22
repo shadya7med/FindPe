@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FindPe">
+        <activity android:name=".tripCheckout.TripHolderActivity"></activity>
         <activity android:name=".home.HomeActivity" />
         <activity android:name=".Authentication.CreateAccountActivity">
             <intent-filter>
@@ -19,7 +20,7 @@
         </activity>
         <activity android:name=".Authentication.SignUpActivity" />
         <activity android:name=".Authentication.LoginActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

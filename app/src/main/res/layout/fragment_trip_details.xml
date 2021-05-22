@@ -2,7 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <data>
+        <variable
+            name="tripDetailsFragment"
+            type="com.iti.example.findpe.tripCheckout.tripDetails.views.TripDetailsFragment" />
+    </data>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -82,6 +86,7 @@
                 android:layout_marginTop="312dp"
                 android:layout_marginEnd="16dp"
                 android:clickable="true"
+                android:onClick="@{()->tripDetailsFragment.navigateToTripBooking()}"
                 app:backgroundTint="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
