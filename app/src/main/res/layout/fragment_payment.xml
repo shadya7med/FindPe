@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/summary"
+                style="@style/title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/summary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/adult"
+                style="@style/payment_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/adult"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/summary" />
+
+            <TextView
+                android:id="@+id/adult_number_text"
+                style="@style/payment_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/adult_no"
+                android:textAlignment="textEnd"
+                app:layout_constraintBaseline_toBaselineOf="@+id/adult"
+                app:layout_constraintEnd_toStartOf="@+id/adult_x"
+                app:layout_constraintStart_toEndOf="@+id/adult" />
+
+            <TextView
+                android:id="@+id/adult_x"
+                style="@style/payment_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:text="@string/x"
+                app:layout_constraintBaseline_toBaselineOf="@+id/adult_number_text"
+                app:layout_constraintEnd_toStartOf="@+id/adult_cost_text" />
+
+            <TextView
+                android:id="@+id/adult_cost_text"
+                style="@style/payment_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:text="@string/adult_cost"
+                app:layout_constraintBaseline_toBaselineOf="@+id/adult_x"
+                app:layout_constraintEnd_toStartOf="@+id/adult_le" />
+
+            <TextView
+                android:id="@+id/adult_le"
+                style="@style/payment_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="35dp"
+                android:text="@string/le"
+                app:layout_constraintBaseline_toBaselineOf="@+id/adult_cost_text"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/kid"
+                style="@style/payment_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/kid"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/adult" />
+
+            <TextView
+                android:id="@+id/kid_number_text"
+                style="@style/payment_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/adult_no"
+                android:textAlignment="viewEnd"
+                app:layout_constraintBaseline_toBaselineOf="@+id/kid"
+                app:layout_constraintEnd_toStartOf="@+id/kid_x"
+                app:layout_constraintStart_toEndOf="@+id/kid" />
+
+            <TextView
+                android:id="@+id/kid_x"
+                style="@style/payment_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:text="@string/x"
+                app:layout_constraintBaseline_toBaselineOf="@+id/kid_number_text"
+                app:layout_constraintEnd_toStartOf="@+id/kid_cost_text" />
+
+            <TextView
+                android:id="@+id/kid_cost_text"
+                style="@style/payment_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:text="@string/adult_cost"
+                app:layout_constraintBaseline_toBaselineOf="@+id/kid_x"
+                app:layout_constraintEnd_toStartOf="@+id/kid_le" />
+
+            <TextView
+                android:id="@+id/kid_le"
+                style="@style/payment_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="35dp"
+                android:text="@string/le"
+                app:layout_constraintBaseline_toBaselineOf="@+id/kid_cost_text"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <View
+                android:id="@+id/divider7"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/kid" />
+
+            <TextView
+                android:id="@+id/total"
+                style="@style/payment_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/total_price"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider7" />
+
+            <TextView
+                android:id="@+id/total_cost_text"
+                style="@style/payment_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/total_cost"
+                android:textAlignment="textEnd"
+                app:layout_constraintBaseline_toBaselineOf="@+id/total"
+                app:layout_constraintEnd_toStartOf="@+id/le"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/total" />
+
+            <TextView
+                android:id="@+id/le"
+                style="@style/payment_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="35dp"
+                android:text="@string/le"
+                app:layout_constraintBaseline_toBaselineOf="@+id/total_cost_text"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <View
+                android:id="@+id/divider8"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="30dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintTop_toBottomOf="@+id/total"
+                tools:layout_editor_absoluteX="6dp" />
+
+            <TextView
+                android:id="@+id/payment_method"
+                style="@style/title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/payment_method"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider8" />
+
+            <TextView
+                android:id="@+id/saved_cards"
+                style="@style/payment_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/saved_cards"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/payment_method" />
+
+            <Button
+                android:id="@+id/add_card_btn"
+                style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="35dp"
+                android:text="@string/add_card"
+                android:textSize="12sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/saved_cards"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/saved_card_rv"
+                android:layout_width="0dp"
+                android:layout_height="300dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/saved_cards"
+                tools:listitem="@layout/card_item" />
+
+            <TextView
+                android:id="@+id/pay_with_fawry"
+                style="@style/payment_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="35dp"
+                android:drawableRight="@drawable/ic_baseline_keyboard_arrow_right_black_24"
+                android:text="@string/pay_with_fawry"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/saved_card_rv" />
+
+            <Button
+                android:id="@+id/proceed_with_fawry_btn"
+                style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="40dp"
+                android:text="@string/proceed_with_fawry"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pay_with_fawry" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

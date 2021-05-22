@@ -96,6 +96,20 @@
     <string name="see_all">See All</string>
     <string name="places_to_visit">Places to Visit</string>
     <string name="login_with_pe_text">Sign in with PE Account</string>
+    <string name="summary">Summary</string>
+    <string name="adult">Adult</string>
+    <string name="kid">Kid</string>
+    <string name="adult_cost">240</string>
+    <string name="total_price">Total Price</string>
+    <string name="total_cost">760</string>
+    <string name="le">LE</string>
+    <string name="x">X</string>
+    <string name="adult_no">2</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="saved_cards">Saved Cards</string>
+    <string name="add_card">Add card</string>
+    <string name="pay_with_fawry">Pay with fawry</string>
+    <string name="proceed_with_fawry">Proceed with fawry</string>
 
 
 </resources>
