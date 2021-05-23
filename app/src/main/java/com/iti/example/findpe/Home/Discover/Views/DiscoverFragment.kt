@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.iti.example.findpe.constants.Keys
 import com.iti.example.findpe.databinding.FragmentDiscoverBinding
 import com.iti.example.findpe.tripCheckout.TripHolderActivity
 
@@ -31,6 +32,8 @@ class DiscoverFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.discoverSeeAllButton.setOnClickListener {
             val openTripHolderIntent = Intent(activity,TripHolderActivity::class.java)
+            //mimic trip id with 5
+            openTripHolderIntent.putExtra(Keys.TRIP_ID_KEY,5)
             startActivity(openTripHolderIntent)
         }
     }
