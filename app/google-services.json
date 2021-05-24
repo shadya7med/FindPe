@@ -1,48 +1,41 @@
 {
   "project_info": {
-    "project_number": "120548603181",
-    "project_id": "findpe-60846",
-    "storage_bucket": "findpe-60846.appspot.com"
+    "project_number": "255008065656",
+    "firebase_url": "https://findpe-9b977-default-rtdb.firebaseio.com",
+    "project_id": "findpe-9b977",
+    "storage_bucket": "findpe-9b977.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:120548603181:android:1c0c478563a9de05edcfa4",
+        "mobilesdk_app_id": "1:255008065656:android:3e5c627636d4790f7f458d",
         "android_client_info": {
           "package_name": "com.iti.example.findpe"
         }
       },
       "oauth_client": [
         {
-          "client_id": "120548603181-jna60p4clniua24ep99lqq4232rdki6o.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.iti.example.findpe",
-            "certificate_hash": "2fd21ede0c9e313af187215a3fec4a5f8f4cf45b"
-          }
-        },
-        {
-          "client_id": "120548603181-ta9ubbnn49tdee6gn19js8pjo02iolqd.apps.googleusercontent.com",
+          "client_id": "255008065656-iiigd3loetvpcf3qgem3s9rig7irj4a1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDuNaeiAMNuboerQ5IR2lG6PPj7-7V8Jg8"
+          "current_key": "AIzaSyBNo0UQzsTBCg4g_c0eBowt2gyHS6bo7y0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "120548603181-ta9ubbnn49tdee6gn19js8pjo02iolqd.apps.googleusercontent.com",
+              "client_id": "255008065656-iiigd3loetvpcf3qgem3s9rig7irj4a1.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "120548603181-gq4md4mtgpuid0kvvojf9ubqhv7098lh.apps.googleusercontent.com",
+              "client_id": "255008065656-8blvdif30d0oko78io5i3cpvfriomlb3.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "wef"
+                "bundle_id": "com.Findpe.yehiaazab333"
               }
             }
           ]
