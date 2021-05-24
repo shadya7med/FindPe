@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_bookingFragment_to_paymentFragment"
             app:destination="@id/paymentFragment" />
+        <argument
+            android:name="tripId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/tripDetailsFragment"
@@ -25,5 +28,14 @@
     <fragment
         android:id="@+id/paymentFragment"
         android:name="com.iti.example.findpe.tripCheckout.payment.views.PaymentFragment"
-        android:label="PaymentFragment" />
+        android:label="PaymentFragment" >
+        <argument
+            android:name="numOfSeats"
+            app:argType="integer" />
+        <argument
+            android:name="tripFromDuration"
+            app:argType="string" />
+        <argument android:name="tripToDuration"
+            app:argType="string" />
+    </fragment>
 </navigation>

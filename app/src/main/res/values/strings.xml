@@ -88,8 +88,8 @@
     <string name="slider_desc">this price range</string>
     <string name="price_range_start">0</string>
     <string name="price_range_end">5K</string>
-    <string name="from_text">From</string>
-    <string name="to_text">To</string>
+    <string name="from_text">From :</string>
+    <string name="to_text">To :</string>
     <string name="data_placeholder_text">T</string>
     <string name="number_placeholder_text">25</string>
     <string name="day_circle_contentDESC">this is the day circle</string>
@@ -112,6 +112,10 @@
     <string name="proceed_with_fawry">Proceed with fawry</string>
     <string name="no_internet_string">No internet found. Check your connection and try again</string>
     <string name="try_again">Try again</string>
-
+    <string name="num_of_seats">Number of seats:</string>
+    <string name="trip_durations">Trip available durations :</string>
+    <string name="proceed_to_checkout">Proceed to checkout</string>
+    <string name="num_of_seats_placeholder">12</string>
+    <string name="booking_date_placeholder">22/10/2021</string>
 
 </resources>
