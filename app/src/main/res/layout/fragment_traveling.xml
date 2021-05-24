@@ -10,7 +10,7 @@
 
         <TextView
             android:id="@+id/Featured"
-            style="@style/filter_title_text"
+            style="@style/title_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -39,6 +39,7 @@
 
         <Button
             android:id="@+id/filter_btn_traveling_home"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
