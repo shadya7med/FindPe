@@ -5,7 +5,7 @@
     <data>
         <variable
             name="tripDetailsFragment"
-            type="com.iti.example.findpe.tripCheckout.tripDetails.views.TripDetailsFragment" />
+            type="com.iti.example.findpe2.tripCheckout.tripDetails.views.TripDetailsFragment" />
     </data>
     <ScrollView
         android:layout_width="match_parent"

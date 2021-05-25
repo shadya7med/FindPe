@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/bookingFragment"
-        android:name="com.iti.example.findpe.tripCheckout.booking.views.BookingFragment"
+        android:name="com.iti.example.findpe2.tripCheckout.booking.views.BookingFragment"
         android:label="fragment_booking"
         tools:layout="@layout/fragment_booking" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/tripDetailsFragment"
-        android:name="com.iti.example.findpe.tripCheckout.tripDetails.views.TripDetailsFragment"
+        android:name="com.iti.example.findpe2.tripCheckout.tripDetails.views.TripDetailsFragment"
         android:label="TripDetailsFragment" >
         <action
             android:id="@+id/action_tripDetailsFragment_to_bookingFragment"
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/paymentFragment"
-        android:name="com.iti.example.findpe.tripCheckout.payment.views.PaymentFragment"
+        android:name="com.iti.example.findpe2.tripCheckout.payment.views.PaymentFragment"
         android:label="PaymentFragment" >
         <argument
             android:name="numOfSeats"

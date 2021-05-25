@@ -117,5 +117,7 @@
     <string name="proceed_to_checkout">Proceed to checkout</string>
     <string name="num_of_seats_placeholder">12</string>
     <string name="booking_date_placeholder">22/10/2021</string>
-
+    <!--Facebook Facebook app ID     -->
+    <string name="facebook_app_id">789196238695588</string>
+    <string name="fb_login_protocol_scheme">fb789196238695588</string>
 </resources>

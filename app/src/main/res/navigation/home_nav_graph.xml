@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/chatFragmentHome"
-        android:name="com.iti.example.findpe.home.chat.views.ChatFragment"
+        android:name="com.iti.example.findpe2.home.chat.views.ChatFragment"
         android:label="@string/chat_text"
         tools:layout="@layout/fragment_chat" />
     <fragment
         android:id="@+id/exploreFragmentHome"
-        android:name="com.iti.example.findpe.home.explore.views.ExploreFragment"
+        android:name="com.iti.example.findpe2.home.explore.views.ExploreFragment"
         android:label="@string/explore_text"
         tools:layout="@layout/fragment_explore" />
     <fragment
         android:id="@+id/profileFragmentHome"
-        android:name="com.iti.example.findpe.home.profile.views.ProfileFragment"
+        android:name="com.iti.example.findpe2.home.profile.views.ProfileFragment"
         android:label="@string/profile_text"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/savedFragmentHome"
-        android:name="com.iti.example.findpe.home.saved.views.SavedFragment"
+        android:name="com.iti.example.findpe2.home.saved.views.SavedFragment"
         android:label="@string/saved_text"
         tools:layout="@layout/fragment_saved" >
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/travelingFragmentHome"
-        android:name="com.iti.example.findpe.home.traveling.views.TravelingFragment"
+        android:name="com.iti.example.findpe2.home.traveling.views.TravelingFragment"
         android:label="@string/traveling_text"
         tools:layout="@layout/fragment_traveling" >
         <action
@@ -44,22 +44,22 @@
     </fragment>
     <fragment
         android:id="@+id/notificationFragmentHome"
-        android:name="com.iti.example.findpe.Home.Notification.Views.NotificationFragment"
+        android:name="com.iti.example.findpe2.Home.Notification.Views.NotificationFragment"
         android:label="@string/notification_text"
         tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/filterFragment"
-        android:name="com.iti.example.findpe.home.filter.views.FilterFragment"
+        android:name="com.iti.example.findpe2.home.filter.views.FilterFragment"
         android:label="@string/filter"
         tools:layout="@layout/fragment_filter"/>
     <fragment
         android:id="@+id/settingsFragmentHome"
-        android:name="com.iti.example.findpe.Home.settings.views.SettingsFragment"
+        android:name="com.iti.example.findpe2.Home.settings.views.SettingsFragment"
         android:label="@string/settings_text"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/logoutFragmentHome"
-        android:name="com.iti.example.findpe.Home.logout.views.LogoutFragment"
+        android:name="com.iti.example.findpe2.Home.logout.views.LogoutFragment"
         android:label="fragment_logout"
         tools:layout="@layout/fragment_logout" />
 </navigation>

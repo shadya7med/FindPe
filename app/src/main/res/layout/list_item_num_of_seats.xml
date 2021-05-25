@@ -6,7 +6,7 @@
     <data>
     <variable
         name="tripInfo"
-        type="com.iti.example.findpe.pojos.TripInfo" />
+        type="com.iti.example.findpe2.pojos.TripInfo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

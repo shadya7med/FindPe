@@ -2,14 +2,19 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:context=".Authentication.CreateAccountActivity">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/login_background_2"
+                android:scaleType="centerCrop" />
 
             <TextView
                 android:id="@+id/textView"
@@ -40,13 +45,13 @@
                 android:layout_width="0dp"
                 android:layout_height="55dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="35dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/login_with_pe_text"
                 app:backgroundTint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_fb_CreateAccount" />
+                app:layout_constraintTop_toBottomOf="@+id/facebook_login_btn" />
 
             <TextView
                 android:id="@+id/txtView_msg_CreateAccount"
@@ -79,7 +84,7 @@
                 android:layout_width="0dp"
                 android:layout_height="55dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="88dp"
+                android:layout_marginTop="48dp"
                 android:layout_marginEnd="16dp"
                 android:width="370dp"
                 android:background="@color/white"
@@ -89,23 +94,21 @@
                 android:textColor="@color/black"
                 app:backgroundTint="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-            <Button
-                android:id="@+id/btn_fb_CreateAccount"
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/facebook_login_btn"
                 android:layout_width="0dp"
                 android:layout_height="55dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="35dp"
                 android:layout_marginEnd="16dp"
-                android:width="370dp"
-                android:text="@string/signFb"
-                app:backgroundTint="@color/blue_fb"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_google_CreateAccount" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+<!--    </ScrollView>-->
 </layout>

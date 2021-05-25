@@ -7,11 +7,11 @@
 
         <variable
             name="filterViewModel"
-            type="com.iti.example.findpe.home.filter.viewModels.FilterViewModel" />
+            type="com.iti.example.findpe2.home.filter.viewModels.FilterViewModel" />
 
         <variable
             name="filterFragment"
-            type="com.iti.example.findpe.home.filter.views.FilterFragment" />
+            type="com.iti.example.findpe2.home.filter.views.FilterFragment" />
     </data>
 
     <ScrollView
