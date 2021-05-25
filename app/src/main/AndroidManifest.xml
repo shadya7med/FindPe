@@ -32,7 +32,7 @@
         <activity android:name="com.iti.example.findpe2.home.HomeActivity" />
         <activity
             android:name="com.iti.example.findpe2.Authentication.CreateAccountActivity"
-            android:theme="@android:style/Theme.NoTitleBar">
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,10 +41,10 @@
         </activity>
         <activity
             android:name="com.iti.example.findpe2.Authentication.SignUpActivity"
-            android:theme="@android:style/Theme.NoTitleBar"/>
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
         <activity
             android:name="com.iti.example.findpe2.Authentication.LoginActivity"
-            android:theme="@android:style/Theme.NoTitleBar"/>
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
         <activity android:name="com.iti.example.findpe2.MainActivity" />
     </application>
 
