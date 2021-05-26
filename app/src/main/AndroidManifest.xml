@@ -32,7 +32,8 @@
         <activity android:name="com.iti.example.findpe2.home.HomeActivity" />
         <activity
             android:name="com.iti.example.findpe2.Authentication.CreateAccountActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+            android:fitsSystemWindows="true"
+            android:theme="@style/NoActionBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

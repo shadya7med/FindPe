@@ -3,9 +3,12 @@ package com.iti.example.findpe2.Authentication
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.children
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -24,18 +27,21 @@ import com.google.firebase.ktx.Firebase
 import com.iti.example.findpe2.R
 import com.iti.example.findpe2.databinding.ActivityCreateAccountBinding
 import com.iti.example.findpe2.home.HomeActivity
+
 const val TAG = "CREATE_ACCOUNT"
+
 class CreateAccountActivity : AppCompatActivity() {
 
     private val RC_SIGN_IN: Int = 9001
 
     companion object {
-        const val USER_EMAIL:String = "USER_EMAIL"
+        const val USER_EMAIL: String = "USER_EMAIL"
     }
+
     private lateinit var callbackManager: CallbackManager
     private lateinit var binding: ActivityCreateAccountBinding
-    private lateinit var googleSignInClient:GoogleSignInClient
-    private lateinit var auth:FirebaseAuth
+    private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var auth: FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,12 +62,13 @@ class CreateAccountActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         //refer to Activity button
-        val googleButton:Button  = findViewById(R.id.btn_google_CreateAccount)
-        val createAccButton : Button = findViewById(R.id.btn_NewAccount_CreateAccount)
-        createAccButton.setOnClickListener{
+        val googleButton: Button = findViewById(R.id.btn_google_CreateAccount)
+        val createAccButton: Button = findViewById(R.id.btn_NewAccount_CreateAccount)
+        createAccButton.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
         googleButton.setOnClickListener {
+            setLoading()
             googleSignIn()
         }
         //facebook login
@@ -74,6 +81,7 @@ class CreateAccountActivity : AppCompatActivity() {
             callbackManager,
             object : FacebookCallback<LoginResult> {
                 override fun onSuccess(loginResult: LoginResult) {
+                    setLoading()
                     Log.d(TAG, "facebook:onSuccess:$loginResult")
                     handleFacebookAccessToken(loginResult.accessToken)
                     loginManager.logOut()
@@ -90,8 +98,6 @@ class CreateAccountActivity : AppCompatActivity() {
             })
 
 
-
-
     }
 
     override fun onStart() {
@@ -99,10 +105,12 @@ class CreateAccountActivity : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         //update UI
-        if (currentUser != null){
+        if (currentUser != null) {
             //return to login and terminate current Activity
-            startActivity(Intent(this, HomeActivity::class.java))
-            finish()
+            if (currentUser.isEmailVerified) {
+                startActivity(Intent(this, HomeActivity::class.java))
+                finish()
+            }
         }
     }
 
@@ -111,29 +119,34 @@ class CreateAccountActivity : AppCompatActivity() {
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try {
-                // Google Sign In was successful, authenticate with Firebase
-                val account = task.getResult(ApiException::class.java)!!
-                Log.d(TAG, "firebaseAuthWithGoogle:" + account.id)
-                firebaseAuthWithGoogle(account.idToken!!)
-            } catch (e: ApiException) {
-                // Google Sign In failed, update UI appropriately
-                Log.w(TAG, "Google sign in failed", e)
+            if (resultCode == RESULT_OK) {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+                try {
+                    // Google Sign In was successful, authenticate with Firebase
+                    val account = task.getResult(ApiException::class.java)!!
+                    Log.d(TAG, "firebaseAuthWithGoogle:" + account.id)
+                    firebaseAuthWithGoogle(account.idToken!!)
+                } catch (e: ApiException) {
+                    // Google Sign In failed, update UI appropriately
+                    Log.w(TAG, "Google sign in failed", e)
+                }
+            } else {
+                clearLoading()
             }
-        }
-        else{
+        } else {
             callbackManager.onActivityResult(requestCode, resultCode, data)
 
         }
 
     }
+
     private fun handleFacebookAccessToken(token: AccessToken) {
         Log.d(TAG, "handleFacebookAccessToken:$token")
 
         val credential = FacebookAuthProvider.getCredential(token.token)
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
+                clearLoading()
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
@@ -155,10 +168,12 @@ class CreateAccountActivity : AppCompatActivity() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
+
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
+                clearLoading()
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
@@ -175,5 +190,14 @@ class CreateAccountActivity : AppCompatActivity() {
             }
     }
 
+    private fun setLoading() {
+        binding.progressBar.visibility = View.VISIBLE
+        binding.viewGroup.setAllClickable(false)
+    }
 
+    private fun clearLoading() {
+        binding.progressBar.visibility = View.GONE
+        binding.viewGroup.setAllClickable(true)
+
+    }
 }
