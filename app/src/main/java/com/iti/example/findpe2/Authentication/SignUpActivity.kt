@@ -1,4 +1,4 @@
-package com.iti.example.findpe2.Authentication
+package com.iti.example.findpe2.authentication
 
 import android.app.Activity
 import android.content.Intent

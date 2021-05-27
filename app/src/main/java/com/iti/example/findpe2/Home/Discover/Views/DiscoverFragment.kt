@@ -1,4 +1,4 @@
-package com.iti.example.findpe2.Home.Discover.Views
+package com.iti.example.findpe2.home.discover.views
 
 import android.content.Intent
 import android.os.Bundle

@@ -31,7 +31,7 @@
         <activity android:name="com.iti.example.findpe2.tripCheckout.TripHolderActivity"></activity>
         <activity android:name="com.iti.example.findpe2.home.HomeActivity" />
         <activity
-            android:name="com.iti.example.findpe2.Authentication.CreateAccountActivity"
+            android:name="com.iti.example.findpe2.authentication.CreateAccountActivity"
             android:fitsSystemWindows="true"
             android:theme="@style/NoActionBarTheme">
             <intent-filter>
@@ -41,10 +41,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.iti.example.findpe2.Authentication.SignUpActivity"
+            android:name="com.iti.example.findpe2.authentication.SignUpActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
         <activity
-            android:name="com.iti.example.findpe2.Authentication.LoginActivity"
+            android:name="com.iti.example.findpe2.authentication.LoginActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
         <activity android:name="com.iti.example.findpe2.MainActivity" />
     </application>

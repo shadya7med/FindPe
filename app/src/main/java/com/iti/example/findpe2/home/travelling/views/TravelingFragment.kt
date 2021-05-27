@@ -1,4 +1,4 @@
-package com.iti.example.findpe2.home.traveling.views
+package com.iti.example.findpe2.home.travelling.views
 
 import android.os.Bundle
 import android.util.Log

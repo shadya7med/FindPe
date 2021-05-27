@@ -29,5 +29,8 @@ class HomeViewModel:ViewModel() {
         _username.value = auth.currentUser!!.displayName
         _userPhotoUrl.value = auth.currentUser!!.photoUrl
     }
+    fun logout(){
+        auth.signOut()
+    }
 
 }

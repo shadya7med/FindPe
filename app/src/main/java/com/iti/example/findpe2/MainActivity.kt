@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.iti.example.findpe2.Authentication.CreateAccountActivity
+import com.iti.example.findpe2.authentication.CreateAccountActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var signout_btn : Button

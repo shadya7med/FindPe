@@ -10,10 +10,10 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.iti.example.findpe2.Home.Activities.Views.ActivitiesFragment
-import com.iti.example.findpe2.Home.Discover.Views.DiscoverFragment
 import com.iti.example.findpe2.R
 import com.iti.example.findpe2.databinding.FragmentExploreBinding
+import com.iti.example.findpe2.home.activities.views.ActivitiesFragment
+import com.iti.example.findpe2.home.discover.views.DiscoverFragment
 
 
 class ExploreFragment : Fragment() {
