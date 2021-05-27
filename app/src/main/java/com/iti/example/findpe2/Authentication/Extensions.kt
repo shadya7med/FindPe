@@ -1,4 +1,4 @@
-package com.iti.example.findpe2.Authentication
+package com.iti.example.findpe2.authentication
 
 import android.util.Patterns
 import android.view.View

@@ -1,4 +1,4 @@
-package com.iti.example.findpe2.Home.Notification.Views
+package com.iti.example.findpe2.home.notification.views
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,11 +1,10 @@
-package com.iti.example.findpe2.Authentication
+package com.iti.example.findpe2.authentication
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.AccessToken
@@ -61,7 +60,6 @@ class CreateAccountActivity : AppCompatActivity() {
         //initialize firebase Authentication
         auth = Firebase.auth
 
-        //refer to Activity button
 
         binding.btnNewAccountCreateAccount.setOnClickListener{
             startActivity(Intent(this, LoginActivity::class.java))

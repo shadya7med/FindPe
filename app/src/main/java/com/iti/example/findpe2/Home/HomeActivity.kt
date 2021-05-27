@@ -1,5 +1,6 @@
 package com.iti.example.findpe2.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -13,6 +14,8 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
 import com.iti.example.findpe2.R
+import com.iti.example.findpe2.authentication.CreateAccountActivity
+import com.iti.example.findpe2.authentication.LoginActivity
 import com.iti.example.findpe2.databinding.ActivityHomeBinding
 import com.iti.example.findpe2.databinding.HomeDrawerHeaderBinding
 
@@ -78,17 +81,17 @@ class HomeActivity : AppCompatActivity() {
             .circleCrop()
             .into(drawerHeaderBinder.userImageImgViewNavHeaderHome);
 
-       /* binder.homeDrawerNavView.setNavigationItemSelectedListener {
+        binder.homeDrawerNavView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.logoutFragmentHome -> {
                     homeViewModel.logout()
-                    val signoutIntent = Intent(this@HomeActivity,LoginActivity::class.java)
+                    val signoutIntent = Intent(this@HomeActivity, CreateAccountActivity::class.java)
                     startActivity(signoutIntent)
                     finish()
                 }
             }
             true
-        }*/
+        }
         //add root as Top Active View
         setContentView(binder.root)
     }

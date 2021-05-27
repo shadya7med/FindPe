@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/travelingFragmentHome"
-        android:name="com.iti.example.findpe2.home.traveling.views.TravelingFragment"
+        android:name="com.iti.example.findpe2.home.travelling.views.TravelingFragment"
         android:label="@string/traveling_text"
         tools:layout="@layout/fragment_traveling" >
         <action
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/notificationFragmentHome"
-        android:name="com.iti.example.findpe2.Home.Notification.Views.NotificationFragment"
+        android:name="com.iti.example.findpe2.home.notification.views.NotificationFragment"
         android:label="@string/notification_text"
         tools:layout="@layout/fragment_notification" />
     <fragment
@@ -52,14 +52,6 @@
         android:name="com.iti.example.findpe2.home.filter.views.FilterFragment"
         android:label="@string/filter"
         tools:layout="@layout/fragment_filter"/>
-    <fragment
-        android:id="@+id/settingsFragmentHome"
-        android:name="com.iti.example.findpe2.Home.settings.views.SettingsFragment"
-        android:label="@string/settings_text"
-        tools:layout="@layout/fragment_settings" />
-    <fragment
-        android:id="@+id/logoutFragmentHome"
-        android:name="com.iti.example.findpe2.Home.logout.views.LogoutFragment"
-        android:label="fragment_logout"
-        tools:layout="@layout/fragment_logout" />
+    
+
 </navigation>
