@@ -3,7 +3,6 @@ package com.iti.example.findpe2.Authentication
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.AccessToken
@@ -27,13 +26,13 @@ import com.iti.example.findpe2.home.HomeActivity
 const val TAG = "CREATE_ACCOUNT"
 class CreateAccountActivity : AppCompatActivity() {
 
-    private val RC_SIGN_IN: Int = 9001
+
 
     companion object {
+        private const val RC_SIGN_IN: Int = 9001
         const val USER_EMAIL:String = "USER_EMAIL"
     }
     private lateinit var callbackManager: CallbackManager
-    private lateinit var binding: ActivityCreateAccountBinding
     private lateinit var googleSignInClient:GoogleSignInClient
     private lateinit var auth:FirebaseAuth
 
@@ -41,8 +40,8 @@ class CreateAccountActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityCreateAccountBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        val binding = ActivityCreateAccountBinding.inflate(layoutInflater)
+
 
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -51,17 +50,15 @@ class CreateAccountActivity : AppCompatActivity() {
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
-        googleSignInClient.signOut()
+        //googleSignInClient.signOut()
         //initialize firebase Authentication
         auth = Firebase.auth
 
         //refer to Activity button
-        val googleButton:Button  = findViewById(R.id.btn_google_CreateAccount)
-        val createAccButton : Button = findViewById(R.id.btn_NewAccount_CreateAccount)
-        createAccButton.setOnClickListener{
+        binding.btnNewAccountCreateAccount.setOnClickListener{
             startActivity(Intent(this, LoginActivity::class.java))
         }
-        googleButton.setOnClickListener {
+        binding.btnGoogleCreateAccount.setOnClickListener {
             googleSignIn()
         }
         //facebook login
@@ -89,7 +86,7 @@ class CreateAccountActivity : AppCompatActivity() {
                 }
             })
 
-
+        setContentView(binding.root)
 
 
     }

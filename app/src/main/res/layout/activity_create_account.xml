@@ -5,19 +5,21 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         tools:context=".Authentication.CreateAccountActivity">
 
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:foreground="@drawable/background_gradient"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/login_background_2"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/login_background_2" />
 
         <TextView
             android:id="@+id/textView"
@@ -65,14 +67,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="90dp"
             android:text="@string/agreeTermsMsgText"
             android:textAlignment="viewEnd"
             android:textColor="@color/feature_selected_btn_icon"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.6"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_NewAccount_CreateAccount" />
 
@@ -96,7 +98,7 @@
             android:layout_width="0dp"
             android:layout_height="55dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="110dp"
             android:layout_marginEnd="16dp"
             android:width="370dp"
             android:shadowColor="#121111"

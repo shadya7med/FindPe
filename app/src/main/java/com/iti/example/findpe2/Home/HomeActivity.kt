@@ -1,5 +1,6 @@
 package com.iti.example.findpe2.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -12,6 +13,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import com.iti.example.findpe2.Authentication.CreateAccountActivity
 import com.iti.example.findpe2.R
 import com.iti.example.findpe2.databinding.ActivityHomeBinding
 import com.iti.example.findpe2.databinding.HomeDrawerHeaderBinding
@@ -78,19 +82,31 @@ class HomeActivity : AppCompatActivity() {
             .placeholder(R.drawable.ic_launcher_background)
             .into(drawerHeaderBinder.userImageImgViewNavHeaderHome);
 
-       /* binder.homeDrawerNavView.setNavigationItemSelectedListener {
+        binder.homeDrawerNavView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.logoutFragmentHome -> {
                     homeViewModel.logout()
-                    val signoutIntent = Intent(this@HomeActivity,LoginActivity::class.java)
+                    val signoutIntent = Intent(this@HomeActivity, CreateAccountActivity::class.java)
                     startActivity(signoutIntent)
                     finish()
                 }
             }
             true
-        }*/
+        }
         //add root as Top Active View
         setContentView(binder.root)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // Check if user is signed in.
+        val auth = Firebase.auth
+        if (auth.currentUser == null) {
+            // Not signed in, launch the Sign In activity
+            startActivity(Intent(this, CreateAccountActivity::class.java))
+            finish()
+            return
+        }
     }
 
     /*options menu lifecycle*/
