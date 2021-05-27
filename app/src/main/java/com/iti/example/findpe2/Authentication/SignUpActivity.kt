@@ -168,9 +168,9 @@ class SignUpActivity : AppCompatActivity() {
         clearData()
         binder.progressBar.visibility = View.GONE
         binder.viewGroup.setAllClickable(true)
-
     }
-    fun downSizeImage(uri: Uri): ByteArray{
+
+    private fun downSizeImage(uri: Uri): ByteArray{
         val fullBitmap =
             MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
         val scaleWidth: Int = fullBitmap.width / 4

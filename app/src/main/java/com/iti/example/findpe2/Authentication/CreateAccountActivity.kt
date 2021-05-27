@@ -3,15 +3,11 @@ package com.iti.example.findpe2.Authentication
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-<<<<<<< HEAD
+
 import android.view.View
-import android.view.ViewGroup
-=======
->>>>>>> parent of 6838745 (added chat fragment)
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.children
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -44,14 +40,8 @@ class CreateAccountActivity : AppCompatActivity() {
 
     private lateinit var callbackManager: CallbackManager
     private lateinit var binding: ActivityCreateAccountBinding
-<<<<<<< HEAD
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
-=======
-    private lateinit var googleSignInClient:GoogleSignInClient
-    private lateinit var auth:FirebaseAuth
->>>>>>> parent of 6838745 (added chat fragment)
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,12 +66,8 @@ class CreateAccountActivity : AppCompatActivity() {
         createAccButton.setOnClickListener{
             startActivity(Intent(this, LoginActivity::class.java))
         }
-<<<<<<< HEAD
         binding.btnGoogleCreateAccount.setOnClickListener {
             setLoading()
-=======
-        googleButton.setOnClickListener {
->>>>>>> parent of 6838745 (added chat fragment)
             googleSignIn()
         }
         //facebook login
