@@ -78,8 +78,8 @@ class HomeActivity : AppCompatActivity() {
         //update the nav   header image with the user image
         Glide.with(this)
             .load(homeViewModel.userPhotoUrl.value)
+            .placeholder(R.drawable.background_gradient)
             .circleCrop()
-            .placeholder(R.drawable.ic_launcher_background)
             .into(drawerHeaderBinder.userImageImgViewNavHeaderHome);
 
         binder.homeDrawerNavView.setNavigationItemSelectedListener {

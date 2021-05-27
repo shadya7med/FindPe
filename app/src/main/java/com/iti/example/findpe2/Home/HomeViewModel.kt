@@ -3,6 +3,7 @@ package com.iti.example.findpe2.home
 import android.app.Application
 import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -30,7 +31,6 @@ class HomeViewModel(application: Application):AndroidViewModel(application) {
         get() = _userPhotoUrl
 
     init{
-        auth = Firebase.auth
         _email.value = auth.currentUser!!.email
         _username.value = auth.currentUser!!.displayName
         _userPhotoUrl.value = auth.currentUser!!.photoUrl
@@ -39,6 +39,7 @@ class HomeViewModel(application: Application):AndroidViewModel(application) {
             .requestEmail()
             .build()
         signInClient = GoogleSignIn.getClient(application, gso)
+        Log.i(TAG, ": ${auth.currentUser!!.photoUrl}")
     }
 
     fun logout(){

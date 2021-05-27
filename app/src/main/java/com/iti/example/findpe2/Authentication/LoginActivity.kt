@@ -3,6 +3,7 @@ package com.iti.example.findpe2.Authentication
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -45,18 +46,27 @@ class LoginActivity : AppCompatActivity() {
                     return@setOnClickListener
                 }
             }
+            setLoading()
+
             auth.signInWithEmailAndPassword(binding.emailEdtTxtLogin.text.toString(), binding.passwordEdtTxtLogin.text.toString())
                 .addOnCompleteListener(this) { task ->
+                    clearLoading()
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
-                        val signInIntent = Intent(this, HomeActivity::class.java)
-                        signInIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        startActivity(signInIntent)
-                        finish()
+                        if(auth.currentUser!!.isEmailVerified) {
+                            val signInIntent = Intent(this, HomeActivity::class.java)
+                            signInIntent.flags =
+                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(signInIntent)
+                            finish()
+                        }else{
+                            auth!!.currentUser!!.sendEmailVerification()
+                            Toast.makeText(baseContext, "Email is not verified, an email is sent for verification", Toast.LENGTH_LONG).show()
+                        }
                     } else {
                         // If sign in fails, display a message to the user.
-                        Toast.makeText(baseContext, "Authentication failed.",
-                            Toast.LENGTH_SHORT).show()
+                        Toast.makeText(baseContext, "Authentication failed due to ${task.exception?.localizedMessage}",
+                        Toast.LENGTH_SHORT).show()
 
                     }
                 }
@@ -70,12 +80,28 @@ class LoginActivity : AppCompatActivity() {
         val currentUser = auth.currentUser
         if(currentUser != null){
             //there's a user navigate to Main and terminate login Act
-            val openMain = Intent(this, HomeActivity::class.java)
-            startActivity(openMain)
-            finish()
+            if (currentUser.isEmailVerified) {
+                startActivity(Intent(this, HomeActivity::class.java))
+                finish()
+            }
+        }
+    }
+    private fun setLoading(){
+        binding.progressBar.visibility = View.VISIBLE
+        binding.viewGroup.setAllClickable(false)
+    }
+    private fun clearLoading(){
+        clearData()
+        binding.progressBar.visibility = View.GONE
+        binding.viewGroup.setAllClickable(true)
+
+    }
+
+    private fun clearData() {
+        with(binding){
+            emailEdtTxtLogin.setText("")
+            passwordEdtTxtLogin.setText("")
         }
     }
 
-
 }
-fun CharSequence?.isValidEmail() = !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
