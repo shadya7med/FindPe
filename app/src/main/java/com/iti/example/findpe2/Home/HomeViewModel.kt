@@ -1,11 +1,6 @@
 package com.iti.example.findpe2.home
 
 import android.net.Uri
-<<<<<<< HEAD
-import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-=======
->>>>>>> parent of 6838745 (added chat fragment)
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,7 +10,7 @@ import com.google.firebase.ktx.Firebase
 
 class HomeViewModel:ViewModel() {
 
-    lateinit var auth: FirebaseAuth
+    var auth: FirebaseAuth = Firebase.auth
 
     private val _email:MutableLiveData<String> = MutableLiveData()
     val email:LiveData<String>
@@ -30,23 +25,9 @@ class HomeViewModel:ViewModel() {
         get() = _userPhotoUrl
 
     init{
-        auth = Firebase.auth
         _email.value = auth.currentUser!!.email
         _username.value = auth.currentUser!!.displayName
         _userPhotoUrl.value = auth.currentUser!!.photoUrl
-<<<<<<< HEAD
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(application.getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-        signInClient = GoogleSignIn.getClient(application, gso)
-        Log.i("HomeVM", ": ${auth.currentUser!!.photoUrl}")
-=======
->>>>>>> parent of 6838745 (added chat fragment)
-    }
-
-    fun logout(){
-        auth.signOut()
     }
 
 }
