@@ -120,7 +120,4 @@
     <!--Facebook Facebook app ID     -->
     <string name="facebook_app_id">789196238695588</string>
     <string name="fb_login_protocol_scheme">fb789196238695588</string>
-    <string name="send_btn_desc">this is message send button</string>
-    <string name="message_box_desc">this is the written message</string>
-    <string name="add_img_desc">this is add Image button</string>
 </resources>

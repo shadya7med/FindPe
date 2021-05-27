@@ -3,8 +3,11 @@ package com.iti.example.findpe2.Authentication
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+<<<<<<< HEAD
 import android.view.View
 import android.view.ViewGroup
+=======
+>>>>>>> parent of 6838745 (added chat fragment)
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -32,25 +35,29 @@ const val TAG = "CREATE_ACCOUNT"
 
 class CreateAccountActivity : AppCompatActivity() {
 
-
+    private val RC_SIGN_IN: Int = 9001
 
     companion object {
-        private const val RC_SIGN_IN: Int = 9001
         const val USER_EMAIL:String = "USER_EMAIL"
 
     }
 
     private lateinit var callbackManager: CallbackManager
     private lateinit var binding: ActivityCreateAccountBinding
+<<<<<<< HEAD
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
+=======
+    private lateinit var googleSignInClient:GoogleSignInClient
+    private lateinit var auth:FirebaseAuth
+>>>>>>> parent of 6838745 (added chat fragment)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = ActivityCreateAccountBinding.inflate(layoutInflater)
-
+        binding = ActivityCreateAccountBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -59,16 +66,22 @@ class CreateAccountActivity : AppCompatActivity() {
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
-        //googleSignInClient.signOut()
+        googleSignInClient.signOut()
         //initialize firebase Authentication
         auth = Firebase.auth
 
         //refer to Activity button
-        binding.btnNewAccountCreateAccount.setOnClickListener{
+        val googleButton:Button  = findViewById(R.id.btn_google_CreateAccount)
+        val createAccButton : Button = findViewById(R.id.btn_NewAccount_CreateAccount)
+        createAccButton.setOnClickListener{
             startActivity(Intent(this, LoginActivity::class.java))
         }
+<<<<<<< HEAD
         binding.btnGoogleCreateAccount.setOnClickListener {
             setLoading()
+=======
+        googleButton.setOnClickListener {
+>>>>>>> parent of 6838745 (added chat fragment)
             googleSignIn()
         }
         //facebook login
@@ -97,7 +110,7 @@ class CreateAccountActivity : AppCompatActivity() {
                 }
             })
 
-        setContentView(binding.root)
+
 
 
     }
