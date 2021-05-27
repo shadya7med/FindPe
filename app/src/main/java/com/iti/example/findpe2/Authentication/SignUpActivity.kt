@@ -6,7 +6,6 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.text.Editable
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -181,7 +180,6 @@ class SignUpActivity : AppCompatActivity() {
         // 2. Instantiate the downsized image content as a byte[]
         val baos = ByteArrayOutputStream()
         scaledBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
-        val downsizedImageBytes = baos.toByteArray()
-        return downsizedImageBytes;
+        return baos.toByteArray();
     }
 }

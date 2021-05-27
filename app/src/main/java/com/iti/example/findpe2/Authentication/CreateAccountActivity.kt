@@ -40,6 +40,7 @@ class CreateAccountActivity : AppCompatActivity() {
 
     private lateinit var callbackManager: CallbackManager
     private lateinit var binding: ActivityCreateAccountBinding
+
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
 
@@ -61,11 +62,11 @@ class CreateAccountActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         //refer to Activity button
-        val googleButton:Button  = findViewById(R.id.btn_google_CreateAccount)
-        val createAccButton : Button = findViewById(R.id.btn_NewAccount_CreateAccount)
-        createAccButton.setOnClickListener{
+
+        binding.btnNewAccountCreateAccount.setOnClickListener{
             startActivity(Intent(this, LoginActivity::class.java))
         }
+
         binding.btnGoogleCreateAccount.setOnClickListener {
             setLoading()
             googleSignIn()
@@ -84,7 +85,6 @@ class CreateAccountActivity : AppCompatActivity() {
                     Log.d(TAG, "facebook:onSuccess:$loginResult")
                     handleFacebookAccessToken(loginResult.accessToken)
                     loginManager.logOut()
-
                 }
 
                 override fun onCancel() {
