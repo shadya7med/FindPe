@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/chatFragmentHome"
-        android:name="com.iti.example.findpe2.home.chat.views.ChatFragment"
+        android:name="com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatFragment"
         android:label="@string/chat_text"
         tools:layout="@layout/fragment_chat" />
     <fragment

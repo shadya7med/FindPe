@@ -120,4 +120,8 @@
     <!--Facebook Facebook app ID     -->
     <string name="facebook_app_id">789196238695588</string>
     <string name="fb_login_protocol_scheme">fb789196238695588</string>
+    <string name="msg_placeholder">Hi there this is a very long msg to test the textView that will show it so the rest of this msg is copied and redundant No internet found. Check your connection and try again </string>
+    <string name="username_placeholder">Shady Ahmed AbdUllah El-Sayed</string>
+    <string name="userImg_desc">this is the user image</string>
+    <string name="time_placeholder">15/9/2020</string>
 </resources>
