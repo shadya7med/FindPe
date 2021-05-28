@@ -8,15 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import com.iti.example.findpe2.R
 import com.iti.example.findpe2.databinding.FragmentChatBinding
 import com.iti.example.findpe2.home.chat.chatInstance.views.ChatPageActivity
 import com.iti.example.findpe2.home.chat.chatRoomsList.viewModels.ChatRoomsListViewModel
-import com.iti.example.findpe2.pojos.ChatRoom
 import com.iti.example.findpe2.utils.setAllClickable
 
 
@@ -36,33 +31,15 @@ class ChatFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentChatBinding.inflate(inflater, container, false)
         val chatRoomViewModel = ViewModelProvider(this).get(ChatRoomsListViewModel::class.java)
+
         setLoading()
-        val db = Firebase.firestore
-        val currentUser = Firebase.auth.currentUser
-        /*val collectionName =
-            if (currentUser?.uid!! <= "I9cEcG0u1cP9V9oz7IhP5pZzj5N2") {
-                currentUser?.uid + "I9cEcG0u1cP9V9oz7IhP5pZzj5N2"
-            } else {
-                "I9cEcG0u1cP9V9oz7IhP5pZzj5N2" + currentUser?.uid
-            }
-        db.collection(collectionName)
-            .orderBy("time")
-            .get()
-            .addOnSuccessListener { result ->
-                clearLoading()
-                val msgList = result.toObjects(Message::class.java)
-                Log.i("Chat", "${msgList[0].msgBody}")
-            }
-            .addOnFailureListener { exception ->
-                clearLoading()
-                Log.d("Chat", "Error getting documents: ", exception)
-            }*/
+
         val chatRoomsListAdapter =
             ChatRoomsListAdapter(ChatRoomsListAdapter.ChatRoomsClickListener { chatRoom ->
                 chatRoomViewModel.onNavigateToChatPage(chatRoom)
             })
-        chatRoomViewModel.navigateToChatPageData.observe(viewLifecycleOwner) {
 
+        chatRoomViewModel.navigateToChatPageData.observe(viewLifecycleOwner) {
             it?.let {
                 //open chat page
                 val openChatPageIntent = Intent(requireActivity(), ChatPageActivity::class.java)
@@ -70,38 +47,35 @@ class ChatFragment : Fragment() {
                 startActivity(openChatPageIntent)
                 chatRoomViewModel.onDoneNavigateToChatPage()
             }
-
         }
         binding.chatListRcyViewChatHome.adapter = chatRoomsListAdapter
-        currentUser?.let {
-            db.collection(it.uid)
-                .orderBy("chatLastMsgTime", Query.Direction.DESCENDING)
-                .get()
-                .addOnSuccessListener { result ->
-                    val chatRoomsList = result.toObjects(ChatRoom::class.java)
-                    clearLoading()
-                    if (chatRoomsList.size == 0){
-                        binding.noChatsImgViewChatsListHome.visibility = View.VISIBLE
-                        binding.noChatsTxtViewChatsListHome.visibility = View.VISIBLE
-                        binding.chatListRcyViewChatHome.visibility = View.GONE
-                    }
-                    chatRoomsListAdapter.submitList(chatRoomsList)
-                }.addOnFailureListener { exception ->
-                    clearLoading()
+        chatRoomViewModel.chatRoomsList.observe(viewLifecycleOwner) {
+            it?.let {
+                clearLoading()
+                if (it.isEmpty()) {
                     binding.noChatsImgViewChatsListHome.visibility = View.VISIBLE
-                    binding.noChatsTxtViewChatsListHome.text = requireActivity().getString(R.string.no_chats_problem)
                     binding.noChatsTxtViewChatsListHome.visibility = View.VISIBLE
                     binding.chatListRcyViewChatHome.visibility = View.GONE
-                    //Show Snack bar with exp
-                    Snackbar
-                        .make(binding.root,"Couldn't retrieve chats ", Snackbar.LENGTH_LONG)
-                        .show()
-
                 }
+                chatRoomsListAdapter.submitList(it)
+            }
+
         }
+        chatRoomViewModel.errorMsg.observe(viewLifecycleOwner) {
+            it?.let {
+                clearLoading()
+                binding.noChatsImgViewChatsListHome.visibility = View.VISIBLE
+                binding.noChatsTxtViewChatsListHome.text =
+                    requireActivity().getString(R.string.no_chats_problem)
+                binding.noChatsTxtViewChatsListHome.visibility = View.VISIBLE
+                binding.chatListRcyViewChatHome.visibility = View.GONE
+                //Show Snack bar with exp
+                Snackbar
+                    .make(binding.root, "Couldn't retrieve chats ", Snackbar.LENGTH_LONG)
+                    .show()
+            }
 
-
-
+        }
 
 
         return binding.root

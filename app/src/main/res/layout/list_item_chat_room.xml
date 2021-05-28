@@ -32,8 +32,8 @@
 
             <ImageView
                 android:id="@+id/userImg_imgView_chatItem_chat"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
                 android:background="#FFFFFF"
                 android:contentDescription="@string/userImg_desc"
                 android:scaleType="centerCrop"

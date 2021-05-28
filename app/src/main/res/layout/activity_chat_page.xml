@@ -17,13 +17,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".home.chat.chatInstance.views.ChatPageActivity">
+        tools:context=".home.chat.chatInstance.views.ChatPageActivity"
+        android:fitsSystemWindows="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/top_layout_cl_chatPage_chatActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -32,7 +35,7 @@
                 android:id="@+id/back_btn_chatPage_chatActivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/back_btn_desc"
                 android:onClick="@{()->chatPageViewModel.onNavigateToHome(true)}"
@@ -80,14 +83,17 @@
             android:id="@+id/msgList_rcyView_chatPage_chatActivity"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:clipToPadding="true"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             app:layout_constraintBottom_toTopOf="@+id/bottom_layout_cl_chatPage_chatActivity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/top_layout_cl_chatPage_chatActivity"
-            app:layout_constraintVertical_bias="1.0"
-            tools:itemCount="7"
+            tools:itemCount="8"
             tools:listitem="@layout/list_item_received_message">
 
         </androidx.recyclerview.widget.RecyclerView>
@@ -96,23 +102,31 @@
             android:id="@+id/bottom_layout_cl_chatPage_chatActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/msgList_rcyView_chatPage_chatActivity">
 
             <EditText
                 android:id="@+id/msg_editTxt_chatPage_chatActivity"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/edit_text_shadow"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edit_text_rounded_corners"
                 android:ems="10"
                 android:hint="@string/msg_hint"
                 android:inputType="textPersonName"
+                android:paddingStart="8dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="8dp"
                 android:singleLine="true"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/send_msg_imgView_chatPage_chatActivity"
                 app:layout_constraintStart_toStartOf="parent"
@@ -126,7 +140,8 @@
                 android:contentDescription="@string/send_msg_desc"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/msg_editTxt_chatPage_chatActivity"
+                app:layout_constraintVertical_bias="0.38"
                 app:srcCompat="@drawable/outline_send_gray_24" />
 
 
@@ -142,7 +157,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <ImageView
             android:id="@+id/no_chat_imgView_chatPage_chatActivity"
@@ -155,7 +170,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.4"
             app:srcCompat="@drawable/no_chats_available"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <TextView
             android:id="@+id/no_chat_txtView_chatPage_chatActivity"
@@ -168,6 +183,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/no_chat_imgView_chatPage_chatActivity"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
