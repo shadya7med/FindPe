@@ -8,17 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.iti.example.findpe2.databinding.ListItemChatRoomBinding
 import com.iti.example.findpe2.pojos.ChatRoom
 
-class ChatRoomsListAdapter :
+class ChatRoomsListAdapter(val chatRoomsClickListener: ChatRoomsClickListener) :
     ListAdapter<ChatRoom, ChatRoomsListAdapter.ChatRoomsViewHolder>(ChatRoomsDiffCallbacks()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ChatRoomsViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: ChatRoomsViewHolder, position: Int) {
-
+        holder.bind(getItem(position),chatRoomsClickListener)
     }
 
-    class ChatRoomsViewHolder(val binding: ListItemChatRoomBinding) :
+    class ChatRoomsViewHolder private constructor(val binding: ListItemChatRoomBinding) :
         RecyclerView.ViewHolder(binding.root) {
         companion object {
             fun from(parent: ViewGroup): ChatRoomsViewHolder {
@@ -27,8 +27,10 @@ class ChatRoomsListAdapter :
                 return ChatRoomsViewHolder(binding)
             }
         }
-        fun bind(chatRoom:ChatRoom){
-            //binding.
+        fun bind(chatRoom:ChatRoom,chatRoomsClickListener: ChatRoomsClickListener){
+            binding.chatRoom = chatRoom
+            binding.chatRoomClickListener = chatRoomsClickListener
+            binding.executePendingBindings()
         }
     }
 
@@ -39,5 +41,8 @@ class ChatRoomsListAdapter :
         override fun areContentsTheSame(oldItem: ChatRoom, newItem: ChatRoom) = oldItem == newItem
     }
 
+    class ChatRoomsClickListener(val clickListener:(ChatRoom)->Unit){
+        fun onClick(chatRoom: ChatRoom) = clickListener(chatRoom)
+    }
 
 }

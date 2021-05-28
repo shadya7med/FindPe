@@ -5,11 +5,18 @@
 
     <data>
 
+        <variable
+            name="chatRoom"
+            type="com.iti.example.findpe2.pojos.ChatRoom" />
+        <variable
+            name="chatRoomClickListener"
+            type="com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatRoomsListAdapter.ChatRoomsClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{()->chatRoomClickListener.onClick(chatRoom)}">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView3"
@@ -30,6 +37,7 @@
                 android:background="#FFFFFF"
                 android:contentDescription="@string/userImg_desc"
                 android:scaleType="centerCrop"
+                app:chatRoomImage="@{chatRoom}"
                 tools:srcCompat="@tools:sample/avatars" />
         </androidx.cardview.widget.CardView>
 
@@ -41,6 +49,7 @@
             android:layout_marginEnd="16dp"
             android:maxLines="1"
             android:singleLine="true"
+            android:text="@{chatRoom.destinationUsername}"
             app:layout_constraintBottom_toTopOf="@+id/msg_txtView_chatItem_chat"
             app:layout_constraintEnd_toStartOf="@+id/lastMsgTime_txtView_chatItem"
             app:layout_constraintHorizontal_bias="0.5"
@@ -58,6 +67,7 @@
             android:layout_marginEnd="16dp"
             android:maxLines="1"
             android:singleLine="true"
+            android:text="@{chatRoom.chatLastMsgText}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/username_txtView_chatItem_chat"
@@ -81,8 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
-            android:text="@string/time_placeholder"
-            android:visibility="gone"
+            app:lastMsgTime="@{chatRoom}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/username_txtView_chatItem_chat"

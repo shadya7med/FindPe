@@ -67,7 +67,7 @@
     <string name="time">9:00 AM</string>
     <string name="timeline_title">Breakfast</string>
     <string name="dayplans">Day Plans</string>
-    <string name="nature">Nature\'s Light</string>
+    <string name="nature">Nature\&apos;s Light</string>
     <string name="modern">Modern Life</string>
     <string name="cultural">Cultural</string>
     <string name="populartity">Populartity</string>
@@ -124,4 +124,10 @@
     <string name="username_placeholder">Shady Ahmed AbdUllah El-Sayed</string>
     <string name="userImg_desc">this is the user image</string>
     <string name="time_placeholder">15/9/2020</string>
+    <string name="no_chats_text">There\&apos;s no available chats. Choose a companion and start chatting</string>
+    <string name="no_chats_img_desc">there is no available chats</string>
+    <string name="no_chats_problem">"We are facing problem with chats please try again later"</string>
+    <string name="msg_hint">Type a message.....</string>
+    <string name="send_msg_desc">this is send msg button</string>
+    <string name="back_btn_desc">this is the Chat page back button</string>
 </resources>

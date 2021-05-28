@@ -17,6 +17,8 @@ import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.iti.example.findpe2.R
+import com.iti.example.findpe2.utils.isValidEmail
+import com.iti.example.findpe2.utils.setAllClickable
 import com.iti.example.findpe2.databinding.ActivitySignUpBinding
 import java.io.ByteArrayOutputStream
 

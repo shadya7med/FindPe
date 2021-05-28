@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.iti.example.findpe2.utils.isValidEmail
+import com.iti.example.findpe2.utils.setAllClickable
 import com.iti.example.findpe2.databinding.ActivityLoginBinding
 import com.iti.example.findpe2.home.HomeActivity
 

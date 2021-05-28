@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.iti.example.findpe2">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,29 +11,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FindPe">
-        <!-- Add the following meta-data element, an activity for Facebook, and an activity and intent filter for Chrome Custom Tabs inside your application element-->
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
+        <activity
+            android:name=".home.chat.chatInstance.views.ChatPageActivity"
+            android:theme="@style/NoActionBarTheme" />
+        <!-- Add the following meta-data element, an activity for Facebook, and an activity and intent filter for Chrome Custom Tabs inside your application element -->
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.iti.example.findpe2.tripCheckout.TripHolderActivity"></activity>
-        <activity android:name="com.iti.example.findpe2.home.HomeActivity" />
+        <activity android:name=".tripCheckout.TripHolderActivity" />
+        <activity android:name=".home.HomeActivity" />
         <activity
-            android:name="com.iti.example.findpe2.authentication.CreateAccountActivity"
+            android:name=".authentication.CreateAccountActivity"
             android:fitsSystemWindows="true"
             android:theme="@style/NoActionBarTheme">
             <intent-filter>
@@ -41,12 +48,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.iti.example.findpe2.authentication.SignUpActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+            android:name=".authentication.SignUpActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
-            android:name="com.iti.example.findpe2.authentication.LoginActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
-        <activity android:name="com.iti.example.findpe2.MainActivity" />
+            android:name=".authentication.LoginActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

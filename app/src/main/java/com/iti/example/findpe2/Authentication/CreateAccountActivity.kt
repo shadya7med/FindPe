@@ -23,6 +23,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.iti.example.findpe2.R
+import com.iti.example.findpe2.utils.setAllClickable
 import com.iti.example.findpe2.databinding.ActivityCreateAccountBinding
 import com.iti.example.findpe2.home.HomeActivity
 
