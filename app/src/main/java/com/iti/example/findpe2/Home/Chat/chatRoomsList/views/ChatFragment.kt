@@ -48,7 +48,9 @@ class ChatFragment : Fragment() {
                 chatRoomViewModel.onDoneNavigateToChatPage()
             }
         }
+
         binding.chatListRcyViewChatHome.adapter = chatRoomsListAdapter
+
         chatRoomViewModel.chatRoomsList.observe(viewLifecycleOwner) {
             it?.let {
                 clearLoading()

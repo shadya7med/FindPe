@@ -24,6 +24,10 @@ class ChatRoomsListViewModel : ViewModel() {
     val navigateToChatPageData: LiveData<ChatRoom?>
         get() = _navigateToChatPageData
 
+    init{
+        getAllAvailableChatRoom()
+    }
+
     fun onNavigateToChatPage(chatRoom: ChatRoom) {
         _navigateToChatPageData.value = chatRoom
     }
@@ -32,7 +36,7 @@ class ChatRoomsListViewModel : ViewModel() {
         _navigateToChatPageData.value = null
     }
 
-    fun getAllAvailableChatRoom() {
+    private fun getAllAvailableChatRoom() {
         val db = Firebase.firestore
         val currentUser = Firebase.auth.currentUser
         currentUser?.let {
