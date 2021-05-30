@@ -5,6 +5,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.iti.example.findpe2.databinding.ActivityChatPageBinding
@@ -13,6 +14,7 @@ import com.iti.example.findpe2.home.chat.chatInstance.viewModels.ChatPageViewMod
 import com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatFragment
 import com.iti.example.findpe2.pojos.ChatRoom
 import com.iti.example.findpe2.utils.setAllClickable
+
 
 class ChatPageActivity : AppCompatActivity() {
 
@@ -23,20 +25,22 @@ class ChatPageActivity : AppCompatActivity() {
         binding = ActivityChatPageBinding.inflate(layoutInflater)
         setLoading()
         val chatRoom = intent.getParcelableExtra<ChatRoom>(ChatFragment.CHAT_ROOM_KEY)
-        val chatPageViewModel = ViewModelProvider(this,ChatPageViewModelFactory(chatRoom!!)).get(ChatPageViewModel::class.java)
+        val chatPageViewModel = ViewModelProvider(this, ChatPageViewModelFactory(chatRoom!!)).get(
+            ChatPageViewModel::class.java
+        )
 
-        /*supportActionBar?.let {
-            it.title = chatRoom?.let { chatRoom ->
-                chatRoom.destinationUsername
-            }
-            it.setDisplayHomeAsUpEnabled(true)
-        }*/
         binding.chatRoom = chatRoom
         binding.chatPageViewModel = chatPageViewModel
         val layoutManager = LinearLayoutManager(this)
         layoutManager.stackFromEnd = true
         val messagesListAdapter = MessagesListAdapter(Firebase.auth.currentUser?.uid!!)
-        messagesListAdapter.registerAdapterDataObserver(ScrollToBottomObserver(binding.msgListRcyViewChatPageChatActivity,messagesListAdapter,layoutManager))
+        messagesListAdapter.registerAdapterDataObserver(
+            ScrollToBottomObserver(
+                binding.msgListRcyViewChatPageChatActivity,
+                messagesListAdapter,
+                layoutManager
+            )
+        )
         binding.msgListRcyViewChatPageChatActivity.layoutManager = layoutManager
         binding.msgListRcyViewChatPageChatActivity.adapter = messagesListAdapter
 
@@ -61,6 +65,7 @@ class ChatPageActivity : AppCompatActivity() {
         binding.msgEditTxtChatPageChatActivity.addTextChangedListener(SendButtonObserver(binding.sendMsgImgViewChatPageChatActivity))
         binding.sendMsgImgViewChatPageChatActivity.setOnClickListener {
             chatPageViewModel.onSendMsg(binding.msgEditTxtChatPageChatActivity.text.toString())
+            binding.msgEditTxtChatPageChatActivity.setText("")
         }
 
         chatPageViewModel.navigateUptoHome.observe(this){
@@ -70,15 +75,17 @@ class ChatPageActivity : AppCompatActivity() {
             }
         }
 
-        //chatPageViewModel.getChatPageMessages()
+
         chatPageViewModel.onSendMsgSuccess.observe(this){
             it?.let {
                 if (it){
-                    binding.msgEditTxtChatPageChatActivity.setText("")
+                    scrollToBottom(binding.msgListRcyViewChatPageChatActivity)
                 }
+                chatPageViewModel.onDoneSendingMsg()
             }
         }
 
+        scrollToBottom(binding.msgListRcyViewChatPageChatActivity)
 
         setContentView(binding.root)
     }
@@ -93,14 +100,19 @@ class ChatPageActivity : AppCompatActivity() {
         binding.root.setAllClickable(true)
 
     }
-
-    /*override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                finish()
-                true
+    private fun scrollToBottom(recyclerView: RecyclerView) {
+        // scroll to last item to get the view of last item
+        val layoutManager = recyclerView.layoutManager as LinearLayoutManager?
+        val adapter = recyclerView.adapter
+        val lastItemPosition = adapter!!.itemCount - 1
+        layoutManager!!.scrollToPositionWithOffset(lastItemPosition, 0)
+        recyclerView.post { // then scroll to specific offset
+            val target = layoutManager.findViewByPosition(lastItemPosition)
+            if (target != null) {
+                val offset = recyclerView.measuredHeight - target.measuredHeight
+                layoutManager.scrollToPositionWithOffset(lastItemPosition, offset)
             }
-            else -> false
         }
-    }*/
+    }
+
 }
