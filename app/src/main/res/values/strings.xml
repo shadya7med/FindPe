@@ -141,4 +141,5 @@
     <string name="weather_state_desc">this is the weather state</string>
     <string name="love_trip_desc">this is the love image</string>
     <string name="comment_img_desc">this is the comment image</string>
+    <string name="alexandria">Alexandria</string>
 </resources>

@@ -4,7 +4,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Home.Search.Views.SearchFragment">
+        tools:context=".home.Search.Views.SearchFragment">
 
         <!-- TODO: Update blank fragment layout -->
         <TextView

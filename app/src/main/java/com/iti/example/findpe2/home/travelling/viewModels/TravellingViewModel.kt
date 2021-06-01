@@ -1,6 +1,7 @@
 package com.iti.example.findpe2.home.travelling.viewModels
 
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.*
 import com.iti.example.findpe2.models.TripApi
 import com.iti.example.findpe2.pojos.Trip
@@ -24,25 +25,38 @@ class TravellingViewModel: ViewModel() {
         it?.let{
             it.size
         }
-
     }
+
+    private val _status = MutableLiveData<Int?>()
+    val status: LiveData<Int?>
+        get() = _status
+
+    private val _errorMsgStatus = MutableLiveData<Int?>()
+    val errorMsgStatus: LiveData<Int?>
+        get() = _errorMsgStatus
+
     private val _selectedTrip = MutableLiveData<Trip?>()
 
     val selectedTrip: LiveData<Trip?>
         get() = _selectedTrip
 
 
-
     init {
+        _status.value = View.GONE
+        _errorMsgStatus.value = View.GONE
         getTrips()
     }
 
     private fun getTrips() {
+        _status.value = View.VISIBLE
         viewModelScope.launch {
             try {
                 _tripList.value = TripApi.getAllTrips()
+                _status.value = View.GONE
             }catch (t: Throwable){
                 Log.i("TravellingViewModel", "getTrips:${t.message}")
+                _errorMsgStatus.value = View.VISIBLE
+                _status.value = View.GONE
                 _tripsListErrorMsg.value  = t.localizedMessage
             }
         }

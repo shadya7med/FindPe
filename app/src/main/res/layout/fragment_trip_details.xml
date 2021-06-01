@@ -33,20 +33,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:text="@{viewModel.selectedTrip.name}"
-                tools:text="@string/trip_name"
+                android:text="@{viewModel.selectedTrip.destination}"
+                android:textColor="@color/text_custom_color"
                 android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/trip_image" />
+                app:layout_constraintTop_toBottomOf="@+id/trip_image"
+                tools:text="@string/trip_name" />
 
             <TextView
                 android:id="@+id/trip_price_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:text="@string/trip_price"
+                android:text="@{String.valueOf(viewModel.selectedTrip.price)}"
+                android:textColor="@color/sec_text_custom_color"
                 app:layout_constraintStart_toStartOf="@+id/trip_name_text"
-                app:layout_constraintTop_toBottomOf="@+id/trip_name_text" />
+                app:layout_constraintTop_toBottomOf="@+id/trip_name_text"
+                tools:text="@string/trip_price" />
 
             <View
                 android:id="@+id/divider"
@@ -59,14 +62,15 @@
 
             <TextView
                 android:id="@+id/trip_about"
+                style="@style/title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/about_trip"
+                android:textColor="@color/text_custom_color"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider"
-                style="@style/title_style" />
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
 
             <TextView
                 android:id="@+id/trip_about_text"
@@ -75,11 +79,12 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="24dp"
                 android:text="@{viewModel.selectedTrip.tripDescription}"
-                tools:text="@string/about_trip_text"
+                android:textColor="@color/sec_text_custom_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="@+id/trip_about"
-                app:layout_constraintTop_toBottomOf="@+id/trip_about" />
+                app:layout_constraintTop_toBottomOf="@+id/trip_about"
+                tools:text="@string/about_trip_text" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/save_trip_button"
@@ -99,7 +104,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="16dp"
-                app:cardBackgroundColor="@color/browser_actions_bg_grey"
+                app:cardBackgroundColor="@color/card_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/trip_about_text">
@@ -114,7 +119,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:text="@string/degree"
-                        android:textColor="@color/black"
+                        android:textColor="@color/text_custom_color"
                         android:textSize="24sp"
                         app:layout_constraintBottom_toTopOf="@+id/temp_type_text"
                         app:layout_constraintStart_toEndOf="@+id/temp_image"
@@ -157,7 +162,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
                         android:text="@string/trip_rate"
-                        android:textColor="@color/black"
+                        android:textColor="@color/text_custom_color"
                         android:textSize="24sp"
                         app:layout_constraintBottom_toTopOf="@+id/trip_rate_ratingbar"
                         app:layout_constraintStart_toEndOf="@+id/divider2"
@@ -199,13 +204,15 @@
 
             <Button
                 android:id="@+id/timeline_button"
+                style="@style/Widget.App.Button.OutlinedButton.IconOnly"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
-                android:layout_marginBottom="70dp"
+                android:layout_marginBottom="20dp"
                 android:text="@string/see_timeline"
+                android:textColor="@color/text_custom_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -216,7 +223,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:cardBackgroundColor="@color/browser_actions_bg_grey"
+                app:cardBackgroundColor="@color/card_background"
                 app:layout_constraintTop_toBottomOf="@+id/temp_rate_card">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -231,6 +238,7 @@
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="24dp"
                         android:text="@string/amenities"
+                        android:textColor="@color/text_custom_color"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
