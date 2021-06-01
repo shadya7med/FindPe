@@ -1,16 +1,22 @@
 package com.iti.example.findpe2.utils
 
 import android.net.Uri
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.iti.example.findpe2.R
+import com.iti.example.findpe2.home.chat.chatInstance.views.MessagesListAdapter
 import com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatFragment
+import com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatRoomsListAdapter
+import com.iti.example.findpe2.home.saved.views.SavedTripsAdapter
 import com.iti.example.findpe2.home.travelling.views.TravellingTripAdapter
 import com.iti.example.findpe2.pojos.ChatRoom
+import com.iti.example.findpe2.pojos.Message
 import com.iti.example.findpe2.pojos.Trip
 import java.text.SimpleDateFormat
 import java.util.*
@@ -77,6 +83,29 @@ fun TextView.setLastMsgTime(chatRoom: ChatRoom) {
 fun RecyclerView.bind(list: List<Trip>?){
     (this.adapter as TravellingTripAdapter).submitList(list)
 }
+@BindingAdapter("listChatRooms")
+fun RecyclerView.setChatRoomsList(list:List<ChatRoom>?) = (this.adapter as ChatRoomsListAdapter).submitList(list)
+
+@BindingAdapter("listChatMessages")
+fun RecyclerView.setChatMessages(list:List<Message>?) = (this.adapter as MessagesListAdapter).submitList(list)
+
+@BindingAdapter("listSavedTrips")
+fun RecyclerView.setListSavedTrips(list: List<Trip>?){
+    (this.adapter as SavedTripsAdapter).submitList(list)
+}
+
+@BindingAdapter("visibilityAgainstStatus")
+fun View.setVisibilityAgainstStatus(status:LiveData<Int?>){
+    status.value?.let { loading ->
+        this.visibility = when(loading){
+            View.VISIBLE -> View.GONE
+            else -> View.VISIBLE
+    }
+
+    }
+}
+
+
 @BindingAdapter("imageUrl")
 fun ImageView.bind(url: String?){
     val imageUri = Uri.parse(url).buildUpon().scheme("https").build()

@@ -36,7 +36,7 @@
                 android:layout_height="75dp"
                 android:background="#FFFFFF"
                 android:contentDescription="@string/userImg_desc"
-                android:scaleType="centerCrop"
+                android:scaleType="fitCenter"
                 app:chatRoomImage="@{chatRoom}"
                 tools:srcCompat="@tools:sample/avatars" />
         </androidx.cardview.widget.CardView>

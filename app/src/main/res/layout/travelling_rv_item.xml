@@ -61,7 +61,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
                 android:text="@{trip.destination}"
-                android:textColor="@color/text_custom_color"
+                android:textColor="@color/title_text_custom_color"
                 app:layout_constraintStart_toEndOf="@+id/cardView"
                 app:layout_constraintTop_toTopOf="@+id/cardView"
                 tools:text="@string/trip_name" />
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="@{String.valueOf(trip.price)}"
-                android:textColor="@color/sec_text_custom_color"
+                android:textColor="@color/subtitle_text_custom_color"
                 app:layout_constraintStart_toStartOf="@+id/travelling_item_title_text"
                 app:layout_constraintTop_toBottomOf="@+id/travelling_item_title_text"
                 tools:text="@string/trip_price" />
@@ -84,7 +84,7 @@
                 android:layout_marginStart="3dp"
                 android:foreground="@drawable/strike_through_line"
                 android:text="@string/trip_price"
-                android:textColor="@color/sec_text_custom_color"
+                android:textColor="@color/subtitle_text_custom_color"
                 app:layout_constraintBaseline_toBaselineOf="@+id/travelling_item_discount_price_text"
                 app:layout_constraintStart_toEndOf="@+id/travelling_item_discount_price_text" />
 
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:text="@{trip.origin}"
-                android:textColor="@color/sec_text_custom_color"
+                android:textColor="@color/subtitle_text_custom_color"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toBottomOf="@+id/travelling_item_org_price_text"
                 tools:text="@string/alexandria" />

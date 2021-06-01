@@ -142,4 +142,8 @@
     <string name="love_trip_desc">this is the love image</string>
     <string name="comment_img_desc">this is the comment image</string>
     <string name="alexandria">Alexandria</string>
+    <string name="no_connection_img_desc">this is no Connection</string>
+    <string name="error_img_desc">this is an error occurred</string>
+    <string name="no_msg">there is no available messages</string>
+    <string name="no_trips_text">there is no available Trips</string>
 </resources>

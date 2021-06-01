@@ -7,8 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.snackbar.Snackbar
-import com.iti.example.findpe2.R
 import com.iti.example.findpe2.databinding.FragmentChatBinding
 import com.iti.example.findpe2.home.chat.chatInstance.views.ChatPageActivity
 import com.iti.example.findpe2.home.chat.chatRoomsList.viewModels.ChatRoomsListViewModel
@@ -30,9 +28,10 @@ class ChatFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentChatBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
         val chatRoomViewModel = ViewModelProvider(this).get(ChatRoomsListViewModel::class.java)
-
-        setLoading()
+        binding.chatRoomsListViewModel = chatRoomViewModel
+        //setLoading()
 
         val chatRoomsListAdapter =
             ChatRoomsListAdapter(ChatRoomsListAdapter.ChatRoomsClickListener { chatRoom ->
@@ -51,7 +50,7 @@ class ChatFragment : Fragment() {
 
         binding.chatListRcyViewChatHome.adapter = chatRoomsListAdapter
 
-        chatRoomViewModel.chatRoomsList.observe(viewLifecycleOwner) {
+        /*chatRoomViewModel.chatRoomsList.observe(viewLifecycleOwner) {
             it?.let {
                 clearLoading()
                 if (it.isEmpty()) {
@@ -77,7 +76,7 @@ class ChatFragment : Fragment() {
                     .show()
             }
 
-        }
+        }*/
 
 
         return binding.root

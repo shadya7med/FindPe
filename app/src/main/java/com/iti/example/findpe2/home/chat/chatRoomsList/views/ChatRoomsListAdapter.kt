@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.iti.example.findpe2.databinding.ListItemChatRoomBinding
 import com.iti.example.findpe2.pojos.ChatRoom
 
-class ChatRoomsListAdapter(val chatRoomsClickListener: ChatRoomsClickListener) :
+class ChatRoomsListAdapter(private val chatRoomsClickListener: ChatRoomsClickListener) :
     ListAdapter<ChatRoom, ChatRoomsListAdapter.ChatRoomsViewHolder>(ChatRoomsDiffCallbacks()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =

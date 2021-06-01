@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.slider.RangeSlider
 import com.iti.example.findpe2.R
+import com.iti.example.findpe2.constants.Keys
 import com.iti.example.findpe2.databinding.FragmentFilterBinding
 import com.iti.example.findpe2.home.filter.viewModels.FilterViewModel
 import java.text.NumberFormat
@@ -106,7 +107,7 @@ class FilterFragment : Fragment() {
 
     fun saveFilterResult(){
         //return data in SavedStateMap
-        navController.previousBackStackEntry?.savedStateHandle?.set(FilterViewModel.FULL_MAP_KEY, filterViewModel.getFilterResult())
+        navController.previousBackStackEntry?.savedStateHandle?.set(Keys.FULL_FILTER_MAP_KEY, filterViewModel.getFilterResult())
         //pop current fragment and destroy it
         navController.popBackStack()
     }

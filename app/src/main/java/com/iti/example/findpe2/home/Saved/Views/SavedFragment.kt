@@ -28,10 +28,11 @@ class SavedFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val binding = FragmentSavedBinding.inflate(inflater,container,false)
+        binding.lifecycleOwner = viewLifecycleOwner
         //start loading
         //
         val savedTripsViewModel = ViewModelProvider(this).get(SavedTripsViewModel::class.java)
-        //binding.savedTripViewModel = savedTripsViewModel
+        binding.savedTripViewModel = savedTripsViewModel
         val savedTripsAdapter = SavedTripsAdapter()
         binding.bookingsListRcyViewSaved.adapter = savedTripsAdapter
         savedTripsViewModel.savedTripsList.observe(viewLifecycleOwner){
@@ -62,7 +63,8 @@ class SavedFragment : Fragment() {
             Keys.FULL_FILTER_MAP_KEY)?.observe(
             viewLifecycleOwner) { result ->
             // Do something with the result.
-            Log.i("FiSav", "${result[Keys.TO_DATE_KEY] as Long}")
+            //savedTripsViewModel.getFilteredTrips(result)
+            Log.i("FiSav", "${result[Keys.MIN_RANGE_KEY] as Double}")
         }
         return binding.root
     }

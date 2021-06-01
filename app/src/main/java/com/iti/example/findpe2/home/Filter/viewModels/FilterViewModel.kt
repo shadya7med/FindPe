@@ -26,13 +26,13 @@ class FilterViewModel : ViewModel() {
         get() = _toDaysList
 
     // STATES are : WIFI, RESTAURANT ,POLL ,INN , PARKING
-    private var featuresStates  = booleanArrayOf(false,false,false,false,false)
+    private var featuresStates  = mutableListOf(false,false,false,false,false)
 
     private var fromSelectedDateMillis = 0L
     private var toSelectedDateMillis = 0L
 
-    private var minPriceRange = 0
-    private var maxPriceRange = 3500
+    private var minPriceRange = 0.0
+    private var maxPriceRange = 3500.0
 
 
     init {
@@ -115,18 +115,18 @@ class FilterViewModel : ViewModel() {
         return featuresStates[feature]
     }
     fun storePriceRange(priceRanges:List<Float>){
-        minPriceRange = priceRanges[0].toInt()
-        maxPriceRange = priceRanges[1].toInt()
+        minPriceRange = priceRanges[0].toDouble()
+        maxPriceRange = priceRanges[1].toDouble()
     }
 
     fun getFilterResult():MutableMap<String,Any>{
         val resultMap = mutableMapOf<String,Any>()
-        resultMap[Keys.FROM_DATE_KEY] = fromSelectedDateMillis
+        resultMap[Keys.FROM_PLACE_KEY] = fromSelectedDateMillis
         if (toSelectedDateMillis == 0L){
             //if the user didn't select a new toDate and gone with the default choice
             toSelectedDateMillis = fromSelectedDateMillis + MORE_DAYS_MILLIS
         }
-        resultMap[Keys.TO_DATE_KEY] = toSelectedDateMillis
+        resultMap[Keys.TO_PLACE_KEY] = toSelectedDateMillis
         resultMap[Keys.FEATURES_STATES_KEY] = featuresStates
         resultMap[Keys.MIN_RANGE_KEY] = minPriceRange
         resultMap[Keys.MAX_RANGE_KEY] = maxPriceRange

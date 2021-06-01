@@ -1,7 +1,6 @@
 package com.iti.example.findpe2.home.chat.chatInstance.views
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,22 +12,21 @@ import com.iti.example.findpe2.home.chat.chatInstance.viewModels.ChatPageViewMod
 import com.iti.example.findpe2.home.chat.chatInstance.viewModels.ChatPageViewModelFactory
 import com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatFragment
 import com.iti.example.findpe2.pojos.ChatRoom
-import com.iti.example.findpe2.utils.setAllClickable
 
 
 class ChatPageActivity : AppCompatActivity() {
 
-    lateinit var binding : ActivityChatPageBinding
+    //lateinit var binding : ActivityChatPageBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityChatPageBinding.inflate(layoutInflater)
-        setLoading()
+        val binding = ActivityChatPageBinding.inflate(layoutInflater)
+        //setLoading()
         val chatRoom = intent.getParcelableExtra<ChatRoom>(ChatFragment.CHAT_ROOM_KEY)
         val chatPageViewModel = ViewModelProvider(this, ChatPageViewModelFactory(chatRoom!!)).get(
             ChatPageViewModel::class.java
         )
-
+        binding.lifecycleOwner = this
         binding.chatRoom = chatRoom
         binding.chatPageViewModel = chatPageViewModel
         val layoutManager = LinearLayoutManager(this)
@@ -44,7 +42,7 @@ class ChatPageActivity : AppCompatActivity() {
         binding.msgListRcyViewChatPageChatActivity.layoutManager = layoutManager
         binding.msgListRcyViewChatPageChatActivity.adapter = messagesListAdapter
 
-        chatPageViewModel.messagesList.observe(this){
+        /*chatPageViewModel.messagesList.observe(this){
             it?.let {
                 clearLoading()
                 messagesListAdapter.submitList(it)
@@ -60,7 +58,7 @@ class ChatPageActivity : AppCompatActivity() {
                 binding.noChatTxtViewChatPageChatActivity.visibility = View.GONE
 
             }
-        }
+        }*/
 
         binding.msgEditTxtChatPageChatActivity.addTextChangedListener(SendButtonObserver(binding.sendMsgImgViewChatPageChatActivity))
         binding.sendMsgImgViewChatPageChatActivity.setOnClickListener {
@@ -90,7 +88,7 @@ class ChatPageActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-    private fun setLoading() {
+    /*private fun setLoading() {
         binding.progressBarChatPageChatActivity.visibility = View.VISIBLE
         binding.root.setAllClickable(false)
     }
@@ -99,7 +97,7 @@ class ChatPageActivity : AppCompatActivity() {
         binding.progressBarChatPageChatActivity.visibility = View.GONE
         binding.root.setAllClickable(true)
 
-    }
+    }*/
     private fun scrollToBottom(recyclerView: RecyclerView) {
         // scroll to last item to get the view of last item
         val layoutManager = recyclerView.layoutManager as LinearLayoutManager?

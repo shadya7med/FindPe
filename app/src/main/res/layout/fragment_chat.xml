@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="chatRoomsListViewModel"
+            type="com.iti.example.findpe2.home.chat.chatRoomsList.viewModels.ChatRoomsListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,6 +26,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
+            app:visibilityAgainstStatus="@{chatRoomsListViewModel.loadingStatus}"
+            app:listChatRooms="@{chatRoomsListViewModel.chatRoomsList}"
             tools:itemCount="8"
             tools:listitem="@layout/list_item_chat_room">
 
@@ -34,19 +38,19 @@
             style="@android:style/Widget.DeviceDefault.ProgressBar.Large"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            tools:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="@+id/chat_list_rcyView_chat_home"
+            android:visibility="@{chatRoomsListViewModel.loadingStatus}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
 
         <ImageView
             android:id="@+id/no_chats_imgView_chatsList_home"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:contentDescription="@string/no_chats_img_desc"
-            android:visibility="gone"
+            android:visibility="@{chatRoomsListViewModel.emptyListStatus}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -64,11 +68,38 @@
             android:text="@string/no_chats_text"
             android:textAlignment="center"
             android:textSize="20sp"
-            android:visibility="gone"
+            android:visibility="@{chatRoomsListViewModel.emptyListStatus}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/no_chats_imgView_chatsList_home"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/error_imgView_chatList_home"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:contentDescription="@string/error_img_desc"
+            android:scaleType="centerCrop"
+            android:visibility="@{chatRoomsListViewModel.errorStatus}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/error_occured"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/error_txtView_chatList_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/error_img_desc"
+            android:textSize="16sp"
+            android:visibility="@{chatRoomsListViewModel.errorStatus}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/error_imgView_chatList_home"
             tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

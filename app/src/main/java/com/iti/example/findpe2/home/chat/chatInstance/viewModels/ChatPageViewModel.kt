@@ -1,6 +1,7 @@
 package com.iti.example.findpe2.home.chat.chatInstance.viewModels
 
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -31,11 +32,26 @@ class ChatPageViewModel(val chatRoom: ChatRoom) : ViewModel() {
     val onSendMsgSuccess: LiveData<Boolean?>
         get() = _onSendMsgSuccess
 
+    private val _loadingStatus = MutableLiveData<Int?>()
+    val loadingStatus:LiveData<Int?>
+        get() = _loadingStatus
+
+    private val _errorStatus = MutableLiveData<Int?>()
+    val errorStatus:LiveData<Int?>
+        get() = _errorStatus
+
+    private val _emptyListStatus = MutableLiveData<Int?>()
+    val emptyListStatus:LiveData<Int?>
+        get() = _emptyListStatus
+
 //    private val _onSendMsgFailed = MutableLiveData<Boolean?>()
 //    val onSendMsgFailed:LiveData<Boolean?>
 //        get() = _onSendMsgFailed
 
     init {
+        _emptyListStatus.value = View.GONE
+        _errorStatus.value = View.GONE
+        _loadingStatus.value = View.GONE
         getChatPageMessages()
     }
 
@@ -51,6 +67,7 @@ class ChatPageViewModel(val chatRoom: ChatRoom) : ViewModel() {
     private fun getChatPageMessages() {
         val currentUser = Firebase.auth.currentUser
         currentUser?.let {
+            _loadingStatus.value = View.VISIBLE
             val collectionName =
                 if (it.uid <= chatRoom.destinationUserID!!) {
                     it.uid + chatRoom.destinationUserID
@@ -62,20 +79,38 @@ class ChatPageViewModel(val chatRoom: ChatRoom) : ViewModel() {
                 .orderBy("time", Query.Direction.ASCENDING)
             chatRef.get()
                 .addOnSuccessListener { result ->
+                    _loadingStatus.value = View.GONE
+                    _errorStatus.value = View.GONE
                     _messagesList.value = result.toObjects(Message::class.java)
+                    if(result.isEmpty){
+                        _emptyListStatus.value = View.VISIBLE
+                    }else{
+                        _emptyListStatus.value = View.GONE
+                    }
                 }
                 .addOnFailureListener { e ->
+                    _loadingStatus.value = View.GONE
+                    _errorStatus.value = View.VISIBLE
                     _errorMsg.value = e.localizedMessage
                 }
             //add listener
             chatRef.addSnapshotListener { value, e ->
                 if (e != null) {
                     Log.w("ChatPageViewModel", "Listen failed.", e)
+                    _loadingStatus.value = View.GONE
+                    _errorStatus.value = View.VISIBLE
                     _errorMsg.value = e.localizedMessage
                     return@addSnapshotListener
                 }
                 value?.let { result ->
+                    _loadingStatus.value = View.GONE
+                    _errorStatus.value = View.GONE
                     _messagesList.value = result.toObjects(Message::class.java)
+                    if(result.isEmpty){
+                        _emptyListStatus.value = View.VISIBLE
+                    }else{
+                        _emptyListStatus.value = View.GONE
+                    }
                 }
 
             }

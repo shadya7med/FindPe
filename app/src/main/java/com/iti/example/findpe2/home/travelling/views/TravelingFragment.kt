@@ -11,8 +11,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.iti.example.findpe2.constants.Keys
 import com.iti.example.findpe2.databinding.FragmentTravelingBinding
-import com.iti.example.findpe2.home.filter.viewModels.FilterViewModel
 import com.iti.example.findpe2.home.travelling.viewModels.TravellingViewModel
 import com.iti.example.findpe2.tripCheckout.TripHolderActivity
 
@@ -70,17 +70,17 @@ class TravelingFragment : Fragment() {
         }
         // saved State handle is  a map for returning date between fragments
         navController.currentBackStackEntry?.savedStateHandle?.getLiveData<MutableMap<String, Any>>(
-            FilterViewModel.FULL_MAP_KEY
+            Keys.FULL_FILTER_MAP_KEY
         )?.observe(
             viewLifecycleOwner, Observer { result ->
-                Log.i("FiTrav", "${result[FilterViewModel.TO_DATE_KEY] as Long}")
+                Log.i("FiTrav", "${result[Keys.MIN_RANGE_KEY] as Double}")
             })
     }
 
     override fun onStop() {
         super.onStop()
         navController.currentBackStackEntry?.savedStateHandle?.getLiveData<MutableMap<String, Any>>(
-            FilterViewModel.FULL_MAP_KEY
+            Keys.FULL_FILTER_MAP_KEY
         )?.removeObservers(viewLifecycleOwner)
 
     }
