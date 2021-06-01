@@ -1,12 +1,17 @@
 package com.iti.example.findpe2.utils
 
+import android.net.Uri
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.iti.example.findpe2.R
 import com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatFragment
+import com.iti.example.findpe2.home.travelling.views.TravellingTripAdapter
 import com.iti.example.findpe2.pojos.ChatRoom
+import com.iti.example.findpe2.pojos.Trip
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -67,4 +72,20 @@ fun TextView.setLastMsgTime(chatRoom: ChatRoom) {
         }
 
     }
+}
+@BindingAdapter("listTrips")
+fun RecyclerView.bind(list: List<Trip>?){
+    (this.adapter as TravellingTripAdapter).submitList(list)
+}
+@BindingAdapter("imageUrl")
+fun ImageView.bind(url: String?){
+    val imageUri = Uri.parse(url).buildUpon().scheme("https").build()
+    Glide.with(this.context)
+        .load(imageUri)
+        .apply(
+            RequestOptions()
+            .placeholder(R.drawable.loading_animation)
+            .error(R.drawable.ic_broken_image))
+        .into(this)
+
 }
