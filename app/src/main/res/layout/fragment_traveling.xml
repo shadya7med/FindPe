@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.iti.example.findpe2.home.travelling.views.TravellingViewModel" />
+            type="com.iti.example.findpe2.home.travelling.viewModels.TravellingViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

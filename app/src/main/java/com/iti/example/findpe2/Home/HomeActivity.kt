@@ -15,7 +15,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
 import com.iti.example.findpe2.R
 import com.iti.example.findpe2.authentication.CreateAccountActivity
-import com.iti.example.findpe2.authentication.LoginActivity
 import com.iti.example.findpe2.databinding.ActivityHomeBinding
 import com.iti.example.findpe2.databinding.HomeDrawerHeaderBinding
 

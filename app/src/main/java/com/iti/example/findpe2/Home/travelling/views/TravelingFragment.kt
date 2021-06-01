@@ -11,9 +11,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import com.iti.example.findpe2.constants.Keys
 import com.iti.example.findpe2.databinding.FragmentTravelingBinding
 import com.iti.example.findpe2.home.filter.viewModels.FilterViewModel
+import com.iti.example.findpe2.home.travelling.viewModels.TravellingViewModel
 import com.iti.example.findpe2.tripCheckout.TripHolderActivity
 
 
