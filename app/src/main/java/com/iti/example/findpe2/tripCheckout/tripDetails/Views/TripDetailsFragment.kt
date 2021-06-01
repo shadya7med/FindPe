@@ -5,12 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.iti.example.findpe2.constants.Keys
 import com.iti.example.findpe2.databinding.FragmentTripDetailsBinding
-import com.iti.example.findpe2.pojos.Trip
-
 
 class TripDetailsFragment:Fragment() {
 
@@ -31,23 +29,14 @@ class TripDetailsFragment:Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentTripDetailsBinding.inflate(inflater,parent,false)
-        val trip = arguments?.get("trip") as Trip
-        tripId = trip.id
-
-        val viewModelFactory = TripDetailsViewModelFactory((arguments?.get("trip") as Trip))
-
-        val viewModel = ViewModelProvider(this, viewModelFactory).get(TripDetailsViewModel::class.java)
-
-        binding.viewModel = viewModel
-
-        binding.lifecycleOwner = this
-
+        binding.tripDetailsFragment = this
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = view.findNavController()
+        tripId = arguments?.get(Keys.TRIP_ID_KEY) as Int
     }
 
     fun navigateToTripBooking(){

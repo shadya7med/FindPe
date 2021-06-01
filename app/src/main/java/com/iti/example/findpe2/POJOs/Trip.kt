@@ -1,25 +1,20 @@
 package com.iti.example.findpe2.pojos
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
-
-@Parcelize
 data class Trip(
     val id:Int,
     val code:String,
     val price:Int,
-    val name: String,
-//    val category: String,
+    val category: String,
     val origin:String,
     val destination:String,
-//    val vehicle:String,
-//    val location:String,
-//    val line:String,
+    val vehicle:String,
+    val location:String,
+    val line:String,
     val dateTime:String,
     val tripDescription:String,
     val hotel:String,
     val companyID:Int
-):Parcelable
+)
 
 //"id":1,
 //"code":"D3",
