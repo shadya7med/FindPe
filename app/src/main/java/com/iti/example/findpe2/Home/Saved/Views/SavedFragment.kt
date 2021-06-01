@@ -6,16 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
+import com.iti.example.findpe2.constants.Keys
 import com.iti.example.findpe2.databinding.FragmentSavedBinding
-import com.iti.example.findpe2.home.filter.viewModels.FilterViewModel
+import com.iti.example.findpe2.home.saved.viewModels.SavedTripsViewModel
 
 
 class SavedFragment : Fragment() {
 
-    lateinit var navController: NavController
-    lateinit var binder:FragmentSavedBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,27 +27,46 @@ class SavedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binder = FragmentSavedBinding.inflate(inflater,container,false)
-        return binder.root
-    }
+        val binding = FragmentSavedBinding.inflate(inflater,container,false)
+        //start loading
+        //
+        val savedTripsViewModel = ViewModelProvider(this).get(SavedTripsViewModel::class.java)
+        //binding.savedTripViewModel = savedTripsViewModel
+        val savedTripsAdapter = SavedTripsAdapter()
+        binding.bookingsListRcyViewSaved.adapter = savedTripsAdapter
+        savedTripsViewModel.savedTripsList.observe(viewLifecycleOwner){
+            it?.let{
+                //stop loading
+                savedTripsAdapter.submitList(it)
+            }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        navController = view.findNavController()
-        binder.filterBtnSavedHome.setOnClickListener {
+        }
+        savedTripsViewModel.errorMsg.observe(viewLifecycleOwner){
+            it?.let{
+                //stop loadning
+                //show error
+                Snackbar.make(binding.root,it,Snackbar.LENGTH_LONG).show()
+            }
+        }
+
+
+
+        val navController = findNavController()
+        //it can also be encapsulated in ViewModel to hide the logic happens with the navigation
+        binding.filterBtnSavedHome.setOnClickListener {
             navController.navigate(SavedFragmentDirections.actionSavedFragmentHomeToFilterFragment())
         }
 
         // saved State handle is  a map for returning date between fragments
         navController.currentBackStackEntry?.savedStateHandle?.getLiveData<MutableMap<String,Any>>(
-            FilterViewModel.FULL_MAP_KEY)?.observe(
+            Keys.FULL_FILTER_MAP_KEY)?.observe(
             viewLifecycleOwner) { result ->
             // Do something with the result.
-            Log.i("FiSav", "${result[FilterViewModel.TO_DATE_KEY] as Long}")
+            Log.i("FiSav", "${result[Keys.TO_DATE_KEY] as Long}")
         }
-
-
+        return binding.root
     }
+
 
 
 

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.iti.example.findpe2.constants.Keys
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -13,12 +14,6 @@ class FilterViewModel : ViewModel() {
 
     companion object {
         const val MORE_DAYS_MILLIS = 259200000L
-        const val FROM_DATE_KEY = "from_date_key"
-        const val TO_DATE_KEY = "to_date_key"
-        const val FEATURES_STATES_KEY = "features_states_key"
-        const val MIN_RANGE_KEY = "min_range_key"
-        const val MAX_RANGE_KEY = "max_range_key"
-        const val FULL_MAP_KEY = "full_map_key"
     }
 
 
@@ -126,15 +121,15 @@ class FilterViewModel : ViewModel() {
 
     fun getFilterResult():MutableMap<String,Any>{
         val resultMap = mutableMapOf<String,Any>()
-        resultMap[FROM_DATE_KEY] = fromSelectedDateMillis
+        resultMap[Keys.FROM_DATE_KEY] = fromSelectedDateMillis
         if (toSelectedDateMillis == 0L){
             //if the user didn't select a new toDate and gone with the default choice
             toSelectedDateMillis = fromSelectedDateMillis + MORE_DAYS_MILLIS
         }
-        resultMap[TO_DATE_KEY] = toSelectedDateMillis
-        resultMap[FEATURES_STATES_KEY] = featuresStates
-        resultMap[MIN_RANGE_KEY] = minPriceRange
-        resultMap[MAX_RANGE_KEY] = maxPriceRange
+        resultMap[Keys.TO_DATE_KEY] = toSelectedDateMillis
+        resultMap[Keys.FEATURES_STATES_KEY] = featuresStates
+        resultMap[Keys.MIN_RANGE_KEY] = minPriceRange
+        resultMap[Keys.MAX_RANGE_KEY] = maxPriceRange
 
         return resultMap
     }

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="Trip"
+            type="com.iti.example.findpe2.pojos.Trip" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imgholder_cardView_listItem_saved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/tripImg_imgView_listItem_saved"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:contentDescription="@string/trip_img_desc"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:scaleType="centerCrop"
+                tools:srcCompat="@drawable/dahab" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tripName_txtView_listItem_saved"
+            style="@style/saved_list_item_text"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="140dp"
+            android:text="@string/trip_destination_name_placeholder"
+            android:textSize="26sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tripPrice_txtView_listItem_saved"
+            style="@style/saved_list_item_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/trip_price_placeholder"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/tripName_txtView_listItem_saved"
+            app:layout_constraintTop_toBottomOf="@+id/tripName_txtView_listItem_saved" />
+
+        <ImageView
+            android:id="@+id/menu_listItem_saved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/trip_item_menu_desc"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.93"
+            app:layout_constraintStart_toEndOf="@+id/tripPrice_txtView_listItem_saved"
+            app:layout_constraintTop_toBottomOf="@+id/tripName_txtView_listItem_saved"
+            app:srcCompat="@drawable/list_dots_white" />
+
+        <View
+            android:id="@+id/divider10"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginBottom="65dp"
+            android:background="@drawable/white_solid_divider"
+            android:layerType="hardware"
+            app:layout_constrainedWidth="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.85"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="0.7" />
+
+        <ImageView
+            android:id="@+id/weather_imgView_listItem_saved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/weather_state_desc"
+            app:layout_constraintStart_toStartOf="@+id/tripName_txtView_listItem_saved"
+            app:layout_constraintTop_toBottomOf="@+id/divider10"
+            app:srcCompat="@drawable/sunny" />
+
+        <TextView
+            android:id="@+id/temperature_txtView_listItem_saved"
+            style="@style/saved_list_item_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="15dp"
+            android:text="@string/temperature_placeholder"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/weather_txtView_listItem_saved"
+            app:layout_constraintStart_toEndOf="@+id/weather_imgView_listItem_saved" />
+
+        <TextView
+            android:id="@+id/weather_txtView_listItem_saved"
+            style="@style/saved_list_item_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/weather_placeholder"
+            app:layout_constraintStart_toStartOf="@+id/temperature_txtView_listItem_saved"
+            app:layout_constraintTop_toTopOf="@+id/divider10" />
+
+        <ImageView
+            android:id="@+id/isLiked_imgView_listItem_saved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/love_trip_desc"
+            app:layout_constraintEnd_toEndOf="@+id/divider10"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="@+id/divider10"
+            app:layout_constraintTop_toTopOf="@+id/divider10"
+            app:srcCompat="@drawable/heart" />
+
+        <TextView
+            android:id="@+id/numOfLikes_txtView_listItem_saved"
+            style="@style/saved_list_item_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@string/num_of_likes_placeholder"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/isLiked_imgView_listItem_saved"
+            app:layout_constraintTop_toBottomOf="@+id/divider10" />
+
+        <ImageView
+            android:id="@+id/openComments_imgView_listItem_saved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/comment_img_desc"
+            app:layout_constraintEnd_toEndOf="@+id/divider10"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toEndOf="@+id/numOfLikes_txtView_listItem_saved"
+            app:layout_constraintTop_toTopOf="@+id/isLiked_imgView_listItem_saved"
+            app:srcCompat="@drawable/comment" />
+
+        <TextView
+            android:id="@+id/numOfComments_txtView_listItem_saved"
+            style="@style/saved_list_item_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@string/num_of_comments_placeholder"
+            app:layout_constraintStart_toEndOf="@+id/openComments_imgView_listItem_saved"
+            app:layout_constraintTop_toTopOf="@+id/numOfLikes_txtView_listItem_saved" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

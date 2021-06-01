@@ -69,4 +69,12 @@
 
     </style>
 
+    <style name="saved_list_item_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:textColor">@color/colorLightGray</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

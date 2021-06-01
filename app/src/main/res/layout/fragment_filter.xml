@@ -1003,7 +1003,7 @@
                         android:valueTo="5000.0"
                         app:labelBehavior="withinBounds"
                         app:layout_constraintEnd_toStartOf="@+id/price_range_end_txtView_filter_home"
-                        app:layout_constraintHorizontal_bias="0.4"
+                        app:layout_constraintHorizontal_bias="0.6"
                         app:layout_constraintStart_toEndOf="@+id/price_range_start_txtView_filter_home"
                         app:layout_constraintTop_toBottomOf="@+id/priceRange_txtView_filter_home"
                         app:values="@array/initial_slider_values" />

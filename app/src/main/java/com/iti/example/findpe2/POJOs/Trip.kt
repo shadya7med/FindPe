@@ -18,7 +18,8 @@ data class Trip(
     val dateTime:String,
     val tripDescription:String,
     val hotel:String,
-    val companyID:Int
+    val companyID:Int,
+    val featured:Boolean
 ):Parcelable
 
 //"id":1,
