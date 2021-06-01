@@ -15,8 +15,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        app:cardCornerRadius="30dp"
-        android:onClick="@{() -> onClickListener.onClick(trip)}">
+        android:onClick="@{() -> onClickListener.onClick(trip)}"
+        app:cardBackgroundColor="@color/card_background"
+        app:cardCornerRadius="30dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -58,8 +59,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:text="@{trip.name}"
+                android:layout_marginTop="12dp"
+                android:text="@{trip.destination}"
+                android:textColor="@color/text_custom_color"
                 app:layout_constraintStart_toEndOf="@+id/cardView"
                 app:layout_constraintTop_toTopOf="@+id/cardView"
                 tools:text="@string/trip_name" />
@@ -70,6 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="@{String.valueOf(trip.price)}"
+                android:textColor="@color/sec_text_custom_color"
                 app:layout_constraintStart_toStartOf="@+id/travelling_item_title_text"
                 app:layout_constraintTop_toBottomOf="@+id/travelling_item_title_text"
                 tools:text="@string/trip_price" />
@@ -81,17 +84,31 @@
                 android:layout_marginStart="3dp"
                 android:foreground="@drawable/strike_through_line"
                 android:text="@string/trip_price"
+                android:textColor="@color/sec_text_custom_color"
                 app:layout_constraintBaseline_toBaselineOf="@+id/travelling_item_discount_price_text"
                 app:layout_constraintStart_toEndOf="@+id/travelling_item_discount_price_text" />
 
+            <TextView
+                android:id="@+id/traveling_item_from_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@{trip.origin}"
+                android:textColor="@color/sec_text_custom_color"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toBottomOf="@+id/travelling_item_org_price_text"
+                tools:text="@string/alexandria" />
+
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="27dp"
-                android:layout_height="41dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/travelling_item_title_text"
-                app:srcCompat="@drawable/ic_baseline_more_vert_24" />
+                android:layout_width="18dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/traveling_item_from_text"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="@+id/travelling_item_discount_price_text"
+                app:layout_constraintTop_toTopOf="@+id/traveling_item_from_text"
+                app:srcCompat="@drawable/ic_baseline_pin_drop_24" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>
