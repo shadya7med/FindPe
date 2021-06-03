@@ -8,4 +8,6 @@ interface TripsApiService{
     @GET("Trips")
     suspend fun getTrips(): List<Trip>
 
+    @GET("Trips/Featuredlist/true")
+    suspend fun getAllFeaturedTrips():List<Trip>
 }

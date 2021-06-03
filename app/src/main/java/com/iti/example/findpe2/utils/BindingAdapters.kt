@@ -38,6 +38,21 @@ fun ImageView.setChatRoomImage(chatRoom: ChatRoom) {
     }
 }
 
+@BindingAdapter("tripImage")
+fun ImageView.setTripImage(trip: Trip) {
+    if (trip.tripImages.isNullOrEmpty()) {
+        setImageResource(R.drawable.dahab)
+    } else {
+        Glide
+            .with(context)
+            .load(trip.tripImages[0])
+            .centerCrop()
+            .error(R.drawable.ic_broken_image)
+            .placeholder(R.drawable.loading_animation)
+            .into(this)
+    }
+}
+
 @BindingAdapter("lastMsgTime")
 fun TextView.setLastMsgTime(chatRoom: ChatRoom) {
     chatRoom.chatLastMsgTime?.let { lastMsgDate ->
@@ -79,42 +94,47 @@ fun TextView.setLastMsgTime(chatRoom: ChatRoom) {
 
     }
 }
+
 @BindingAdapter("listTrips")
-fun RecyclerView.bind(list: List<Trip>?){
+fun RecyclerView.bind(list: List<Trip>?) {
     (this.adapter as TravellingTripAdapter).submitList(list)
 }
+
 @BindingAdapter("listChatRooms")
-fun RecyclerView.setChatRoomsList(list:List<ChatRoom>?) = (this.adapter as ChatRoomsListAdapter).submitList(list)
+fun RecyclerView.setChatRoomsList(list: List<ChatRoom>?) =
+    (this.adapter as ChatRoomsListAdapter).submitList(list)
 
 @BindingAdapter("listChatMessages")
-fun RecyclerView.setChatMessages(list:List<Message>?) = (this.adapter as MessagesListAdapter).submitList(list)
+fun RecyclerView.setChatMessages(list: List<Message>?) =
+    (this.adapter as MessagesListAdapter).submitList(list)
 
 @BindingAdapter("listSavedTrips")
-fun RecyclerView.setListSavedTrips(list: List<Trip>?){
+fun RecyclerView.setListSavedTrips(list: List<Trip>?) {
     (this.adapter as SavedTripsAdapter).submitList(list)
 }
 
 @BindingAdapter("visibilityAgainstStatus")
-fun View.setVisibilityAgainstStatus(status:LiveData<Int?>){
+fun View.setVisibilityAgainstStatus(status: LiveData<Int?>) {
     status.value?.let { loading ->
-        this.visibility = when(loading){
+        this.visibility = when (loading) {
             View.VISIBLE -> View.GONE
             else -> View.VISIBLE
-    }
+        }
 
     }
 }
 
 
 @BindingAdapter("imageUrl")
-fun ImageView.bind(url: String?){
+fun ImageView.bind(url: String?) {
     val imageUri = Uri.parse(url).buildUpon().scheme("https").build()
     Glide.with(this.context)
         .load(imageUri)
         .apply(
             RequestOptions()
-            .placeholder(R.drawable.loading_animation)
-            .error(R.drawable.ic_broken_image))
+                .placeholder(R.drawable.loading_animation)
+                .error(R.drawable.ic_broken_image)
+        )
         .into(this)
 
 }

@@ -4,8 +4,11 @@ import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.iti.example.findpe2.constants.Keys
+import com.iti.example.findpe2.models.TripApi
 import com.iti.example.findpe2.pojos.Trip
+import kotlinx.coroutines.launch
 
 class SavedTripsViewModel: ViewModel() {
 
@@ -35,6 +38,7 @@ class SavedTripsViewModel: ViewModel() {
         _errorStatus.value = View.GONE
         _loadingStatus.value = View.GONE
         //getAllSavedTrips
+        getAllSavedTrips()
     }
 
     fun getFilteredTrips(result:MutableMap<String,Any>){
@@ -43,6 +47,32 @@ class SavedTripsViewModel: ViewModel() {
         @Suppress("UNCHECKED_CAST")
         val featuresList = result[Keys.FEATURES_STATES_KEY] as MutableList<Boolean>
         //call API.getFiltered
+    }
+
+    private fun getAllSavedTrips(){
+        _loadingStatus.value = View.VISIBLE
+        viewModelScope.launch {
+            try{
+                //should call getAllSaved
+                _savedTripsList.value = TripApi.getAllFeaturedTrips()
+                _loadingStatus.value = View.GONE
+                _errorStatus.value = View.GONE
+                _savedTripsList.value?.let {
+                    if (it.isEmpty()){
+                        _emptyListStatus.value = View.VISIBLE
+                    }else{
+                        _emptyListStatus.value = View.GONE
+                    }
+                }
+            }catch (e:Exception){
+                _errorMsg.value = e.localizedMessage
+                _errorStatus.value = View.VISIBLE
+                _loadingStatus.value = View.GONE
+                _emptyListStatus.value = View.GONE
+
+            }
+
+        }
     }
 
 
