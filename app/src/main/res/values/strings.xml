@@ -147,4 +147,6 @@
     <string name="no_msg">there is no available messages</string>
     <string name="no_trips_text">there is no available Trips</string>
     <string name="timeline_empty_list_text">No timeline available</string>
+    <string name="price_format">$%s</string>
+
 </resources>

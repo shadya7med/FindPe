@@ -5,13 +5,17 @@
 
     <data>
         <variable
-            name="Trip"
+            name="trip"
             type="com.iti.example.findpe2.pojos.Trip" />
+        <variable
+            name="clickListener"
+            type="com.iti.example.findpe2.home.saved.views.SavedTripsAdapter.SavedTripsClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{()->clickListener.onClick(trip)}">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/imgholder_cardView_listItem_saved"
@@ -32,6 +36,7 @@
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
                 android:scaleType="centerCrop"
+                app:tripImage="@{trip}"
                 tools:srcCompat="@drawable/dahab" />
 
         </androidx.cardview.widget.CardView>
@@ -41,7 +46,8 @@
             style="@style/saved_list_item_text"
             android:layout_marginStart="25dp"
             android:layout_marginTop="140dp"
-            android:text="@string/trip_destination_name_placeholder"
+            android:text="@{trip.destination}"
+            tools:text="@string/trip_destination_name_placeholder"
             android:textSize="26sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -51,7 +57,8 @@
             style="@style/saved_list_item_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/trip_price_placeholder"
+            android:text="@{@string/price_format(trip.price)}"
+            tools:text="@string/trip_price_placeholder"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/tripName_txtView_listItem_saved"
             app:layout_constraintTop_toBottomOf="@+id/tripName_txtView_listItem_saved" />

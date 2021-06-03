@@ -1,6 +1,6 @@
 package com.iti.example.findpe2.models
 
-import com.iti.example.findpe2.constants.URLs.Companion.BASE_URL
+import com.iti.example.findpe2.constants.URLs.Companion.NOT_SECURE_BASAE_URL
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -17,7 +17,7 @@ object TripApi {
     //Create retrofit object using bulider and give it converter factory moshi
     private val retrofit = Retrofit.Builder()
         .addConverterFactory(MoshiConverterFactory.create(moshi))
-        .baseUrl(BASE_URL)
+        .baseUrl(NOT_SECURE_BASAE_URL)//BASE_URL)
         .build()
 
 
@@ -26,4 +26,5 @@ object TripApi {
     }
 
     suspend fun getAllTrips() = tripsApi.getTrips()
+    suspend fun getAllFeaturedTrips() = tripsApi.getAllFeaturedTrips()
 }

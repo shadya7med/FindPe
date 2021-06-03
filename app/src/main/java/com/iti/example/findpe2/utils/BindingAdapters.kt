@@ -1,5 +1,6 @@
 package com.iti.example.findpe2.utils
 
+import android.graphics.Color
 import android.net.Uri
 import android.view.View
 import android.widget.ImageView
@@ -9,6 +10,7 @@ import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.iti.example.findpe2.R
 import com.iti.example.findpe2.home.chat.chatInstance.views.MessagesListAdapter
 import com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatFragment
@@ -20,6 +22,8 @@ import com.iti.example.findpe2.pojos.ChatRoom
 import com.iti.example.findpe2.pojos.Message
 import com.iti.example.findpe2.pojos.TimelineSlot
 import com.iti.example.findpe2.pojos.Trip
+import com.iti.example.findpe2.pojos.TripInfo
+import com.iti.example.findpe2.tripCheckout.tripDetails.viewModels.SaveState
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -37,6 +41,21 @@ fun ImageView.setChatRoomImage(chatRoom: ChatRoom) {
                 .placeholder(R.drawable.loading_animation)
                 .into(this)
         }
+    }
+}
+
+@BindingAdapter("tripImage")
+fun ImageView.setTripImage(trip: Trip) {
+    if (trip.tripImages.isNullOrEmpty()) {
+        setImageResource(R.drawable.dahab)
+    } else {
+        Glide
+            .with(context)
+            .load(trip.tripImages[0])
+            .centerCrop()
+            .error(R.drawable.ic_broken_image)
+            .placeholder(R.drawable.loading_animation)
+            .into(this)
     }
 }
 
@@ -86,24 +105,27 @@ fun TextView.setLastMsgTime(chatRoom: ChatRoom) {
 fun RecyclerView.setListTrips(list: List<Trip>?){
     (this.adapter as TravellingTripAdapter).submitList(list)
 }
+
 @BindingAdapter("listChatRooms")
-fun RecyclerView.setChatRoomsList(list:List<ChatRoom>?) = (this.adapter as ChatRoomsListAdapter).submitList(list)
+fun RecyclerView.setChatRoomsList(list: List<ChatRoom>?) =
+    (this.adapter as ChatRoomsListAdapter).submitList(list)
 
 @BindingAdapter("listChatMessages")
-fun RecyclerView.setChatMessages(list:List<Message>?) = (this.adapter as MessagesListAdapter).submitList(list)
+fun RecyclerView.setChatMessages(list: List<Message>?) =
+    (this.adapter as MessagesListAdapter).submitList(list)
 
 @BindingAdapter("listSavedTrips")
-fun RecyclerView.setListSavedTrips(list: List<Trip>?){
+fun RecyclerView.setListSavedTrips(list: List<Trip>?) {
     (this.adapter as SavedTripsAdapter).submitList(list)
 }
 
 @BindingAdapter("visibilityAgainstStatus")
-fun View.setVisibilityAgainstStatus(status:LiveData<Int?>){
+fun View.setVisibilityAgainstStatus(status: LiveData<Int?>) {
     status.value?.let { loading ->
-        this.visibility = when(loading){
+        this.visibility = when (loading) {
             View.VISIBLE -> View.GONE
             else -> View.VISIBLE
-    }
+        }
 
     }
 }
@@ -114,14 +136,38 @@ fun RecyclerView.setListTimeline(list: List<TimelineSlot>?){
 }
 
 @BindingAdapter("imageUrl")
-fun ImageView.bind(url: String?){
+fun ImageView.bind(url: String?) {
     val imageUri = Uri.parse(url).buildUpon().scheme("https").build()
     Glide.with(this.context)
         .load(imageUri)
         .apply(
             RequestOptions()
-            .placeholder(R.drawable.loading_animation)
-            .error(R.drawable.ic_broken_image))
+                .placeholder(R.drawable.loading_animation)
+                .error(R.drawable.ic_broken_image)
+        )
         .into(this)
 
+}
+
+@BindingAdapter("tripId")
+fun TextView.setTripId(tripInfo: TripInfo) {
+    text = tripInfo.tripId.toString()
+}
+
+@BindingAdapter("saveButtonIcon")
+fun FloatingActionButton.setSavedButtonIcon(saveState: SaveState) {
+    when (saveState) {
+        SaveState.SAVED -> {
+            setImageResource(R.drawable.ic_round_check_24)
+            setBackgroundColor(Color.WHITE)
+        }
+        SaveState.LOADING -> {
+            setImageResource(R.drawable.saving_animation)
+            setBackgroundColor(Color.BLACK)
+        }
+        SaveState.NOT_SAVED -> {
+            setImageResource(R.drawable.ic_baseline_save_24)
+            setBackgroundColor(Color.WHITE)
+        }
+    }
 }

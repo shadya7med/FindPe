@@ -135,7 +135,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/send_msg_imgView_chatPage_chatActivity"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:importantForAutofill="no" />
 
             <ImageView
                 android:id="@+id/send_msg_imgView_chatPage_chatActivity"
@@ -154,7 +155,7 @@
 
         <ProgressBar
             android:id="@+id/progressBar_chatPage_chatActivity"
-            style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
+            style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
@@ -166,8 +167,8 @@
 
         <ImageView
             android:id="@+id/no_chat_imgView_chatPage_chatActivity"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            style="@style/no_chat_img_style"
+            android:contentDescription="@string/no_chats_img_desc"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -191,9 +192,8 @@
 
         <ImageView
             android:id="@+id/error_imgView_chatPage_chatActivity"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
+            style="@style/error_img_style"
+            android:contentDescription="@string/error_img_desc"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

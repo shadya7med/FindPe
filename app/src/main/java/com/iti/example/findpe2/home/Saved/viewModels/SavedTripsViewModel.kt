@@ -4,8 +4,11 @@ import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.iti.example.findpe2.constants.Keys
+import com.iti.example.findpe2.models.TripApi
 import com.iti.example.findpe2.pojos.Trip
+import kotlinx.coroutines.launch
 
 class SavedTripsViewModel: ViewModel() {
 
@@ -30,11 +33,18 @@ class SavedTripsViewModel: ViewModel() {
     val emptyListStatus:LiveData<Int?>
         get() = _emptyListStatus
 
+    private val _onNavigateToTripDetailsData = MutableLiveData<Trip?>()
+    val onNavigateToTripDetailsData:LiveData<Trip?>
+        get() = _onNavigateToTripDetailsData
+
+
     init{
         _emptyListStatus.value = View.GONE
         _errorStatus.value = View.GONE
         _loadingStatus.value = View.GONE
         //getAllSavedTrips
+        //called in onStart otherwise to refresh also when returning form trip details
+        //getAllSavedTrips()
     }
 
     fun getFilteredTrips(result:MutableMap<String,Any>){
@@ -45,6 +55,38 @@ class SavedTripsViewModel: ViewModel() {
         //call API.getFiltered
     }
 
+    fun getAllSavedTrips(){
+        _loadingStatus.value = View.VISIBLE
+        viewModelScope.launch {
+            try{
+                //should call getAllSaved
+                _savedTripsList.value = TripApi.getAllFeaturedTrips()
+                _loadingStatus.value = View.GONE
+                _errorStatus.value = View.GONE
+                _savedTripsList.value?.let {
+                    if (it.isEmpty()){
+                        _emptyListStatus.value = View.VISIBLE
+                    }else{
+                        _emptyListStatus.value = View.GONE
+                    }
+                }
+            }catch (e:Exception){
+                _errorMsg.value = e.localizedMessage
+                _errorStatus.value = View.VISIBLE
+                _loadingStatus.value = View.GONE
+                _emptyListStatus.value = View.GONE
+
+            }
+
+        }
+    }
+
+    fun onNavigateToTripDetails(trip:Trip){
+        _onNavigateToTripDetailsData.value = trip
+    }
+    fun onDoneNavigationToTripDetails(){
+        _onNavigateToTripDetailsData.value = null
+    }
 
 
 
