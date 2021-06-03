@@ -7,11 +7,15 @@
         <variable
             name="trip"
             type="com.iti.example.findpe2.pojos.Trip" />
+        <variable
+            name="clickListener"
+            type="com.iti.example.findpe2.home.saved.views.SavedTripsAdapter.SavedTripsClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{()->clickListener.onClick(trip)}">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/imgholder_cardView_listItem_saved"

@@ -1,5 +1,6 @@
 package com.iti.example.findpe2.home.saved.views
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,10 +13,12 @@ import com.google.android.material.snackbar.Snackbar
 import com.iti.example.findpe2.constants.Keys
 import com.iti.example.findpe2.databinding.FragmentSavedBinding
 import com.iti.example.findpe2.home.saved.viewModels.SavedTripsViewModel
+import com.iti.example.findpe2.tripCheckout.TripHolderActivity
 
 
 class SavedFragment : Fragment() {
 
+    private lateinit var savedTripsViewModel:SavedTripsViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,9 +34,11 @@ class SavedFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         //start loading
         //
-        val savedTripsViewModel = ViewModelProvider(this).get(SavedTripsViewModel::class.java)
+        savedTripsViewModel = ViewModelProvider(this).get(SavedTripsViewModel::class.java)
         binding.savedTripViewModel = savedTripsViewModel
-        val savedTripsAdapter = SavedTripsAdapter()
+        val savedTripsAdapter = SavedTripsAdapter(SavedTripsAdapter.SavedTripsClickListener {
+            savedTripsViewModel.onNavigateToTripDetails(it)
+        })
         binding.bookingsListRcyViewSaved.adapter = savedTripsAdapter
         savedTripsViewModel.savedTripsList.observe(viewLifecycleOwner){
             it?.let{
@@ -47,6 +52,14 @@ class SavedFragment : Fragment() {
                 //stop loadning
                 //show error
                 Snackbar.make(binding.root,it,Snackbar.LENGTH_LONG).show()
+            }
+        }
+        savedTripsViewModel.onNavigateToTripDetailsData.observe(viewLifecycleOwner){
+            it?.let{
+                val openTripDetailsIntent = Intent(activity,TripHolderActivity::class.java)
+                openTripDetailsIntent.putExtra(Keys.TRIP_DETAILS_KEY,it)
+                openTripDetailsIntent.putExtra(Keys.IS_SAVED_KEY,true)
+                startActivity(openTripDetailsIntent)
             }
         }
 
@@ -69,8 +82,9 @@ class SavedFragment : Fragment() {
         return binding.root
     }
 
-
-
-
-
+    override fun onStart() {
+        super.onStart()
+        //to refresh the UI when coming back from Trip details
+        savedTripsViewModel.getAllSavedTrips()
+    }
 }

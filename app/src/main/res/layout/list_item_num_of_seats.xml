@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-    <variable
-        name="tripInfo"
-        type="com.iti.example.findpe2.pojos.TripInfo" />
+
+        <variable
+            name="tripInfo"
+            type="com.iti.example.findpe2.pojos.TripInfo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,12 +22,12 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="5dp"
+            android:text="@{String.valueOf(tripInfo.numOfSeats)}"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tripId="@{tripInfo}"
             tools:text="@string/num_of_seats_placeholder" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

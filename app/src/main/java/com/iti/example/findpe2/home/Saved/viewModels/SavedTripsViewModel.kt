@@ -33,12 +33,18 @@ class SavedTripsViewModel: ViewModel() {
     val emptyListStatus:LiveData<Int?>
         get() = _emptyListStatus
 
+    private val _onNavigateToTripDetailsData = MutableLiveData<Trip?>()
+    val onNavigateToTripDetailsData:LiveData<Trip?>
+        get() = _onNavigateToTripDetailsData
+
+
     init{
         _emptyListStatus.value = View.GONE
         _errorStatus.value = View.GONE
         _loadingStatus.value = View.GONE
         //getAllSavedTrips
-        getAllSavedTrips()
+        //called in onStart otherwise to refresh also when returning form trip details
+        //getAllSavedTrips()
     }
 
     fun getFilteredTrips(result:MutableMap<String,Any>){
@@ -49,7 +55,7 @@ class SavedTripsViewModel: ViewModel() {
         //call API.getFiltered
     }
 
-    private fun getAllSavedTrips(){
+    fun getAllSavedTrips(){
         _loadingStatus.value = View.VISIBLE
         viewModelScope.launch {
             try{
@@ -75,6 +81,12 @@ class SavedTripsViewModel: ViewModel() {
         }
     }
 
+    fun onNavigateToTripDetails(trip:Trip){
+        _onNavigateToTripDetailsData.value = trip
+    }
+    fun onDoneNavigationToTripDetails(){
+        _onNavigateToTripDetailsData.value = null
+    }
 
 
 

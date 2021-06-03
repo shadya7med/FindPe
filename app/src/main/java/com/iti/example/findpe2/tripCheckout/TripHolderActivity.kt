@@ -20,8 +20,9 @@ class TripHolderActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityTripHolderBinding.inflate(layoutInflater)
-        val trip = intent.getParcelableExtra<Trip>("trip")
-        val tripDetailsBundle = bundleOf("trip" to trip)
+        val trip = intent.getParcelableExtra<Trip>(Keys.TRIP_DETAILS_KEY)
+        val isSaved = intent.getBooleanExtra(Keys.IS_SAVED_KEY,false)
+        val tripDetailsBundle = bundleOf(Keys.TRIP_DETAILS_KEY to trip,Keys.IS_SAVED_KEY to isSaved)
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.trip_holder_navHost_fragment) as NavHostFragment
         navController = navHostFragment.findNavController()
         navController.setGraph(R.navigation.trip_holder_nav_graph,tripDetailsBundle)

@@ -21,6 +21,7 @@ class TravelingFragment : Fragment() {
 
     lateinit var binder: FragmentTravelingBinding
     lateinit var navController: NavController
+    private lateinit var viewModel:TravellingViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +36,7 @@ class TravelingFragment : Fragment() {
         // Inflate the layout for this fragment
 
         binder = FragmentTravelingBinding.inflate(inflater)
-        val viewModel = ViewModelProvider(this).get(TravellingViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(TravellingViewModel::class.java)
 
         binder.lifecycleOwner = this
 
@@ -50,7 +51,8 @@ class TravelingFragment : Fragment() {
             it?.let {
                 val openTripHolderIntent = Intent(activity, TripHolderActivity::class.java)
                 //mimic trip id with 5
-                openTripHolderIntent.putExtra("trip", it)
+                openTripHolderIntent.putExtra(Keys.TRIP_DETAILS_KEY, it)
+                openTripHolderIntent.putExtra(Keys.IS_SAVED_KEY,false)
                 startActivity(openTripHolderIntent)
                 viewModel.navigateToTripDetailsComplete()
             }
@@ -75,6 +77,11 @@ class TravelingFragment : Fragment() {
             viewLifecycleOwner, Observer { result ->
                 Log.i("FiTrav", "${result[Keys.MIN_RANGE_KEY] as Double}")
             })
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.getTrips()
     }
 
     override fun onStop() {

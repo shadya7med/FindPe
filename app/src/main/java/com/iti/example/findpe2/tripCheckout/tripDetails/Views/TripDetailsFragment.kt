@@ -1,16 +1,18 @@
 package com.iti.example.findpe2.tripCheckout.tripDetails.views
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.iti.example.findpe2.R
+import com.iti.example.findpe2.constants.Keys
 import com.iti.example.findpe2.databinding.FragmentTripDetailsBinding
 import com.iti.example.findpe2.pojos.Trip
+import com.iti.example.findpe2.tripCheckout.tripDetails.viewModels.TripDetailsViewModel
+import com.iti.example.findpe2.tripCheckout.tripDetails.viewModels.TripDetailsViewModelFactory
 
 
 class TripDetailsFragment:Fragment() {
@@ -29,18 +31,20 @@ class TripDetailsFragment:Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentTripDetailsBinding.inflate(inflater,parent,false)
-        val trip = arguments?.get("trip") as Trip
+        val trip = arguments?.get(Keys.TRIP_DETAILS_KEY) as Trip
+        val isSaved = arguments?.get(Keys.IS_SAVED_KEY) as Boolean
+        Log.i("tripDetails", "$isSaved")
         tripId = trip.id
 
-        val viewModelFactory = TripDetailsViewModelFactory((arguments?.get("trip") as Trip))
+        val viewModelFactory = TripDetailsViewModelFactory(trip,isSaved)
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(TripDetailsViewModel::class.java)
 
         binding.viewModel = viewModel
 
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner // better that this in case of fragments
 
-        viewModel.navigateToBooking.observe(viewLifecycleOwner, Observer { tripId ->
+        viewModel.navigateToBooking.observe(viewLifecycleOwner, { tripId ->
             tripId?.let {
                 navController.navigate(TripDetailsFragmentDirections.actionTripDetailsFragmentToBookingFragment(tripId))
                 viewModel.displayBookingComplete()

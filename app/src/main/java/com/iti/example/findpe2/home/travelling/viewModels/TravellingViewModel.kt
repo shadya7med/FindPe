@@ -44,10 +44,10 @@ class TravellingViewModel: ViewModel() {
     init {
         _status.value = View.GONE
         _errorMsgStatus.value = View.GONE
-        getTrips()
+        //getTrips()
     }
 
-    private fun getTrips() {
+    fun getTrips() {
         _status.value = View.VISIBLE
         viewModelScope.launch {
             try {

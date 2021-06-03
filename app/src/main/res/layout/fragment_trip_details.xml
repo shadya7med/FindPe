@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.iti.example.findpe2.tripCheckout.tripDetails.views.TripDetailsViewModel" />
+            type="com.iti.example.findpe2.tripCheckout.tripDetails.viewModels.TripDetailsViewModel" />
     </data>
     <ScrollView
         android:layout_width="match_parent"
@@ -93,11 +93,13 @@
                 android:layout_marginTop="312dp"
                 android:layout_marginEnd="16dp"
                 android:clickable="true"
+                android:onClick="@{()->viewModel.onSaveTripClicked()}"
                 app:backgroundTint="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:rippleColor="@color/black"
-                app:srcCompat="@drawable/ic_baseline_save_24" />
+                app:saveButtonIcon="@{viewModel.saveState}"
+                android:focusable="true" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/temp_rate_card"

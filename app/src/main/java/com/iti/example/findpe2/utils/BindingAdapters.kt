@@ -1,5 +1,6 @@
 package com.iti.example.findpe2.utils
 
+import android.graphics.Color
 import android.net.Uri
 import android.view.View
 import android.widget.ImageView
@@ -9,6 +10,7 @@ import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.iti.example.findpe2.R
 import com.iti.example.findpe2.home.chat.chatInstance.views.MessagesListAdapter
 import com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatFragment
@@ -18,6 +20,8 @@ import com.iti.example.findpe2.home.travelling.views.TravellingTripAdapter
 import com.iti.example.findpe2.pojos.ChatRoom
 import com.iti.example.findpe2.pojos.Message
 import com.iti.example.findpe2.pojos.Trip
+import com.iti.example.findpe2.pojos.TripInfo
+import com.iti.example.findpe2.tripCheckout.tripDetails.viewModels.SaveState
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -137,4 +141,27 @@ fun ImageView.bind(url: String?) {
         )
         .into(this)
 
+}
+
+@BindingAdapter("tripId")
+fun TextView.setTripId(tripInfo: TripInfo) {
+    text = tripInfo.tripId.toString()
+}
+
+@BindingAdapter("saveButtonIcon")
+fun FloatingActionButton.setSavedButtonIcon(saveState: SaveState) {
+    when (saveState) {
+        SaveState.SAVED -> {
+            setImageResource(R.drawable.ic_round_check_24)
+            setBackgroundColor(Color.WHITE)
+        }
+        SaveState.LOADING -> {
+            setImageResource(R.drawable.saving_animation)
+            setBackgroundColor(Color.BLACK)
+        }
+        SaveState.NOT_SAVED -> {
+            setImageResource(R.drawable.ic_baseline_save_24)
+            setBackgroundColor(Color.WHITE)
+        }
+    }
 }

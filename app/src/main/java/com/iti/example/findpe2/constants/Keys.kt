@@ -9,5 +9,7 @@ class Keys {
         const val MIN_RANGE_KEY = "min_range_key"
         const val MAX_RANGE_KEY = "max_range_key"
         const val FULL_FILTER_MAP_KEY = "full_map_key"
+        const val TRIP_DETAILS_KEY = "trip_details_key"
+        const val IS_SAVED_KEY = "is_saved_key"
     }
 }
