@@ -47,8 +47,6 @@
 
         <ImageView
             android:id="@+id/no_chats_imgView_chatsList_home"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
             android:contentDescription="@string/no_chats_img_desc"
             android:visibility="@{chatRoomsListViewModel.emptyListStatus}"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -58,7 +56,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.4"
             app:srcCompat="@drawable/no_chats_available"
-            tools:visibility="visible" />
+            tools:visibility="visible"
+            style="@style/no_chat_img_style" />
 
         <TextView
             android:id="@+id/no_chats_txtView_chatsList_home"
@@ -77,10 +76,7 @@
 
         <ImageView
             android:id="@+id/error_imgView_chatList_home"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
             android:contentDescription="@string/error_img_desc"
-            android:scaleType="centerCrop"
             android:visibility="@{chatRoomsListViewModel.errorStatus}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -88,7 +84,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.4"
             app:srcCompat="@drawable/error_occured"
-            tools:visibility="visible" />
+            tools:visibility="visible"
+            style="@style/error_img_style" />
 
         <TextView
             android:id="@+id/error_txtView_chatList_home"
