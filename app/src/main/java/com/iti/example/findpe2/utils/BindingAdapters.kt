@@ -14,9 +14,11 @@ import com.iti.example.findpe2.home.chat.chatInstance.views.MessagesListAdapter
 import com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatFragment
 import com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatRoomsListAdapter
 import com.iti.example.findpe2.home.saved.views.SavedTripsAdapter
+import com.iti.example.findpe2.home.timeline.views.TimelineAdapter
 import com.iti.example.findpe2.home.travelling.views.TravellingTripAdapter
 import com.iti.example.findpe2.pojos.ChatRoom
 import com.iti.example.findpe2.pojos.Message
+import com.iti.example.findpe2.pojos.TimelineSlot
 import com.iti.example.findpe2.pojos.Trip
 import java.text.SimpleDateFormat
 import java.util.*
@@ -79,8 +81,9 @@ fun TextView.setLastMsgTime(chatRoom: ChatRoom) {
 
     }
 }
+
 @BindingAdapter("listTrips")
-fun RecyclerView.bind(list: List<Trip>?){
+fun RecyclerView.setListTrips(list: List<Trip>?){
     (this.adapter as TravellingTripAdapter).submitList(list)
 }
 @BindingAdapter("listChatRooms")
@@ -105,6 +108,10 @@ fun View.setVisibilityAgainstStatus(status:LiveData<Int?>){
     }
 }
 
+@BindingAdapter("listTimeline")
+fun RecyclerView.setListTimeline(list: List<TimelineSlot>?){
+    (this.adapter as TimelineAdapter).submitList(list)
+}
 
 @BindingAdapter("imageUrl")
 fun ImageView.bind(url: String?){

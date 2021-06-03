@@ -15,6 +15,11 @@ class TripDetailsViewModel(trip: Trip): ViewModel() {
     val navigateToBooking: LiveData<Int?>
         get() = _navigateToBooking
 
+
+    private val _navigateToTimeline = MutableLiveData<Int?>()
+    val navigateToTimeline: LiveData<Int?>
+        get() = _navigateToTimeline
+
     init {
         _selectedTrip.value = trip
     }
@@ -24,5 +29,12 @@ class TripDetailsViewModel(trip: Trip): ViewModel() {
     }
     fun displayBookingComplete(){
         _navigateToBooking.value = null
+    }
+
+    fun displayTimeline(tripId: Int){
+        _navigateToTimeline.value = tripId
+    }
+    fun displayTimelineComplete(){
+        _navigateToTimeline.value = null
     }
 }

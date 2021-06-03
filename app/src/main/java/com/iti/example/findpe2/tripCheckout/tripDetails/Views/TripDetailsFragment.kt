@@ -46,6 +46,12 @@ class TripDetailsFragment:Fragment() {
                 viewModel.displayBookingComplete()
             }
         })
+        viewModel.navigateToTimeline.observe(viewLifecycleOwner, Observer { tripId ->
+            tripId?.let {
+                navController.navigate(TripDetailsFragmentDirections.actionTripDetailsFragmentToTimelineFragment(tripId))
+                viewModel.displayTimelineComplete()
+            }
+        })
 
         setHasOptionsMenu(true)
         return binding.root

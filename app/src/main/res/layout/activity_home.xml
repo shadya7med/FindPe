@@ -34,6 +34,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:menu="@menu/home_bottom_nav_menu"
+                app:backgroundTint="@color/card_background"
                 app:labelVisibilityMode="unlabeled"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -43,6 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
+            android:backgroundTint="@color/card_background"
             app:menu="@menu/home_drawer_menu"
             />
     </androidx.drawerlayout.widget.DrawerLayout>
