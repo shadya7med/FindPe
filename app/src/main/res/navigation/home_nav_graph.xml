@@ -14,12 +14,12 @@
         android:id="@+id/exploreFragmentHome"
         android:name="com.iti.example.findpe2.home.explore.views.ExploreFragment"
         android:label="@string/explore_text"
-        tools:layout="@layout/fragment_explore" />
-    <fragment
-        android:id="@+id/profileFragmentHome"
-        android:name="com.iti.example.findpe2.home.profile.views.ProfileFragment"
-        android:label="@string/profile_text"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_explore" >
+        <action
+            android:id="@+id/action_exploreFragmentHome_to_allTripsFragment"
+            app:destination="@id/allTripsFragmentHome"
+            app:popUpTo="@id/exploreFragmentHome" />
+    </fragment>
     <fragment
         android:id="@+id/savedFragmentHome"
         android:name="com.iti.example.findpe2.home.saved.views.SavedFragment"
@@ -52,6 +52,16 @@
         android:name="com.iti.example.findpe2.home.filter.views.FilterFragment"
         android:label="@string/filter"
         tools:layout="@layout/fragment_filter"/>
-    
+    <fragment
+        android:id="@+id/allTripsFragmentHome"
+        android:name="com.iti.example.findpe2.home.allTrips.views.AllTripsFragment"
+        android:label="@string/all_trips"
+        tools:layout="@layout/fragment_all_trips" />
+    <fragment
+        android:id="@+id/companionFragmentHome"
+        android:name="com.iti.example.findpe2.home.companion.views.CompanionFragment"
+        android:label="@string/companion"
+        tools:layout="@layout/fragment_companion" />
+
 
 </navigation>

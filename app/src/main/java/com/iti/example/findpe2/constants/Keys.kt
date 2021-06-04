@@ -11,5 +11,6 @@ class Keys {
         const val FULL_FILTER_MAP_KEY = "full_map_key"
         const val TRIP_DETAILS_KEY = "trip_details_key"
         const val IS_SAVED_KEY = "is_saved_key"
+        const val CHAT_ROOM_KEY = "chat_room_key"
     }
 }

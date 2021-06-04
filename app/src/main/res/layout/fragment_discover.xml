@@ -3,6 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="discoverViewModel"
+            type="com.iti.example.findpe2.home.discover.viewsModels.DiscoverViewModel" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -46,8 +54,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
+            android:onClick="@{()->discoverViewModel.onNavigateToSeeAll()}"
+            android:paddingStart="10dp"
             android:paddingEnd="5dp"
             android:text="@string/see_all"
+            android:textColor="@color/subtitle_text_custom_color"
             app:drawableRightCompat="@drawable/ic_baseline_keyboard_arrow_right_black_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -55,19 +66,93 @@
             app:layout_constraintTop_toTopOf="@+id/Featured" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/featured_rv"
+            android:id="@+id/featuredList_rv_discover_home"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="24dp"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-            app:spanCount="2"
-            tools:itemCount="4"
+            app:layout_constrainedHeight="false"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintHeight_percent="0.7"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/trips"
-            tools:listitem="@layout/featured_list_item"/>
+            app:listFeaturedTrips="@{discoverViewModel.featuredTripList}"
+            app:visibilityAgainstStatus="@{discoverViewModel.loadingStatus}"
+            app:spanCount="2"
+            tools:itemCount="4"
+            tools:listitem="@layout/list_item_featured">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <ProgressBar
+            android:id="@+id/progressBar_discover_home"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{discoverViewModel.loadingStatus}"
+            app:layout_constraintBottom_toBottomOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintEnd_toEndOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintStart_toStartOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintTop_toTopOf="@+id/featuredList_rv_discover_home"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/error_imgView_discover_home"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/error_img_desc"
+            android:scaleType="centerCrop"
+            android:visibility="@{discoverViewModel.errorStatus}"
+            app:layout_constraintBottom_toBottomOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintEnd_toEndOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintStart_toStartOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintTop_toTopOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintVertical_bias="0.4"
+            app:srcCompat="@drawable/error_occured"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/error_txtView_discover_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/error_img_desc"
+            android:visibility="@{discoverViewModel.errorStatus}"
+            app:layout_constraintEnd_toEndOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintStart_toStartOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintTop_toBottomOf="@+id/error_imgView_discover_home"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/no_data_imgView_discover_home"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/no_chats_img_desc"
+            android:visibility="@{discoverViewModel.emptyListStatus}"
+            app:layout_constraintBottom_toBottomOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintEnd_toEndOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintStart_toStartOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintTop_toTopOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintVertical_bias="0.4"
+            app:srcCompat="@drawable/nodata"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/no_data_txtView_discover_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/no_trips_text"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:visibility="@{discoverViewModel.emptyListStatus}"
+            app:layout_constraintEnd_toEndOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintStart_toStartOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintTop_toBottomOf="@+id/no_data_imgView_discover_home"
+            tools:visibility="visible" />
 
         <View
             android:id="@+id/divider6"
@@ -79,7 +164,7 @@
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/featured_rv" />
+            app:layout_constraintTop_toBottomOf="@+id/featuredList_rv_discover_home" />
 
         <TextView
             android:id="@+id/places_to_visit"
@@ -103,7 +188,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/places_to_visit"
             tools:itemCount="4"
-            tools:listitem="@layout/travelling_rv_item"/>
+            tools:listitem="@layout/travelling_rv_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

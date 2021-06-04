@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
+import com.iti.example.findpe2.constants.Keys
 import com.iti.example.findpe2.databinding.FragmentChatBinding
 import com.iti.example.findpe2.home.chat.chatInstance.views.ChatPageActivity
 import com.iti.example.findpe2.home.chat.chatRoomsList.viewModels.ChatRoomsListViewModel
-import com.iti.example.findpe2.utils.setAllClickable
 
 
 class ChatFragment : Fragment() {
@@ -42,7 +43,7 @@ class ChatFragment : Fragment() {
             it?.let {
                 //open chat page
                 val openChatPageIntent = Intent(requireActivity(), ChatPageActivity::class.java)
-                openChatPageIntent.putExtra(CHAT_ROOM_KEY, it)
+                openChatPageIntent.putExtra(Keys.CHAT_ROOM_KEY, it)
                 startActivity(openChatPageIntent)
                 chatRoomViewModel.onDoneNavigateToChatPage()
             }
@@ -61,43 +62,26 @@ class ChatFragment : Fragment() {
                 chatRoomsListAdapter.submitList(it)
             }
 
-        }
+        }*/
         chatRoomViewModel.errorMsg.observe(viewLifecycleOwner) {
             it?.let {
-                clearLoading()
-                binding.noChatsImgViewChatsListHome.visibility = View.VISIBLE
-                binding.noChatsTxtViewChatsListHome.text =
-                    requireActivity().getString(R.string.no_chats_problem)
-                binding.noChatsTxtViewChatsListHome.visibility = View.VISIBLE
-                binding.chatListRcyViewChatHome.visibility = View.GONE
                 //Show Snack bar with exp
                 Snackbar
-                    .make(binding.root, "Couldn't retrieve chats ", Snackbar.LENGTH_LONG)
+                    .make(binding.root, "Couldn't retrieve chats with error: $it", Snackbar.LENGTH_LONG)
                     .show()
             }
 
-        }*/
+        }
 
 
         return binding.root
     }
 
-    private fun setLoading() {
-        binding.progressBarChatsListHome.visibility = View.VISIBLE
-        binding.root.setAllClickable(false)
-    }
-
-    private fun clearLoading() {
-        binding.progressBarChatsListHome.visibility = View.GONE
-        binding.root.setAllClickable(true)
-
-    }
 
     companion object {
         const val _4_DAYS_MILLIS = 345600000L
         const val ONE_DAY_MILLIS = 86400000L
         const val ONE_YEAR_MILLIS = 31536000000L
-        const val CHAT_ROOM_KEY = "chat_room_key"
     }
 
 }

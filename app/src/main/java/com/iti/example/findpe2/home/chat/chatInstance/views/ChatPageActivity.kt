@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.iti.example.findpe2.constants.Keys
 import com.iti.example.findpe2.databinding.ActivityChatPageBinding
 import com.iti.example.findpe2.home.chat.chatInstance.viewModels.ChatPageViewModel
 import com.iti.example.findpe2.home.chat.chatInstance.viewModels.ChatPageViewModelFactory
-import com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatFragment
 import com.iti.example.findpe2.pojos.ChatRoom
 
 
@@ -22,7 +22,7 @@ class ChatPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityChatPageBinding.inflate(layoutInflater)
         //setLoading()
-        val chatRoom = intent.getParcelableExtra<ChatRoom>(ChatFragment.CHAT_ROOM_KEY)
+        val chatRoom = intent.getParcelableExtra<ChatRoom>(Keys.CHAT_ROOM_KEY)
         val chatPageViewModel = ViewModelProvider(this, ChatPageViewModelFactory(chatRoom!!)).get(
             ChatPageViewModel::class.java
         )

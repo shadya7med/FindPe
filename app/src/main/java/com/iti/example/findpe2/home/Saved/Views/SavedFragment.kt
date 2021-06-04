@@ -18,7 +18,7 @@ import com.iti.example.findpe2.tripCheckout.TripHolderActivity
 
 class SavedFragment : Fragment() {
 
-    private lateinit var savedTripsViewModel:SavedTripsViewModel
+    private lateinit var savedTripsViewModel: SavedTripsViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,39 +30,41 @@ class SavedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binding = FragmentSavedBinding.inflate(inflater,container,false)
+        val binding = FragmentSavedBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         //start loading
         //
         savedTripsViewModel = ViewModelProvider(this).get(SavedTripsViewModel::class.java)
         binding.savedTripViewModel = savedTripsViewModel
-        val savedTripsAdapter = SavedTripsAdapter(SavedTripsAdapter.SavedTripsClickListener {
-            savedTripsViewModel.onNavigateToTripDetails(it)
-        })
-        binding.bookingsListRcyViewSaved.adapter = savedTripsAdapter
-        savedTripsViewModel.savedTripsList.observe(viewLifecycleOwner){
+
+        binding.bookingsListRcyViewSaved.adapter =
+            SavedTripsAdapter(SavedTripsAdapter.SavedTripsClickListener {
+                savedTripsViewModel.onNavigateToTripDetails(it)
+            })
+        /*savedTripsViewModel.savedTripsList.observe(viewLifecycleOwner){
             it?.let{
                 //stop loading
                 savedTripsAdapter.submitList(it)
             }
 
-        }
-        savedTripsViewModel.errorMsg.observe(viewLifecycleOwner){
-            it?.let{
+        }*/
+        savedTripsViewModel.errorMsg.observe(viewLifecycleOwner) {
+            it?.let {
                 //stop loadning
                 //show error
-                Snackbar.make(binding.root,it,Snackbar.LENGTH_LONG).show()
+                Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG).show()
             }
         }
-        savedTripsViewModel.onNavigateToTripDetailsData.observe(viewLifecycleOwner){
-            it?.let{
-                val openTripDetailsIntent = Intent(activity,TripHolderActivity::class.java)
-                openTripDetailsIntent.putExtra(Keys.TRIP_DETAILS_KEY,it)
-                openTripDetailsIntent.putExtra(Keys.IS_SAVED_KEY,true)
+        savedTripsViewModel.onNavigateToTripDetailsData.observe(viewLifecycleOwner) {
+            it?.let {
+                val openTripDetailsIntent = Intent(activity, TripHolderActivity::class.java)
+                openTripDetailsIntent.putExtra(Keys.TRIP_DETAILS_KEY, it)
+                openTripDetailsIntent.putExtra(Keys.IS_SAVED_KEY, true)
                 startActivity(openTripDetailsIntent)
+
+                savedTripsViewModel.onDoneNavigationToTripDetails()
             }
         }
-
 
 
         val navController = findNavController()
@@ -72,9 +74,11 @@ class SavedFragment : Fragment() {
         }
 
         // saved State handle is  a map for returning date between fragments
-        navController.currentBackStackEntry?.savedStateHandle?.getLiveData<MutableMap<String,Any>>(
-            Keys.FULL_FILTER_MAP_KEY)?.observe(
-            viewLifecycleOwner) { result ->
+        navController.currentBackStackEntry?.savedStateHandle?.getLiveData<MutableMap<String, Any>>(
+            Keys.FULL_FILTER_MAP_KEY
+        )?.observe(
+            viewLifecycleOwner
+        ) { result ->
             // Do something with the result.
             //savedTripsViewModel.getFilteredTrips(result)
             Log.i("FiSav", "${result[Keys.MIN_RANGE_KEY] as Double}")

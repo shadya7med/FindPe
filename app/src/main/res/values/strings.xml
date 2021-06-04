@@ -131,7 +131,7 @@
     <string name="send_msg_desc">this is send msg button</string>
     <string name="back_btn_desc">this is the Chat page back button</string>
     <string name="trip_destination_name_placeholder">Dahab</string>
-    <string name="trip_price_placeholder" >$967</string>
+    <string name="trip_price_placeholder">$967</string>
     <string name="temperature_placeholder">26 ℃</string>
     <string name="weather_placeholder">Sunny</string>
     <string name="num_of_likes_placeholder">4.1K</string>
@@ -147,4 +147,7 @@
     <string name="no_msg">there is no available messages</string>
     <string name="no_trips_text">there is no available Trips</string>
     <string name="price_format">$%s</string>
+    <string name="all_trips">All Trips</string>
+    <string name="available">Available Now</string>
+    <string name="companion">Companion</string>
 </resources>

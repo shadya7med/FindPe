@@ -83,7 +83,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
                 android:foreground="@drawable/strike_through_line"
-                android:text="@string/trip_price"
+                android:text="@{@string/price_format(trip.price)}"
+                tools:text="@string/trip_price"
                 android:textColor="@color/subtitle_text_custom_color"
                 app:layout_constraintBaseline_toBaselineOf="@+id/travelling_item_discount_price_text"
                 app:layout_constraintStart_toEndOf="@+id/travelling_item_discount_price_text" />
