@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.iti.example.findpe2.databinding.TravellingRvItemBinding
+import com.iti.example.findpe2.databinding.ListItemTravellingRvBinding
 import com.iti.example.findpe2.pojos.Trip
 
 private const val TAG = "TravellingTripAdapter"
@@ -16,7 +16,7 @@ class TravellingTripAdapter(private val clickListener: OnClickListener) :
 
         override fun areContentsTheSame(oldItem: Trip, newItem: Trip) = oldItem.id == newItem.id
     }) {
-    class ViewHolder(var binding: TravellingRvItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(var binding: ListItemTravellingRvBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(trip: Trip, clickListener: OnClickListener) {
             Log.i(TAG, "bind: $trip")
             binding.trip = trip
@@ -26,7 +26,7 @@ class TravellingTripAdapter(private val clickListener: OnClickListener) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(TravellingRvItemBinding.inflate(LayoutInflater.from(parent.context),parent, false))
+        ViewHolder(ListItemTravellingRvBinding.inflate(LayoutInflater.from(parent.context),parent, false))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
         holder.bind(getItem(position), clickListener)

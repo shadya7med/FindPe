@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.iti.example.findpe2.databinding.TimelineRvItemBinding
+import com.iti.example.findpe2.databinding.ListItemTimelineRvBinding
 import com.iti.example.findpe2.pojos.TimelineSlot
 
 class TimelineAdapter: ListAdapter<TimelineSlot, TimelineAdapter.TimelineViewHolder>(object : DiffUtil.ItemCallback<TimelineSlot>(){
@@ -14,10 +14,10 @@ class TimelineAdapter: ListAdapter<TimelineSlot, TimelineAdapter.TimelineViewHol
     override fun areContentsTheSame(oldItem: TimelineSlot, newItem: TimelineSlot) = oldItem.id == newItem.id
 }) {
 
-    class TimelineViewHolder(var binding: TimelineRvItemBinding): RecyclerView.ViewHolder(binding.root) {
+    class TimelineViewHolder(var binding: ListItemTimelineRvBinding): RecyclerView.ViewHolder(binding.root) {
         companion object{
             fun from(parent: ViewGroup): TimelineViewHolder =
-                TimelineViewHolder(TimelineRvItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+                TimelineViewHolder(ListItemTimelineRvBinding.inflate(LayoutInflater.from(parent.context), parent, false))
         }
         fun bind(slot: TimelineSlot){
             binding.slot = slot

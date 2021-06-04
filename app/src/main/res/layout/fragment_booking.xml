@@ -74,16 +74,19 @@
 
         <Button
             android:id="@+id/proceedToCheckOut_btn_booking_tripHolder"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:text="@string/proceed_to_checkout"
             android:onClick="@{()->bookingFragment.navigateToCheckout()}"
+            android:text="@string/proceed_to_checkout"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/subtitle_text_custom_color"
+            app:rippleColor="@color/title_text_custom_color" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
