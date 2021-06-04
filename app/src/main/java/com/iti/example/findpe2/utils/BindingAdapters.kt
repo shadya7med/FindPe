@@ -18,9 +18,11 @@ import com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatFragment
 import com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatRoomsListAdapter
 import com.iti.example.findpe2.home.discover.views.DiscoverFeaturedAdapter
 import com.iti.example.findpe2.home.saved.views.SavedTripsAdapter
+import com.iti.example.findpe2.home.timeline.views.TimelineAdapter
 import com.iti.example.findpe2.home.travelling.views.TravellingTripAdapter
 import com.iti.example.findpe2.pojos.ChatRoom
 import com.iti.example.findpe2.pojos.Message
+import com.iti.example.findpe2.pojos.TimelineSlot
 import com.iti.example.findpe2.pojos.Trip
 import com.iti.example.findpe2.pojos.TripInfo
 import com.iti.example.findpe2.tripCheckout.tripDetails.viewModels.SaveState
@@ -102,7 +104,7 @@ fun TextView.setLastMsgTime(chatRoom: ChatRoom) {
 }
 
 @BindingAdapter("listTrips")
-fun RecyclerView.bind(list: List<Trip>?) {
+fun RecyclerView.setListTrips(list: List<Trip>?){
     (this.adapter as TravellingTripAdapter).submitList(list)
 }
 
@@ -138,6 +140,10 @@ fun View.setVisibilityAgainstStatus(status: LiveData<Int?>) {
     }
 }
 
+@BindingAdapter("listTimeline")
+fun RecyclerView.setListTimeline(list: List<TimelineSlot>?){
+    (this.adapter as TimelineAdapter).submitList(list)
+}
 
 @BindingAdapter("imageUrl")
 fun ImageView.bind(url: String?) {

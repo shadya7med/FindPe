@@ -25,7 +25,7 @@
     <color name="background">@color/white</color>
     <color name="card_background">@color/colorGray</color>
     <color name="title_text_custom_color">@color/black</color>
-    <color name="subtitle_text_custom_color">#393838</color>
+    <color name="subtitle_text_custom_color">#636363</color>
 
 
 </resources>
