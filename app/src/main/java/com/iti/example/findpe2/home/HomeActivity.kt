@@ -47,7 +47,7 @@ class HomeActivity : AppCompatActivity() {
         val topLevelDestinationsSet = setOf(
             R.id.exploreFragmentHome,
             R.id.chatFragmentHome,
-            R.id.profileFragmentHome,
+            R.id.companionFragmentHome,
             R.id.savedFragmentHome,
             R.id.travelingFragmentHome
         )
