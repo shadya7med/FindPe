@@ -12,9 +12,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.iti.example.findpe2.R
+import com.iti.example.findpe2.home.allTrips.views.AllTripsAdapter
 import com.iti.example.findpe2.home.chat.chatInstance.views.MessagesListAdapter
 import com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatFragment
 import com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatRoomsListAdapter
+import com.iti.example.findpe2.home.discover.views.DiscoverFeaturedAdapter
 import com.iti.example.findpe2.home.saved.views.SavedTripsAdapter
 import com.iti.example.findpe2.home.timeline.views.TimelineAdapter
 import com.iti.example.findpe2.home.travelling.views.TravellingTripAdapter
@@ -117,6 +119,14 @@ fun RecyclerView.setChatMessages(list: List<Message>?) =
 @BindingAdapter("listSavedTrips")
 fun RecyclerView.setListSavedTrips(list: List<Trip>?) {
     (this.adapter as SavedTripsAdapter).submitList(list)
+}
+@BindingAdapter("listAllTrips")
+fun RecyclerView.setListAllTrips(list: List<Trip>?) {
+    (this.adapter as AllTripsAdapter).submitList(list)
+}
+@BindingAdapter("listFeaturedTrips")
+fun RecyclerView.setListFeaturedTrips(list:List<Trip>?){
+    (this.adapter as DiscoverFeaturedAdapter).submitList(list)
 }
 
 @BindingAdapter("visibilityAgainstStatus")

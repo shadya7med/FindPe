@@ -32,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="@{String.valueOf(viewModel.numberOfTrips)}"
+            app:visibilityAgainstStatus="@{viewModel.status}"
             android:textColor="@color/subtitle_text_custom_color"
             app:layout_constraintStart_toStartOf="@+id/Featured"
             app:layout_constraintTop_toBottomOf="@+id/Featured" />
@@ -42,6 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:text="@string/trips"
+            app:visibilityAgainstStatus="@{viewModel.status}"
             android:textColor="@color/subtitle_text_custom_color"
             app:layout_constraintBaseline_toBaselineOf="@+id/num_of_trips_text"
             app:layout_constraintStart_toEndOf="@+id/num_of_trips_text" />

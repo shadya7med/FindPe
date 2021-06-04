@@ -16,10 +16,10 @@
         android:title="@string/explore_text"
         android:visible="true" />
     <item
-        android:id="@+id/savedFragmentHome"
+        android:id="@+id/companionFragmentHome"
         android:enabled="true"
-        android:icon="@drawable/ic_outline_book_24"
-        android:title="@string/saved_text"
+        android:icon="@drawable/ic_outline_supervisor_account_24"
+        android:title="@string/companion"
         android:visible="true" />
     <item
         android:id="@+id/chatFragmentHome"
@@ -28,9 +28,9 @@
         android:title="@string/chat_text"
         android:visible="true" />
     <item
-        android:id="@+id/profileFragmentHome"
+        android:id="@+id/savedFragmentHome"
         android:enabled="true"
-        android:icon="@drawable/ic_outline_person_pin_circle_24"
-        android:title="@string/profile_text"
+        android:icon="@drawable/ic_outline_book_24"
+        android:title="@string/saved_text"
         android:visible="true" />
 </menu>

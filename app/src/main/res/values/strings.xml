@@ -148,5 +148,7 @@
     <string name="no_trips_text">there is no available Trips</string>
     <string name="timeline_empty_list_text">No timeline available</string>
     <string name="price_format">$%s</string>
-
+    <string name="all_trips">All Trips</string>
+    <string name="available">Available Now</string>
+    <string name="companion">Companion</string>
 </resources>

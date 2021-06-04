@@ -88,4 +88,5 @@ class TripDetailsFragment:Fragment() {
 
         }
     }
+
 }

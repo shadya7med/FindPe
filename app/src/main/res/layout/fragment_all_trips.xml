@@ -5,29 +5,19 @@
 
     <data>
         <variable
-            name="savedTripViewModel"
-            type="com.iti.example.findpe2.home.saved.viewModels.SavedTripsViewModel" />
+            name="allTripViewModel"
+            type="com.iti.example.findpe2.home.allTrips.viewModels.AllTripsViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-        <TextView
-            android:id="@+id/bookings_title_txtView_saved"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/bookings_text"
-            android:textColor="@color/title_text_custom_color"
-            android:textSize="30sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:alwaysDrawnWithCache="false"
+        tools:context=".home.allTrips.views.AllTripsFragment">
 
         <Button
-            android:id="@+id/filter_btn_saved_home"
+            android:id="@+id/filer_btn_allTrips_home"
             style="@style/Widget.App.Button.OutlinedButton.IconOnly"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,12 +25,25 @@
             android:text="@string/filter"
             android:textColor="@color/subtitle_text_custom_color"
             app:drawableLeftCompat="@drawable/ic_baseline_add_24"
+            app:iconGravity="textStart"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/bookings_title_txtView_saved" />
+            app:layout_constraintTop_toTopOf="@+id/title_allTrips_home" />
+
+        <TextView
+            android:id="@+id/title_allTrips_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/available"
+            android:textColor="@color/title_text_custom_color"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/bookingsList_rcyView_saved"
-            android:layout_width="match_parent"
+            android:id="@+id/tripsList_rcyView_allTrips_home"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
@@ -49,22 +52,19 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bookings_title_txtView_saved"
-            app:listSavedTrips="@{savedTripViewModel.savedTripsList}"
-            app:visibilityAgainstStatus="@{savedTripViewModel.loadingStatus}"
-            tools:itemCount="3"
-            tools:listitem="@layout/list_item_saved_trip">
-
-        </androidx.recyclerview.widget.RecyclerView>
+            app:layout_constraintTop_toBottomOf="@+id/title_allTrips_home"
+            app:listAllTrips="@{allTripViewModel.allTripsList}"
+            app:visibilityAgainstStatus="@{allTripViewModel.loadingStatus}"
+            tools:itemCount="8"
+            tools:listitem="@layout/travelling_rv_item" />
 
         <ProgressBar
-            android:id="@+id/progressBar_saved_home"
+            android:id="@+id/progressBar_allTrips_home"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="@{savedTripViewModel.loadingStatus}"
+            android:visibility="@{allTripViewModel.loadingStatus}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -72,11 +72,11 @@
             tools:visibility="visible" />
 
         <ImageView
-            android:id="@+id/no_data_imgView_saved_home"
+            android:id="@+id/no_data_imgView_allTrips_home"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:contentDescription="@string/no_chats_img_desc"
-            android:visibility="@{savedTripViewModel.emptyListStatus}"
+            android:visibility="@{allTripViewModel.emptyListStatus}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -86,27 +86,27 @@
             tools:visibility="visible" />
 
         <TextView
-            android:id="@+id/no_data_txtView_saved_home"
+            android:id="@+id/no_data_txtView_allTrips_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/no_trips_text"
             android:textAlignment="center"
             android:textSize="20sp"
-            android:visibility="@{savedTripViewModel.emptyListStatus}"
+            android:visibility="@{allTripViewModel.emptyListStatus}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/no_data_imgView_saved_home"
+            app:layout_constraintTop_toBottomOf="parent"
             tools:visibility="visible" />
 
         <ImageView
-            android:id="@+id/error_imgView_saved_home"
+            android:id="@+id/error_imgView_allTrips_home"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:contentDescription="@string/error_img_desc"
             android:scaleType="centerCrop"
-            android:visibility="@{savedTripViewModel.errorStatus}"
-            app:layout_constraintBottom_toBottomOf="@+id/bookingsList_rcyView_saved"
+            android:visibility="@{allTripViewModel.errorStatus}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -115,15 +115,14 @@
             tools:visibility="visible" />
 
         <TextView
-            android:id="@+id/error_txtView_saved_home"
+            android:id="@+id/error_txtView_allTrips_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:text="@string/error_img_desc"
-            android:visibility="@{savedTripViewModel.errorStatus}"
+            android:visibility="@{allTripViewModel.errorStatus}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/error_imgView_saved_home"
+            app:layout_constraintTop_toBottomOf="@+id/error_imgView_allTrips_home"
             tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
