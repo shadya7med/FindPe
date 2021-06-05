@@ -1,6 +1,10 @@
 package com.iti.example.findpe2.home
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -17,6 +21,7 @@ import com.iti.example.findpe2.R
 import com.iti.example.findpe2.authentication.CreateAccountActivity
 import com.iti.example.findpe2.databinding.ActivityHomeBinding
 import com.iti.example.findpe2.databinding.HomeDrawerHeaderBinding
+import com.iti.example.findpe2.network.NetworkActivity
 
 
 class HomeActivity : AppCompatActivity() {
@@ -91,6 +96,8 @@ class HomeActivity : AppCompatActivity() {
             }
             true
         }
+        //Register broadcast receiver
+        registerReceiver(receiver, IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"))
         //add root as Top Active View
         setContentView(binder.root)
     }
@@ -115,4 +122,25 @@ class HomeActivity : AppCompatActivity() {
         // modify behaviour
         return NavigationUI.navigateUp(navController, appBarConfiguration)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(receiver)
+    }
+    private val receiver = object : BroadcastReceiver(){
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if (!checkInternet(context!!)){
+                finish()
+                startActivity(Intent(context, NetworkActivity::class.java))
+            }
+        }
+        private fun checkInternet(context: Context): Boolean {
+            val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val netInfo = cm.activeNetworkInfo
+            return (netInfo != null && netInfo.isConnected());
+        }
+
+    }
+
+
 }

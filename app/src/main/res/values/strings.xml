@@ -151,4 +151,10 @@
     <string name="all_trips">All Trips</string>
     <string name="available">Available Now</string>
     <string name="companion">Companion</string>
+    <string name="find_companion">Find Companion</string>
+    <string name="i_want_a_companion">I want a companion</string>
+    <string name="have_a_custom">Have a custom job ? Post here</string>
+    <string name="join_us">Join Us</string>
+    <string name="apply_companion">apply as companion</string>
+    <string name="our_policies">Our Policies</string>
 </resources>

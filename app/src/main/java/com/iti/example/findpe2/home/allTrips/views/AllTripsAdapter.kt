@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.iti.example.findpe2.databinding.TravellingRvItemBinding
+import com.iti.example.findpe2.databinding.ListItemTravellingRvBinding
 import com.iti.example.findpe2.home.travelling.views.OnClickListener
 import com.iti.example.findpe2.pojos.Trip
 
@@ -20,11 +20,11 @@ class AllTripsAdapter(private val clickListener: OnClickListener) :ListAdapter<T
         holder.bind(getItem(position),clickListener)
     }
 
-    class AllTripsViewHolder(val binding:TravellingRvItemBinding):RecyclerView.ViewHolder(binding.root){
+    class AllTripsViewHolder(val binding:ListItemTravellingRvBinding):RecyclerView.ViewHolder(binding.root){
         companion object{
             fun from(parent: ViewGroup):AllTripsViewHolder{
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = TravellingRvItemBinding.inflate(layoutInflater,parent,false)
+                val binding = ListItemTravellingRvBinding.inflate(layoutInflater,parent,false)
                 return AllTripsViewHolder(binding)
             }
         }

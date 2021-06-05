@@ -36,7 +36,6 @@ class TravellingViewModel: ViewModel() {
         get() = _errorMsgStatus
 
     private val _selectedTrip = MutableLiveData<Trip?>()
-
     val selectedTrip: LiveData<Trip?>
         get() = _selectedTrip
 
@@ -53,6 +52,7 @@ class TravellingViewModel: ViewModel() {
             try {
                 _tripList.value = TripApi.getAllTrips()
                 _status.value = View.GONE
+                _errorMsgStatus.value = View.GONE
             }catch (t: Throwable){
                 Log.i("TravellingViewModel", "getTrips:${t.message}")
                 _errorMsgStatus.value = View.VISIBLE

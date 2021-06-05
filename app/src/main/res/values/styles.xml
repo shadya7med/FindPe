@@ -88,4 +88,40 @@
         <item name="android:scaleType">centerCrop</item>
     </style>
 
+    <style name="companion_blue_text">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginEnd">24dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/blue_fb</item>
+    </style>
+
+    <style name="companion_image">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+    </style>
+
+    <style name="companion_text" parent="title_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginEnd">24dp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="companion_btn" parent="Widget.App.Button.OutlinedButton.IconOnly">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginEnd">24dp</item>
+        <item name="android:textColor">@color/subtitle_text_custom_color</item>
+    </style>
+
 </resources>
