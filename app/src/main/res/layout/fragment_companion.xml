@@ -1,14 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".home.companion.views.CompanionFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/find_companion_image"
+                style="@style/companion_image"
+                app:layout_constraintDimensionRatio="w,1:2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/find_companion"
+                style="@style/companion_text"
+                android:text="@string/find_companion"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/find_companion_image" />
+
+            <Button
+                android:id="@+id/i_want_companion_btn"
+                style="@style/companion_btn"
+                android:text="@string/i_want_a_companion"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/find_companion"
+                app:rippleColor="@color/title_text_custom_color"
+                android:textColor="@color/subtitle_text_custom_color"/>
+
+            <TextView
+                android:id="@+id/post_here_text"
+                style="@style/companion_blue_text"
+                android:text="@string/have_a_custom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/i_want_companion_btn" />
+
+            <View
+                android:id="@+id/divider9"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintTop_toBottomOf="@+id/post_here_text"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <ImageView
+                android:id="@+id/apply_as_companion_image"
+                style="@style/companion_image"
+                app:layout_constraintDimensionRatio="w,1:2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider9"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/join_us"
+                style="@style/companion_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/join_us"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/apply_as_companion_image" />
+
+            <Button
+                android:id="@+id/apply_as_companion_btn"
+                style="@style/companion_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/apply_companion"
+                app:rippleColor="@color/title_text_custom_color"
+                android:textColor="@color/subtitle_text_custom_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/join_us" />
+
+            <TextView
+                android:id="@+id/our_policies_text"
+                style="@style/companion_blue_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/our_policies"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/apply_as_companion_btn" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+</layout>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -217,7 +217,9 @@
                 android:text="@string/add_card"
                 android:textSize="12sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/saved_cards"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textColor="@color/subtitle_text_custom_color"
+                app:rippleColor="@color/title_text_custom_color" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/saved_card_rv"
@@ -253,10 +255,14 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="40dp"
+                android:layout_marginBottom="20dp"
                 android:text="@string/proceed_with_fawry"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pay_with_fawry" />
+                app:layout_constraintTop_toBottomOf="@+id/pay_with_fawry"
+                android:textColor="@color/subtitle_text_custom_color"
+                app:rippleColor="@color/title_text_custom_color" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

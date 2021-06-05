@@ -13,6 +13,10 @@ class TimelineViewModel(var tripId: Int) : ViewModel() {
     val timelineSlotList: LiveData<List<TimelineSlot>?>
         get() = _timelineSlotList
 
+    private val _closeActivity = MutableLiveData<Boolean>()
+    val closeActivity: LiveData<Boolean>
+        get() = _closeActivity
+
 
     private val _errorMsg = MutableLiveData<String?>()
     val errorMsg:LiveData<String?>
@@ -47,6 +51,12 @@ class TimelineViewModel(var tripId: Int) : ViewModel() {
 
     private fun getData() {
 
+    }
+    fun close(){
+        _closeActivity.value = true
+    }
+    fun closeComplete(){
+        _closeActivity.value = false
     }
 
 }

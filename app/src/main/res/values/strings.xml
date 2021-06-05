@@ -157,4 +157,10 @@
     <string name="image_gallery_desc">this is one of the user gallery images</string>
     <string name="is_verified_desc">this user is verified</string>
     <string name="user_level_desc">this is the user level</string>
+    <string name="find_companion">Find Companion</string>
+    <string name="i_want_a_companion">I want a companion</string>
+    <string name="have_a_custom">Have a custom job ? Post here</string>
+    <string name="join_us">Join Us</string>
+    <string name="apply_companion">apply as companion</string>
+    <string name="our_policies">Our Policies</string>
 </resources>

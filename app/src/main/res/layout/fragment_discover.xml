@@ -188,7 +188,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/places_to_visit"
             tools:itemCount="4"
-            tools:listitem="@layout/travelling_rv_item" />
+            tools:listitem="@layout/list_item_travelling_rv"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

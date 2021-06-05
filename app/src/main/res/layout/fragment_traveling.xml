@@ -56,12 +56,12 @@
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             android:text="@string/filter"
-            android:textColor="@color/subtitle_text_custom_color"
             app:drawableLeftCompat="@drawable/ic_baseline_add_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/Featured"
             app:layout_constraintTop_toTopOf="@+id/Featured"
+            android:textColor="@color/subtitle_text_custom_color"
             app:rippleColor="@color/title_text_custom_color" />
 
 
@@ -79,7 +79,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/num_of_trips_text"
             app:listTrips="@{viewModel.tripList}"
-            tools:listitem="@layout/travelling_rv_item" />
+            tools:listitem="@layout/list_item_travelling_rv" />
 
         <ProgressBar
             android:id="@+id/travelling_progress_bar"

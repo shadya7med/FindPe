@@ -3,6 +3,7 @@
     package="com.iti.example.findpe2">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -12,9 +13,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FindPe">
         <activity
-            android:name=".home.chat.chatInstance.views.ChatPageActivity"
+            android:name=".network.NetworkActivity"
             android:theme="@style/NoActionBarTheme" />
-        <!-- Add the following meta-data element, an activity for Facebook, and an activity and intent filter for Chrome Custom Tabs inside your application element -->
+
+
+        <activity
+            android:name=".home.timeline.views.TimelineActivity"
+            android:theme="@style/NoActionBarTheme" />
+        <activity
+            android:name=".home.chat.chatInstance.views.ChatPageActivity"
+            android:theme="@style/NoActionBarTheme" /> <!-- Add the following meta-data element, an activity for Facebook, and an activity and intent filter for Chrome Custom Tabs inside your application element -->
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />

@@ -25,8 +25,8 @@
             android:id="@+id/action_tripDetailsFragment_to_bookingFragment"
             app:destination="@id/bookingFragment" />
         <action
-            android:id="@+id/action_tripDetailsFragment_to_timelineFragment"
-            app:destination="@id/timelineFragment" />
+            android:id="@+id/action_tripDetailsFragment_to_timelineActivity"
+            app:destination="@id/timelineActivity" />
     </fragment>
     <fragment
         android:id="@+id/paymentFragment"
@@ -41,12 +41,12 @@
         <argument android:name="tripToDuration"
             app:argType="string" />
     </fragment>
-    <fragment
-        android:id="@+id/timelineFragment"
-        android:name="com.iti.example.findpe2.home.timeline.views.TimelineFragment"
-        android:label="TimelineFragment" >
+    <activity
+        android:id="@+id/timelineActivity"
+        android:name="com.iti.example.findpe2.home.timeline.views.TimelineActivity"
+        android:label="TimelineActivity" >
         <argument
             android:name="id"
             app:argType="integer" />
-    </fragment>
+    </activity>
 </navigation>
