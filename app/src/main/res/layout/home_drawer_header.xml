@@ -46,6 +46,8 @@
             android:layout_marginTop="15dp"
             android:text="@string/edit_btn_text"
             android:textSize="12sp"
+            android:textColor="@color/title_text_custom_color"
+            android:onClick="@{()->homeViewModel.onNavigateToProfile()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"

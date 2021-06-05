@@ -16,6 +16,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
+import com.iti.example.findpe2.HomeNavGraphDirections
 import com.iti.example.findpe2.R
 import com.iti.example.findpe2.authentication.CreateAccountActivity
 import com.iti.example.findpe2.databinding.ActivityHomeBinding
@@ -56,7 +57,7 @@ class HomeActivity : AppCompatActivity() {
             R.id.travelingFragmentHome
         )
         //configure the Top-Level destinations with DrawerLayout
-        appBarConfiguration = AppBarConfiguration(topLevelDestinationsSet, homeDrawerLayout)
+        appBarConfiguration = AppBarConfiguration(topLevelDestinationsSet,homeDrawerLayout)
         //setup the up Button for non-Top level destinations will change for up button automatically for non-Top level
         //hook DrawerLayout with the navController via NavigationUI --> modify View
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
@@ -83,6 +84,15 @@ class HomeActivity : AppCompatActivity() {
             .placeholder(R.drawable.background_gradient)
             .circleCrop()
             .into(drawerHeaderBinder.userImageImgViewNavHeaderHome)*/
+        homeViewModel.onNavigateToProfile.observe(this){
+            it?.let{
+                if(it){
+                    navController.navigate(HomeNavGraphDirections.actionGlobalProfileFragment())
+                    binding.homeDrawerLayout.close()
+                    homeViewModel.onDoneNavigationToProfile()
+                }
+            }
+        }
 
         binding.homeDrawerNavView.setNavigationItemSelectedListener {
             when (it.itemId) {
@@ -102,7 +112,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     /*options menu lifecycle*/
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.home_options_menu, menu)
         return true
     }
@@ -114,7 +124,7 @@ class HomeActivity : AppCompatActivity() {
         ) || super.onOptionsItemSelected(
             item
         )
-    }
+    }*/
 
     /*up Button */
     override fun onSupportNavigateUp(): Boolean {

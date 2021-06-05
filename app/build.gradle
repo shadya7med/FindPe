@@ -107,12 +107,10 @@ dependencies {
     //Facebook Login SDK:
     implementation 'com.facebook.android:facebook-login:8.2.0'
 
-    // Moshi
-    implementation "com.squareup.moshi:moshi:$version_moshi"
-    implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
-
-    // Retrofit with Moshi Converter
-    implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
+    //Gson
+    implementation 'com.google.code.gson:gson:2.8.7'
+    //Gson Converter
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     // Glide
     implementation "com.github.bumptech.glide:glide:$version_glide"

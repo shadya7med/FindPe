@@ -14,7 +14,7 @@
         android:id="@+id/exploreFragmentHome"
         android:name="com.iti.example.findpe2.home.explore.views.ExploreFragment"
         android:label="@string/explore_text"
-        tools:layout="@layout/fragment_explore" >
+        tools:layout="@layout/fragment_explore">
         <action
             android:id="@+id/action_exploreFragmentHome_to_allTripsFragment"
             app:destination="@id/allTripsFragmentHome"
@@ -24,7 +24,7 @@
         android:id="@+id/savedFragmentHome"
         android:name="com.iti.example.findpe2.home.saved.views.SavedFragment"
         android:label="@string/saved_text"
-        tools:layout="@layout/fragment_saved" >
+        tools:layout="@layout/fragment_saved">
         <action
             android:id="@+id/action_savedFragmentHome_to_filterFragment"
             app:destination="@id/filterFragment"
@@ -35,7 +35,7 @@
         android:id="@+id/travelingFragmentHome"
         android:name="com.iti.example.findpe2.home.travelling.views.TravelingFragment"
         android:label="@string/traveling_text"
-        tools:layout="@layout/fragment_traveling" >
+        tools:layout="@layout/fragment_traveling">
         <action
             android:id="@+id/action_travelingFragmentHome_to_filterFragment"
             app:destination="@id/filterFragment"
@@ -51,7 +51,7 @@
         android:id="@+id/filterFragment"
         android:name="com.iti.example.findpe2.home.filter.views.FilterFragment"
         android:label="@string/filter"
-        tools:layout="@layout/fragment_filter"/>
+        tools:layout="@layout/fragment_filter" />
     <fragment
         android:id="@+id/allTripsFragmentHome"
         android:name="com.iti.example.findpe2.home.allTrips.views.AllTripsFragment"
@@ -62,6 +62,14 @@
         android:name="com.iti.example.findpe2.home.companion.views.CompanionFragment"
         android:label="@string/companion"
         tools:layout="@layout/fragment_companion" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.iti.example.findpe2.home.profile.views.ProfileFragment"
+        android:label="@string/profile_text" />
+    <action
+        android:id="@+id/action_global_profileFragment"
+        app:destination="@id/profileFragment"
+        app:launchSingleTop="true" />
 
 
 </navigation>

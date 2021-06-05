@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.iti.example.findpe2.constants.Keys
@@ -47,18 +48,13 @@ class ChatPageActivity : AppCompatActivity() {
                 clearLoading()
                 messagesListAdapter.submitList(it)
             }
-        }
-        chatPageViewModel.errorMsg.observe(this){
+        }*/
+        chatPageViewModel.errorMsg.observe(this) {
             it?.let {
-                clearLoading()
-                binding.msgListRcyViewChatPageChatActivity.visibility = View.GONE
-                binding.topLayoutClChatPageChatActivity.visibility = View.GONE
-                binding.bottomLayoutClChatPageChatActivity.visibility = View.GONE
-                binding.noChatImgViewChatPageChatActivity.visibility = View.GONE
-                binding.noChatTxtViewChatPageChatActivity.visibility = View.GONE
+                Snackbar.make(findViewById(android.R.id.content), it, Snackbar.LENGTH_LONG).show()
 
             }
-        }*/
+        }
 
         binding.msgEditTxtChatPageChatActivity.addTextChangedListener(SendButtonObserver(binding.sendMsgImgViewChatPageChatActivity))
         binding.sendMsgImgViewChatPageChatActivity.setOnClickListener {
@@ -66,17 +62,17 @@ class ChatPageActivity : AppCompatActivity() {
             binding.msgEditTxtChatPageChatActivity.setText("")
         }
 
-        chatPageViewModel.navigateUptoHome.observe(this){
-            it?.let{
+        chatPageViewModel.navigateUptoHome.observe(this) {
+            it?.let {
                 finish()
                 chatPageViewModel.onDoneNavigationToHome()
             }
         }
 
 
-        chatPageViewModel.onSendMsgSuccess.observe(this){
+        chatPageViewModel.onSendMsgSuccess.observe(this) {
             it?.let {
-                if (it){
+                if (it) {
                     scrollToBottom(binding.msgListRcyViewChatPageChatActivity)
                 }
                 chatPageViewModel.onDoneSendingMsg()

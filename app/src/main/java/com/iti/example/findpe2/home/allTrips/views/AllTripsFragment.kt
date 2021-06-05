@@ -32,7 +32,7 @@ class AllTripsFragment : Fragment() {
         })
         allTripsViewModel.errorMsg.observe(viewLifecycleOwner) {
             it?.let {
-                Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG).show()
+                Snackbar.make(requireActivity().findViewById(android.R.id.content), it, Snackbar.LENGTH_LONG).show()
             }
         }
         allTripsViewModel.selectedTrip.observe(viewLifecycleOwner) {

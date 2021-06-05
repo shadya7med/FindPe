@@ -74,14 +74,16 @@
             android:layout_marginEnd="24dp"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             app:layout_constrainedHeight="false"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_default="percent"
             app:layout_constraintHeight_percent="0.7"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/trips"
+            app:layout_constraintVertical_bias="0.0"
             app:listFeaturedTrips="@{discoverViewModel.featuredTripList}"
-            app:visibilityAgainstStatus="@{discoverViewModel.loadingStatus}"
             app:spanCount="2"
+            app:visibilityAgainstStatus="@{discoverViewModel.loadingStatus}"
             tools:itemCount="4"
             tools:listitem="@layout/list_item_featured">
 
@@ -162,9 +164,11 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
             android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/featuredList_rv_discover_home" />
+            app:layout_constraintTop_toBottomOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/places_to_visit"

@@ -34,7 +34,6 @@ class DiscoverFragment : Fragment() {
             it?.let {
                 if (it) {
                     navController.navigate(ExploreFragmentDirections.actionExploreFragmentHomeToAllTripsFragment())
-
                     discoverViewModel.onDoneNavigationToSeeAll()
                 }
             }
@@ -48,7 +47,7 @@ class DiscoverFragment : Fragment() {
             it?.let {
                 //stop loadning
                 //show error
-                Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG).show()
+                Snackbar.make(requireActivity().findViewById(android.R.id.content), it, Snackbar.LENGTH_LONG).show()
             }
         }
         discoverViewModel.onNavigateToTripDetailsData.observe(viewLifecycleOwner) {

@@ -67,7 +67,7 @@ class ChatFragment : Fragment() {
             it?.let {
                 //Show Snack bar with exp
                 Snackbar
-                    .make(binding.root, "Couldn't retrieve chats with error: $it", Snackbar.LENGTH_LONG)
+                    .make(requireActivity().findViewById(android.R.id.content), "Couldn't retrieve chats with error: $it", Snackbar.LENGTH_LONG)
                     .show()
             }
 

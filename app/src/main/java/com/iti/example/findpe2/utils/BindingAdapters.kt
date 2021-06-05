@@ -17,6 +17,8 @@ import com.iti.example.findpe2.home.chat.chatInstance.views.MessagesListAdapter
 import com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatFragment
 import com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatRoomsListAdapter
 import com.iti.example.findpe2.home.discover.views.DiscoverFeaturedAdapter
+import com.iti.example.findpe2.home.profile.views.UserGalleryAdapter
+import com.iti.example.findpe2.home.profile.views.UserInfoAdapter
 import com.iti.example.findpe2.home.saved.views.SavedTripsAdapter
 import com.iti.example.findpe2.home.timeline.views.TimelineAdapter
 import com.iti.example.findpe2.home.travelling.views.TravellingTripAdapter
@@ -58,10 +60,10 @@ fun ImageView.setTripImage(trip: Trip) {
 }
 
 @BindingAdapter("userImage")
-fun ImageView.setUSerImage(userImageUrl:String){
-    if(userImageUrl.isEmpty()){
+fun ImageView.setUSerImage(userImageUrl: String) {
+    if (userImageUrl.isEmpty()) {
         setImageResource(R.drawable.ic_account_circle_black_36dp)
-    }else{
+    } else {
         Glide
             .with(context)
             .load(userImageUrl)
@@ -116,7 +118,7 @@ fun TextView.setLastMsgTime(chatRoom: ChatRoom) {
 }
 
 @BindingAdapter("listTrips")
-fun RecyclerView.setListTrips(list: List<Trip>?){
+fun RecyclerView.setListTrips(list: List<Trip>?) {
     (this.adapter as TravellingTripAdapter).submitList(list)
 }
 
@@ -132,13 +134,25 @@ fun RecyclerView.setChatMessages(list: List<Message>?) =
 fun RecyclerView.setListSavedTrips(list: List<Trip>?) {
     (this.adapter as SavedTripsAdapter).submitList(list)
 }
+
 @BindingAdapter("listAllTrips")
 fun RecyclerView.setListAllTrips(list: List<Trip>?) {
     (this.adapter as AllTripsAdapter).submitList(list)
 }
+
 @BindingAdapter("listFeaturedTrips")
-fun RecyclerView.setListFeaturedTrips(list:List<Trip>?){
+fun RecyclerView.setListFeaturedTrips(list: List<Trip>?) {
     (this.adapter as DiscoverFeaturedAdapter).submitList(list)
+}
+
+@BindingAdapter("listUserInfo")
+fun RecyclerView.setListUserInfo(list: List<UserInfo>?) {
+    (this.adapter as UserInfoAdapter).submitList(list)
+}
+
+@BindingAdapter("listUserGallery")
+fun RecyclerView.setListUserGallery(list: List<UserGalleryImage>?) {
+    (this.adapter as UserGalleryAdapter).submitList(list)
 }
 
 @BindingAdapter("visibilityAgainstStatus")
@@ -153,7 +167,7 @@ fun View.setVisibilityAgainstStatus(status: LiveData<Int?>) {
 }
 
 @BindingAdapter("listTimeline")
-fun RecyclerView.setListTimeline(list: List<TimelineSlot>?){
+fun RecyclerView.setListTimeline(list: List<TimelineSlot>?) {
     (this.adapter as TimelineAdapter).submitList(list)
 }
 
@@ -192,4 +206,35 @@ fun FloatingActionButton.setSavedButtonIcon(saveState: SaveState) {
             setBackgroundColor(Color.WHITE)
         }
     }
+}
+
+@BindingAdapter("userInfoImage")
+fun ImageView.setUserInfoImage(userInfo: UserInfo) {
+    setImageResource(
+        when (userInfo.title) {
+            UserInfoTitleType.WORK_HISTORY -> R.drawable.ic_outline_local_activity_24
+            UserInfoTitleType.TRIPS_HISTORY -> R.drawable.ic_baseline_sticky_note_2_24
+            UserInfoTitleType.PERKS -> R.drawable.ic_baseline_person_search_24
+            UserInfoTitleType.Languages -> R.drawable.ic_baseline_translate_24
+        }
+    )
+}
+
+
+@BindingAdapter("userGalleryImage")
+fun ImageView.setUserGalleryImage(userGalleryImage: UserGalleryImage) {
+    if (!userGalleryImage.imageUrl.isNullOrEmpty()){
+        Glide
+            .with(context)
+            .load(userGalleryImage.imageUrl)
+            .error(R.drawable.ic_broken_image)
+            .placeholder(R.drawable.loading_animation)
+            .into(this)
+    }
+}
+
+@BindingAdapter("userInfoListToString")
+fun TextView.setUserInfoListToString(userInfoSubTitle: List<String>){
+    val listToString = StringBuilder()
+    //for(val subtitle:)
 }
