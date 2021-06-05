@@ -151,4 +151,10 @@
     <string name="all_trips">All Trips</string>
     <string name="available">Available Now</string>
     <string name="companion">Companion</string>
+    <string name="tirp_history">Trip History</string>
+    <string name="cities_placeholder">Dahab ,Cairo ,Alexandria ,Jordan</string>
+    <string name="user_info_img_desc">this is the user info image</string>
+    <string name="image_gallery_desc">this is one of the user gallery images</string>
+    <string name="is_verified_desc">this user is verified</string>
+    <string name="user_level_desc">this is the user level</string>
 </resources>

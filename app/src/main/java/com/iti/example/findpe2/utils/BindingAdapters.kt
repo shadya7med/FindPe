@@ -20,11 +20,7 @@ import com.iti.example.findpe2.home.discover.views.DiscoverFeaturedAdapter
 import com.iti.example.findpe2.home.saved.views.SavedTripsAdapter
 import com.iti.example.findpe2.home.timeline.views.TimelineAdapter
 import com.iti.example.findpe2.home.travelling.views.TravellingTripAdapter
-import com.iti.example.findpe2.pojos.ChatRoom
-import com.iti.example.findpe2.pojos.Message
-import com.iti.example.findpe2.pojos.TimelineSlot
-import com.iti.example.findpe2.pojos.Trip
-import com.iti.example.findpe2.pojos.TripInfo
+import com.iti.example.findpe2.pojos.*
 import com.iti.example.findpe2.tripCheckout.tripDetails.viewModels.SaveState
 import java.text.SimpleDateFormat
 import java.util.*
@@ -38,7 +34,7 @@ fun ImageView.setChatRoomImage(chatRoom: ChatRoom) {
             Glide
                 .with(context)
                 .load(userImageUrl)
-                .centerCrop()
+                .circleCrop()
                 .error(R.drawable.ic_broken_image)
                 .placeholder(R.drawable.loading_animation)
                 .into(this)
@@ -58,6 +54,22 @@ fun ImageView.setTripImage(trip: Trip) {
             .error(R.drawable.ic_broken_image)
             .placeholder(R.drawable.loading_animation)
             .into(this)
+    }
+}
+
+@BindingAdapter("userImage")
+fun ImageView.setUSerImage(userImageUrl:String){
+    if(userImageUrl.isEmpty()){
+        setImageResource(R.drawable.ic_account_circle_black_36dp)
+    }else{
+        Glide
+            .with(context)
+            .load(userImageUrl)
+            .circleCrop()
+            .error(R.drawable.ic_broken_image)
+            .placeholder(R.drawable.loading_animation)
+            .into(this)
+
     }
 }
 

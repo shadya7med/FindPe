@@ -1,6 +1,5 @@
 package com.iti.example.findpe2.home
 
-import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,14 +21,14 @@ class HomeViewModel:ViewModel() {
     val username:LiveData<String>
         get() = _username
 
-    private val _userPhotoUrl:MutableLiveData<Uri> = MutableLiveData()
-    val userPhotoUrl:LiveData<Uri>
+    private val _userPhotoUrl:MutableLiveData<String> = MutableLiveData()
+    val userPhotoUrl:LiveData<String>
         get() = _userPhotoUrl
 
     init{
         _email.value = auth.currentUser!!.email
         _username.value = auth.currentUser!!.displayName
-        _userPhotoUrl.value = auth.currentUser!!.photoUrl
+        _userPhotoUrl.value = auth.currentUser!!.photoUrl.toString()
     }
     fun logout(){
         auth.signOut()

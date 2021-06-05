@@ -19,11 +19,12 @@
             android:layout_height="74dp"
             android:layout_marginTop="40dp"
             android:contentDescription="@string/image_nav_header_contentDesc"
+            app:userImage="@{homeViewModel.userPhotoUrl}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/nav_header" />
+            tools:srcCompat="@drawable/nav_header" />
 
         <TextView
             android:id="@+id/username_txtView_navHeader_home"

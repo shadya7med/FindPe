@@ -1,14 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".home.profile.views.ProfileFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="profile" />
+        tools:context=".home.profile.views.ProfileFragment">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/topSection_cl_profile"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintHeight_percent="0.3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/userImage_imgView_profile"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/userImg_desc"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.3"
+                tools:src="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/userLevel_imgView_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/user_level_desc"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.75"
+                app:layout_constraintStart_toEndOf="@+id/userImage_imgView_profile"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.1"
+                app:srcCompat="@drawable/ic_baseline_local_police_24" />
+
+            <TextView
+                android:id="@+id/username_txtView_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/username_holder"
+                android:textColor="@color/title_text_custom_color"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="@+id/userImage_imgView_profile"
+                app:layout_constraintStart_toStartOf="@+id/userImage_imgView_profile"
+                app:layout_constraintTop_toBottomOf="@+id/userImage_imgView_profile" />
+
+            <TextView
+                android:id="@+id/usertitle_txtView_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/userTitle_holder"
+                android:textColor="@color/subtitle_text_custom_color"
+                app:layout_constraintEnd_toEndOf="@+id/username_txtView_profile"
+                app:layout_constraintStart_toStartOf="@+id/username_txtView_profile"
+                app:layout_constraintTop_toBottomOf="@+id/username_txtView_profile" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/userInfo_rv_profile"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintHeight_percent="0.3"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topSection_cl_profile"
+            tools:itemCount="4"
+            tools:listitem="@layout/list_item_user_info">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/userInfo_rv_profile"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/userInfo_rv_profile"
+            app:layout_constraintTop_toBottomOf="@+id/userInfo_rv_profile"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="3"
+            tools:listitem="@layout/list_item_user_gallery"
+            tools:itemCount="9" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

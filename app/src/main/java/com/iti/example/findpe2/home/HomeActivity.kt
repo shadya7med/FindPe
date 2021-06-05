@@ -12,7 +12,6 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
-import com.bumptech.glide.Glide
 import com.iti.example.findpe2.R
 import com.iti.example.findpe2.authentication.CreateAccountActivity
 import com.iti.example.findpe2.databinding.ActivityHomeBinding
@@ -21,7 +20,7 @@ import com.iti.example.findpe2.databinding.HomeDrawerHeaderBinding
 
 class HomeActivity : AppCompatActivity() {
 
-    lateinit var binder: ActivityHomeBinding
+    lateinit var binding: ActivityHomeBinding
     lateinit var navController: NavController
     lateinit var appBarConfiguration: AppBarConfiguration
     lateinit var homeDrawerLayout: DrawerLayout
@@ -30,16 +29,16 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //refer to the Activity Binder
-        binder = ActivityHomeBinding.inflate(layoutInflater)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
         //get reference to the associated nav Controller
         // we need to get it through fragment manager as it will find the Host Fragment via container id
         //but binder.home_nav_..  will get the container itself not the currently contained fragment
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.home_nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-        homeDrawerLayout = binder.homeDrawerLayout
+        homeDrawerLayout = binding.homeDrawerLayout
         //link nav Controller with bottom nav View
-        binder.homeBottomNavigation.setupWithNavController(navController)
+        binding.homeBottomNavigation.setupWithNavController(navController)
         //enable options menu
         //options menu enabled directly for activites
 
@@ -57,7 +56,7 @@ class HomeActivity : AppCompatActivity() {
         //hook DrawerLayout with the navController via NavigationUI --> modify View
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
         //hook navigationView with the navController via NavigationUI
-        NavigationUI.setupWithNavController(binder.homeDrawerNavView, navController)
+        NavigationUI.setupWithNavController(binding.homeDrawerNavView, navController)
         //lock swipe behaviour except for home
         /*navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, _ ->
             if (nd.id == nc.graph.startDestination) {
@@ -72,15 +71,15 @@ class HomeActivity : AppCompatActivity() {
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         drawerHeaderBinder.homeViewModel = homeViewModel
         //add header view for the drawer navigation
-        binder.homeDrawerNavView.addHeaderView(drawerHeaderBinder.root)
+        binding.homeDrawerNavView.addHeaderView(drawerHeaderBinder.root)
         //update the nav   header image with the user image
-        Glide.with(this)
+        /*Glide.with(this)
             .load(homeViewModel.userPhotoUrl.value)
             .placeholder(R.drawable.background_gradient)
             .circleCrop()
-            .into(drawerHeaderBinder.userImageImgViewNavHeaderHome);
+            .into(drawerHeaderBinder.userImageImgViewNavHeaderHome)*/
 
-        binder.homeDrawerNavView.setNavigationItemSelectedListener {
+        binding.homeDrawerNavView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.logoutFragmentHome -> {
                     homeViewModel.logout()
@@ -92,7 +91,7 @@ class HomeActivity : AppCompatActivity() {
             true
         }
         //add root as Top Active View
-        setContentView(binder.root)
+        setContentView(binding.root)
     }
 
     /*options menu lifecycle*/
