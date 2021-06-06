@@ -186,5 +186,6 @@
     <string name="professional_desc">Tour guide certification or worked as tour guide before</string>
     <string name="amatuer">Amatuer</string>
     <string name="amatuer_desc">Want to help people enjoy their trips to the max and earn some money</string>
->>>>>>> Stashed changes
+    <string name="proceed">Proceed</string>
+    >>>>>>> Stashed changes
 </resources>

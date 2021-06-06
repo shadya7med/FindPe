@@ -25,14 +25,10 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:foreground="@drawable/background_gradient"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/trip_pic" />
+                app:srcCompat="@drawable/nature" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/gradient" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -54,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@string/nature"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/nature_count_text"
@@ -67,7 +63,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginBottom="24dp"
                     android:text="@string/num_of_trips"
-                    android:textColor="@color/browser_actions_bg_grey"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -77,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:text="@string/trips"
-                    android:textColor="@color/browser_actions_bg_grey"
+                    android:textColor="@color/black"
                     app:layout_constraintBaseline_toBaselineOf="@+id/nature_count_text"
                     app:layout_constraintStart_toEndOf="@+id/nature_count_text" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -99,14 +95,10 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:foreground="@drawable/background_gradient"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/trip_pic" />
+                app:srcCompat="@drawable/cultural" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/gradient" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -120,7 +112,7 @@
                     android:layout_marginTop="24dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_baseline_emoji_nature_24" />
+                    app:srcCompat="@drawable/masks" />
 
                 <TextView
                     android:id="@+id/culture_text"
@@ -128,7 +120,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@string/cultural"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/culture_count_text"
@@ -141,7 +133,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginBottom="24dp"
                     android:text="@string/num_of_trips"
-                    android:textColor="@color/browser_actions_bg_grey"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -150,7 +142,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:text="@string/trips"
-                    android:textColor="@color/browser_actions_bg_grey"
+                    android:textColor="@color/black"
                     app:layout_constraintBaseline_toBaselineOf="@+id/culture_count_text"
                     app:layout_constraintStart_toEndOf="@+id/culture_count_text" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -171,14 +163,10 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:foreground="@drawable/background_gradient"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/trip_pic" />
+                app:srcCompat="@drawable/modern" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/gradient" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -192,7 +180,7 @@
                     android:layout_marginTop="24dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_baseline_emoji_nature_24" />
+                    app:srcCompat="@drawable/modern_icon" />
 
                 <TextView
                     android:id="@+id/modern_life_text"
@@ -200,7 +188,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@string/modern"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/modern_life_count_text"
@@ -214,7 +202,7 @@
                     android:layout_marginBottom="24dp"
                     android:shadowColor="@color/browser_actions_bg_grey"
                     android:text="@string/num_of_trips"
-                    android:textColor="@color/browser_actions_bg_grey"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -223,7 +211,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:text="@string/trips"
-                    android:textColor="@color/browser_actions_bg_grey"
+                    android:textColor="@color/black"
                     app:layout_constraintBaseline_toBaselineOf="@+id/modern_life_count_text"
                     app:layout_constraintStart_toEndOf="@+id/modern_life_count_text" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -244,14 +232,10 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:foreground="@drawable/background_gradient"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/trip_pic" />
+                app:srcCompat="@drawable/sun_sand" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/gradient" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -265,7 +249,7 @@
                     android:layout_marginTop="24dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_baseline_emoji_nature_24" />
+                    app:srcCompat="@drawable/sun_icon" />
 
                 <TextView
                     android:id="@+id/popularity_text"
@@ -273,7 +257,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@string/sun_sand"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/popularity_count_text"
@@ -286,7 +270,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginBottom="24dp"
                     android:text="@string/num_of_trips"
-                    android:textColor="@color/browser_actions_bg_grey"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -295,7 +279,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:text="@string/trips"
-                    android:textColor="@color/browser_actions_bg_grey"
+                    android:textColor="@color/black"
                     app:layout_constraintBaseline_toBaselineOf="@+id/popularity_count_text"
                     app:layout_constraintStart_toEndOf="@+id/popularity_count_text" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -319,14 +303,10 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:foreground="@drawable/background_gradient"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/trip_pic" />
+                app:srcCompat="@drawable/popular" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/gradient" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -340,7 +320,7 @@
                     android:layout_marginTop="24dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_baseline_emoji_nature_24" />
+                    app:srcCompat="@drawable/popular_icon" />
 
                 <TextView
                     android:id="@+id/sun_sand_life_text"
@@ -348,7 +328,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@string/populartity"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/sun_sand_count_text"
@@ -362,7 +342,7 @@
                     android:layout_marginBottom="24dp"
                     android:shadowColor="@color/browser_actions_bg_grey"
                     android:text="@string/num_of_trips"
-                    android:textColor="@color/browser_actions_bg_grey"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -371,7 +351,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:text="@string/trips"
-                    android:textColor="@color/browser_actions_bg_grey"
+                    android:textColor="@color/black"
                     app:layout_constraintBaseline_toBaselineOf="@+id/sun_sand_count_text"
                     app:layout_constraintStart_toEndOf="@+id/sun_sand_count_text" />
             </androidx.constraintlayout.widget.ConstraintLayout>

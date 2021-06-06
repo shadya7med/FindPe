@@ -27,9 +27,11 @@ class TripHolderActivity : AppCompatActivity() {
         navController = navHostFragment.findNavController()
         navController.setGraph(R.navigation.trip_holder_nav_graph,tripDetailsBundle)
         appBarConfiguration = AppBarConfiguration(navController.graph)
+        //make up button appear in top destination fragment
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
         actionBar?.title = null
+
         setContentView(binding.root)
     }
 

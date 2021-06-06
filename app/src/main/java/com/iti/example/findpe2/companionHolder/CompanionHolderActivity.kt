@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.iti.example.findpe2.R
 import com.iti.example.findpe2.databinding.ActivityCompanionHolderBinding
@@ -15,6 +16,7 @@ class CompanionHolderActivity : AppCompatActivity() {
 
     lateinit var navController: NavController
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityCompanionHolderBinding.inflate(LayoutInflater.from(this))
@@ -23,6 +25,11 @@ class CompanionHolderActivity : AppCompatActivity() {
                 .findNavController()
 
         NavigationUI.setupActionBarWithNavController(this,navController)
+
+        //make up button appear in top destination fragment
+        val actionBar = supportActionBar
+        actionBar?.setDisplayHomeAsUpEnabled(true)
+        actionBar?.title = null
 
 
         setContentView(binding.root)

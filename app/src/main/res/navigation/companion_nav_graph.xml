@@ -21,6 +21,9 @@
             android:id="@+id/action_companionLevelFragment_to_amateurRequirementsFragment"
             app:destination="@id/amateurRequirementsFragment"
             app:popUpTo="@id/companionLevelFragment" />
+        <argument
+            android:name="companionName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/professionalRequirementsFragment"

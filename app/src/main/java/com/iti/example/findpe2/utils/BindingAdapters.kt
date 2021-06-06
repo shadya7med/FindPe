@@ -178,7 +178,7 @@ fun RecyclerView.setListTimeline(list: List<TimelineSlot>?) {
 }
 
 @BindingAdapter("imageUrl")
-fun ImageView.bind(url: String?) {
+fun ImageView.bindImage(url: String?) {
     val imageUri = Uri.parse(url).buildUpon().scheme("https").build()
     Glide.with(this.context)
         .load(imageUri)
