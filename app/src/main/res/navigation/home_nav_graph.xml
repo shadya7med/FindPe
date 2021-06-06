@@ -61,7 +61,12 @@
         android:id="@+id/companionFragmentHome"
         android:name="com.iti.example.findpe2.home.companion.views.CompanionFragment"
         android:label="@string/companion"
-        tools:layout="@layout/fragment_companion" />
+        tools:layout="@layout/fragment_companion" >
+        <action
+            android:id="@+id/action_companionFragmentHome_to_companionListFragment"
+            app:destination="@id/companionListFragment"
+            app:popUpTo="@id/companionFragmentHome" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.iti.example.findpe2.home.profile.views.ProfileFragment"
@@ -70,6 +75,11 @@
         android:id="@+id/action_global_profileFragment"
         app:destination="@id/profileFragment"
         app:launchSingleTop="true" />
+    <fragment
+        android:id="@+id/companionListFragment"
+        android:name="com.iti.example.findpe2.home.companionsList.views.CompanionListFragment"
+        android:label="@string/companion_list"
+        tools:layout="@layout/fragment_companion_list" />
 
 
 </navigation>

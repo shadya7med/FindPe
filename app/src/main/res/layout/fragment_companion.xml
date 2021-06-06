@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="companionViewModel"
+            type="com.iti.example.findpe2.home.companion.viewModels.CompanionViewModel" />
     </data>
 
     <ScrollView
@@ -36,12 +39,13 @@
             <Button
                 android:id="@+id/i_want_companion_btn"
                 style="@style/companion_btn"
+                android:onClick="@{()->companionViewModel.onNavigateToCompanionList()}"
                 android:text="@string/i_want_a_companion"
+                android:textColor="@color/subtitle_text_custom_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/find_companion"
-                app:rippleColor="@color/title_text_custom_color"
-                android:textColor="@color/subtitle_text_custom_color"/>
+                app:rippleColor="@color/title_text_custom_color" />
 
             <TextView
                 android:id="@+id/post_here_text"
@@ -84,12 +88,13 @@
                 style="@style/companion_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:onClick="@{()->companionViewModel.onNavigateToBeCompanionHolderList()}"
                 android:text="@string/apply_companion"
-                app:rippleColor="@color/title_text_custom_color"
                 android:textColor="@color/subtitle_text_custom_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/join_us" />
+                app:layout_constraintTop_toBottomOf="@+id/join_us"
+                app:rippleColor="@color/title_text_custom_color" />
 
             <TextView
                 android:id="@+id/our_policies_text"

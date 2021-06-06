@@ -16,6 +16,7 @@ import com.iti.example.findpe2.home.allTrips.views.AllTripsAdapter
 import com.iti.example.findpe2.home.chat.chatInstance.views.MessagesListAdapter
 import com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatFragment
 import com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatRoomsListAdapter
+import com.iti.example.findpe2.home.companionsList.views.CompanionListAdapter
 import com.iti.example.findpe2.home.discover.views.DiscoverFeaturedAdapter
 import com.iti.example.findpe2.home.profile.views.UserGalleryAdapter
 import com.iti.example.findpe2.home.profile.views.UserInfoAdapter
@@ -155,6 +156,11 @@ fun RecyclerView.setListUserGallery(list: List<UserGalleryImage>?) {
     (this.adapter as UserGalleryAdapter).submitList(list)
 }
 
+@BindingAdapter("listCompanions")
+fun RecyclerView.setListCompanion(list: List<Companion>?) {
+    (this.adapter as CompanionListAdapter).submitList(list)
+}
+
 @BindingAdapter("visibilityAgainstStatus")
 fun View.setVisibilityAgainstStatus(status: LiveData<Int?>) {
     status.value?.let { loading ->
@@ -234,7 +240,20 @@ fun ImageView.setUserGalleryImage(userGalleryImage: UserGalleryImage) {
 }
 
 @BindingAdapter("userInfoListToString")
-fun TextView.setUserInfoListToString(userInfoSubTitle: List<String>){
-    val listToString = StringBuilder()
-    //for(val subtitle:)
+fun TextView.setUserInfoListToString(userInfoSubTitles: List<String>){
+    var listToString = ""
+    for(item in userInfoSubTitles){
+        listToString += item
+        listToString += " ,"
+    }
+    listToString = listToString.substring(0,listToString.length-2)
+    text = listToString
+}
+
+@BindingAdapter("isLiked")
+fun ImageView.setIsLiked(companion: Companion){
+    setImageResource(when(companion.isLiked){
+        true -> R.drawable.filled_heart
+        false -> R.drawable.heart_black_outlined
+    })
 }

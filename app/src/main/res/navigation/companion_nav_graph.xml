@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/companion_nav_graph"
+    app:startDestination="@id/companionRegistrationFragment">
+
+    <fragment
+        android:id="@+id/amateurRequirementsFragment"
+        android:name="com.iti.example.findpe2.companionHolder.levels.amateur.views.AmateurRequirementsFragment"
+        tools:layout="@layout/fragment_amatuer_requirements" />
+    <fragment
+        android:id="@+id/companionLevelFragment"
+        android:name="com.iti.example.findpe2.companionHolder.levels.selector.views.CompanionLevelFragment"
+        tools:layout="@layout/fragment_companion_level">
+        <action
+            android:id="@+id/action_companionLevelFragment_to_professionalRequirementsFragment"
+            app:destination="@id/professionalRequirementsFragment"
+            app:popUpTo="@id/companionLevelFragment" />
+        <action
+            android:id="@+id/action_companionLevelFragment_to_amateurRequirementsFragment"
+            app:destination="@id/amateurRequirementsFragment"
+            app:popUpTo="@id/companionLevelFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/professionalRequirementsFragment"
+        android:name="com.iti.example.findpe2.companionHolder.levels.professional.views.ProfessionalRequirementsFragment"
+        tools:layout="@layout/fragment_professional_requirements" />
+    <fragment
+        android:id="@+id/companionRegistrationFragment"
+        android:name="com.iti.example.findpe2.companionHolder.registration.views.CompanionRegistrationFragment"
+        android:label="@string/registration"
+        tools:layout="@layout/fragment_companion_registeration">
+        <action
+            android:id="@+id/action_companionRegistrationFragment_to_companionLevelFragment"
+            app:destination="@id/companionLevelFragment" />
+    </fragment>
+</navigation>
