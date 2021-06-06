@@ -13,8 +13,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/browser_actions_bg_grey">
+        android:layout_height="match_parent">
 
 
         <TextView
@@ -178,6 +177,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:text="@string/places_to_visit"
+            android:textColor="@color/title_text_custom_color"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider6" />
 
@@ -192,7 +192,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/places_to_visit"
             tools:itemCount="4"
-            tools:listitem="@layout/list_item_travelling_rv"/>
+            tools:listitem="@layout/list_item_travelling_rv" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

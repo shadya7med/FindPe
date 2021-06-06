@@ -20,7 +20,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/card_background">
 
             <TextView
                 android:id="@+id/featured_item_trip_name"
@@ -66,12 +67,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:scaleType="centerCrop"
-                        app:tripImage="@{trip}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="1.0"
-                        tools:srcCompat="@drawable/trip_pic"
-                        tools:layout_editor_absoluteX="63dp" />
+                        app:tripImage="@{trip}"
+                        tools:layout_editor_absoluteX="63dp"
+                        tools:srcCompat="@drawable/trip_pic" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
