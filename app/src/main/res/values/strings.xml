@@ -163,7 +163,6 @@
     <string name="join_us">Join Us</string>
     <string name="apply_companion">apply as companion</string>
     <string name="our_policies">Our Policies</string>
-<<<<<<< Updated upstream
     <string name="companion_list">Companions</string>
     <string name="registration">Registration</string>
     <string name="companion_image_desc">this is the companion image</string>
@@ -171,7 +170,6 @@
     <string name="bio">Bio :</string>
     <string name="expert_level_placeholder">Professional companion</string>
     <string name="bio_placeholder">orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
-=======
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="registeration_form_title">Let\'s start with upgrading your account to companion</string>
