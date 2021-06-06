@@ -22,11 +22,12 @@
             <ImageView
                 android:id="@+id/find_companion_image"
                 style="@style/companion_image"
+                android:scaleType="centerCrop"
                 app:layout_constraintDimensionRatio="w,1:2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/avatars" />
+                app:srcCompat="@drawable/find_companion" />
 
             <TextView
                 android:id="@+id/find_companion"
@@ -67,11 +68,12 @@
             <ImageView
                 android:id="@+id/apply_as_companion_image"
                 style="@style/companion_image"
+                android:scaleType="centerCrop"
                 app:layout_constraintDimensionRatio="w,1:2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider9"
-                tools:src="@tools:sample/avatars" />
+                app:srcCompat="@drawable/join_us" />
 
             <TextView
                 android:id="@+id/join_us"

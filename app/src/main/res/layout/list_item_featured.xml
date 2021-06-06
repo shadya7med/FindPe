@@ -14,7 +14,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         app:cardCornerRadius="30dp"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content"
         android:onClick="@{() -> clickListener.onClick(trip)}">
 
@@ -27,15 +27,12 @@
                 style="@style/trip_name_style"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="16dp"
                 android:text="@{trip.destination}"
-                tools:text="@string/trip_name"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/more_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView" />
+                app:layout_constraintStart_toStartOf="@+id/cardView"
+                app:layout_constraintTop_toBottomOf="@+id/cardView"
+                tools:text="@string/trip_name" />
 
             <ImageView
                 android:id="@+id/featured_item_temp_image"
@@ -103,16 +100,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/featured_item_temp_image"
                 app:layout_constraintTop_toBottomOf="@+id/featured_item_temp_text" />
-
-            <ImageView
-                android:id="@+id/more_button"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView"
-                app:srcCompat="@drawable/ic_baseline_more_vert_24" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

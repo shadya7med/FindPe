@@ -9,8 +9,13 @@ object TripApi {
 
     //Create retrofit object using bulider and give it converter factory moshi
     private val retrofit = Retrofit.Builder()
+<<<<<<< Updated upstream
         .addConverterFactory(GsonConverterFactory.create())//MoshiConverterFactory.create(moshi))
         .baseUrl(NOT_SECURE_BASE_URL)//BASE_URL)
+=======
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .baseUrl(NOT_SECURE_BASAE_URL)//BASE_URL)
+>>>>>>> Stashed changes
         .build()
 
 
