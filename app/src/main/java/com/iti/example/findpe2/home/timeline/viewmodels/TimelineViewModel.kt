@@ -1,11 +1,10 @@
 package com.iti.example.findpe2.home.timeline.viewmodels
 
 import android.view.View
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.iti.example.findpe2.models.TripApi
 import com.iti.example.findpe2.pojos.TimelineSlot
+import kotlinx.coroutines.launch
 
 class TimelineViewModel(var tripId: Int) : ViewModel() {
 
@@ -33,8 +32,8 @@ class TimelineViewModel(var tripId: Int) : ViewModel() {
     val emptyListStatus = Transformations.map(timelineSlotList){
         if(it != null) {
             when (it.size) {
-                in 1..Int.MAX_VALUE -> View.VISIBLE
-                else -> View.GONE
+                in 1..Int.MAX_VALUE -> View.GONE
+                else -> View.VISIBLE
             }
         }else{
             View.VISIBLE
@@ -50,6 +49,18 @@ class TimelineViewModel(var tripId: Int) : ViewModel() {
     }
 
     private fun getData() {
+        _loadingStatus.value = View.VISIBLE
+        viewModelScope.launch {
+            try {
+                _timelineSlotList.value = TripApi.getTimelineSlot(tripId)
+                _loadingStatus.value = View.GONE
+                _errorStatus.value = View.GONE
+            }catch (t: Throwable){
+                _errorStatus.value = View.VISIBLE
+                _loadingStatus.value = View.GONE
+                _errorMsg.value = t.localizedMessage
+            }
+        }
 
     }
     fun close(){

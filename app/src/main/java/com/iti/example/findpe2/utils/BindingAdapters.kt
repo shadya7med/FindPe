@@ -24,6 +24,7 @@ import com.iti.example.findpe2.home.saved.views.SavedTripsAdapter
 import com.iti.example.findpe2.home.timeline.views.TimelineAdapter
 import com.iti.example.findpe2.home.travelling.views.TravellingTripAdapter
 import com.iti.example.findpe2.pojos.*
+import com.iti.example.findpe2.tripCheckout.booking.views.TripDurationsAdapter
 import com.iti.example.findpe2.tripCheckout.tripDetails.viewModels.SaveState
 import java.text.SimpleDateFormat
 import java.util.*
@@ -256,4 +257,9 @@ fun ImageView.setIsLiked(companion: Companion){
         true -> R.drawable.filled_heart
         false -> R.drawable.heart_black_outlined
     })
+}
+@BindingAdapter("bindTripDurationList")
+fun RecyclerView.bindList(list: List<TripDuration>?){
+    (this.adapter as TripDurationsAdapter).submitList(list)
+
 }

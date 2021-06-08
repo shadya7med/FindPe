@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,10 +10,9 @@
             type="com.iti.example.findpe2.pojos.TimelineSlot" />
     </data>
 
-    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
+        android:background="@color/card_background"
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,20 +25,24 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
-                android:text="@string/time"
+                android:text="@{slot.slotTime}"
+                tools:text="@string/time"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/timeline_item_title_text"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/timeline_title"
+                android:layout_marginEnd="16dp"
+                android:text="@{slot.slotTitle}"
                 android:textColor="@color/title_text_custom_color"
                 android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/timeline_item_time_text"
-                app:layout_constraintTop_toBottomOf="@+id/timeline_item_time_text" />
+                app:layout_constraintTop_toBottomOf="@+id/timeline_item_time_text"
+                tools:text="@string/timeline_title" />
 
             <TextView
                 android:id="@+id/timeline_item_desc_text"
@@ -45,7 +50,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
-                android:text="@string/about_trip_text"
+                android:text="@{slot.slotDesc}"
+                tools:text="@string/about_trip_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/timeline_item_title_text"
                 app:layout_constraintTop_toBottomOf="@+id/timeline_item_title_text" />

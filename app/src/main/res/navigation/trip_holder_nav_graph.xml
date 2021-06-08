@@ -36,10 +36,8 @@
             android:name="numOfSeats"
             app:argType="integer" />
         <argument
-            android:name="tripFromDuration"
-            app:argType="string" />
-        <argument android:name="tripToDuration"
-            app:argType="string" />
+            android:name="tripDuration"
+            app:argType="com.iti.example.findpe2.pojos.TripDuration" />
     </fragment>
     <activity
         android:id="@+id/timelineActivity"

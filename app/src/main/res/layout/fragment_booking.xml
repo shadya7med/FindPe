@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="bookingFragment"
-            type="com.iti.example.findpe2.tripCheckout.booking.views.BookingFragment" />
+            name="viewModel"
+            type="com.iti.example.findpe2.tripCheckout.booking.viewmodels.BookingViewModel" />
     </data>
 
     <ScrollView
@@ -16,49 +16,59 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:context=".tripCheckout.booking.views.BookingFragment">
+            android:layout_height="wrap_content">
+
+            <!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/numOfSeatsLists_rcyView_booking_tripHolder"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="150dp"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.0"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/numOfSeats_txtView_booking_tripHolder"-->
+<!--                tools:itemCount="8"-->
+<!--                tools:listitem="@layout/list_item_num_of_seats">-->
+
+<!--            </androidx.recyclerview.widget.RecyclerView>-->
 
             <TextView
                 android:id="@+id/numOfSeats_txtView_booking_tripHolder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:textColor="@color/title_text_custom_color"
+                android:layout_marginTop="24dp"
                 android:text="@string/num_of_seats"
+                android:textColor="@color/title_text_custom_color"
                 android:textSize="18sp"
+                android:visibility="@{viewModel.numberPickerVisibility}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/tripDuraionsList_rcyView_booking_tripHolder" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/numOfSeatsLists_rcyView_booking_tripHolder"
+            <NumberPicker
+                android:id="@+id/numberPicker"
                 android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="16dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.numberPickerVisibility}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/numOfSeats_txtView_booking_tripHolder"
-                tools:itemCount="8"
-                tools:listitem="@layout/list_item_num_of_seats">
-
-            </androidx.recyclerview.widget.RecyclerView>
+                app:layout_constraintTop_toBottomOf="@+id/numOfSeats_txtView_booking_tripHolder" />
 
             <TextView
                 android:id="@+id/tripDurations_txtView_booking_tripHolder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/title_text_custom_color"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/trip_durations"
+                android:textColor="@color/title_text_custom_color"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/numOfSeatsLists_rcyView_booking_tripHolder" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/tripDuraionsList_rcyView_booking_tripHolder"
@@ -67,6 +77,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="16dp"
+                app:bindTripDurationList="@{viewModel.listOfDurations}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -86,13 +97,13 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:onClick="@{()->bookingFragment.navigateToCheckout()}"
+                android:onClick="@{() -> viewModel.displayCheckout(viewModel.selectedDuration, viewModel.numberOfSeats)}"
                 android:text="@string/proceed_to_checkout"
                 android:textColor="@color/subtitle_text_custom_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tripDuraionsList_rcyView_booking_tripHolder"
+                app:layout_constraintTop_toBottomOf="@+id/numberPicker"
                 app:rippleColor="@color/title_text_custom_color" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
