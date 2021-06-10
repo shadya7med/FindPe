@@ -2,10 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="selectedCategory"
             type="String" />
+
         <variable
             name="viewModel"
             type="com.iti.example.findpe2.home.activities.viewmodels.ActivitiesViewModel" />
@@ -38,13 +41,13 @@
                     android:foreground="@drawable/background_gradient"
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/nature" />
+                <!--                    app:bitmapWithGlide="@drawable/nature"-->
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:onClick='@{() -> viewModel.displayCategoryTrip("nature")}'
-                    >
+                    android:onClick='@{() -> viewModel.displayCategoryTrip("nature")}'>
 
                     <ImageView
                         android:id="@+id/nature_image"
@@ -110,13 +113,14 @@
                     android:foreground="@drawable/background_gradient"
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/cultural" />
+<!--                    app:bitmapWithGlide="@drawable/cultural"-->
+<!--                    tools:srcCompat="@drawable/cultural" />-->
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:onClick='@{() -> viewModel.displayCategoryTrip("cultural")}'
-                    >
+                    android:onClick='@{() -> viewModel.displayCategoryTrip("cultural")}'>
 
                     <ImageView
                         android:id="@+id/culture_image"
@@ -180,13 +184,14 @@
                     android:foreground="@drawable/background_gradient"
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/modern" />
+<!--                    app:bitmapWithGlide="@drawable/modern"-->
+<!--                    tools:srcCompat="@drawable/modern" />-->
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:onClick='@{() -> viewModel.displayCategoryTrip("modern life")}'
-                    >
+                    android:onClick='@{() -> viewModel.displayCategoryTrip("modern life")}'>
 
                     <ImageView
                         android:id="@+id/modern_life_image"
@@ -196,7 +201,7 @@
                         android:layout_marginTop="24dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/modern_icon" />
+                        tools:srcCompat="@drawable/modern_icon" />
 
                     <TextView
                         android:id="@+id/modern_life_text"
@@ -251,13 +256,14 @@
                     android:foreground="@drawable/background_gradient"
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/sun_sand" />
+<!--                    app:bitmapWithGlide="@drawable/sun_sand"-->
+<!--                    tools:srcCompat="@drawable/sun_sand" />-->
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:onClick='@{() -> viewModel.displayCategoryTrip("sun and sand")}'
-                    >
+                    android:onClick='@{() -> viewModel.displayCategoryTrip("sun and sand")}'>
 
                     <ImageView
                         android:id="@+id/popularity_image"
@@ -267,7 +273,7 @@
                         android:layout_marginTop="24dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/sun_icon" />
+                        tools:srcCompat="@drawable/sun_icon" />
 
                     <TextView
                         android:id="@+id/popularity_text"
@@ -323,14 +329,15 @@
                     android:layout_height="match_parent"
                     android:foreground="@drawable/background_gradient"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/popular" />
+                    app:srcCompat="@drawable/popular"/>
+<!--                    app:bitmapWithGlide="@drawable/popular"-->
+<!--                    tools:srcCompat="@drawable/popular" />-->
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:onClick='@{() -> viewModel.displayCategoryTrip("popularity")}'
-                    >
+                    android:onClick='@{() -> viewModel.displayCategoryTrip("popularity")}'>
 
                     <ImageView
                         android:id="@+id/sun_sand_image"

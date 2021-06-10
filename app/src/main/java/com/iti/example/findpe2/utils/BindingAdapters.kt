@@ -263,3 +263,13 @@ fun RecyclerView.bindList(list: List<TripDuration>?){
     (this.adapter as TripDurationsAdapter).submitList(list)
 
 }
+
+@BindingAdapter("bitmapWithGlide")
+fun ImageView.setBitmapWithGlide(drawableId:Int?){
+    drawableId?.let{
+        Glide
+            .with(context)
+            .load(it)
+            .into(this)
+    }
+}
