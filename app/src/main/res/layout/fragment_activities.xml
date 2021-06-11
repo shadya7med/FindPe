@@ -24,7 +24,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/nature_card"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="180dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
@@ -40,8 +40,8 @@
                     android:layout_height="match_parent"
                     android:foreground="@drawable/background_gradient"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/nature" />
-                <!--                    app:bitmapWithGlide="@drawable/nature"-->
+                    app:srcCompat="@drawable/nature"
+                    tools:srcCompat="@drawable/nature" />
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -112,9 +112,8 @@
                     android:layout_height="match_parent"
                     android:foreground="@drawable/background_gradient"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/cultural" />
-<!--                    app:bitmapWithGlide="@drawable/cultural"-->
-<!--                    tools:srcCompat="@drawable/cultural" />-->
+                    app:srcCompat="@drawable/cultural"
+                    tools:srcCompat="@drawable/cultural" />
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -183,9 +182,8 @@
                     android:layout_height="match_parent"
                     android:foreground="@drawable/background_gradient"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/modern" />
-<!--                    app:bitmapWithGlide="@drawable/modern"-->
-<!--                    tools:srcCompat="@drawable/modern" />-->
+                    app:srcCompat="@drawable/modern"
+                    tools:srcCompat="@drawable/modern" />
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -255,9 +253,8 @@
                     android:layout_height="match_parent"
                     android:foreground="@drawable/background_gradient"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/sun_sand" />
-<!--                    app:bitmapWithGlide="@drawable/sun_sand"-->
-<!--                    tools:srcCompat="@drawable/sun_sand" />-->
+                    app:srcCompat="@drawable/sun_sand"
+                    tools:srcCompat="@drawable/sun_sand" />
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -329,9 +326,8 @@
                     android:layout_height="match_parent"
                     android:foreground="@drawable/background_gradient"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/popular"/>
-<!--                    app:bitmapWithGlide="@drawable/popular"-->
-<!--                    tools:srcCompat="@drawable/popular" />-->
+                    app:srcCompat="@drawable/popular"
+                    tools:srcCompat="@drawable/popular" />
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout

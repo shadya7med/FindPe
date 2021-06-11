@@ -94,10 +94,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="@{discoverViewModel.loadingStatus}"
-            app:layout_constraintBottom_toBottomOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/featuredList_rv_discover_home"
             app:layout_constraintStart_toStartOf="@+id/featuredList_rv_discover_home"
             app:layout_constraintTop_toTopOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintVertical_bias="0.33"
             tools:visibility="visible" />
 
         <ImageView
