@@ -1,17 +1,14 @@
 package com.iti.example.findpe2.home.filter.views
 
-import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
-import com.google.android.material.button.MaterialButton
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.slider.RangeSlider
-import com.iti.example.findpe2.R
 import com.iti.example.findpe2.constants.Keys
 import com.iti.example.findpe2.databinding.FragmentFilterBinding
 import com.iti.example.findpe2.home.filter.viewModels.FilterViewModel
@@ -22,10 +19,9 @@ import java.util.*
 class FilterFragment : Fragment() {
 
 
-
-    private lateinit var binder: FragmentFilterBinding
+    /*private lateinit var binding: FragmentFilterBinding
     private lateinit var navController: NavController
-    lateinit var filterViewModel: FilterViewModel
+    lateinit var filterViewModel: FilterViewModel*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,25 +33,69 @@ class FilterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binder = FragmentFilterBinding.inflate(inflater, container, false)
-        binder.lifecycleOwner = this
-        binder.filterFragment = this
-        return binder.root
-    }
+        val binding = FragmentFilterBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
+        //binding.filterFragment = this
+        val filterViewModel = ViewModelProvider(this).get(FilterViewModel::class.java)
+        binding.filterViewModel = filterViewModel
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        filterViewModel = ViewModelProvider(this).get(FilterViewModel::class.java)
-        binder.filterViewModel = filterViewModel
-        navController = view.findNavController()
+
+        filterViewModel.autoCompleteFromPlacesList.observe(viewLifecycleOwner) {
+            it?.let {
+                val placesAdapter =
+                    ArrayAdapter<String>(requireActivity(), android.R.layout.simple_list_item_1, it)
+                binding.fromSourceACTxtViewFilterHome.setAdapter(placesAdapter)
+            }
+        }
+
+        filterViewModel.autoCompleteToPlacesList.observe(viewLifecycleOwner) {
+            it?.let {
+                val placesAdapter =
+                    ArrayAdapter<String>(requireActivity(), android.R.layout.simple_list_item_1, it)
+                binding.toSourceACTxtViewFilterHome.setAdapter(placesAdapter)
+            }
+        }
+
+        /*binding.fromSourceACTxtViewFilterHome.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    filterViewModel.setFromSelectedCity(position)
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    filterViewModel.setFromSelectedCity(-1)
+                }
+            }
+
+        binding.toSourceACTxtViewFilterHome.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    filterViewModel.setToSelectedCity(position)
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    filterViewModel.setToSelectedCity(-1)
+                }
+            }*/
+
         //show range slider labels
-        binder.priceRangeSliderFilterHome.setLabelFormatter { value: Float ->
+        binding.priceRangeSliderFilterHome.setLabelFormatter { value: Float ->
             val format = NumberFormat.getCurrencyInstance()
             format.maximumFractionDigits = 0
             format.currency = Currency.getInstance("USD")
             format.format(value.toDouble())
         }
-        binder.priceRangeSliderFilterHome.addOnSliderTouchListener(object :
+        binding.priceRangeSliderFilterHome.addOnSliderTouchListener(object :
             RangeSlider.OnSliderTouchListener {
             override fun onStartTrackingTouch(slider: RangeSlider) {
                 // Responds to when slider's touch event is being started
@@ -68,23 +108,54 @@ class FilterFragment : Fragment() {
             }
         })
 
+        filterViewModel.onNavigateUpData.observe(viewLifecycleOwner) {
+            it?.let {
+                val navController = findNavController()
+                //return data in SavedStateMap
+                navController.previousBackStackEntry?.savedStateHandle?.set(
+                    Keys.FULL_FILTER_MAP_KEY,
+                    it
+                )
+                //pop current fragment and destroy it
+                navController.popBackStack()
+                filterViewModel.onDoneNavigatingUpFromFilter()
+            }
+        }
 
 
+        binding.filterSaveBtnFilterHome.setOnClickListener {
+            filterViewModel.getFilterResult(
+                binding.fromSourceACTxtViewFilterHome.text.toString(),
+                binding.toSourceACTxtViewFilterHome.text.toString()
+            )
+        }
+
+
+
+        return binding.root
     }
 
-    fun showDatePicker(type:Int){
+    /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+
+
+    }*/
+
+    /*fun showDatePicker(type:Int){
         filterViewModel.showDatePicker(type).show(parentFragmentManager, "FilterFragment")
-    }
+    }*/
 
 
-    fun toggleFeatureButtons(feature : Int){
+    /*fun toggleFeatureButtons(feature : Int){
         var featureButton:MaterialButton? = null
         when(feature){
-            0 -> featureButton = binder.wifiToggleBtnFilterHome as MaterialButton
-            1 -> featureButton = binder.hotelToggleBtnFilterHome as MaterialButton
-            2 -> featureButton = binder.swimmingToggleBtnFilterHome as MaterialButton
-            3 -> featureButton = binder.innToggleBtnFilterHome as MaterialButton
-            4 -> featureButton = binder.parkingToggleBtnFilterHome as MaterialButton
+            0 -> featureButton = binding.wifiToggleBtnFilterHome as MaterialButton
+            1 -> featureButton = binding.hotelToggleBtnFilterHome as MaterialButton
+            2 -> featureButton = binding.swimmingToggleBtnFilterHome as MaterialButton
+            3 -> featureButton = binding.innToggleBtnFilterHome as MaterialButton
+            4 -> featureButton = binding.parkingToggleBtnFilterHome as MaterialButton
 
         }
         if (featureButton == null){
@@ -103,14 +174,8 @@ class FilterFragment : Fragment() {
 
             }
         }
-    }
+    }*/
 
-    fun saveFilterResult(){
-        //return data in SavedStateMap
-        navController.previousBackStackEntry?.savedStateHandle?.set(Keys.FULL_FILTER_MAP_KEY, filterViewModel.getFilterResult())
-        //pop current fragment and destroy it
-        navController.popBackStack()
-    }
 
 }
 

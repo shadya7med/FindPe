@@ -123,5 +123,25 @@
         <item name="android:layout_marginEnd">24dp</item>
         <item name="android:textColor">@color/subtitle_text_custom_color</item>
     </style>
+    <style name="price_range_slider" parent="Widget.MaterialComponents.Slider">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Slider</item>
+        <item name="labelStyle">@style/Widget.App.Tooltip</item>
+    </style>
 
+    <style name="ThemeOverlay.App.Slider" parent="">
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorOnPrimary">@color/purple_700</item>
+        <item name="colorOnSurface">@color/purple_200</item>
+    </style>
+
+    <style name="Widget.App.Tooltip" parent="Widget.MaterialComponents.Tooltip">
+        <item name="android:textAppearance">@style/TextAppearance.App.Tooltip</item>
+        <item name="backgroundTint">@color/purple_200</item>
+    </style>
+
+    <style name="TextAppearance.App.Tooltip" parent="TextAppearance.MaterialComponents.Tooltip">
+        <item name="android:textColor">@color/title_text_custom_color</item>
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+    </style>
 </resources>

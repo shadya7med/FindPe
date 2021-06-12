@@ -1,8 +1,10 @@
 package com.iti.example.findpe2.utils
 
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.net.Uri
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -10,6 +12,7 @@ import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.iti.example.findpe2.R
 import com.iti.example.findpe2.home.allTrips.views.AllTripsAdapter
@@ -230,7 +233,7 @@ fun ImageView.setUserInfoImage(userInfo: UserInfo) {
 
 @BindingAdapter("userGalleryImage")
 fun ImageView.setUserGalleryImage(userGalleryImage: UserGalleryImage) {
-    if (!userGalleryImage.imageUrl.isNullOrEmpty()){
+    if (!userGalleryImage.imageUrl.isNullOrEmpty()) {
         Glide
             .with(context)
             .load(userGalleryImage.imageUrl)
@@ -241,9 +244,9 @@ fun ImageView.setUserGalleryImage(userGalleryImage: UserGalleryImage) {
 }
 
 @BindingAdapter("userInfoListToString")
-fun TextView.setUserInfoListToString(userInfoSubTitles: List<String>){
+fun TextView.setUserInfoListToString(userInfoSubTitles: List<String>) {
     var listToString = ""
-    for(item in userInfoSubTitles){
+    for (item in userInfoSubTitles) {
         listToString += item
         listToString += " ,"
     }
@@ -252,7 +255,7 @@ fun TextView.setUserInfoListToString(userInfoSubTitles: List<String>){
 }
 
 @BindingAdapter("isLiked")
-fun ImageView.setIsLiked(companion: Companion){
+fun ImageView.setIsLiked(companion: Companion) {
     setImageResource(
         when (companion.isLiked) {
             true -> R.drawable.filled_heart
@@ -260,8 +263,29 @@ fun ImageView.setIsLiked(companion: Companion){
         }
     )
 }
+
 @BindingAdapter("bindTripDurationList")
-fun RecyclerView.bindList(list: List<TripDuration>?){
+fun RecyclerView.bindList(list: List<TripDuration>?) {
     (this.adapter as TripDurationsAdapter).submitList(list)
 
+}
+
+@BindingAdapter("feature","featuresList")
+fun Button.setFeatureFromFeatureList(feature: Int?, featuresList: List<Boolean>?) {
+    this as MaterialButton
+    featuresList?.let {
+        feature?.let{ feature ->
+            if (it[feature]) {
+                //true --> active feature
+                setIconTintResource(R.color.feature_selected_btn_icon)
+                backgroundTintList =
+                    ColorStateList.valueOf(resources.getColor(R.color.feature_selected_btn_background))
+            } else {
+                //false --> inactive feature
+                setIconTintResource(R.color.feature_unselected_btn_icon)
+                backgroundTintList =
+                    ColorStateList.valueOf(resources.getColor(R.color.feature_unselected_btn_background))
+            }
+        }
+    }
 }

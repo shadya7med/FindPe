@@ -2,7 +2,6 @@ package com.iti.example.findpe2.home.travelling.views
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -75,20 +74,20 @@ class TravelingFragment : Fragment() {
             Keys.FULL_FILTER_MAP_KEY
         )?.observe(
             viewLifecycleOwner, Observer { result ->
-                Log.i("FiTrav", "${result[Keys.MIN_RANGE_KEY] as Double}")
+                viewModel.filterTrips(result)
             })
     }
 
     override fun onStart() {
         super.onStart()
-        viewModel.getTrips()
+        //viewModel.getTrips()
     }
 
     override fun onStop() {
         super.onStop()
-        navController.currentBackStackEntry?.savedStateHandle?.getLiveData<MutableMap<String, Any>>(
+        /*navController.currentBackStackEntry?.savedStateHandle?.getLiveData<MutableMap<String, Any>>(
             Keys.FULL_FILTER_MAP_KEY
-        )?.removeObservers(viewLifecycleOwner)
+        )?.removeObservers(viewLifecycleOwner)*/
 
     }
 

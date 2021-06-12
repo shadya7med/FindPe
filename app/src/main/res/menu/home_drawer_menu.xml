@@ -17,7 +17,7 @@
         <item
             android:id="@+id/activitesFragmentHome"
             android:icon="@drawable/ic_outline_local_activity_24"
-            android:title="@string/activites_text" />
+            android:title="@string/activities_text" />
         <item
             android:id="@+id/mapFragmentHome"
             android:icon="@drawable/ic_outline_map_24"

@@ -14,7 +14,7 @@ object TripApi {
         .build()
 
 
-    private val tripsApi : TripsApiService by lazy {
+    private val tripsApi: TripsApiService by lazy {
         retrofit.create(TripsApiService::class.java)
     }
 
@@ -23,6 +23,12 @@ object TripApi {
     suspend fun getTripsByCategory(category: String) = tripsApi.getTripsByCategory(category)
     suspend fun getTimelineSlot(tripId: Int) = tripsApi.getTimelineSlot(tripId)
     suspend fun getTripDurations(tripId: Int) = tripsApi.getTripDurations(tripId)
-    suspend fun getAutoCompleteTrips() = tripsApi.getAutoCompletePlaces()
+    suspend fun getAllFromCities() = tripsApi.getAllFromCitiesName()
+    suspend fun getAllToCities() = tripsApi.getAllToCitiesName()
+    suspend fun getFeaturedFilteredTrips(
+        prices: Array<Double>,
+        places: Array<String>,
+        features: Array<Boolean>
+    ) = tripsApi.getFeaturedFilteredTrips(prices, places, features)
 
 }

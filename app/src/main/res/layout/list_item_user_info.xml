@@ -39,7 +39,7 @@
             app:layout_constraintStart_toEndOf="@+id/infoImage_imgView_userInfoListItem"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
-            tools:text="@string/tirp_history" />
+            tools:text="@string/trip_history" />
 
         <TextView
             android:id="@+id/subtitle_txtView_userInfoListItem"

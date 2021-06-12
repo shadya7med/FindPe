@@ -16,7 +16,7 @@
     <string name="haveAccText">Already have an account ?</string>
     <string name="signinText">Sign In</string>
     <string name="fullName">Full Name</string>
-    <string name="signoutText">signout</string>
+    <string name="signoutText">Sign Out</string>
     <string name="traveling_text">Traveling</string>
     <string name="explore_text">Explore</string>
     <string name="saved_text">Saved</string>
@@ -35,7 +35,7 @@
     <string name="temp_type">Sunny</string>
     <string name="trip_rate">8.4</string>
     <string name="votes">+6k</string>
-    <string name="votess">Votes</string>
+    <string name="votes_text">Votes</string>
     <string name="amenities">Amenities</string>
     <string name="Wifi">WI-FI</string>
     <string name="food">Lunch</string>
@@ -49,7 +49,7 @@
     <string name="trips">Trips</string>
     <string name="filter">Filter</string>
 
-    <string name="activites_text">Activites</string>
+    <string name="activities_text">Activities</string>
     <string name="nearme_text">Near Me</string>
     <string name="map_text">Map</string>
     <string name="bookings_text">Bookings</string>
@@ -70,7 +70,7 @@
     <string name="nature">Nature\&apos;s Light</string>
     <string name="modern">Modern Life</string>
     <string name="cultural">Cultural</string>
-    <string name="populartity">Populartity</string>
+    <string name="popularity">Popularity</string>
     <string name="sun_sand"><![CDATA[Sun & Sand]]></string>
 
     <string name="features_text">Features</string>
@@ -151,7 +151,7 @@
     <string name="all_trips">All Trips</string>
     <string name="available">Available Now</string>
     <string name="companion">Companion</string>
-    <string name="tirp_history">Trip History</string>
+    <string name="trip_history">Trip History</string>
     <string name="cities_placeholder">Dahab ,Cairo ,Alexandria ,Jordan</string>
     <string name="user_info_img_desc">this is the user info image</string>
     <string name="image_gallery_desc">this is one of the user gallery images</string>
@@ -184,7 +184,7 @@
     <string name="professional">Professional</string>
     <string name="get_started">Get started</string>
     <string name="professional_desc">Tour guide certification or worked as tour guide before</string>
-    <string name="amatuer">Amatuer</string>
+    <string name="amatuer">Amateur</string>
     <string name="amatuer_desc">Want to help people enjoy their trips to the max and earn some money</string>
     <string name="proceed">Proceed</string>
     <string name="from_hint">From…</string>
