@@ -35,7 +35,7 @@ class AllTripsAdapter(private val clickListener: OnClickListener) :ListAdapter<T
         }
     }
     class AllTripsDiffCallbacks:DiffUtil.ItemCallback<Trip>(){
-        override fun areItemsTheSame(oldItem: Trip, newItem: Trip) = oldItem.id == newItem.id
+        override fun areItemsTheSame(oldItem: Trip, newItem: Trip) = oldItem.tripID == newItem.tripID
         override fun areContentsTheSame(oldItem: Trip, newItem: Trip) = oldItem == newItem
     }
 }

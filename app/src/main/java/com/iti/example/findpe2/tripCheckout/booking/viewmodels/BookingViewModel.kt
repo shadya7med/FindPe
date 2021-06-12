@@ -38,12 +38,13 @@ class BookingViewModel(var tripId: Int) : ViewModel() {
 
     val emptyListStatus = Transformations.map(listOfDurations) {
         if (it != null) {
-            when (it.size) {
-                in 1..Int.MAX_VALUE -> View.GONE
-                else -> View.VISIBLE
+            if (it.isEmpty()) {
+                View.VISIBLE
+            }else{
+                View.GONE
             }
         } else {
-            View.VISIBLE
+            View.GONE
         }
     }
     val numberPickerVisibility = Transformations.map(numberOfSeats) {
@@ -58,6 +59,7 @@ class BookingViewModel(var tripId: Int) : ViewModel() {
     }
 
     init {
+        _listOfDurations.value = null
         _selectedDuration.value = null
         _loadingStatus.value = View.GONE
         _errorStatus.value = View.GONE
@@ -68,6 +70,7 @@ class BookingViewModel(var tripId: Int) : ViewModel() {
         _loadingStatus.value = View.VISIBLE
         viewModelScope.launch {
             try {
+                tripId
                 _listOfDurations.value = TripApi.getTripDurations(tripId)
                 _loadingStatus.value = View.GONE
             } catch (t: Throwable) {
@@ -77,7 +80,7 @@ class BookingViewModel(var tripId: Int) : ViewModel() {
             }
         }
     }
-    fun setSelectedDuration(tripDuration: TripDuration){
+    fun setSelectedDuration(tripDuration: TripDuration?){
         if(_selectedDuration.value == tripDuration){
             _selectedDuration.value = null
         }else{

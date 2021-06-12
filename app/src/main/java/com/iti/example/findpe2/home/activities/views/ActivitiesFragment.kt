@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.iti.example.findpe2.CategoryTripsActivity
+import com.iti.example.findpe2.categoryActivity.views.CategoryTripsActivity
 import com.iti.example.findpe2.constants.Keys
 import com.iti.example.findpe2.databinding.FragmentActivitiesBinding
 import com.iti.example.findpe2.home.activities.viewmodels.ActivitiesViewModel

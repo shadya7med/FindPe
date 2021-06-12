@@ -187,5 +187,7 @@
     <string name="amatuer">Amatuer</string>
     <string name="amatuer_desc">Want to help people enjoy their trips to the max and earn some money</string>
     <string name="proceed">Proceed</string>
+    <string name="category_empty_list">No trips available</string>
+    <string name="empty_duration">No duration available</string>
     >>>>>>> Stashed changes
 </resources>

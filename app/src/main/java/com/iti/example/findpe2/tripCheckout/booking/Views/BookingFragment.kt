@@ -22,7 +22,8 @@ class BookingFragment : Fragment() {
 
     private lateinit var binding: FragmentBookingBinding
     private lateinit var navController: NavController
-
+    private lateinit var viewModel: BookingViewModel
+    private var tripPrice = 0
     private var numOfSeats = 0
     private var tripFromDuration = ""
     private var tripToDuraion = ""
@@ -43,8 +44,9 @@ class BookingFragment : Fragment() {
 //        )
         navController = findNavController()
         val args by navArgs<BookingFragmentArgs>()
+        tripPrice = args.tripPrice
         val viewModelFactory = BookingViewModelFactory(args.tripId)
-        val viewModel = ViewModelProvider(this, viewModelFactory).get(BookingViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(BookingViewModel::class.java)
 
         // Inflate the layout for this fragment
         binding = FragmentBookingBinding.inflate(inflater,parent,false)
@@ -58,7 +60,7 @@ class BookingFragment : Fragment() {
         })
         viewModel.navigateToCheckout.observe(viewLifecycleOwner, Observer {
             it?.let {
-                navController.navigate(BookingFragmentDirections.actionBookingFragmentToPaymentFragment(it.second, it.first))
+                navController.navigate(BookingFragmentDirections.actionBookingFragmentToPaymentFragment(it.second, it.first, tripPrice))
                 viewModel.displayCheckoutComplete()
             }
         })
@@ -72,6 +74,9 @@ class BookingFragment : Fragment() {
         return binding.root
     }
 
-    
+    override fun onResume() {
+        super.onResume()
+        viewModel.setSelectedDuration(null)
+    }
 
 }

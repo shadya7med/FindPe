@@ -36,12 +36,13 @@ class TimelineViewModel(var tripId: Int) : ViewModel() {
                 else -> View.VISIBLE
             }
         }else{
-            View.VISIBLE
+            View.GONE
         }
 
     }
 
     init {
+        _timelineSlotList.value = null
         _errorStatus.value = View.GONE
         _loadingStatus.value = View.GONE
 

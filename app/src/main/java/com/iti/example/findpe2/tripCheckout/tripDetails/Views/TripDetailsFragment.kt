@@ -25,6 +25,7 @@ class TripDetailsFragment:Fragment() {
 
     //it should be obtained from the Intent that open this trip details
     private var tripId = 0
+    private var tripPrice = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,7 +36,8 @@ class TripDetailsFragment:Fragment() {
         val trip = arguments?.get(Keys.TRIP_DETAILS_KEY) as Trip
         val isSaved = arguments?.get(Keys.IS_SAVED_KEY) as Boolean
         Log.i("tripDetails", "$isSaved")
-        tripId = trip.id
+        tripId = trip.tripID
+        tripPrice = trip.priceBefore
 
         val viewModelFactory = TripDetailsViewModelFactory(trip,isSaved)
 
@@ -47,7 +49,7 @@ class TripDetailsFragment:Fragment() {
 
         viewModel.navigateToBooking.observe(viewLifecycleOwner, Observer{ tripId ->
             tripId?.let {
-                navController.navigate(TripDetailsFragmentDirections.actionTripDetailsFragmentToBookingFragment(tripId))
+                navController.navigate(TripDetailsFragmentDirections.actionTripDetailsFragmentToBookingFragment(tripId, tripPrice))
                 viewModel.displayBookingComplete()
             }
         })
