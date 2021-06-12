@@ -47,7 +47,8 @@
                         android:scaleType="centerCrop"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/trip_pic"
+                        app:imageUrl="@{trip.tripImages}"
+                        tools:srcCompat="@drawable/trip_pic"
                         tools:layout_editor_absoluteX="30dp" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
