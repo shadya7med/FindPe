@@ -57,7 +57,7 @@
             style="@style/saved_list_item_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{@string/price_format(trip.price)}"
+            android:text="@{@string/price_format(trip.priceBefore)}"
             tools:text="@string/trip_price_placeholder"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/tripName_txtView_listItem_saved"

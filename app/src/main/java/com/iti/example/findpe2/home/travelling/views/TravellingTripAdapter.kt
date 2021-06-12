@@ -14,7 +14,7 @@ class TravellingTripAdapter(private val clickListener: OnClickListener) :
     ListAdapter<Trip, TravellingTripAdapter.ViewHolder>(object : DiffUtil.ItemCallback<Trip>() {
         override fun areItemsTheSame(oldItem: Trip, newItem: Trip) = oldItem === newItem
 
-        override fun areContentsTheSame(oldItem: Trip, newItem: Trip) = oldItem.id == newItem.id
+        override fun areContentsTheSame(oldItem: Trip, newItem: Trip) = oldItem.tripID == newItem.tripID
     }) {
     class ViewHolder(var binding: ListItemTravellingRvBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(trip: Trip, clickListener: OnClickListener) {
