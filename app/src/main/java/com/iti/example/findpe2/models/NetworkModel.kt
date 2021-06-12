@@ -1,10 +1,8 @@
 package com.iti.example.findpe2.models
 
 import com.iti.example.findpe2.constants.URLs.Companion.NOT_SECURE_BASE_URL
-import com.iti.example.findpe2.pojos.TimelineSlot
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Path
 
 //retrofitTripApi Singleton
 object TripApi {
@@ -25,5 +23,6 @@ object TripApi {
     suspend fun getTripsByCategory(category: String) = tripsApi.getTripsByCategory(category)
     suspend fun getTimelineSlot(tripId: Int) = tripsApi.getTimelineSlot(tripId)
     suspend fun getTripDurations(tripId: Int) = tripsApi.getTripDurations(tripId)
+    suspend fun getAutoCompleteTrips() = tripsApi.getAutoCompletePlaces()
 
 }

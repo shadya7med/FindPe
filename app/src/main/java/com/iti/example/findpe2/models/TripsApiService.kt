@@ -22,4 +22,7 @@ interface TripsApiService{
 
     @GET("TimeLine/GetTimeLineSlots/{id}")
     suspend fun getTimelineSlot(@Path("id") id: Int): List<TimelineSlot>
+
+    @GET("Trips/places")
+    suspend fun getAutoCompletePlaces():List<String>
 }

@@ -1,12 +1,17 @@
 package com.iti.example.findpe2.home.filter.viewModels
 
+import android.util.Log
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.iti.example.findpe2.constants.Keys
+import com.iti.example.findpe2.models.TripApi
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -24,6 +29,14 @@ class FilterViewModel : ViewModel() {
     private val _toDaysList: MutableLiveData<ArrayList<Pair<String, String>>> = MutableLiveData()
     val toDaysList: LiveData<ArrayList<Pair<String, String>>>
         get() = _toDaysList
+
+    private val _autoCompletePlacesList = MutableLiveData<List<String>?>()
+    val autoCompletePlacesList:LiveData<List<String>?>
+        get() = _autoCompletePlacesList
+
+    private val _loadingStatus = MutableLiveData<Int?>()
+    val loadingStatus:LiveData<Int?>
+        get() = _loadingStatus
 
     // STATES are : WIFI, RESTAURANT ,POLL ,INN , PARKING
     private var featuresStates  = mutableListOf(false,false,false,false,false)
@@ -132,6 +145,22 @@ class FilterViewModel : ViewModel() {
         resultMap[Keys.MAX_RANGE_KEY] = maxPriceRange
 
         return resultMap
+    }
+
+    fun getAutoCompletePlaces(){
+        viewModelScope.launch {
+            try{
+                _loadingStatus.value = View.VISIBLE
+                _autoCompletePlacesList.value = TripApi.getAutoCompleteTrips()
+                _loadingStatus.value = View.GONE
+            }catch (e : Exception)
+            {
+                Log.i("Filter", e.localizedMessage)
+            }finally {
+                _loadingStatus.value = View.GONE
+            }
+
+        }
     }
 
 

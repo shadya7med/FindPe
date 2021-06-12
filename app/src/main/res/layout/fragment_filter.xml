@@ -25,10 +25,12 @@
             android:background="@color/filter_background_grey">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/timePeriod_card_filter_home"
+                android:id="@+id/place_card_filter_home"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:cardBackgroundColor="@android:color/background_light"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,762 +39,73 @@
                     android:paddingBottom="20dp">
 
                     <TextView
-                        android:id="@+id/timePeriod_txtView_filter_home"
-                        style="@style/filter_title_text"
+                        android:id="@+id/places_txtView_filter_home"
+                        style="@style/title_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
                         android:text="@string/time_period_text"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-
-                    <LinearLayout
-                        android:id="@+id/from_linearLayout_period_filter_home"
-                        android:layout_width="match_parent"
-                        android:layout_height="85dp"
-                        android:layout_marginTop="5dp"
-                        android:baselineAligned="false"
-                        android:orientation="horizontal"
-                        android:weightSum="7"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/from_txtView_filter_home">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:weightSum="2"
-                            tools:showIn="@layout/fragment_filter">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1"
-                                android:gravity="bottom"
-                                android:text="@{filterViewModel.fromDaysList[0].first}"
-                                android:textAlignment="gravity"
-                                android:textColor="@color/filter_background_grey"
-                                android:textSize="20sp"
-                                tools:text="@string/data_placeholder_text" />
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentStart="false"
-                                    android:layout_centerInParent="true"
-                                    android:gravity="center"
-                                    android:text="@{filterViewModel.fromDaysList[0].second}"
-                                    android:textColor="@color/fliter_title_text_black"
-                                    android:textSize="20sp"
-                                    tools:text="@string/number_placeholder_text" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:contentDescription="@string/day_circle_contentDESC"
-                                    android:src="@drawable/circle_bg" />
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:weightSum="2"
-                            tools:showIn="@layout/fragment_filter">
-
-                            <TextView
-
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1"
-                                android:gravity="bottom"
-                                android:text="@{filterViewModel.fromDaysList[1].first}"
-                                android:textAlignment="gravity"
-                                android:textColor="@color/filter_background_grey"
-                                android:textSize="20sp"
-                                tools:text="@string/data_placeholder_text" />
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1">
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:contentDescription="@string/day_circle_contentDESC"
-                                    android:src="@drawable/circle_bg" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentStart="false"
-                                    android:layout_centerInParent="true"
-                                    android:gravity="center"
-                                    android:text="@{filterViewModel.fromDaysList[1].second}"
-                                    android:textColor="@color/fliter_title_text_black"
-                                    android:textSize="20sp"
-                                    tools:text="@string/number_placeholder_text" />
-
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:weightSum="2"
-                            tools:showIn="@layout/fragment_filter">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1"
-                                android:gravity="bottom"
-                                android:text="@{filterViewModel.fromDaysList[2].first}"
-                                android:textAlignment="gravity"
-                                android:textColor="@color/filter_background_grey"
-                                android:textSize="20sp"
-                                tools:text="@string/data_placeholder_text" />
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentStart="false"
-                                    android:layout_centerInParent="true"
-                                    android:gravity="center"
-                                    android:text="@{filterViewModel.fromDaysList[2].second}"
-                                    android:textColor="@color/fliter_title_text_black"
-                                    android:textSize="20sp"
-                                    tools:text="@string/number_placeholder_text" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:contentDescription="@string/day_circle_contentDESC"
-                                    android:src="@drawable/circle_bg" />
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_weight="1"
-                            android:onClick="@{() -> filterFragment.showDatePicker(0)}"
-                            android:orientation="vertical"
-                            android:weightSum="2"
-                            tools:showIn="@layout/fragment_filter">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1"
-                                android:gravity="bottom"
-                                android:text="@{filterViewModel.fromDaysList[3].first}"
-                                android:textAlignment="gravity"
-                                android:textColor="@color/filter_background_grey"
-                                android:textSize="20sp"
-                                tools:text="@string/data_placeholder_text" />
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1">
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:contentDescription="@string/day_circle_contentDESC"
-                                    android:src="@drawable/selected_circle_bg" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentStart="false"
-                                    android:layout_centerInParent="true"
-                                    android:gravity="center"
-                                    android:text="@{filterViewModel.fromDaysList[3].second}"
-                                    android:textColor="@color/fliter_title_text_black"
-                                    android:textSize="20sp"
-                                    tools:text="@string/number_placeholder_text" />
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:weightSum="2"
-                            tools:showIn="@layout/fragment_filter">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1"
-                                android:gravity="bottom"
-                                android:text="@{filterViewModel.fromDaysList[4].first}"
-                                android:textAlignment="gravity"
-                                android:textColor="@color/filter_background_grey"
-                                android:textSize="20sp"
-                                tools:text="@string/data_placeholder_text" />
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentStart="false"
-                                    android:layout_centerInParent="true"
-                                    android:gravity="center"
-                                    android:text="@{filterViewModel.fromDaysList[4].second}"
-                                    android:textColor="@color/fliter_title_text_black"
-                                    android:textSize="20sp"
-                                    tools:text="@string/number_placeholder_text" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:contentDescription="@string/day_circle_contentDESC"
-                                    android:src="@drawable/circle_bg" />
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:weightSum="2"
-                            tools:showIn="@layout/fragment_filter">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1"
-                                android:gravity="bottom"
-                                android:text="@{filterViewModel.fromDaysList[5].first}"
-                                android:textAlignment="gravity"
-                                android:textColor="@color/filter_background_grey"
-                                android:textSize="20sp"
-                                tools:text="@string/data_placeholder_text" />
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentStart="false"
-                                    android:layout_centerInParent="true"
-                                    android:gravity="center"
-                                    android:text="@{filterViewModel.fromDaysList[5].second}"
-                                    android:textColor="@color/fliter_title_text_black"
-                                    android:textSize="20sp"
-                                    tools:text="@string/number_placeholder_text" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:contentDescription="@string/day_circle_contentDESC"
-                                    android:src="@drawable/circle_bg" />
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:weightSum="2"
-                            tools:showIn="@layout/fragment_filter">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1"
-                                android:gravity="bottom"
-                                android:text="@{filterViewModel.fromDaysList[6].first}"
-                                android:textAlignment="gravity"
-                                android:textColor="@color/filter_background_grey"
-                                android:textSize="20sp"
-                                tools:text="@string/data_placeholder_text" />
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentStart="false"
-                                    android:layout_centerInParent="true"
-                                    android:gravity="center"
-                                    android:text="@{filterViewModel.fromDaysList[6].second}"
-                                    android:textColor="@color/fliter_title_text_black"
-                                    android:textSize="20sp"
-                                    tools:text="@string/number_placeholder_text" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:contentDescription="@string/day_circle_contentDESC"
-                                    android:src="@drawable/circle_bg" />
-                            </RelativeLayout>
-
-                        </LinearLayout>
-                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/from_txtView_filter_home"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
                         android:text="@string/from_text"
-                        app:layout_constraintStart_toStartOf="@+id/timePeriod_txtView_filter_home"
-                        app:layout_constraintTop_toBottomOf="@+id/timePeriod_txtView_filter_home" />
+                        android:textColor="@color/subtitle_text_custom_color"
+                        app:layout_constraintStart_toStartOf="@+id/places_txtView_filter_home"
+                        app:layout_constraintTop_toBottomOf="@+id/places_txtView_filter_home" />
 
                     <View
                         android:id="@+id/divider4"
                         android:layout_width="0dp"
                         android:layout_height="1dp"
+                        android:layout_marginTop="16dp"
                         android:background="@android:drawable/title_bar"
                         android:visibility="visible"
                         app:layout_constrainedWidth="false"
-                        app:layout_constraintBottom_toTopOf="@+id/to_linearLayout_period_filter_home"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/from_linearLayout_period_filter_home"
-                        app:layout_constraintVertical_bias="0.5"
+                        app:layout_constraintTop_toBottomOf="@+id/fromSource_ACTxtView_filter_home"
                         app:layout_constraintWidth_percent="0.8" />
-
-                    <LinearLayout
-                        android:id="@+id/to_linearLayout_period_filter_home"
-                        android:layout_width="match_parent"
-                        android:layout_height="85dp"
-                        android:layout_marginTop="45dp"
-                        android:orientation="horizontal"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/from_linearLayout_period_filter_home">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:weightSum="2"
-                            tools:showIn="@layout/fragment_filter">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1"
-                                android:gravity="bottom"
-                                android:text="@{filterViewModel.toDaysList[0].first}"
-                                android:textAlignment="gravity"
-                                android:textColor="@color/filter_background_grey"
-                                android:textSize="20sp"
-                                tools:text="@string/data_placeholder_text" />
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentStart="false"
-                                    android:layout_centerInParent="true"
-                                    android:gravity="center"
-                                    android:text="@{filterViewModel.toDaysList[0].second}"
-                                    android:textColor="@color/fliter_title_text_black"
-                                    android:textSize="20sp"
-                                    tools:text="@string/number_placeholder_text" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:contentDescription="@string/day_circle_contentDESC"
-                                    android:src="@drawable/circle_bg" />
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:weightSum="2"
-                            tools:showIn="@layout/fragment_filter">
-
-                            <TextView
-
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1"
-                                android:gravity="bottom"
-                                android:text="@{filterViewModel.toDaysList[1].first}"
-                                android:textAlignment="gravity"
-                                android:textColor="@color/filter_background_grey"
-                                android:textSize="20sp"
-                                tools:text="@string/data_placeholder_text" />
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1">
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:contentDescription="@string/day_circle_contentDESC"
-                                    android:src="@drawable/circle_bg" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentStart="false"
-                                    android:layout_centerInParent="true"
-                                    android:gravity="center"
-                                    android:text="@{filterViewModel.toDaysList[1].second}"
-                                    android:textColor="@color/fliter_title_text_black"
-                                    android:textSize="20sp"
-                                    tools:text="@string/number_placeholder_text" />
-
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:weightSum="2"
-                            tools:showIn="@layout/fragment_filter">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1"
-                                android:gravity="bottom"
-                                android:text="@{filterViewModel.toDaysList[2].first}"
-                                android:textAlignment="gravity"
-                                android:textColor="@color/filter_background_grey"
-                                android:textSize="20sp"
-                                tools:text="@string/data_placeholder_text" />
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentStart="false"
-                                    android:layout_centerInParent="true"
-                                    android:gravity="center"
-                                    android:text="@{filterViewModel.toDaysList[2].second}"
-                                    android:textColor="@color/fliter_title_text_black"
-                                    android:textSize="20sp"
-                                    tools:text="@string/number_placeholder_text" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:contentDescription="@string/day_circle_contentDESC"
-                                    android:src="@drawable/circle_bg" />
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_weight="1"
-                            android:onClick="@{() -> filterFragment.showDatePicker(1)}"
-                            android:orientation="vertical"
-                            android:weightSum="2"
-                            tools:showIn="@layout/fragment_filter">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1"
-                                android:gravity="bottom"
-                                android:text="@{filterViewModel.toDaysList[3].first}"
-                                android:textAlignment="gravity"
-                                android:textColor="@color/filter_background_grey"
-                                android:textSize="20sp"
-                                tools:text="@string/data_placeholder_text" />
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1">
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:contentDescription="@string/day_circle_contentDESC"
-                                    android:src="@drawable/selected_circle_bg" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentStart="false"
-                                    android:layout_centerInParent="true"
-                                    android:gravity="center"
-                                    android:text="@{filterViewModel.toDaysList[3].second}"
-                                    android:textColor="@color/fliter_title_text_black"
-                                    android:textSize="20sp"
-                                    tools:text="@string/number_placeholder_text" />
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:weightSum="2"
-                            tools:showIn="@layout/fragment_filter">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1"
-                                android:gravity="bottom"
-                                android:text="@{filterViewModel.toDaysList[4].first}"
-                                android:textAlignment="gravity"
-                                android:textColor="@color/filter_background_grey"
-                                android:textSize="20sp"
-                                tools:text="@string/data_placeholder_text" />
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentStart="false"
-                                    android:layout_centerInParent="true"
-                                    android:gravity="center"
-                                    android:text="@{filterViewModel.toDaysList[4].second}"
-                                    android:textColor="@color/fliter_title_text_black"
-                                    android:textSize="20sp"
-                                    tools:text="@string/number_placeholder_text" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:contentDescription="@string/day_circle_contentDESC"
-                                    android:src="@drawable/circle_bg" />
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:weightSum="2"
-                            tools:showIn="@layout/fragment_filter">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1"
-                                android:gravity="bottom"
-                                android:text="@{filterViewModel.toDaysList[5].first}"
-                                android:textAlignment="gravity"
-                                android:textColor="@color/filter_background_grey"
-                                android:textSize="20sp"
-                                tools:text="@string/data_placeholder_text" />
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentStart="false"
-                                    android:layout_centerInParent="true"
-                                    android:gravity="center"
-                                    android:text="@{filterViewModel.toDaysList[5].second}"
-                                    android:textColor="@color/fliter_title_text_black"
-                                    android:textSize="20sp"
-                                    tools:text="@string/number_placeholder_text" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:contentDescription="@string/day_circle_contentDESC"
-                                    android:src="@drawable/circle_bg" />
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:weightSum="2"
-                            tools:showIn="@layout/fragment_filter">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1"
-                                android:gravity="bottom"
-                                android:text="@{filterViewModel.toDaysList[6].first}"
-                                android:textAlignment="gravity"
-                                android:textColor="@color/filter_background_grey"
-                                android:textSize="20sp"
-                                tools:text="@string/data_placeholder_text" />
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="0dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="1">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentStart="false"
-                                    android:layout_centerInParent="true"
-                                    android:gravity="center"
-                                    android:text="@{filterViewModel.toDaysList[6].second}"
-                                    android:textColor="@color/fliter_title_text_black"
-                                    android:textSize="20sp"
-                                    tools:text="@string/number_placeholder_text" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:contentDescription="@string/day_circle_contentDESC"
-                                    android:src="@drawable/circle_bg" />
-                            </RelativeLayout>
-
-                        </LinearLayout>
-                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/to_txtView_filter_home"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="16dp"
                         android:text="@string/to_text"
+                        android:textColor="@color/subtitle_text_custom_color"
                         app:layout_constraintStart_toStartOf="@+id/from_txtView_filter_home"
                         app:layout_constraintTop_toBottomOf="@+id/divider4" />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/fromSource_ACTxtView_filter_home"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="32dp"
+                        android:hint="@string/from_hint"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/from_txtView_filter_home" />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/toSource_ACTxtView_filter_home"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="32dp"
+                        android:hint="@string/to_hint"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/to_txtView_filter_home" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
@@ -803,7 +116,7 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="10dp"
                 app:cardBackgroundColor="@color/feature_selected_btn_icon"
-                app:layout_constraintTop_toBottomOf="@+id/timePeriod_card_filter_home">
+                app:layout_constraintTop_toBottomOf="@+id/place_card_filter_home">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -1003,7 +316,7 @@
                         android:valueTo="5000.0"
                         app:labelBehavior="withinBounds"
                         app:layout_constraintEnd_toStartOf="@+id/price_range_end_txtView_filter_home"
-                        app:layout_constraintHorizontal_bias="0.6"
+                        app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toEndOf="@+id/price_range_start_txtView_filter_home"
                         app:layout_constraintTop_toBottomOf="@+id/priceRange_txtView_filter_home"
                         app:values="@array/initial_slider_values" />
@@ -1028,12 +341,15 @@
 
                     <Button
                         android:id="@+id/filterSave_btn_filter_home"
+                        style="@style/Widget.App.Button.OutlinedButton.IconOnly"
                         android:layout_width="0dp"
                         android:layout_height="43dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="50dp"
                         android:onClick="@{() -> filterFragment.saveFilterResult()}"
                         android:text="@string/filter"
+                        android:textColor="@color/title_text_custom_color"
+                        app:backgroundTint="@color/purple_200"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.494"

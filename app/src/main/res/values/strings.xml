@@ -187,5 +187,7 @@
     <string name="amatuer">Amatuer</string>
     <string name="amatuer_desc">Want to help people enjoy their trips to the max and earn some money</string>
     <string name="proceed">Proceed</string>
+    <string name="from_hint">From…</string>
+    <string name="to_hint">Where to ?</string>
     >>>>>>> Stashed changes
 </resources>
