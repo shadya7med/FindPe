@@ -2,6 +2,7 @@ package com.iti.example.findpe2.utils
 
 import android.graphics.Color
 import android.net.Uri
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -29,6 +30,7 @@ import com.iti.example.findpe2.tripCheckout.tripDetails.viewModels.SaveState
 import java.text.SimpleDateFormat
 import java.util.*
 
+const val TAG = "bindAdapters"
 @BindingAdapter("chatRoomImage")
 fun ImageView.setChatRoomImage(chatRoom: ChatRoom) {
     chatRoom.destinationUserImage?.let { userImageUrl ->
@@ -179,16 +181,22 @@ fun RecyclerView.setListTimeline(list: List<TimelineSlot>?) {
 }
 
 @BindingAdapter("imageUrl")
-fun ImageView.bindImage(url: String?) {
-    val imageUri = Uri.parse(url).buildUpon().scheme("https").build()
-    Glide.with(this.context)
-        .load(imageUri)
-        .apply(
-            RequestOptions()
-                .placeholder(R.drawable.loading_animation)
-                .error(R.drawable.ic_broken_image)
-        )
-        .into(this)
+fun ImageView.bindImage(tripImages: List<TripImage>?) {
+    tripImages?.let {
+        if(it.isNotEmpty()) {
+            val image = it[0].image.replace("\\", "/", false)
+            val imageUri =
+                "http://rsaber-001-site1.ftempurl.com/$image"
+            Glide.with(this.context)
+                .load(imageUri)
+                .apply(
+                    RequestOptions()
+                        .placeholder(R.drawable.loading_animation)
+                        .error(R.drawable.ic_broken_image)
+                )
+                .into(this)
+        }
+    }
 
 }
 

@@ -15,6 +15,7 @@ import com.iti.example.findpe2.databinding.ActivityCategoryTripsBinding
 import com.iti.example.findpe2.home.travelling.views.OnClickListener
 import com.iti.example.findpe2.home.travelling.views.TravellingTripAdapter
 import com.iti.example.findpe2.tripCheckout.TripHolderActivity
+import com.iti.example.findpe2.utils.Category
 
 class CategoryTripsActivity : AppCompatActivity() {
     lateinit var binding: ActivityCategoryTripsBinding
@@ -27,8 +28,14 @@ class CategoryTripsActivity : AppCompatActivity() {
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
         actionBar?.title = category
-
-        val viewModelFactory = CategoryViewModelFactory(category!!)
+        val categoryItem: Category = when(category){
+            "nature" -> Category.NATURE
+            "cultural" -> Category.CULTURAL
+            "modern life" -> Category.MODERN
+            "Popularity" -> Category.POPULARITY
+            else -> Category.SEA
+        }
+        val viewModelFactory = CategoryViewModelFactory(categoryItem.name, categoryItem.id)
         val viewModel = ViewModelProvider(this, viewModelFactory).get(CategoryViewModel::class.java)
 
         binding.viewModel = viewModel

@@ -12,3 +12,12 @@ fun View.setAllClickable(clickable: Boolean){
     }
 }
 fun CharSequence?.isValidEmail() = !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
+
+enum class Category(val id: Int){
+    POPULARITY(1),
+    CULTURAL(2),
+    SEA(3),
+    MODERN(4),
+    NATURE(5)
+
+}

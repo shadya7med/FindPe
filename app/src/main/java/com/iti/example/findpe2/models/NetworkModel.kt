@@ -22,7 +22,7 @@ object TripApi {
 
     suspend fun getAllTrips() = tripsApi.getTrips()
     suspend fun getAllFeaturedTrips() = tripsApi.getAllFeaturedTrips()
-    suspend fun getTripsByCategory(category: String) = tripsApi.getTripsByCategory(category)
+    suspend fun getTripsByCategory(category: String, id: Int) = tripsApi.getTripsByCategory(category, id)
     suspend fun getTimelineSlot(tripId: Int) = tripsApi.getTimelineSlot(tripId)
     suspend fun getTripDurations(tripId: Int) = tripsApi.getTripDurations(tripId)
 

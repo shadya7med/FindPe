@@ -7,7 +7,7 @@ import com.iti.example.findpe2.models.TripApi
 import com.iti.example.findpe2.pojos.Trip
 import kotlinx.coroutines.launch
 
-class CategoryViewModel(private val categoryName: String): ViewModel() {
+class CategoryViewModel(private val categoryName: String, private val categoryId: Int): ViewModel() {
 
     private val _tripList = MutableLiveData<List<Trip>?>()
 
@@ -53,7 +53,7 @@ class CategoryViewModel(private val categoryName: String): ViewModel() {
         _loadingStatus.value = View.VISIBLE
         viewModelScope.launch {
             try {
-                _tripList.value = TripApi.getTripsByCategory(categoryName)
+                _tripList.value = TripApi.getTripsByCategory(categoryName, categoryId)
                 _loadingStatus.value = View.GONE
                 _errorMsgStatus.value = View.GONE
             }catch (t: Throwable){
