@@ -1,19 +1,43 @@
 package com.iti.example.findpe2.home.discover.viewsModels
 
 import android.view.View
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.iti.example.findpe2.models.TripApi
 import com.iti.example.findpe2.pojos.Trip
 import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 class DiscoverViewModel : ViewModel() {
 
-    private val _featuredTripList = MutableLiveData<List<Trip>?>()
-    val featuredTripList:LiveData<List<Trip>?>
-        get() = _featuredTripList
+    private val _allTripsList = MutableLiveData<List<Trip>?>()
+    val allTripsList:LiveData<List<Trip>?>
+        get() = _allTripsList
+
+    private val _fourRandomTrips = Transformations.map(_allTripsList){ allTrips ->
+        allTrips?.let{
+            if (it.size > 4){
+                val randomTrips = mutableListOf<Trip>()
+                val randomIndexes = arrayListOf<Int>()
+                for(index in 0..3){
+                    var randomInt = Random.nextInt(0,it.size)
+                    if (randomIndexes.contains(randomInt)){
+                        randomInt = Random.nextInt(0,it.size)
+                    }else{
+                        randomIndexes.add(randomInt)
+                    }
+                }
+                for(index in  randomIndexes){
+                    randomTrips.add(it[index])
+                }
+                randomTrips
+            }else{
+                it
+            }
+        }
+
+    }
+    val fourRandomTrips:LiveData<List<Trip>?>
+        get() = _fourRandomTrips
 
     private val _errorMsg = MutableLiveData<String?>()
     val errorMsg:LiveData<String?>
@@ -36,26 +60,26 @@ class DiscoverViewModel : ViewModel() {
         get() = _onNavigateToTripDetailsData
 
 
-    private val _onNavigateToSeeAllClicked = MutableLiveData<Boolean?>()
-    val onNavigateToSeeAllClicked: LiveData<Boolean?>
+    private val _onNavigateToSeeAllClicked = MutableLiveData<List<Trip>?>()
+    val onNavigateToSeeAllClicked: LiveData<List<Trip>?>
         get() = _onNavigateToSeeAllClicked
 
     init{
         _emptyListStatus.value = View.GONE
         _errorStatus.value = View.GONE
         _loadingStatus.value = View.GONE
-        getAllFeaturedTrips()
+        getAllTrips()
     }
 
-    private fun getAllFeaturedTrips(){
+    private fun getAllTrips(){
         _loadingStatus.value = View.VISIBLE
         viewModelScope.launch {
             try{
                 //should call getAllSaved
-                _featuredTripList.value = TripApi.getAllFeaturedTrips()
+                _allTripsList.value = TripApi.getAllTrips()
                 _loadingStatus.value = View.GONE
                 _errorStatus.value = View.GONE
-                _featuredTripList.value?.let {
+                _allTripsList.value?.let {
                     if (it.isEmpty()){
                         _emptyListStatus.value = View.VISIBLE
                     }else{
@@ -81,7 +105,7 @@ class DiscoverViewModel : ViewModel() {
     }
 
     fun onNavigateToSeeAll(){
-        _onNavigateToSeeAllClicked.value = true
+        _onNavigateToSeeAllClicked.value = _allTripsList.value
     }
     fun onDoneNavigationToSeeAll(){
         _onNavigateToSeeAllClicked.value = null

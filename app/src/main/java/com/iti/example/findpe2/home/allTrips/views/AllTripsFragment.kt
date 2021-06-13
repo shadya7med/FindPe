@@ -27,6 +27,9 @@ class AllTripsFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         val allTripsViewModel = ViewModelProvider(this).get(AllTripsViewModel::class.java)
         binding.allTripViewModel = allTripsViewModel
+
+        allTripsViewModel.setAllTrips(AllTripsFragmentArgs.fromBundle(requireArguments()).allTrips.asList())
+
         binding.tripsListRcyViewAllTripsHome.adapter = AllTripsAdapter(OnClickListener {
             allTripsViewModel.onNavigateToTripDetails(it)
         })

@@ -33,7 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="@string/num_of_trips"
+            android:text="@{String.valueOf(discoverViewModel.allTripsList.size())}"
+            tools:text="@string/num_of_trips"
             app:layout_constraintStart_toStartOf="@+id/Featured"
             app:layout_constraintTop_toBottomOf="@+id/Featured" />
 
@@ -65,7 +66,7 @@
             app:layout_constraintTop_toTopOf="@+id/Featured" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/featuredList_rv_discover_home"
+            android:id="@+id/fourRandomList_rv_discover_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -80,11 +81,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/trips"
             app:layout_constraintVertical_bias="0.0"
-            app:listFeaturedTrips="@{discoverViewModel.featuredTripList}"
+            app:listFeaturedTrips="@{discoverViewModel.fourRandomTrips}"
             app:spanCount="2"
             app:visibilityAgainstStatus="@{discoverViewModel.loadingStatus}"
             tools:itemCount="4"
-            tools:listitem="@layout/list_item_featured">
+            tools:listitem="@layout/list_item_four_random">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -95,9 +96,9 @@
             android:layout_height="wrap_content"
             android:visibility="@{discoverViewModel.loadingStatus}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/featuredList_rv_discover_home"
-            app:layout_constraintStart_toStartOf="@+id/featuredList_rv_discover_home"
-            app:layout_constraintTop_toTopOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintEnd_toEndOf="@+id/fourRandomList_rv_discover_home"
+            app:layout_constraintStart_toStartOf="@+id/fourRandomList_rv_discover_home"
+            app:layout_constraintTop_toTopOf="@+id/fourRandomList_rv_discover_home"
             app:layout_constraintVertical_bias="0.33"
             tools:visibility="visible" />
 
@@ -108,10 +109,10 @@
             android:contentDescription="@string/error_img_desc"
             android:scaleType="centerCrop"
             android:visibility="@{discoverViewModel.errorStatus}"
-            app:layout_constraintBottom_toBottomOf="@+id/featuredList_rv_discover_home"
-            app:layout_constraintEnd_toEndOf="@+id/featuredList_rv_discover_home"
-            app:layout_constraintStart_toStartOf="@+id/featuredList_rv_discover_home"
-            app:layout_constraintTop_toTopOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintBottom_toBottomOf="@+id/fourRandomList_rv_discover_home"
+            app:layout_constraintEnd_toEndOf="@+id/fourRandomList_rv_discover_home"
+            app:layout_constraintStart_toStartOf="@+id/fourRandomList_rv_discover_home"
+            app:layout_constraintTop_toTopOf="@+id/fourRandomList_rv_discover_home"
             app:layout_constraintVertical_bias="0.4"
             app:srcCompat="@drawable/error_occured"
             tools:visibility="visible" />
@@ -123,8 +124,8 @@
             android:layout_marginTop="10dp"
             android:text="@string/error_img_desc"
             android:visibility="@{discoverViewModel.errorStatus}"
-            app:layout_constraintEnd_toEndOf="@+id/featuredList_rv_discover_home"
-            app:layout_constraintStart_toStartOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintEnd_toEndOf="@+id/fourRandomList_rv_discover_home"
+            app:layout_constraintStart_toStartOf="@+id/fourRandomList_rv_discover_home"
             app:layout_constraintTop_toBottomOf="@+id/error_imgView_discover_home"
             tools:visibility="visible" />
 
@@ -134,10 +135,10 @@
             android:layout_height="100dp"
             android:contentDescription="@string/no_chats_img_desc"
             android:visibility="@{discoverViewModel.emptyListStatus}"
-            app:layout_constraintBottom_toBottomOf="@+id/featuredList_rv_discover_home"
-            app:layout_constraintEnd_toEndOf="@+id/featuredList_rv_discover_home"
-            app:layout_constraintStart_toStartOf="@+id/featuredList_rv_discover_home"
-            app:layout_constraintTop_toTopOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintBottom_toBottomOf="@+id/fourRandomList_rv_discover_home"
+            app:layout_constraintEnd_toEndOf="@+id/fourRandomList_rv_discover_home"
+            app:layout_constraintStart_toStartOf="@+id/fourRandomList_rv_discover_home"
+            app:layout_constraintTop_toTopOf="@+id/fourRandomList_rv_discover_home"
             app:layout_constraintVertical_bias="0.4"
             app:srcCompat="@drawable/nodata"
             tools:visibility="visible" />
@@ -151,8 +152,8 @@
             android:textAlignment="center"
             android:textSize="20sp"
             android:visibility="@{discoverViewModel.emptyListStatus}"
-            app:layout_constraintEnd_toEndOf="@+id/featuredList_rv_discover_home"
-            app:layout_constraintStart_toStartOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintEnd_toEndOf="@+id/fourRandomList_rv_discover_home"
+            app:layout_constraintStart_toStartOf="@+id/fourRandomList_rv_discover_home"
             app:layout_constraintTop_toBottomOf="@+id/no_data_imgView_discover_home"
             tools:visibility="visible" />
 
@@ -167,7 +168,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/featuredList_rv_discover_home"
+            app:layout_constraintTop_toBottomOf="@+id/fourRandomList_rv_discover_home"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView

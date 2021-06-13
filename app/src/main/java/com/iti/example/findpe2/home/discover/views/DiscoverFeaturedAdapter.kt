@@ -5,9 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.iti.example.findpe2.databinding.ListItemFeaturedBinding
-import com.iti.example.findpe2.databinding.ListItemSavedTripBinding
-import com.iti.example.findpe2.home.saved.views.SavedTripsAdapter
+import com.iti.example.findpe2.databinding.ListItemFourRandomBinding
 import com.iti.example.findpe2.home.travelling.views.OnClickListener
 import com.iti.example.findpe2.pojos.Trip
 
@@ -27,12 +25,12 @@ class DiscoverFeaturedAdapter(private val clickListener: OnClickListener) :
     }
 
 
-    class DiscoverFeaturedViewHolder(val binding: ListItemFeaturedBinding) :
+    class DiscoverFeaturedViewHolder(val binding: ListItemFourRandomBinding) :
         RecyclerView.ViewHolder(binding.root) {
         companion object {
             fun from(parent: ViewGroup): DiscoverFeaturedViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ListItemFeaturedBinding.inflate(layoutInflater, parent, false)
+                val binding = ListItemFourRandomBinding.inflate(layoutInflater, parent, false)
                 return DiscoverFeaturedViewHolder(binding)
             }
         }

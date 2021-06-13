@@ -56,7 +56,11 @@
         android:id="@+id/allTripsFragmentHome"
         android:name="com.iti.example.findpe2.home.allTrips.views.AllTripsFragment"
         android:label="@string/all_trips"
-        tools:layout="@layout/fragment_all_trips" />
+        tools:layout="@layout/fragment_all_trips" >
+        <argument
+            android:name="allTrips"
+            app:argType="com.iti.example.findpe2.pojos.Trip[]" />
+    </fragment>
     <fragment
         android:id="@+id/companionFragmentHome"
         android:name="com.iti.example.findpe2.home.companion.views.CompanionFragment"

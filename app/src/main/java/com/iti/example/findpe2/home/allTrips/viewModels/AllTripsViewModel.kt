@@ -40,8 +40,12 @@ class AllTripsViewModel:ViewModel() {
         _emptyListStatus.value = View.GONE
         _errorStatus.value = View.GONE
         _loadingStatus.value = View.GONE
-        getAllTrips()
+        //getAllTrips()
 
+    }
+
+    fun setAllTrips(allTrips: List<Trip>){
+        _allTripsList.value = allTrips
     }
 
     private fun getAllTrips(){

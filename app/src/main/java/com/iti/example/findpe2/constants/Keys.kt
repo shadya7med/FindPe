@@ -13,5 +13,6 @@ class Keys {
         const val IS_SAVED_KEY = "is_saved_key"
         const val CHAT_ROOM_KEY = "chat_room_key"
         const val CATEGORY_KEY = "category_key"
+        const val ALL_TRIPS_KEY = "all_trips_key"
     }
 }

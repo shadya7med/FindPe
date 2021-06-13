@@ -32,14 +32,13 @@ class DiscoverFragment : Fragment() {
         val navController = findNavController()
         discoverViewModel.onNavigateToSeeAllClicked.observe(viewLifecycleOwner) {
             it?.let {
-                if (it) {
-                    navController.navigate(ExploreFragmentDirections.actionExploreFragmentHomeToAllTripsFragment())
-                    discoverViewModel.onDoneNavigationToSeeAll()
-                }
+                navController.navigate(ExploreFragmentDirections.actionExploreFragmentHomeToAllTripsFragment(it.toTypedArray()))
+                discoverViewModel.onDoneNavigationToSeeAll()
+
             }
         }
 
-        binding.featuredListRvDiscoverHome.adapter = DiscoverFeaturedAdapter(OnClickListener {
+        binding.fourRandomListRvDiscoverHome.adapter = DiscoverFeaturedAdapter(OnClickListener {
             discoverViewModel.onNavigateToTripDetails(it)
         })
 
@@ -47,7 +46,11 @@ class DiscoverFragment : Fragment() {
             it?.let {
                 //stop loadning
                 //show error
-                Snackbar.make(requireActivity().findViewById(android.R.id.content), it, Snackbar.LENGTH_LONG).show()
+                Snackbar.make(
+                    requireActivity().findViewById(android.R.id.content),
+                    it,
+                    Snackbar.LENGTH_LONG
+                ).show()
             }
         }
         discoverViewModel.onNavigateToTripDetailsData.observe(viewLifecycleOwner) {
@@ -60,7 +63,7 @@ class DiscoverFragment : Fragment() {
                 discoverViewModel.onDoneNavigationToTripDetails()
             }
         }
-        
+
         return binding.root
     }
 

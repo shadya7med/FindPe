@@ -2,8 +2,6 @@ package com.iti.example.findpe2.utils
 
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.net.Uri
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -12,7 +10,6 @@ import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.iti.example.findpe2.R
@@ -192,14 +189,13 @@ fun ImageView.bindImage(tripImages: List<TripImage>?) {
                 "http://rsaber-001-site1.ftempurl.com/$image"
             Glide.with(this.context)
                 .load(imageUri)
-                .apply(
-                    RequestOptions()
-                        .placeholder(R.drawable.loading_animation)
-                        .error(R.drawable.ic_broken_image)
-                )
+                .placeholder(R.drawable.loading_animation)
+                .error(R.drawable.ic_broken_image)
                 .into(this)
         }
+        return
     }
+    setImageResource(R.drawable.dahab)
 
 }
 
