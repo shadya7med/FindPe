@@ -1,16 +1,11 @@
 package com.iti.example.findpe2.tripCheckout.tripDetails.viewModels
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.iti.example.findpe2.models.TripApi
 import com.iti.example.findpe2.pojos.Trip
-import com.iti.example.findpe2.pojos.TripOpState
-import com.iti.example.findpe2.pojos.UserTrip
 import kotlinx.coroutines.launch
 
 enum class SaveState {
@@ -66,8 +61,9 @@ class TripDetailsViewModel(trip: Trip, val isSaved: Boolean) : ViewModel() {
             } else {
                 //the trip is not saved so we need to save it
                 //launch coroutine and PUT this trip as saved to the current user
-                //val list = TripApi.getAllFeaturedTrips()//for testing only
-                val currentUser = Firebase.auth.currentUser
+                val list = TripApi.getAllFeaturedTrips()//for testing only
+                _saveState.value = SaveState.SAVED
+                /*val currentUser = Firebase.auth.currentUser
                 currentUser?.uid?.let { uid ->
                     _selectedTrip.value?.let { trip ->
                         try {
@@ -86,7 +82,7 @@ class TripDetailsViewModel(trip: Trip, val isSaved: Boolean) : ViewModel() {
                         }
                     }
 
-                }
+                }*/
 
             }
 

@@ -41,35 +41,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/tripsList_rcyView_allTrips_home"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_all_trips_home"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
-            android:clipToPadding="true"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:refreshingIndicatorVisibility="@{allTripViewModel.loadingStatus}"
+            app:layout_constraintBottom_toTopOf="@+id/no_data_txtView_allTrips_home"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_allTrips_home"
-            app:listAllTrips="@{allTripViewModel.allTripsList}"
-            app:visibilityAgainstStatus="@{allTripViewModel.loadingStatus}"
-            tools:itemCount="8"
-            tools:listitem="@layout/travelling_rv_item" />
+            app:layout_constraintTop_toBottomOf="@+id/title_allTrips_home">
 
-        <ProgressBar
-            android:id="@+id/progressBar_allTrips_home"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="@{allTripViewModel.loadingStatus}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tripsList_rcyView_allTrips_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="true"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:listAllTrips="@{allTripViewModel.allTripsList}"
+                app:visibilityAgainstStatus="@{allTripViewModel.loadingStatus}"
+                tools:itemCount="8"
+                tools:listitem="@layout/list_item_travelling_rv" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <ImageView
             android:id="@+id/no_data_imgView_allTrips_home"

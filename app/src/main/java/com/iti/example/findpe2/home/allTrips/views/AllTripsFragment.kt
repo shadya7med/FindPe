@@ -48,7 +48,10 @@ class AllTripsFragment : Fragment() {
                 allTripsViewModel.onDoneNavigationToTripDetails()
             }
         }
+        binding.swipeRefreshAllTripsHome.setOnRefreshListener {
 
+            allTripsViewModel.getAllTrips()
+        }
 
 
         return binding.root

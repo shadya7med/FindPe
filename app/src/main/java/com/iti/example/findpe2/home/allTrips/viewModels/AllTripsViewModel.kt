@@ -48,7 +48,7 @@ class AllTripsViewModel:ViewModel() {
         _allTripsList.value = allTrips
     }
 
-    private fun getAllTrips(){
+    fun getAllTrips(){
         _loadingStatus.value = View.VISIBLE
         viewModelScope.launch {
             try{

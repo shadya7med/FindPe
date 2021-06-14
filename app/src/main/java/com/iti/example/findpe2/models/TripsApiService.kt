@@ -4,10 +4,7 @@ import com.iti.example.findpe2.pojos.TimelineSlot
 import com.iti.example.findpe2.pojos.Trip
 import com.iti.example.findpe2.pojos.TripDuration
 import com.iti.example.findpe2.pojos.UserTrip
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 //BASE URL --> http://rsaber-001-site1.ftempurl.com/api/
 interface TripsApiService {
@@ -58,9 +55,9 @@ interface TripsApiService {
         @Query("featured") isFeatured: Boolean,
 
         ): List<Trip>
-    @GET("UserTrip/book")
+    @POST("UserTrip/book")
     suspend fun likeBookOrSaveATrip(@Body userTrip: UserTrip):UserTrip
 
-    @GET("UserTrip/{entity}")
+    @DELETE("UserTrip/{entity}")
     suspend fun deleteTripForUser(@Path("entity")entity:UserTrip)
 }

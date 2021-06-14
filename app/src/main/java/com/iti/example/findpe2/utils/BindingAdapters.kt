@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -292,4 +293,14 @@ fun Button.setFeatureFromFeatureList(feature: Int?, featuresList: List<Boolean>?
             }
         }
     }
+}
+@BindingAdapter("refreshingIndicatorVisibility")
+fun SwipeRefreshLayout.setRefreshIndicatorVisibility(loadingState:Int?){
+    loadingState?.let{
+        isRefreshing = when(it){
+            View.VISIBLE -> true
+            else -> false
+        }
+    }
+
 }
