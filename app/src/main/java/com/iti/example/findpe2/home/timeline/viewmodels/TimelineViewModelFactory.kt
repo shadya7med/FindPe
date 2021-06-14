@@ -2,8 +2,6 @@ package com.iti.example.findpe2.home.timeline.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.iti.example.findpe2.pojos.Trip
-import com.iti.example.findpe2.tripCheckout.tripDetails.views.TripDetailsViewModel
 
 class TimelineViewModelFactory (
     private val tripId: Int

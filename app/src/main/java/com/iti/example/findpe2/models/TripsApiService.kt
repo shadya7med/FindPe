@@ -3,6 +3,8 @@ package com.iti.example.findpe2.models
 import com.iti.example.findpe2.pojos.TimelineSlot
 import com.iti.example.findpe2.pojos.Trip
 import com.iti.example.findpe2.pojos.TripDuration
+import com.iti.example.findpe2.pojos.UserTrip
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -17,7 +19,10 @@ interface TripsApiService {
     suspend fun getAllFeaturedTrips(): List<Trip>
 
     @GET("Trips/FillterByCategory/{category}")
-    suspend fun getTripsByCategory(@Path("category") category: String, @Query("id") id: Int): List<Trip>
+    suspend fun getTripsByCategory(
+        @Path("category") category: String,
+        @Query("id") id: Int
+    ): List<Trip>
 
     @GET("TripDuration/GetTripDurations/{id}")
     suspend fun getTripDurations(@Path("id") id: Int): List<TripDuration>
@@ -38,4 +43,24 @@ interface TripsApiService {
         @Query("place") places: Array<String>,
         @Query("featuredThinges") features: Array<Boolean>
     ): List<Trip>
+
+    @GET("CalculateTrip")
+    suspend fun getFilteredTrips(
+        @Query("price") minPrice: Double,
+        @Query("price") maxPrice: Double,
+        @Query("place") fromPlace: String,
+        @Query("place") toPlace: String,
+        @Query("featured") wifi: Boolean,
+        @Query("featured") restaurant: Boolean,
+        @Query("featured") pool: Boolean,
+        @Query("featured") inn: Boolean,
+        @Query("featured") parking: Boolean,
+        @Query("featured") isFeatured: Boolean,
+
+        ): List<Trip>
+    @GET("UserTrip/book")
+    suspend fun likeBookOrSaveATrip(@Body userTrip: UserTrip):UserTrip
+
+    @GET("UserTrip/{entity}")
+    suspend fun deleteTripForUser(@Path("entity")entity:UserTrip)
 }

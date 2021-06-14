@@ -1,6 +1,7 @@
 package com.iti.example.findpe2.models
 
 import com.iti.example.findpe2.constants.URLs.Companion.NOT_SECURE_BASE_URL
+import com.iti.example.findpe2.pojos.UserTrip
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -20,7 +21,9 @@ object TripApi {
 
     suspend fun getAllTrips() = tripsApi.getTrips()
     suspend fun getAllFeaturedTrips() = tripsApi.getAllFeaturedTrips()
-    suspend fun getTripsByCategory(category: String, id: Int) = tripsApi.getTripsByCategory(category, id)
+    suspend fun getTripsByCategory(category: String, id: Int) =
+        tripsApi.getTripsByCategory(category, id)
+
     suspend fun getTimelineSlot(tripId: Int) = tripsApi.getTimelineSlot(tripId)
     suspend fun getTripDurations(tripId: Int) = tripsApi.getTripDurations(tripId)
     suspend fun getAllFromCities() = tripsApi.getAllFromCitiesName()
@@ -30,5 +33,23 @@ object TripApi {
         places: Array<String>,
         features: Array<Boolean>
     ) = tripsApi.getFeaturedFilteredTrips(prices, places, features)
+
+    suspend fun getFilteredTrips(
+        minPrice: Double,
+        maxPrice: Double,
+        fromPlace: String,
+        toPlace: String,
+        wifi: Boolean,
+        restaurant: Boolean,
+        pool: Boolean,
+        inn: Boolean,
+        parking: Boolean,
+        isFeatured: Boolean,
+    ) = tripsApi.getFilteredTrips(
+        minPrice, maxPrice, fromPlace, toPlace,
+        wifi, restaurant, pool, inn, parking,
+        isFeatured
+    )
+    suspend fun likeBookOrSaveATrip(userTrip:UserTrip) = tripsApi.likeBookOrSaveATrip(userTrip)
 
 }

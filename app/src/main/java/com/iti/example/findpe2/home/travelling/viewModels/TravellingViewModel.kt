@@ -65,29 +65,33 @@ class TravellingViewModel : ViewModel() {
 
     fun filterTrips(filteringMap: Map<String, Any>?) {
         filteringMap?.let { filteringMap ->
-            val fromCity = filteringMap[Keys.FROM_PLACE_KEY] as String
-            val toCity = filteringMap[Keys.TO_PLACE_KEY] as String
-            val placesArray = arrayOf(fromCity, toCity)
+            val fromPlace = filteringMap[Keys.FROM_PLACE_KEY] as String
+            val toPlace = filteringMap[Keys.TO_PLACE_KEY] as String
+            //val placesArray = arrayOf(fromPlace, toPlace)
 
             val features = filteringMap[Keys.FEATURES_STATES_KEY] as List<Boolean>
-            val featuresArray = arrayOf(
+            /*val featuresArray = arrayOf(
                 features[0],
                 features[1],
                 features[2],
                 features[3],
                 features[4],
                 true,
-            )
+            )*/
 
             val minPrice = filteringMap[Keys.MIN_RANGE_KEY] as Double
             val maxPrice = filteringMap[Keys.MAX_RANGE_KEY] as Double
-            val pricesArray = arrayOf(minPrice, maxPrice)
+            //val pricesArray = arrayOf(minPrice, maxPrice)
 
             _status.value = View.VISIBLE
             viewModelScope.launch {
                 try{
-                    _tripList.value =
-                        TripApi.getFeaturedFilteredTrips(pricesArray, placesArray, featuresArray)
+                    //still not working properly
+                    _tripList.value =TripApi.getFilteredTrips(minPrice, maxPrice, fromPlace, toPlace,
+                        features[0], features[1], features[2], features[3], features[4],
+                        features[5]
+                    )
+                        //TripApi.getFeaturedFilteredTrips(pricesArray, placesArray, featuresArray)
                     _status.value = View.GONE
                 }catch (e:Exception){
                     _errorMsgStatus.value = View.VISIBLE
