@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 
-class PaymentViewModel(private val tripPrice: Int, private val tripNoOfSeats: Int): ViewModel() {
-    private val _price = MutableLiveData<Int?>()
-    val price: LiveData<Int?>
+class PaymentViewModel(private val tripPrice: Float, private val tripNoOfSeats: Int): ViewModel() {
+    private val _price = MutableLiveData<Float?>()
+    val price: LiveData<Float?>
         get() = _price
 
     private val _noOfSeats = MutableLiveData<Int?>()

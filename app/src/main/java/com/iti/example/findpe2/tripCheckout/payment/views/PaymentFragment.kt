@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.navArgs
 import com.iti.example.findpe2.databinding.FragmentPaymentBinding
 import com.iti.example.findpe2.tripCheckout.payment.viewmodels.PaymentViewModel
 import com.iti.example.findpe2.tripCheckout.payment.viewmodels.PaymentViewModelFactory
@@ -22,7 +21,7 @@ class PaymentFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPaymentBinding.inflate(inflater,parent,false)
-        val args by navArgs<PaymentFragmentArgs>()
+        val args = PaymentFragmentArgs.fromBundle(requireArguments())
         val viewModelFactory = PaymentViewModelFactory(args.tripPrice, args.numOfSeats)
         val viewModel = ViewModelProvider(this, viewModelFactory).get(PaymentViewModel::class.java)
 

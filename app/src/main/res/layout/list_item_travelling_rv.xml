@@ -72,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="@{@string/price_format(trip.priceBefore)}"
+                android:text="@{@string/price_format(trip.priceAfter)}"
                 android:textColor="@color/subtitle_text_custom_color"
                 app:layout_constraintStart_toStartOf="@+id/travelling_item_title_text"
                 app:layout_constraintTop_toBottomOf="@+id/travelling_item_title_text"

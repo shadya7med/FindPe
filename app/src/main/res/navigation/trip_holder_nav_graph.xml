@@ -18,7 +18,7 @@
             app:argType="integer" />
         <argument
             android:name="tripPrice"
-            app:argType="integer" />
+            app:argType="float" />
     </fragment>
     <fragment
         android:id="@+id/tripDetailsFragment"
@@ -43,7 +43,7 @@
             app:argType="com.iti.example.findpe2.pojos.TripDuration" />
         <argument
             android:name="tripPrice"
-            app:argType="integer" />
+            app:argType="float" />
     </fragment>
     <activity
         android:id="@+id/timelineActivity"

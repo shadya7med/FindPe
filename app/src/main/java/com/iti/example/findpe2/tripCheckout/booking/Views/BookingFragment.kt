@@ -1,7 +1,6 @@
 package com.iti.example.findpe2.tripCheckout.booking.views
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.iti.example.findpe2.databinding.FragmentBookingBinding
 import com.iti.example.findpe2.tripCheckout.booking.viewmodels.BookingViewModel
 import com.iti.example.findpe2.tripCheckout.booking.viewmodels.BookingViewModelFactory
@@ -23,7 +20,7 @@ class BookingFragment : Fragment() {
     private lateinit var binding: FragmentBookingBinding
     private lateinit var navController: NavController
     private lateinit var viewModel: BookingViewModel
-    private var tripPrice = 0
+    private var tripPrice = 0.0f
     private var numOfSeats = 0
     private var tripFromDuration = ""
     private var tripToDuraion = ""
@@ -43,7 +40,7 @@ class BookingFragment : Fragment() {
 //            TripInfo(8,19,"22-10","23-11"),
 //        )
         navController = findNavController()
-        val args by navArgs<BookingFragmentArgs>()
+        val args  = BookingFragmentArgs.fromBundle(requireArguments())
         tripPrice = args.tripPrice
         val viewModelFactory = BookingViewModelFactory(args.tripId)
         viewModel = ViewModelProvider(this, viewModelFactory).get(BookingViewModel::class.java)

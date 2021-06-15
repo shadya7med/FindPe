@@ -49,7 +49,7 @@ fun ImageView.setChatRoomImage(chatRoom: ChatRoom) {
     }
 }
 
-@BindingAdapter("tripImage")
+/*@BindingAdapter("tripImage")
 fun ImageView.setTripImage(trip: Trip) {
     if (trip.tripImages.isNullOrEmpty()) {
         setImageResource(R.drawable.dahab)
@@ -62,7 +62,7 @@ fun ImageView.setTripImage(trip: Trip) {
             .placeholder(R.drawable.loading_animation)
             .into(this)
     }
-}
+}*/
 
 @BindingAdapter("userImage")
 fun ImageView.setUSerImage(userImageUrl: String) {
@@ -185,7 +185,7 @@ fun RecyclerView.setListTimeline(list: List<TimelineSlot>?) {
 fun ImageView.bindImage(tripImages: List<TripImage>?) {
     tripImages?.let {
         if(it.isNotEmpty()) {
-            val image = it[0].image.replace("\\", "/", false)
+            val image = it[0].image.replace("\\", "//", false)
             val imageUri =
                 "http://rsaber-001-site1.ftempurl.com/$image"
             Glide.with(this.context)

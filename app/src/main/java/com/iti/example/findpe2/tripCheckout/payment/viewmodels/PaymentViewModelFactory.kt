@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.iti.example.findpe2.tripCheckout.booking.viewmodels.BookingViewModel
 
 class PaymentViewModelFactory (
-    private val tripPrice: Int,
+    private val tripPrice: Float,
     private val noOfSeats: Int
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")

@@ -25,7 +25,7 @@ class TripDetailsFragment:Fragment() {
 
     //it should be obtained from the Intent that open this trip details
     private var tripId = 0
-    private var tripPrice = 0
+    private var tripPrice = 0.0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,7 +49,7 @@ class TripDetailsFragment:Fragment() {
 
         viewModel.navigateToBooking.observe(viewLifecycleOwner, Observer{ tripId ->
             tripId?.let {
-                navController.navigate(TripDetailsFragmentDirections.actionTripDetailsFragmentToBookingFragment(tripId, tripPrice))
+                navController.navigate(TripDetailsFragmentDirections.actionTripDetailsFragmentToBookingFragment(tripId, tripPrice.toFloat()))
                 viewModel.displayBookingComplete()
             }
         })

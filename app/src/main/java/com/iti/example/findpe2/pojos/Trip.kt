@@ -7,9 +7,9 @@ import kotlinx.parcelize.Parcelize
 data class Trip(
     val tripID: Int,
     val code: String,
-    val priceBefore: Int,
-    val priceAfter: Int,
-    val discound: Int,
+    val priceBefore: Double,
+    val priceAfter: Double,
+    val discound: Double,
     val name: String,
     val origin: String,
     val destination: String,
