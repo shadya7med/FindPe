@@ -1,7 +1,7 @@
 package com.iti.example.findpe2.models
 
 import com.iti.example.findpe2.constants.URLs.Companion.NOT_SECURE_BASE_URL
-import com.iti.example.findpe2.pojos.UserTrip
+import com.iti.example.findpe2.pojos.User
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -50,6 +50,24 @@ object TripApi {
         wifi, restaurant, pool, inn, parking,
         isFeatured
     )
-    suspend fun likeBookOrSaveATrip(userTrip:UserTrip) = tripsApi.likeBookOrSaveATrip(userTrip)
+
+    suspend fun addANewUser(user: User) = tripsApi.addANewUser(user)
+    suspend fun getUserByID(userID:String) = tripsApi.getUserByID(userID)
+    suspend fun getAllUsers() = tripsApi.getAllUsers()
+
+    suspend fun getAllSavedTripsForUser(userID:String) = tripsApi.getAllSavedTripsForUserByID(userID)
+    suspend fun getAllLikedTripsForUser(userID:String) = tripsApi.getAllLikedTripsForUserByID(userID)
+    suspend fun getAllBookedTripsForUser(userID:String) = tripsApi.getAllBookedTripsForUserByID(userID)
+
+    suspend fun saveTripForUser(userID: String,tripId: Int) = tripsApi.saveTripForUser(userID,tripId)
+    suspend fun unSaveTripForUser(userID: String,tripId: Int) = tripsApi.unSaveTripForUser(userID,tripId)
+
+    suspend fun bookTripForUser(userID: String,tripId: Int) = tripsApi.bookTripForUser(userID,tripId)
+    suspend fun unBookTripForUser(userID: String,tripId: Int) = tripsApi.unBookTripForUser(userID,tripId)
+
+    suspend fun likeTripForUser(userID: String,tripId: Int) = tripsApi.likeTripForUser(userID,tripId)
+    suspend fun unLikeTripForUser(userID: String,tripId: Int) = tripsApi.unLikeTripForUser(userID,tripId)
+
+    suspend fun deleteTripForUser(userID: String,tripId: Int) = tripsApi.deleteTripForUser(userID,tripId)
 
 }

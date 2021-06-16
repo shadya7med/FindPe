@@ -1,9 +1,10 @@
 package com.iti.example.findpe2.pojos
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-enum class AccountLevel{
+enum class AccountLevel {
     BRONZE,
     SILVER,
     GOLD
@@ -11,11 +12,16 @@ enum class AccountLevel{
 
 @Parcelize
 data class User(
-    val name:String,
-    val title:String,
-    val accountLevel:AccountLevel,
-    val tripsHistory:ArrayList<String>,
-    val workHistory:ArrayList<String>,
-    val perks:ArrayList<String>,
-    val languages:ArrayList<String>
-):Parcelable
+    val userID: String,
+    @SerializedName("userName")
+    val name: String,
+    @SerializedName("passsword")
+    val password: String,
+    val email: String,
+    val imageUrl: String,
+    val isVerified: Boolean,
+    val balance: Int,
+    val profileImageUrl: String,
+    val discreminator: String,
+    val creditCards: CreditCard? = null
+) : Parcelable

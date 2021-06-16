@@ -191,5 +191,6 @@
     <string name="to_hint">Where to ?</string>
     <string name="category_empty_list">No trips available</string>
     <string name="empty_duration">No duration available</string>
-    
+    <string name="all_saved">All Saved</string>
+
 </resources>

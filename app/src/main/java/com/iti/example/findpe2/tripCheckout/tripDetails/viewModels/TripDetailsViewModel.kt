@@ -1,9 +1,12 @@
 package com.iti.example.findpe2.tripCheckout.tripDetails.viewModels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.iti.example.findpe2.models.TripApi
 import com.iti.example.findpe2.pojos.Trip
 import kotlinx.coroutines.launch
@@ -14,7 +17,7 @@ enum class SaveState {
     NOT_SAVED
 }
 
-class TripDetailsViewModel(trip: Trip, val isSaved: Boolean) : ViewModel() {
+class TripDetailsViewModel(trip: Trip, private var isSaved: Boolean) : ViewModel() {
 
     private val _selectedTrip = MutableLiveData<Trip>()
     val selectedTrip: LiveData<Trip>
@@ -56,13 +59,35 @@ class TripDetailsViewModel(trip: Trip, val isSaved: Boolean) : ViewModel() {
             if (isSaved) {
                 //the trip is saved so we should remove it
                 //launch coroutine and PUT this trip as notSaved to the current user
-                val list = TripApi.getAllFeaturedTrips()//for testing only
-                _saveState.value = SaveState.NOT_SAVED
+                //val list = TripApi.getAllFeaturedTrips()//for testing only
+                    Firebase.auth.currentUser?.let{ currentUser ->
+                        _selectedTrip.value?.let{ trip ->
+                            try{
+                                TripApi.unSaveTripForUser(currentUser.uid,trip.tripID)
+                                _saveState.value = SaveState.NOT_SAVED
+                                isSaved = false
+                            }catch (e:Exception){
+                                Log.i("TripDetailsVM", "trips is already unSaved ${e.localizedMessage}")
+                            }
+
+                        }
+                    }
+
             } else {
                 //the trip is not saved so we need to save it
                 //launch coroutine and PUT this trip as saved to the current user
-                val list = TripApi.getAllFeaturedTrips()//for testing only
-                _saveState.value = SaveState.SAVED
+                //val list = TripApi.getAllFeaturedTrips()//for testing only
+                Firebase.auth.currentUser?.let{ currentUser ->
+                    _selectedTrip.value?.let{ trip ->
+                        try{
+                            TripApi.saveTripForUser(currentUser.uid,trip.tripID)
+                            _saveState.value = SaveState.SAVED
+                            isSaved = true
+                        }catch (e:Exception){
+                            Log.i("TripDetailsVM", "trips is already saved ${e.localizedMessage}")
+                        }
+                    }
+                }
                 /*val currentUser = Firebase.auth.currentUser
                 currentUser?.uid?.let { uid ->
                     _selectedTrip.value?.let { trip ->

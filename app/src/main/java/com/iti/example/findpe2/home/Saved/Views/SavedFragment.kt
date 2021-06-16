@@ -56,13 +56,15 @@ class SavedFragment : Fragment() {
             }
         }
         savedTripsViewModel.onNavigateToTripDetailsData.observe(viewLifecycleOwner) {
-            it?.let {
+            it?.let { trip ->
+                //savedTripsViewModel.getTripSaveState()?.let { isSaved ->
                 val openTripDetailsIntent = Intent(activity, TripHolderActivity::class.java)
-                openTripDetailsIntent.putExtra(Keys.TRIP_DETAILS_KEY, it)
+                openTripDetailsIntent.putExtra(Keys.TRIP_DETAILS_KEY, trip)
                 openTripDetailsIntent.putExtra(Keys.IS_SAVED_KEY, true)
                 startActivity(openTripDetailsIntent)
 
                 savedTripsViewModel.onDoneNavigationToTripDetails()
+                //}
             }
         }
 

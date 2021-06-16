@@ -60,6 +60,9 @@
         <argument
             android:name="allTrips"
             app:argType="com.iti.example.findpe2.pojos.Trip[]" />
+        <argument
+            android:name="allSavedTripsIDs"
+            app:argType="integer[]" />
     </fragment>
     <fragment
         android:id="@+id/companionFragmentHome"

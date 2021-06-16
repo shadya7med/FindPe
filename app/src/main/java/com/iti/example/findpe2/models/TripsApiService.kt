@@ -3,7 +3,7 @@ package com.iti.example.findpe2.models
 import com.iti.example.findpe2.pojos.TimelineSlot
 import com.iti.example.findpe2.pojos.Trip
 import com.iti.example.findpe2.pojos.TripDuration
-import com.iti.example.findpe2.pojos.UserTrip
+import com.iti.example.findpe2.pojos.User
 import retrofit2.http.*
 
 //BASE URL --> http://rsaber-001-site1.ftempurl.com/api/
@@ -55,9 +55,40 @@ interface TripsApiService {
         @Query("featured") isFeatured: Boolean,
 
         ): List<Trip>
-    @POST("UserTrip/book")
-    suspend fun likeBookOrSaveATrip(@Body userTrip: UserTrip):UserTrip
 
-    @DELETE("UserTrip/{entity}")
-    suspend fun deleteTripForUser(@Path("entity")entity:UserTrip)
+    //user requests
+    @POST("User")
+    suspend fun addANewUser(@Body user:User)//:User
+    @GET("User")
+    suspend fun getUserByID(@Path("id")userID:String):User
+    @GET("User")
+    suspend fun getAllUsers():List<User>
+
+    //user-trips requests
+    @GET("UserTrip/GetTripSaved/{userID}")
+    suspend fun getAllSavedTripsForUserByID(@Path("userID")userID:String):List<Trip>
+    @GET("UserTrip/GetTripLiked/{userID}")
+    suspend fun getAllLikedTripsForUserByID(@Path("userID")userID:String):List<Trip>
+    @GET("UserTrip/GetTripBooked/{userID}")
+    suspend fun getAllBookedTripsForUserByID(@Path("userID")userID:String):List<Trip>
+
+    @PUT("UserTrip/Save")
+    suspend fun saveTripForUser(@Query("userID")userID:String,@Query("tripID")tripID:Int)//:UserTrip
+    @PUT("UserTrip/Book")
+    suspend fun bookTripForUser(@Query("userID")userID:String,@Query("tripID")tripID:Int)
+    @PUT("UserTrip/Like")
+    suspend fun likeTripForUser(@Query("userID")userID:String,@Query("tripID")tripID:Int)
+
+    @PUT("UserTrip/UNSave")
+    suspend fun unSaveTripForUser(@Query("userID")userID:String,@Query("tripID")tripID:Int)
+    @PUT("UserTrip/UNBook")
+    suspend fun unBookTripForUser(@Query("userID")userID:String,@Query("tripID")tripID:Int)
+    @PUT("UserTrip/UNLike")
+    suspend fun unLikeTripForUser(@Query("userID")userID:String,@Query("tripID")tripID:Int)
+
+
+    @DELETE("UserTrip")
+    suspend fun deleteTripForUser(@Query("userID")userID:String,@Query("tripID")tripID:Int)
+
+
 }

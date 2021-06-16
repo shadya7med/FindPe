@@ -47,13 +47,15 @@ class TravelingFragment : Fragment() {
         })
 
         viewModel.selectedTrip.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                val openTripHolderIntent = Intent(activity, TripHolderActivity::class.java)
-                //mimic trip id with 5
-                openTripHolderIntent.putExtra(Keys.TRIP_DETAILS_KEY, it)
-                openTripHolderIntent.putExtra(Keys.IS_SAVED_KEY,false)
-                startActivity(openTripHolderIntent)
-                viewModel.navigateToTripDetailsComplete()
+            it?.let { trip ->
+                viewModel.getTripSaveState()?.let{ isSaved ->
+                    val openTripHolderIntent = Intent(activity, TripHolderActivity::class.java)
+                    //mimic trip id with 5
+                    openTripHolderIntent.putExtra(Keys.TRIP_DETAILS_KEY, trip)
+                    openTripHolderIntent.putExtra(Keys.IS_SAVED_KEY,isSaved)
+                    startActivity(openTripHolderIntent)
+                    viewModel.navigateToTripDetailsComplete()
+                }
             }
         })
 
@@ -80,7 +82,8 @@ class TravelingFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        //viewModel.getTrips()
+        //in order to always refresh the visible data
+        viewModel.getTrips()
     }
 
     override fun onStop() {

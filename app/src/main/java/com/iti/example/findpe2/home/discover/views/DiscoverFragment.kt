@@ -20,6 +20,8 @@ import com.iti.example.findpe2.tripCheckout.TripHolderActivity
 class DiscoverFragment : Fragment() {
 
 
+    private lateinit var discoverViewModel:DiscoverViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, parent: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,14 +29,15 @@ class DiscoverFragment : Fragment() {
         // Inflate the layout for this fragment
         val binding = FragmentDiscoverBinding.inflate(inflater, parent, false)
         binding.lifecycleOwner = viewLifecycleOwner
-        val discoverViewModel = ViewModelProvider(this).get(DiscoverViewModel::class.java)
+        discoverViewModel = ViewModelProvider(this).get(DiscoverViewModel::class.java)
         binding.discoverViewModel = discoverViewModel
         val navController = findNavController()
         discoverViewModel.onNavigateToSeeAllClicked.observe(viewLifecycleOwner) {
             it?.let {
-                navController.navigate(ExploreFragmentDirections.actionExploreFragmentHomeToAllTripsFragment(it.toTypedArray()))
-                discoverViewModel.onDoneNavigationToSeeAll()
-
+                discoverViewModel.getSavedTripsLis()?.let{ savedTripsList ->
+                    navController.navigate(ExploreFragmentDirections.actionExploreFragmentHomeToAllTripsFragment(it.toTypedArray(),savedTripsList.toIntArray()))
+                    discoverViewModel.onDoneNavigationToSeeAll()
+                }
             }
         }
 
@@ -54,18 +57,24 @@ class DiscoverFragment : Fragment() {
             }
         }
         discoverViewModel.onNavigateToTripDetailsData.observe(viewLifecycleOwner) {
-            it?.let {
-                val openTripDetailsIntent = Intent(activity, TripHolderActivity::class.java)
-                openTripDetailsIntent.putExtra(Keys.TRIP_DETAILS_KEY, it)
-                openTripDetailsIntent.putExtra(Keys.IS_SAVED_KEY, true)
-                startActivity(openTripDetailsIntent)
+            it?.let { trip ->
+                discoverViewModel.getTripSaveState()?.let { isSaved ->
+                    val openTripDetailsIntent = Intent(activity, TripHolderActivity::class.java)
+                    openTripDetailsIntent.putExtra(Keys.TRIP_DETAILS_KEY, trip)
+                    openTripDetailsIntent.putExtra(Keys.IS_SAVED_KEY, isSaved)
+                    startActivity(openTripDetailsIntent)
 
-                discoverViewModel.onDoneNavigationToTripDetails()
+                    discoverViewModel.onDoneNavigationToTripDetails()
+                }
             }
         }
 
         return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        discoverViewModel.getAllTrips()
+    }
 
 }
