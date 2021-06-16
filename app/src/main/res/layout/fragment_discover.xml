@@ -11,193 +11,183 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-
-        <TextView
-            android:id="@+id/Featured"
-            style="@style/trip_name_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/featured"
-            android:textColor="@color/title_text_custom_color"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/num_of_trips_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="@{String.valueOf(discoverViewModel.allTripsList.size())}"
-            tools:text="@string/num_of_trips"
-            app:layout_constraintStart_toStartOf="@+id/Featured"
-            app:layout_constraintTop_toBottomOf="@+id/Featured" />
-
-        <TextView
-            android:id="@+id/trips"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:text="@string/trips"
-            app:layout_constraintBaseline_toBaselineOf="@+id/num_of_trips_text"
-            app:layout_constraintStart_toEndOf="@+id/num_of_trips_text" />
-
-        <Button
-            android:id="@+id/discover_see_all_button"
-            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:onClick="@{()->discoverViewModel.onNavigateToSeeAll()}"
-            android:paddingStart="10dp"
-            android:paddingEnd="5dp"
-            android:text="@string/see_all"
-            android:textColor="@color/subtitle_text_custom_color"
-            app:drawableRightCompat="@drawable/ic_baseline_keyboard_arrow_right_black_24"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/Featured"
-            app:layout_constraintTop_toTopOf="@+id/Featured" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/fourRandomList_rv_discover_home"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="24dp"
-            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-            app:layout_constrainedHeight="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_default="percent"
-            app:layout_constraintHeight_percent="0.7"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/trips"
-            app:layout_constraintVertical_bias="0.0"
-            app:listFeaturedTrips="@{discoverViewModel.fourRandomTrips}"
-            app:spanCount="2"
-            app:visibilityAgainstStatus="@{discoverViewModel.loadingStatus}"
-            tools:itemCount="4"
-            tools:listitem="@layout/list_item_four_random">
-
-        </androidx.recyclerview.widget.RecyclerView>
-
-        <ProgressBar
-            android:id="@+id/progressBar_discover_home"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="@{discoverViewModel.loadingStatus}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/fourRandomList_rv_discover_home"
-            app:layout_constraintStart_toStartOf="@+id/fourRandomList_rv_discover_home"
-            app:layout_constraintTop_toTopOf="@+id/fourRandomList_rv_discover_home"
-            app:layout_constraintVertical_bias="0.33"
-            tools:visibility="visible" />
-
-        <ImageView
-            android:id="@+id/error_imgView_discover_home"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:contentDescription="@string/error_img_desc"
-            android:scaleType="centerCrop"
-            android:visibility="@{discoverViewModel.errorStatus}"
-            app:layout_constraintBottom_toBottomOf="@+id/fourRandomList_rv_discover_home"
-            app:layout_constraintEnd_toEndOf="@+id/fourRandomList_rv_discover_home"
-            app:layout_constraintStart_toStartOf="@+id/fourRandomList_rv_discover_home"
-            app:layout_constraintTop_toTopOf="@+id/fourRandomList_rv_discover_home"
-            app:layout_constraintVertical_bias="0.4"
-            app:srcCompat="@drawable/error_occured"
-            tools:visibility="visible" />
-
-        <TextView
-            android:id="@+id/error_txtView_discover_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/error_img_desc"
-            android:visibility="@{discoverViewModel.errorStatus}"
-            app:layout_constraintEnd_toEndOf="@+id/fourRandomList_rv_discover_home"
-            app:layout_constraintStart_toStartOf="@+id/fourRandomList_rv_discover_home"
-            app:layout_constraintTop_toBottomOf="@+id/error_imgView_discover_home"
-            tools:visibility="visible" />
-
-        <ImageView
-            android:id="@+id/no_data_imgView_discover_home"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:contentDescription="@string/no_chats_img_desc"
-            android:visibility="@{discoverViewModel.emptyListStatus}"
-            app:layout_constraintBottom_toBottomOf="@+id/fourRandomList_rv_discover_home"
-            app:layout_constraintEnd_toEndOf="@+id/fourRandomList_rv_discover_home"
-            app:layout_constraintStart_toStartOf="@+id/fourRandomList_rv_discover_home"
-            app:layout_constraintTop_toTopOf="@+id/fourRandomList_rv_discover_home"
-            app:layout_constraintVertical_bias="0.4"
-            app:srcCompat="@drawable/nodata"
-            tools:visibility="visible" />
-
-        <TextView
-            android:id="@+id/no_data_txtView_discover_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/no_trips_text"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:visibility="@{discoverViewModel.emptyListStatus}"
-            app:layout_constraintEnd_toEndOf="@+id/fourRandomList_rv_discover_home"
-            app:layout_constraintStart_toStartOf="@+id/fourRandomList_rv_discover_home"
-            app:layout_constraintTop_toBottomOf="@+id/no_data_imgView_discover_home"
-            tools:visibility="visible" />
-
-        <View
-            android:id="@+id/divider6"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="24dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fourRandomList_rv_discover_home"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/places_to_visit"
-            style="@style/trip_name_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/places_to_visit"
-            android:textColor="@color/title_text_custom_color"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider6" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/places_to_visit_rv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/places_to_visit"
-            tools:itemCount="4"
-            tools:listitem="@layout/list_item_travelling_rv" />
+            android:layout_height="wrap_content">
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/Featured"
+                style="@style/trip_name_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/featured"
+                android:textColor="@color/title_text_custom_color"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/num_of_trips_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@{String.valueOf(discoverViewModel.allTripsList.size())}"
+                app:layout_constraintStart_toStartOf="@+id/Featured"
+                app:layout_constraintTop_toBottomOf="@+id/Featured"
+                tools:text="@string/num_of_trips" />
+
+            <TextView
+                android:id="@+id/trips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="@string/trips"
+                app:layout_constraintBaseline_toBaselineOf="@+id/num_of_trips_text"
+                app:layout_constraintStart_toEndOf="@+id/num_of_trips_text" />
+
+            <Button
+                android:id="@+id/discover_see_all_button"
+                style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:onClick="@{()->discoverViewModel.onNavigateToSeeAll()}"
+                android:paddingStart="10dp"
+                android:paddingEnd="5dp"
+                android:text="@string/see_all"
+                android:textColor="@color/subtitle_text_custom_color"
+                app:drawableRightCompat="@drawable/ic_baseline_keyboard_arrow_right_black_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/Featured"
+                app:layout_constraintTop_toTopOf="@+id/Featured" />
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_refresh_discover_home"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_default="percent"
+                app:layout_constraintHeight_percent="0.43"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Featured"
+                app:refreshingIndicatorVisibility="@{discoverViewModel.loadingStatus}">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/fourRandomList_rv_discover_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="24dp"
+                    app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                    app:listFeaturedTrips="@{discoverViewModel.fourRandomTrips}"
+                    app:spanCount="2"
+                    app:visibilityAgainstStatus="@{discoverViewModel.loadingStatus}"
+                    tools:itemCount="4"
+                    tools:listitem="@layout/list_item_four_random">
+
+                </androidx.recyclerview.widget.RecyclerView>
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+            <ImageView
+                android:id="@+id/error_imgView_discover_home"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/error_img_desc"
+                android:scaleType="centerCrop"
+                android:visibility="@{discoverViewModel.errorStatus}"
+                app:layout_constraintBottom_toBottomOf="@+id/swipe_refresh_discover_home"
+                app:layout_constraintEnd_toEndOf="@+id/swipe_refresh_discover_home"
+                app:layout_constraintStart_toStartOf="@+id/swipe_refresh_discover_home"
+                app:layout_constraintTop_toTopOf="@+id/swipe_refresh_discover_home"
+                app:layout_constraintVertical_bias="0.4"
+                app:srcCompat="@drawable/error_occured"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/error_txtView_discover_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/error_img_desc"
+                android:visibility="@{discoverViewModel.errorStatus}"
+                app:layout_constraintEnd_toEndOf="@+id/swipe_refresh_discover_home"
+                app:layout_constraintStart_toStartOf="@+id/swipe_refresh_discover_home"
+                app:layout_constraintTop_toBottomOf="@+id/error_imgView_discover_home"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/no_data_imgView_discover_home"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/no_chats_img_desc"
+                android:visibility="@{discoverViewModel.emptyListStatus}"
+                app:layout_constraintBottom_toBottomOf="@+id/swipe_refresh_discover_home"
+                app:layout_constraintEnd_toEndOf="@+id/swipe_refresh_discover_home"
+                app:layout_constraintStart_toStartOf="@+id/swipe_refresh_discover_home"
+                app:layout_constraintTop_toTopOf="@+id/swipe_refresh_discover_home"
+                app:layout_constraintVertical_bias="0.4"
+                app:srcCompat="@drawable/nodata"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/no_data_txtView_discover_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/no_trips_text"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:visibility="@{discoverViewModel.emptyListStatus}"
+                app:layout_constraintEnd_toEndOf="@+id/swipe_refresh_discover_home"
+                app:layout_constraintStart_toStartOf="@+id/swipe_refresh_discover_home"
+                app:layout_constraintTop_toBottomOf="@+id/no_data_imgView_discover_home"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/places_to_visit"
+                style="@style/trip_name_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/places_to_visit"
+                android:textColor="@color/title_text_custom_color"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/swipe_refresh_discover_home"
+                app:visibilityAgainstStatus="@{discoverViewModel.loadingStatus}" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/places_to_visit_rv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_default="percent"
+                app:layout_constraintHeight_percent="0.45"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/places_to_visit"
+                tools:itemCount="4"
+                tools:listitem="@layout/list_item_travelling_rv" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </layout>
 

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="savedTripViewModel"
             type="com.iti.example.findpe2.home.saved.viewModels.SavedTripsViewModel" />
@@ -38,38 +39,38 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/bookings_title_txtView_saved" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/bookingsList_rcyView_saved"
-            android:layout_width="match_parent"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_saved_home"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
-            android:clipToPadding="true"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_marginBottom="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bookings_title_txtView_saved"
-            app:listSavedTrips="@{savedTripViewModel.savedTripsList}"
-            app:visibilityAgainstStatus="@{savedTripViewModel.loadingStatus}"
-            tools:itemCount="3"
-            tools:listitem="@layout/list_item_saved_trip">
+            app:refreshingIndicatorVisibility="@{savedTripViewModel.loadingStatus}">
 
-        </androidx.recyclerview.widget.RecyclerView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/bookingsList_rcyView_saved"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="50dp"
+                android:clipToPadding="true"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:listSavedTrips="@{savedTripViewModel.savedTripsList}"
+                app:visibilityAgainstStatus="@{savedTripViewModel.loadingStatus}"
+                tools:itemCount="3"
+                tools:listitem="@layout/list_item_saved_trip">
 
-        <ProgressBar
-            android:id="@+id/progressBar_saved_home"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="@{savedTripViewModel.loadingStatus}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible" />
+            </androidx.recyclerview.widget.RecyclerView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
         <ImageView
             android:id="@+id/no_data_imgView_saved_home"
@@ -106,7 +107,7 @@
             android:contentDescription="@string/error_img_desc"
             android:scaleType="centerCrop"
             android:visibility="@{savedTripViewModel.errorStatus}"
-            app:layout_constraintBottom_toBottomOf="@+id/bookingsList_rcyView_saved"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

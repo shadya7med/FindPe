@@ -40,14 +40,20 @@ class SavedFragment : Fragment() {
         binding.bookingsListRcyViewSaved.adapter =
             SavedTripsAdapter(SavedTripsAdapter.SavedTripsClickListener {
                 savedTripsViewModel.onNavigateToTripDetails(it)
+            }, SavedTripsAdapter.SavedTripsClickListener {
+                savedTripsViewModel.onIsLikedClicked(it)
             })
-        /*savedTripsViewModel.savedTripsList.observe(viewLifecycleOwner){
-            it?.let{
-                //stop loading
-                savedTripsAdapter.submitList(it)
-            }
 
-        }*/
+        binding.swipeRefreshSavedHome.setOnRefreshListener {
+            savedTripsViewModel.getAllSavedTrips()
+        }
+
+        savedTripsViewModel.isLiked.observe(viewLifecycleOwner){
+            it?.let{
+                binding.bookingsListRcyViewSaved.adapter?.notifyDataSetChanged()
+            }
+        }
+
         savedTripsViewModel.errorMsg.observe(viewLifecycleOwner) {
             it?.let {
                 //stop loadning

@@ -304,3 +304,12 @@ fun SwipeRefreshLayout.setRefreshIndicatorVisibility(loadingState:Int?){
     }
 
 }
+@BindingAdapter("tripLikeIcon")
+fun ImageView.setTripLikeIcon(isLiked:Boolean?){
+    isLiked?.let{
+        setImageResource(when(it){
+            true -> R.drawable.filled_heart
+            false -> R.drawable.heart
+        })
+    }
+}

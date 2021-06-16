@@ -45,6 +45,10 @@ class DiscoverFragment : Fragment() {
             discoverViewModel.onNavigateToTripDetails(it)
         })
 
+        binding.swipeRefreshDiscoverHome.setOnRefreshListener {
+            discoverViewModel.getAllTrips()
+        }
+
         discoverViewModel.errorMsg.observe(viewLifecycleOwner) {
             it?.let {
                 //stop loadning

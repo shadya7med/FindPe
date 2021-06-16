@@ -2,7 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="viewModel"
             type="com.iti.example.findpe2.home.travelling.viewModels.TravellingViewModel" />
@@ -32,10 +34,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="@{String.valueOf(viewModel.numberOfTrips)}"
-            app:visibilityAgainstStatus="@{viewModel.status}"
             android:textColor="@color/subtitle_text_custom_color"
             app:layout_constraintStart_toStartOf="@+id/Featured"
-            app:layout_constraintTop_toBottomOf="@+id/Featured" />
+            app:layout_constraintTop_toBottomOf="@+id/Featured"
+            app:visibilityAgainstStatus="@{viewModel.status}" />
 
         <TextView
             android:id="@+id/trips"
@@ -43,10 +45,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:text="@string/trips"
-            app:visibilityAgainstStatus="@{viewModel.status}"
             android:textColor="@color/subtitle_text_custom_color"
             app:layout_constraintBaseline_toBaselineOf="@+id/num_of_trips_text"
-            app:layout_constraintStart_toEndOf="@+id/num_of_trips_text" />
+            app:layout_constraintStart_toEndOf="@+id/num_of_trips_text"
+            app:visibilityAgainstStatus="@{viewModel.status}" />
 
         <Button
             android:id="@+id/filter_btn_traveling_home"
@@ -56,57 +58,54 @@
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             android:text="@string/filter"
+            android:textColor="@color/subtitle_text_custom_color"
             app:drawableLeftCompat="@drawable/ic_baseline_add_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/Featured"
             app:layout_constraintTop_toTopOf="@+id/Featured"
-            android:textColor="@color/subtitle_text_custom_color"
             app:rippleColor="@color/title_text_custom_color" />
 
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/travelling_rv"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_travelling_home"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="50dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/num_of_trips_text"
-            app:listTrips="@{viewModel.tripList}"
-            tools:listitem="@layout/list_item_travelling_rv" />
+            app:layout_constraintTop_toBottomOf="@+id/Featured"
+            app:refreshingIndicatorVisibility="@{viewModel.status}">
 
-        <ProgressBar
-            android:id="@+id/travelling_progress_bar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
-            android:visibility="@{viewModel.status}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/travelling_rv" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/travelling_rv"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="50dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:listTrips="@{viewModel.tripList}"
+                app:visibilityAgainstStatus="@{viewModel.status}"
+                tools:listitem="@layout/list_item_travelling_rv" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
         <TextView
             android:id="@+id/error_msg_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
-            android:layout_marginEnd="35dp"
-            android:layout_marginBottom="50dp"
-            android:text="@{viewModel.tripsListErrorMsg}"
             android:textAlignment="center"
             android:visibility="@{viewModel.errorMsgStatus}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/travelling_rv" />
+            app:layout_constraintBottom_toBottomOf="@+id/swipe_refresh_discover_home"
+            app:layout_constraintEnd_toEndOf="@+id/swipe_refresh_discover_home"
+            app:layout_constraintStart_toStartOf="@+id/swipe_refresh_discover_home"
+            app:layout_constraintTop_toTopOf="@+id/swipe_refresh_discover_home"
+            tools:text="@string/error_img_desc" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

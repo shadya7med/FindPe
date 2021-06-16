@@ -30,7 +30,8 @@ data class Trip(
     val company: String?,
     val hotel: String?,
     val timelineSlots: TimelineSlot?,
-    val tripCategory: String?
+    val tripCategory: String?,
+    var isLiked:Boolean = false
 ) : Parcelable
 
 //"tripID": 1,

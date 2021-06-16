@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.iti.example.findpe2.databinding.ListItemSavedTripBinding
 import com.iti.example.findpe2.pojos.Trip
 
-class SavedTripsAdapter(private val clickListener: SavedTripsClickListener) :
+class SavedTripsAdapter(private val clickListener: SavedTripsClickListener,private val tripLikeClickListener: SavedTripsClickListener) :
     ListAdapter<Trip, SavedTripsAdapter.SavedTripViewHolder>(SavedTripDiffCallbacks()) {
 
 
@@ -16,7 +16,7 @@ class SavedTripsAdapter(private val clickListener: SavedTripsClickListener) :
         SavedTripViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: SavedTripViewHolder, position: Int) {
-        holder.bind(getItem(position),clickListener)
+        holder.bind(getItem(position),clickListener,tripLikeClickListener)
     }
 
 
@@ -29,9 +29,10 @@ class SavedTripsAdapter(private val clickListener: SavedTripsClickListener) :
                 return SavedTripViewHolder(binding)
             }
         }
-        fun bind(currentTrip:Trip,clickListener: SavedTripsClickListener){
+        fun bind(currentTrip:Trip,clickListener: SavedTripsClickListener,tripLikeClickListener: SavedTripsClickListener){
             binding.trip = currentTrip
             binding.clickListener = clickListener
+            binding.tripLikeClickListener = tripLikeClickListener
             binding.executePendingBindings()
         }
 
@@ -39,7 +40,7 @@ class SavedTripsAdapter(private val clickListener: SavedTripsClickListener) :
 
     class SavedTripDiffCallbacks : DiffUtil.ItemCallback<Trip>() {
         override fun areItemsTheSame(oldItem: Trip, newItem: Trip) = oldItem.tripID == newItem.tripID
-        override fun areContentsTheSame(oldItem: Trip, newItem: Trip) = oldItem == newItem
+        override fun areContentsTheSame(oldItem: Trip, newItem: Trip) = oldItem == newItem && oldItem.isLiked == newItem.isLiked
     }
 
     class SavedTripsClickListener(private val clickListener: (trip:Trip)->Unit){

@@ -48,11 +48,12 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
-            app:refreshingIndicatorVisibility="@{allTripViewModel.loadingStatus}"
-            app:layout_constraintBottom_toTopOf="@+id/no_data_txtView_allTrips_home"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_allTrips_home">
+            app:layout_constraintTop_toBottomOf="@+id/title_allTrips_home"
+            app:refreshingIndicatorVisibility="@{allTripViewModel.loadingStatus}">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/tripsList_rcyView_allTrips_home"
@@ -91,7 +92,7 @@
             android:visibility="@{allTripViewModel.emptyListStatus}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/no_data_imgView_allTrips_home"
             tools:visibility="visible" />
 
         <ImageView

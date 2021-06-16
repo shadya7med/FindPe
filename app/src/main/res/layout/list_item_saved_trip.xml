@@ -4,11 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="trip"
             type="com.iti.example.findpe2.pojos.Trip" />
+
         <variable
             name="clickListener"
+            type="com.iti.example.findpe2.home.saved.views.SavedTripsAdapter.SavedTripsClickListener" />
+
+        <variable
+            name="tripLikeClickListener"
             type="com.iti.example.findpe2.home.saved.views.SavedTripsAdapter.SavedTripsClickListener" />
     </data>
 
@@ -47,10 +53,10 @@
             android:layout_marginStart="25dp"
             android:layout_marginTop="140dp"
             android:text="@{trip.destination}"
-            tools:text="@string/trip_destination_name_placeholder"
             android:textSize="26sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/trip_destination_name_placeholder" />
 
         <TextView
             android:id="@+id/tripPrice_txtView_listItem_saved"
@@ -58,10 +64,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{@string/price_format(trip.priceBefore)}"
-            tools:text="@string/trip_price_placeholder"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/tripName_txtView_listItem_saved"
-            app:layout_constraintTop_toBottomOf="@+id/tripName_txtView_listItem_saved" />
+            app:layout_constraintTop_toBottomOf="@+id/tripName_txtView_listItem_saved"
+            tools:text="@string/trip_price_placeholder" />
 
         <ImageView
             android:id="@+id/menu_listItem_saved"
@@ -106,10 +112,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="15dp"
-            android:text="@string/temperature_placeholder"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/weather_txtView_listItem_saved"
-            app:layout_constraintStart_toEndOf="@+id/weather_imgView_listItem_saved" />
+            app:layout_constraintStart_toEndOf="@+id/weather_imgView_listItem_saved"
+            tools:text="@string/temperature_placeholder" />
 
         <TextView
             android:id="@+id/weather_txtView_listItem_saved"
@@ -122,15 +128,17 @@
 
         <ImageView
             android:id="@+id/isLiked_imgView_listItem_saved"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
             android:contentDescription="@string/love_trip_desc"
+            android:onClick="@{() -> tripLikeClickListener.onClick(trip)}"
             app:layout_constraintEnd_toEndOf="@+id/divider10"
-            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintHorizontal_bias="0.75"
             app:layout_constraintStart_toStartOf="@+id/divider10"
             app:layout_constraintTop_toTopOf="@+id/divider10"
-            app:srcCompat="@drawable/heart" />
+            app:tripLikeIcon="@{trip.isLiked}"
+            tools:srcCompat="@drawable/heart" />
 
         <TextView
             android:id="@+id/numOfLikes_txtView_listItem_saved"
@@ -138,16 +146,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:text="@string/num_of_likes_placeholder"
-            android:textSize="12sp"
+            android:text="@{String.valueOf(trip.noOfLikes)}"
+            android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/isLiked_imgView_listItem_saved"
-            app:layout_constraintTop_toBottomOf="@+id/divider10" />
+            app:layout_constraintTop_toBottomOf="@+id/divider10"
+            tools:text="@string/num_of_likes_placeholder" />
 
         <ImageView
             android:id="@+id/openComments_imgView_listItem_saved"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/comment_img_desc"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/divider10"
             app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toEndOf="@+id/numOfLikes_txtView_listItem_saved"
@@ -161,6 +171,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:text="@string/num_of_comments_placeholder"
+            android:visibility="gone"
             app:layout_constraintStart_toEndOf="@+id/openComments_imgView_listItem_saved"
             app:layout_constraintTop_toTopOf="@+id/numOfLikes_txtView_listItem_saved" />
 

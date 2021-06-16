@@ -1,5 +1,6 @@
 package com.iti.example.findpe2.home.saved.viewModels
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -18,8 +19,6 @@ class SavedTripsViewModel : ViewModel() {
     private val _savedTripsList = MutableLiveData<List<Trip>?>()
     val savedTripsList: LiveData<List<Trip>?>
         get() = _savedTripsList
-
-    //private var savedTripsListIDs: List<Int>? = null
 
     private val _errorMsg = MutableLiveData<String?>()
     val errorMsg: LiveData<String?>
@@ -41,18 +40,16 @@ class SavedTripsViewModel : ViewModel() {
     val onNavigateToTripDetailsData: LiveData<Trip?>
         get() = _onNavigateToTripDetailsData
 
-    //private var isSaved: Boolean? = false
+    private val _isLiked = MutableLiveData<Boolean?>()
+    val isLiked: LiveData<Boolean?>
+        get() = _isLiked
 
     init {
         _emptyListStatus.value = View.GONE
         _errorStatus.value = View.GONE
         _loadingStatus.value = View.GONE
-        //getAllSavedTrips
-        //called in onStart otherwise to refresh also when returning form trip details
-        //getAllSavedTrips()
     }
 
-    //fun getTripSaveState() = isSaved
 
     fun getFilteredTrips(result: MutableMap<String, Any>) {
         val priceList = listOf<Double>(
@@ -74,10 +71,16 @@ class SavedTripsViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 Firebase.auth.currentUser?.let { user ->
-                    _savedTripsList.value = TripApi.getAllSavedTripsForUser(user.uid)
-                    /*savedTripsListIDs = _savedTripsList.value?.map { trip ->
-                        trip.tripID
-                    }*/
+                    val savedTrips = TripApi.getAllSavedTripsForUser(user.uid)
+                    val likedTripsListIDs =
+                        TripApi.getAllLikedTripsForUser(user.uid)?.map { likedTrip ->
+                            likedTrip.tripID
+                        }
+                    //set from the combined list
+                    _savedTripsList.value = savedTrips.map {
+                        it.isLiked = likedTripsListIDs.indexOf(it.tripID) != -1
+                        it
+                    }
                     _loadingStatus.value = View.GONE
                     _errorStatus.value = View.GONE
                     _savedTripsList.value?.let {
@@ -108,8 +111,46 @@ class SavedTripsViewModel : ViewModel() {
         }
     }
 
+    fun onIsLikedClicked(trip: Trip) {
+        viewModelScope.launch {
+            Firebase.auth.currentUser?.let { user ->
+                try {
+                    if (trip.isLiked) {//is already liked -> unlike
+                        TripApi.unLikeTripForUser(user.uid, trip.tripID)
+                        val index = _savedTripsList.value?.indexOf(trip)
+                        index?.let { index ->
+                            if (index != -1) {
+                                val list = _savedTripsList.value
+                                list?.let { list ->
+                                    list[index].isLiked = false
+                                    _savedTripsList.value = list
+                                    _isLiked.value = false
+                                }
+                            }
+                        }
+                    } else {
+                        TripApi.likeTripForUser(user.uid, trip.tripID)
+                        val index = _savedTripsList.value?.indexOf(trip)
+                        index?.let {
+                            if (it != -1) {
+                                val list = _savedTripsList.value
+                                list?.let { list ->
+                                    list[index].isLiked = true
+                                    _savedTripsList.value = list
+                                    _isLiked.value = true
+                                }
+                            }
+                        }
+                    }
+
+                } catch (e: Exception) {
+                    Log.i("SavedTripsVM", e.localizedMessage)
+                }
+            }
+        }
+    }
+
     fun onNavigateToTripDetails(trip: Trip) {
-        //isSaved = savedTripsListIDs?.contains(trip.tripID)
         _onNavigateToTripDetailsData.value = trip
     }
 

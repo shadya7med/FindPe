@@ -18,9 +18,9 @@ import com.iti.example.findpe2.tripCheckout.TripHolderActivity
 
 class TravelingFragment : Fragment() {
 
-    lateinit var binder: FragmentTravelingBinding
+    lateinit var binding: FragmentTravelingBinding
     lateinit var navController: NavController
-    private lateinit var viewModel:TravellingViewModel
+    private lateinit var viewModel: TravellingViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,25 +34,29 @@ class TravelingFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        binder = FragmentTravelingBinding.inflate(inflater)
+        binding = FragmentTravelingBinding.inflate(inflater)
         viewModel = ViewModelProvider(this).get(TravellingViewModel::class.java)
 
-        binder.lifecycleOwner = this
+        binding.lifecycleOwner = this
 
-        binder.viewModel = viewModel
+        binding.viewModel = viewModel
 
 
-        binder.travellingRv.adapter = TravellingTripAdapter(OnClickListener {
+        binding.travellingRv.adapter = TravellingTripAdapter(OnClickListener {
             viewModel.navigateToTripDetails(it)
         })
 
+        binding.swipeRefreshTravellingHome.setOnRefreshListener {
+            viewModel.getTrips()
+        }
+
         viewModel.selectedTrip.observe(viewLifecycleOwner, Observer {
             it?.let { trip ->
-                viewModel.getTripSaveState()?.let{ isSaved ->
+                viewModel.getTripSaveState()?.let { isSaved ->
                     val openTripHolderIntent = Intent(activity, TripHolderActivity::class.java)
                     //mimic trip id with 5
                     openTripHolderIntent.putExtra(Keys.TRIP_DETAILS_KEY, trip)
-                    openTripHolderIntent.putExtra(Keys.IS_SAVED_KEY,isSaved)
+                    openTripHolderIntent.putExtra(Keys.IS_SAVED_KEY, isSaved)
                     startActivity(openTripHolderIntent)
                     viewModel.navigateToTripDetailsComplete()
                 }
@@ -61,14 +65,14 @@ class TravelingFragment : Fragment() {
 
 
 
-        return binder.root
+        return binding.root
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = view.findNavController()
-        binder.filterBtnTravelingHome.setOnClickListener {
+        binding.filterBtnTravelingHome.setOnClickListener {
             navController.navigate(TravelingFragmentDirections.actionTravelingFragmentHomeToFilterFragment())
         }
         // saved State handle is  a map for returning date between fragments
