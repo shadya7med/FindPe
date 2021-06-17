@@ -1,14 +1,19 @@
 package com.iti.example.findpe2.home.discover.viewsModels
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.iti.example.findpe2.models.PlacesApiModel
 import com.iti.example.findpe2.models.TripApi
+import com.iti.example.findpe2.pojos.Feature
+import com.iti.example.findpe2.pojos.PlaceToVisit
 import com.iti.example.findpe2.pojos.Trip
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
+const val TAG = "DiscoverViewModel"
 class DiscoverViewModel : ViewModel() {
 
     private val _allTripsList = MutableLiveData<List<Trip>?>()
@@ -43,6 +48,22 @@ class DiscoverViewModel : ViewModel() {
     val fourRandomTrips: LiveData<List<Trip>?>
         get() = _fourRandomTrips
 
+    private val _features = MutableLiveData<List<Feature>?>()
+
+    private val _placesList = MutableLiveData<List<PlaceToVisit>?>()
+    val placesList: LiveData<List<PlaceToVisit>?>
+        get() = _placesList
+
+//    val places = Transformations.map(_features){
+//        it?.let {
+//            viewModelScope.launch {
+//
+//                Log.i(TAG, "getPlaces: $places")
+//            }
+//        }
+//        places
+//    }
+
     private val _errorMsg = MutableLiveData<String?>()
     val errorMsg: LiveData<String?>
         get() = _errorMsg
@@ -74,6 +95,28 @@ class DiscoverViewModel : ViewModel() {
         _errorStatus.value = View.GONE
         _loadingStatus.value = View.GONE
         //getAllTrips()
+        getPlaces()
+    }
+
+    private fun getPlaces() {
+        val places = mutableListOf<PlaceToVisit>()
+        viewModelScope.launch {
+            try {
+                val result = PlacesApiModel.getAllPlaces()
+                _features.value = result.features
+                for (feature in result.features) {
+                    try {
+                        val place = PlacesApiModel.getPlace(feature.properties.xid)
+                        places.add(place)
+                    } catch (t: Throwable) {
+                        Log.i(TAG, "getPlaces: ${t.localizedMessage}")
+                    }
+                }
+                _placesList.value = places
+            }catch (t: Throwable){
+                Log.i(TAG, "getPlaces: ${t.localizedMessage}")
+            }
+        }
     }
 
     fun getTripSaveState() = isSaved

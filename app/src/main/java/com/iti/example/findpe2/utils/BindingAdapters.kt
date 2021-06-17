@@ -20,6 +20,7 @@ import com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatFragment
 import com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatRoomsListAdapter
 import com.iti.example.findpe2.home.companionsList.views.CompanionListAdapter
 import com.iti.example.findpe2.home.discover.views.DiscoverFeaturedAdapter
+import com.iti.example.findpe2.home.discover.views.DiscoverPlacesAdapter
 import com.iti.example.findpe2.home.profile.views.UserGalleryAdapter
 import com.iti.example.findpe2.home.profile.views.UserInfoAdapter
 import com.iti.example.findpe2.home.saved.views.SavedTripsAdapter
@@ -311,5 +312,22 @@ fun ImageView.setTripLikeIcon(isLiked:Boolean?){
             true -> R.drawable.filled_heart
             false -> R.drawable.heart
         })
+    }
+}
+@BindingAdapter("listPlaces")
+fun RecyclerView.bindPlaceList(list: List<PlaceToVisit>?){
+    (this.adapter as DiscoverPlacesAdapter).submitList(list)
+}
+@BindingAdapter("bindPlaceImageUrl")
+fun ImageView.bindPlace(placeImageUrl: String?){
+    placeImageUrl?.let {
+        if(it.isNotEmpty()) {
+            Glide.with(this.context)
+                .load(it)
+                .placeholder(R.drawable.loading_animation)
+                .error(R.drawable.ic_broken_image)
+                .into(this)
+        }
+        return
     }
 }
