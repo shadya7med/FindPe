@@ -33,6 +33,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 const val TAG = "bindAdapters"
+
 @BindingAdapter("chatRoomImage")
 fun ImageView.setChatRoomImage(chatRoom: ChatRoom) {
     chatRoom.destinationUserImage?.let { userImageUrl ->
@@ -185,7 +186,7 @@ fun RecyclerView.setListTimeline(list: List<TimelineSlot>?) {
 @BindingAdapter("imageUrl")
 fun ImageView.bindImage(tripImages: List<TripImage>?) {
     tripImages?.let {
-        if(it.isNotEmpty()) {
+        if (it.isNotEmpty()) {
             val image = it[0].image.replace("\\", "//", false)
             val imageUri =
                 "http://rsaber-001-site1.ftempurl.com/$image"
@@ -276,11 +277,11 @@ fun RecyclerView.bindList(list: List<TripDuration>?) {
 
 }
 
-@BindingAdapter("feature","featuresList")
+@BindingAdapter("feature", "featuresList")
 fun Button.setFeatureFromFeatureList(feature: Int?, featuresList: List<Boolean>?) {
     this as MaterialButton
     featuresList?.let {
-        feature?.let{ feature ->
+        feature?.let { feature ->
             if (it[feature]) {
                 //true --> active feature
                 setIconTintResource(R.color.feature_selected_btn_icon)
@@ -295,33 +296,39 @@ fun Button.setFeatureFromFeatureList(feature: Int?, featuresList: List<Boolean>?
         }
     }
 }
+
 @BindingAdapter("refreshingIndicatorVisibility")
-fun SwipeRefreshLayout.setRefreshIndicatorVisibility(loadingState:Int?){
-    loadingState?.let{
-        isRefreshing = when(it){
+fun SwipeRefreshLayout.setRefreshIndicatorVisibility(loadingState: Int?) {
+    loadingState?.let {
+        isRefreshing = when (it) {
             View.VISIBLE -> true
             else -> false
         }
     }
 
 }
+
 @BindingAdapter("tripLikeIcon")
-fun ImageView.setTripLikeIcon(isLiked:Boolean?){
-    isLiked?.let{
-        setImageResource(when(it){
-            true -> R.drawable.filled_heart
-            false -> R.drawable.heart
-        })
+fun ImageView.setTripLikeIcon(isLiked: Boolean?) {
+    isLiked?.let {
+        setImageResource(
+            when (it) {
+                true -> R.drawable.filled_heart
+                false -> R.drawable.heart
+            }
+        )
     }
 }
+
 @BindingAdapter("listPlaces")
-fun RecyclerView.bindPlaceList(list: List<PlaceToVisit>?){
+fun RecyclerView.bindPlaceList(list: List<PlaceToVisit>?) {
     (this.adapter as DiscoverPlacesAdapter).submitList(list)
 }
+
 @BindingAdapter("bindPlaceImageUrl")
-fun ImageView.bindPlace(placeImageUrl: String?){
+fun ImageView.bindPlace(placeImageUrl: String?) {
     placeImageUrl?.let {
-        if(it.isNotEmpty()) {
+        if (it.isNotEmpty()) {
             Glide.with(this.context)
                 .load(it)
                 .placeholder(R.drawable.loading_animation)
@@ -330,4 +337,14 @@ fun ImageView.bindPlace(placeImageUrl: String?){
         }
         return
     }
+}
+
+@BindingAdapter("companionExpertLevel")
+fun TextView.setCompanionExpertLevel(expertLevel: ExpertLevel) {
+    text = when (expertLevel) {
+        ExpertLevel.PROFESSIONAL -> "Professional Companion"
+        ExpertLevel.Amateur -> "Amateur Companion"
+    }
+
+
 }

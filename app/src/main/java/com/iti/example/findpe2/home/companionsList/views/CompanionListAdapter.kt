@@ -39,7 +39,7 @@ class CompanionListAdapter(private val companionListClickListener: CompanionList
 
     class CompanionListDiffCallback : DiffUtil.ItemCallback<Companion>() {
         override fun areItemsTheSame(oldItem: Companion, newItem: Companion) =
-            oldItem.id == newItem.id
+            oldItem.companionID == newItem.companionID
 
         override fun areContentsTheSame(oldItem: Companion, newItem: Companion) = oldItem == newItem
     }

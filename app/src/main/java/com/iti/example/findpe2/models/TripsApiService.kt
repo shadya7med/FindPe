@@ -1,9 +1,6 @@
 package com.iti.example.findpe2.models
 
-import com.iti.example.findpe2.pojos.TimelineSlot
-import com.iti.example.findpe2.pojos.Trip
-import com.iti.example.findpe2.pojos.TripDuration
-import com.iti.example.findpe2.pojos.User
+import com.iti.example.findpe2.pojos.*
 import retrofit2.http.*
 
 //BASE URL --> http://rsaber-001-site1.ftempurl.com/api/
@@ -90,5 +87,13 @@ interface TripsApiService {
     @DELETE("UserTrip")
     suspend fun deleteTripForUser(@Query("userID")userID:String,@Query("tripID")tripID:Int)
 
+
+    //Companion
+    @GET("Companion")
+    suspend fun getAllCompanions():List<Companion>
+    @POST("Companion")
+    suspend fun addANewsCompanion(@Body companion: Companion)
+    @PUT("Companion")
+    suspend fun updateACompanion(@Body companion: Companion)
 
 }

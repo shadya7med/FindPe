@@ -30,7 +30,8 @@ class CompanionListFragment : Fragment() {
         binding.companionListViewModel = companionViewModel
 
         binding.companionListRv.adapter = CompanionListAdapter(CompanionListAdapter.CompanionListClickListener {
-            companionViewModel.onLikeClick(it)
+            //companionViewModel.onLikeClick(it)
+            //it should navigate to companion Details
         })
 
 

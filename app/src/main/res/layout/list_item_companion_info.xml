@@ -51,7 +51,7 @@
                         android:layout_height="75dp"
                         android:contentDescription="@string/companion_image_desc"
                         android:scaleType="centerCrop"
-                        app:userImage="@{companion.imageUrl}"
+                        app:userImage="@{companion.userInfo.imageUrl}"
                         tools:srcCompat="@tools:sample/avatars" />
                 </androidx.cardview.widget.CardView>
 
@@ -85,7 +85,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
-                    android:text="@{companion.name}"
+                    android:text="@{companion.userInfo.name}"
                     android:textColor="@color/title_text_custom_color"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/companionImage_cv_listItem_companionList"
@@ -110,7 +110,7 @@
                     android:layout_marginEnd="16dp"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="@{companion.expertLevel}"
+                    app:companionExpertLevel="@{companion.expertLevel}"
                     android:textColor="@color/subtitle_text_custom_color"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/registration_title"
@@ -125,12 +125,11 @@
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:singleLine="false"
-                    android:text="@{companion.bio}"
                     android:textColor="@color/subtitle_text_custom_color"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/expertLevel_txtView_listItem_companionList"
                     app:layout_constraintTop_toTopOf="@+id/registration_agreement"
-                    tools:text="@string/bio_placeholder" />
+                    android:text="@string/bio_placeholder" />
 
                 <ImageView
                     android:id="@+id/isLiked_imgView_listItem_companionList"
