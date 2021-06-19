@@ -29,12 +29,6 @@ object TripApi {
     suspend fun getTripDurations(tripId: Int) = tripsApi.getTripDurations(tripId)
     suspend fun getAllFromCities() = tripsApi.getAllFromCitiesName()
     suspend fun getAllToCities() = tripsApi.getAllToCitiesName()
-    suspend fun getFeaturedFilteredTrips(
-        prices: Array<Double>,
-        places: Array<String>,
-        features: Array<Boolean>
-    ) = tripsApi.getFeaturedFilteredTrips(prices, places, features)
-
     suspend fun getFilteredTrips(
         minPrice: Double,
         maxPrice: Double,

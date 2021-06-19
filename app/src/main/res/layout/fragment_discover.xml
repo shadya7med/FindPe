@@ -32,24 +32,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/num_of_trips_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="@{String.valueOf(discoverViewModel.allTripsList.size())}"
-                app:layout_constraintStart_toStartOf="@+id/Featured"
-                app:layout_constraintTop_toBottomOf="@+id/Featured"
-                tools:text="@string/num_of_trips" />
-
-            <TextView
-                android:id="@+id/trips"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:text="@string/trips"
-                app:layout_constraintBaseline_toBaselineOf="@+id/num_of_trips_text"
-                app:layout_constraintStart_toEndOf="@+id/num_of_trips_text" />
 
             <Button
                 android:id="@+id/discover_see_all_button"

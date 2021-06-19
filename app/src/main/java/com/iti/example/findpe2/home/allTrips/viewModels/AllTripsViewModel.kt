@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.iti.example.findpe2.constants.Keys
 import com.iti.example.findpe2.models.TripApi
 import com.iti.example.findpe2.pojos.Trip
 import kotlinx.coroutines.launch
@@ -16,6 +17,8 @@ class AllTripsViewModel : ViewModel() {
     private val _allTripsList = MutableLiveData<List<Trip>?>()
     val allTripsList: LiveData<List<Trip>?>
         get() = _allTripsList
+
+    private var allTrips: List<Trip>? = null
 
     private var savedTripsListIDs: List<Int>? = null
 
@@ -35,17 +38,27 @@ class AllTripsViewModel : ViewModel() {
     val emptyListStatus: LiveData<Int?>
         get() = _emptyListStatus
 
+    private val _onNavigateToFilter = MutableLiveData<Boolean?>()
+    val onNavigateToFilter: LiveData<Boolean?>
+        get() = _onNavigateToFilter
+
     private val _onNavigateToTripDetailsData = MutableLiveData<Trip?>()
     val selectedTrip: LiveData<Trip?>
         get() = _onNavigateToTripDetailsData
 
+    private val _isFilteredShown = MutableLiveData<Int?>()
+    val isFilteredShown: LiveData<Int?>
+        get() = _isFilteredShown
+
     private var isSaved: Boolean? = false
+
 
     init {
         _emptyListStatus.value = View.GONE
         _errorStatus.value = View.GONE
         _loadingStatus.value = View.GONE
-        //getAllTrips()
+        _isFilteredShown.value = View.GONE
+        getAllTrips()
 
     }
 
@@ -60,7 +73,8 @@ class AllTripsViewModel : ViewModel() {
         _loadingStatus.value = View.VISIBLE
         viewModelScope.launch {
             try {
-                _allTripsList.value = TripApi.getAllTrips()
+                allTrips = TripApi.getAllTrips()
+                _allTripsList.value = allTrips
                 Firebase.auth.currentUser?.let { user ->
                     savedTripsListIDs =
                         TripApi.getAllSavedTripsForUser(user.uid).map { trip ->
@@ -68,6 +82,7 @@ class AllTripsViewModel : ViewModel() {
                         }
                     _loadingStatus.value = View.GONE
                     _errorStatus.value = View.GONE
+                    _isFilteredShown.value = View.GONE
                     _allTripsList.value?.let {
                         if (it.isNullOrEmpty()) {
                             _emptyListStatus.value = View.VISIBLE
@@ -82,10 +97,54 @@ class AllTripsViewModel : ViewModel() {
                 _errorStatus.value = View.VISIBLE
                 _emptyListStatus.value = View.GONE
                 _errorMsg.value = e.localizedMessage
+                _isFilteredShown.value = View.GONE
             }
 
 
         }
+    }
+
+    fun filterTrips(filteringMap: Map<String, Any>?) {
+        filteringMap?.let { filteringMap ->
+            val fromPlace = filteringMap[Keys.FROM_PLACE_KEY] as String
+            val toPlace = filteringMap[Keys.TO_PLACE_KEY] as String
+
+            val features = filteringMap[Keys.FEATURES_STATES_KEY] as List<Boolean>
+
+            val minPrice = filteringMap[Keys.MIN_RANGE_KEY] as Double
+            val maxPrice = filteringMap[Keys.MAX_RANGE_KEY] as Double
+
+            _loadingStatus.value = View.VISIBLE
+            viewModelScope.launch {
+                try {
+                    //still not working properly
+                    _allTripsList.value = TripApi.getFilteredTrips(
+                        minPrice, maxPrice, fromPlace, toPlace,
+                        features[0], features[1], features[2], features[3], features[4],
+                        false
+                    )
+                    _isFilteredShown.value = View.VISIBLE
+                    _loadingStatus.value = View.GONE
+                    _errorStatus.value = View.GONE
+                } catch (e: Exception) {
+                    _errorStatus.value = View.VISIBLE
+                    _loadingStatus.value = View.GONE
+                    _errorMsg.value = e.localizedMessage
+                    _allTripsList.value = allTrips
+                    _isFilteredShown.value = View.GONE
+                }
+
+            }
+
+        }
+    }
+
+    fun onNavigateToFilter() {
+        _onNavigateToFilter.value = true
+    }
+
+    fun onDoneNavigationToFilter() {
+        _onNavigateToFilter.value = null
     }
 
     fun onNavigateToTripDetails(trip: Trip) {

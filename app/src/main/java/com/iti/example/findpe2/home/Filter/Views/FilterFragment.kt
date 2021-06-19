@@ -117,7 +117,7 @@ class FilterFragment : Fragment() {
                     it
                 )
                 //pop current fragment and destroy it
-                navController.popBackStack()
+                navController.navigateUp()
                 filterViewModel.onDoneNavigatingUpFromFilter()
             }
         }

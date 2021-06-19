@@ -2,13 +2,11 @@ package com.iti.example.findpe2.home.saved.views
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.iti.example.findpe2.constants.Keys
 import com.iti.example.findpe2.databinding.FragmentSavedBinding
@@ -75,28 +73,8 @@ class SavedFragment : Fragment() {
         }
 
 
-        val navController = findNavController()
-        //it can also be encapsulated in ViewModel to hide the logic happens with the navigation
-        binding.filterBtnSavedHome.setOnClickListener {
-            navController.navigate(SavedFragmentDirections.actionSavedFragmentHomeToFilterFragment())
-        }
-
-        // saved State handle is  a map for returning date between fragments
-        navController.currentBackStackEntry?.savedStateHandle?.getLiveData<MutableMap<String, Any>>(
-            Keys.FULL_FILTER_MAP_KEY
-        )?.observe(
-            viewLifecycleOwner
-        ) { result ->
-            // Do something with the result.
-            //savedTripsViewModel.getFilteredTrips(result)
-            Log.i("FiSav", "${result[Keys.MIN_RANGE_KEY] as Double}")
-        }
         return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
-        //to refresh the UI when coming back from Trip details
-        savedTripsViewModel.getAllSavedTrips()
-    }
+
 }

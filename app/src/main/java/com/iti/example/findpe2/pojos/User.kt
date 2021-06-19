@@ -4,10 +4,10 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-enum class AccountLevel {
-    BRONZE,
-    SILVER,
-    GOLD
+enum class AccountLevel(val value:String) {
+    BRONZE("bronze"),
+    SILVER("Silver"),
+    GOLD("gold")
 }
 
 @Parcelize

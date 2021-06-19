@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.iti.example.findpe2.constants.Keys
 import com.iti.example.findpe2.models.TripApi
 import com.iti.example.findpe2.pojos.Trip
 import kotlinx.coroutines.launch
@@ -48,23 +47,10 @@ class SavedTripsViewModel : ViewModel() {
         _emptyListStatus.value = View.GONE
         _errorStatus.value = View.GONE
         _loadingStatus.value = View.GONE
+        getAllSavedTrips()
     }
 
 
-    fun getFilteredTrips(result: MutableMap<String, Any>) {
-        val priceList = listOf<Double>(
-            result[Keys.MIN_RANGE_KEY] as Double,
-            result[Keys.MAX_RANGE_KEY] as Double
-        )
-        val placesList = listOf<String>(
-            result[Keys.FROM_PLACE_KEY] as String,
-            result[Keys.TO_PLACE_KEY] as String
-        )
-
-        @Suppress("UNCHECKED_CAST")
-        val featuresList = result[Keys.FEATURES_STATES_KEY] as MutableList<Boolean>
-        //call API.getFiltered
-    }
 
     fun getAllSavedTrips() {
         _loadingStatus.value = View.VISIBLE

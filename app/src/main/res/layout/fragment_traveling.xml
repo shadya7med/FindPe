@@ -71,13 +71,13 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Featured"
+            app:layout_constraintTop_toBottomOf="@+id/remove_filter_btn_travelling"
             app:refreshingIndicatorVisibility="@{viewModel.status}">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -92,20 +92,48 @@
                 app:listTrips="@{viewModel.tripList}"
                 app:visibilityAgainstStatus="@{viewModel.status}"
                 tools:listitem="@layout/list_item_travelling_rv" />
+
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+
+        <ImageView
+            android:id="@+id/error_imgView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="fitCenter"
+            android:visibility="@{viewModel.errorMsgStatus}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4"
+            app:srcCompat="@drawable/error_occured"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/error_msg_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:textAlignment="center"
             android:visibility="@{viewModel.errorMsgStatus}"
-            app:layout_constraintBottom_toBottomOf="@+id/swipe_refresh_discover_home"
-            app:layout_constraintEnd_toEndOf="@+id/swipe_refresh_discover_home"
-            app:layout_constraintStart_toStartOf="@+id/swipe_refresh_discover_home"
-            app:layout_constraintTop_toTopOf="@+id/swipe_refresh_discover_home"
-            tools:text="@string/error_img_desc" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/error_imgView"
+            tools:text="@string/error_img_desc"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/remove_filter_btn_travelling"
+            style="@style/filter_button_style"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/remove_filters"
+            android:visibility="@{viewModel.isFilteredShown}"
+            android:onClick="@{()->viewModel.getTrips()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/trips"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

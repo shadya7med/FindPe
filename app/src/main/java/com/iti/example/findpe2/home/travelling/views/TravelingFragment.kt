@@ -81,14 +81,11 @@ class TravelingFragment : Fragment() {
         )?.observe(
             viewLifecycleOwner, Observer { result ->
                 viewModel.filterTrips(result)
+                navController.currentBackStackEntry?.savedStateHandle?.remove<MutableMap<String,Any>>(Keys.FULL_FILTER_MAP_KEY)
             })
     }
 
-    override fun onStart() {
-        super.onStart()
-        //in order to always refresh the visible data
-        viewModel.getTrips()
-    }
+
 
     override fun onStop() {
         super.onStop()

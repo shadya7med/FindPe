@@ -58,7 +58,7 @@ class FilterViewModel : ViewModel() {
 
 
     init {
-        _featuresStates.value = mutableListOf(false, false, false, false, false)
+        _featuresStates.value = mutableListOf(true, true, true, true, true)
         /*_fromDaysList.value = arrayListOf()
         _toDaysList.value = arrayListOf()
         //fromDaysList.value?.clear()

@@ -27,18 +27,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/filter_btn_saved_home"
-            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="@string/filter"
-            android:textColor="@color/subtitle_text_custom_color"
-            app:drawableLeftCompat="@drawable/ic_baseline_add_24"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/bookings_title_txtView_saved" />
-
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe_refresh_saved_home"
             android:layout_width="0dp"

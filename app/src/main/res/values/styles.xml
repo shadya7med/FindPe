@@ -144,4 +144,12 @@
         <item name="fontFamily">@font/montserrat</item>
         <item name="android:fontFamily">@font/montserrat</item>
     </style>
+
+    <style name="filter_button_style" parent="Widget.App.Button.OutlinedButton.IconOnly">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawableEnd">@drawable/ic_outline_cancel_24</item>
+        <item name="android:textColor">@color/filter_background_grey</item>
+        <item name="android:textSize">10sp</item>
+    </style>
 </resources>

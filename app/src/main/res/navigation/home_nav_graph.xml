@@ -63,6 +63,11 @@
         <argument
             android:name="allSavedTripsIDs"
             app:argType="integer[]" />
+        <action
+            android:id="@+id/action_allTripsFragmentHome_to_filterFragment"
+            app:destination="@id/filterFragment"
+            app:popUpTo="@id/allTripsFragmentHome"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/companionFragmentHome"

@@ -30,13 +30,6 @@ interface TripsApiService {
     @GET("Trips/CityFrom")
     suspend fun getAllFromCitiesName(): List<String>
 
-    //(Double[] price, String[] place, Boolean[] featuredThinges)
-    @GET("CalculateTrip")
-    suspend fun getFeaturedFilteredTrips(
-        @Query("price") prices: Array<Double>,
-        @Query("place") places: Array<String>,
-        @Query("featuredThinges") features: Array<Boolean>
-    ): List<Trip>
 
     @GET("CalculateTrip")
     suspend fun getFilteredTrips(
@@ -50,49 +43,61 @@ interface TripsApiService {
         @Query("featured") inn: Boolean,
         @Query("featured") parking: Boolean,
         @Query("featured") isFeatured: Boolean,
-
-        ): List<Trip>
+    ): List<Trip>
 
     //user requests
     @POST("User")
-    suspend fun addANewUser(@Body user:User)//:User
+    suspend fun addANewUser(@Body user: User)//:User
+
     @GET("User")
-    suspend fun getUserByID(@Path("id")userID:String):User
+    suspend fun getUserByID(@Path("id") userID: String): User
+
     @GET("User")
-    suspend fun getAllUsers():List<User>
+    suspend fun getAllUsers(): List<User>
 
     //user-trips requests
     @GET("UserTrip/GetTripSaved/{userID}")
-    suspend fun getAllSavedTripsForUserByID(@Path("userID")userID:String):List<Trip>
+    suspend fun getAllSavedTripsForUserByID(@Path("userID") userID: String): List<Trip>
+
     @GET("UserTrip/GetTripLiked/{userID}")
-    suspend fun getAllLikedTripsForUserByID(@Path("userID")userID:String):List<Trip>
+    suspend fun getAllLikedTripsForUserByID(@Path("userID") userID: String): List<Trip>
+
     @GET("UserTrip/GetTripBooked/{userID}")
-    suspend fun getAllBookedTripsForUserByID(@Path("userID")userID:String):List<Trip>
+    suspend fun getAllBookedTripsForUserByID(@Path("userID") userID: String): List<Trip>
 
     @PUT("UserTrip/Save")
-    suspend fun saveTripForUser(@Query("userID")userID:String,@Query("tripID")tripID:Int)//:UserTrip
+    suspend fun saveTripForUser(
+        @Query("userID") userID: String,
+        @Query("tripID") tripID: Int
+    )//:UserTrip
+
     @PUT("UserTrip/Book")
-    suspend fun bookTripForUser(@Query("userID")userID:String,@Query("tripID")tripID:Int)
+    suspend fun bookTripForUser(@Query("userID") userID: String, @Query("tripID") tripID: Int)
+
     @PUT("UserTrip/Like")
-    suspend fun likeTripForUser(@Query("userID")userID:String,@Query("tripID")tripID:Int)
+    suspend fun likeTripForUser(@Query("userID") userID: String, @Query("tripID") tripID: Int)
 
     @PUT("UserTrip/UNSave")
-    suspend fun unSaveTripForUser(@Query("userID")userID:String,@Query("tripID")tripID:Int)
+    suspend fun unSaveTripForUser(@Query("userID") userID: String, @Query("tripID") tripID: Int)
+
     @PUT("UserTrip/UNBook")
-    suspend fun unBookTripForUser(@Query("userID")userID:String,@Query("tripID")tripID:Int)
+    suspend fun unBookTripForUser(@Query("userID") userID: String, @Query("tripID") tripID: Int)
+
     @PUT("UserTrip/UNLike")
-    suspend fun unLikeTripForUser(@Query("userID")userID:String,@Query("tripID")tripID:Int)
+    suspend fun unLikeTripForUser(@Query("userID") userID: String, @Query("tripID") tripID: Int)
 
 
     @DELETE("UserTrip")
-    suspend fun deleteTripForUser(@Query("userID")userID:String,@Query("tripID")tripID:Int)
+    suspend fun deleteTripForUser(@Query("userID") userID: String, @Query("tripID") tripID: Int)
 
 
     //Companion
     @GET("Companion")
-    suspend fun getAllCompanions():List<Companion>
+    suspend fun getAllCompanions(): List<Companion>
+
     @POST("Companion")
     suspend fun addANewsCompanion(@Body companion: Companion)
+
     @PUT("Companion")
     suspend fun updateACompanion(@Body companion: Companion)
 

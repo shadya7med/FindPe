@@ -43,7 +43,7 @@ class CompanionListViewModel : ViewModel() {
 
     }
 
-    private fun getAllCompanions() {
+    fun getAllCompanions() {
         _loadingStatus.value = View.VISIBLE
         //get All Companions
         //get Liked Companions by User

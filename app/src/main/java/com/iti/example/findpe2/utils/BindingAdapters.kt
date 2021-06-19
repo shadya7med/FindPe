@@ -75,7 +75,7 @@ fun ImageView.setUSerImage(userImageUrl: String) {
             .with(context)
             .load(userImageUrl)
             .circleCrop()
-            .error(R.drawable.ic_broken_image)
+            .error(R.drawable.ic_account_circle_black_36dp)
             .placeholder(R.drawable.loading_animation)
             .into(this)
 
@@ -340,11 +340,23 @@ fun ImageView.bindPlace(placeImageUrl: String?) {
 }
 
 @BindingAdapter("companionExpertLevel")
-fun TextView.setCompanionExpertLevel(expertLevel: ExpertLevel) {
-    text = when (expertLevel) {
-        ExpertLevel.PROFESSIONAL -> "Professional Companion"
-        ExpertLevel.Amateur -> "Amateur Companion"
+fun TextView.setCompanionExpertLevel(expertLevel: String?) {
+    expertLevel?.let {
+        text = when (it) {
+            ExpertLevel.PROFESSIONAL.value -> "Professional Companion"
+            ExpertLevel.Amateur.value -> "Amateur Companion"
+            else -> "Unregistered level"
+        }
     }
-
-
+}
+@BindingAdapter("accountLevel")
+fun ImageView.setAccountLevel(badge:String?){
+    badge?.let {
+        setImageResource(when(it){
+            AccountLevel.GOLD.value -> R.drawable.ic_baseline_gold_badge
+            AccountLevel.SILVER.value -> R.drawable.ic_baseline_silver_badge
+            AccountLevel.BRONZE.value -> R.drawable.ic_baseline_bronze_badge
+            else -> R.drawable.ic_baseline_local_police_24
+        })
+    }
 }

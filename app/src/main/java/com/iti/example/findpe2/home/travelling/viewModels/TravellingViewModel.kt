@@ -21,11 +21,16 @@ class TravellingViewModel : ViewModel() {
     val tripList: LiveData<List<Trip>?>
         get() = _tripList
 
-    private var savedTripsListIDs : List<Int>? = null
+    private var allFeaturedTrips: List<Trip>? = null
+    private var savedTripsListIDs: List<Int>? = null
 
     private val _tripsListErrorMsg = MutableLiveData<String?>()
     val tripsListErrorMsg: LiveData<String?>
         get() = _tripsListErrorMsg
+
+    private val _isFilteredShown = MutableLiveData<Int?>()
+    val isFilteredShown: LiveData<Int?>
+        get() = _isFilteredShown
 
     val numberOfTrips = Transformations.map(tripList) {
         it?.let {
@@ -45,13 +50,14 @@ class TravellingViewModel : ViewModel() {
     val selectedTrip: LiveData<Trip?>
         get() = _selectedTrip
 
-    private var isSaved :Boolean? = false
+    private var isSaved: Boolean? = false
 
     init {
         _status.value = View.GONE
         _errorMsgStatus.value = View.GONE
-        //getTrips()
+        _isFilteredShown.value = View.GONE
         saveCurrentUser()
+        getTrips()
     }
 
     private fun saveCurrentUser() {
@@ -103,20 +109,23 @@ class TravellingViewModel : ViewModel() {
         _status.value = View.VISIBLE
         viewModelScope.launch {
             try {
-                _tripList.value = TripApi.getAllFeaturedTrips()
+                allFeaturedTrips = TripApi.getAllFeaturedTrips()
+                _tripList.value = allFeaturedTrips
                 Firebase.auth.currentUser?.let { user ->
-                        savedTripsListIDs =
-                            TripApi.getAllSavedTripsForUser(user.uid).map { trip ->
-                                trip.tripID
-                            }
-                        _status.value = View.GONE
-                        _errorMsgStatus.value = View.GONE
+                    savedTripsListIDs =
+                        TripApi.getAllSavedTripsForUser(user.uid).map { trip ->
+                            trip.tripID
+                        }
+                    _status.value = View.GONE
+                    _errorMsgStatus.value = View.GONE
+                    _isFilteredShown.value = View.GONE
                 }
             } catch (t: Throwable) {
                 Log.i("TravellingViewModel", "getTrips:${t.message}")
                 _errorMsgStatus.value = View.VISIBLE
                 _status.value = View.GONE
                 _tripsListErrorMsg.value = t.localizedMessage
+                _isFilteredShown.value = View.GONE
             }
         }
     }
@@ -125,21 +134,14 @@ class TravellingViewModel : ViewModel() {
         filteringMap?.let { filteringMap ->
             val fromPlace = filteringMap[Keys.FROM_PLACE_KEY] as String
             val toPlace = filteringMap[Keys.TO_PLACE_KEY] as String
-            //val placesArray = arrayOf(fromPlace, toPlace)
+
 
             val features = filteringMap[Keys.FEATURES_STATES_KEY] as List<Boolean>
-            /*val featuresArray = arrayOf(
-                features[0],
-                features[1],
-                features[2],
-                features[3],
-                features[4],
-                true,
-            )*/
+
 
             val minPrice = filteringMap[Keys.MIN_RANGE_KEY] as Double
             val maxPrice = filteringMap[Keys.MAX_RANGE_KEY] as Double
-            //val pricesArray = arrayOf(minPrice, maxPrice)
+
 
             _status.value = View.VISIBLE
             viewModelScope.launch {
@@ -148,15 +150,16 @@ class TravellingViewModel : ViewModel() {
                     _tripList.value = TripApi.getFilteredTrips(
                         minPrice, maxPrice, fromPlace, toPlace,
                         features[0], features[1], features[2], features[3], features[4],
-                        features[5]
+                        true
                     )
-                    //TripApi.getFeaturedFilteredTrips(pricesArray, placesArray, featuresArray)
+                    _isFilteredShown.value = View.VISIBLE
                     _status.value = View.GONE
                 } catch (e: Exception) {
                     _errorMsgStatus.value = View.VISIBLE
                     _status.value = View.GONE
                     _tripsListErrorMsg.value = e.localizedMessage
-                    _tripList.value = null
+                    _tripList.value = allFeaturedTrips
+                    _isFilteredShown.value = View.GONE
                 }
 
             }

@@ -33,6 +33,9 @@ class CompanionListFragment : Fragment() {
             //companionViewModel.onLikeClick(it)
             //it should navigate to companion Details
         })
+        binding.swipeRefreshCompanionList.setOnRefreshListener {
+            companionViewModel.getAllCompanions()
+        }
 
 
 

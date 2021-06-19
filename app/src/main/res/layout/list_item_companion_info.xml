@@ -50,7 +50,7 @@
                         android:layout_width="75dp"
                         android:layout_height="75dp"
                         android:contentDescription="@string/companion_image_desc"
-                        android:scaleType="centerCrop"
+                        android:scaleType="fitCenter"
                         app:userImage="@{companion.userInfo.imageUrl}"
                         tools:srcCompat="@tools:sample/avatars" />
                 </androidx.cardview.widget.CardView>
@@ -98,9 +98,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="10dp"
+                    app:accountLevel="@{companion.badge}"
                     app:layout_constraintStart_toStartOf="@+id/companionName_txtView_listItem_companionList"
                     app:layout_constraintTop_toBottomOf="@+id/companionName_txtView_listItem_companionList"
-                    app:srcCompat="@drawable/ic_baseline_local_police_24" />
+                    tools:srcCompat="@drawable/ic_baseline_local_police_24" />
 
                 <TextView
                     android:id="@+id/expertLevel_txtView_listItem_companionList"
@@ -137,12 +138,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="25dp"
                     android:onClick="@{()->companionClickListener.onClick(companion)}"
+                    android:visibility="gone"
                     app:isLiked="@{companion}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/accountLevel_imgView_listItem_companionList"
                     app:layout_constraintVertical_bias="0.1"
-                    app:srcCompat="@drawable/heart_black_outlined" />
+                    app:srcCompat="@drawable/heart_black_outlined"
+                    tools:visibility="visible" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
