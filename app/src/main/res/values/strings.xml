@@ -194,5 +194,15 @@
     <string name="all_saved">All Saved</string>
     <string name="no_companion">No Available Comapions. Try again later</string>
     <string name="remove_filters">Filtered</string>
+    <string name="upload_title">Please Upload Your</string>
+    <string name="id_photo">Id Photo</string>
+    <string name="choose_photo">Choose Photo</string>
+    <string name="personal_picture">Personal Picture</string>
+    <string name="upload">Upload</string>
+    <string name="perks">Perks</string>
+    <string name="id_card">ID Card</string>
+    <string name="submit">Submit</string>
+    <string name="censorship_id">Censorship ID</string>
+    <string name="criminal_record">Criminal Record</string>
 
 </resources>

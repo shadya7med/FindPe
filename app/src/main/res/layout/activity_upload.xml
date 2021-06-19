@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/upload_view_group"
+        style="@style/title_style"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".upload.UploadActivity">
+
+        <TextView
+            android:id="@+id/upload_title"
+            style="@style/title_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/upload_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/close_upload_btn" />
+
+        <TextView
+            android:id="@+id/upload_title_text"
+            style="@style/title_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/id_photo"
+            app:layout_constraintStart_toStartOf="@+id/upload_title"
+            app:layout_constraintTop_toBottomOf="@+id/upload_title" />
+
+        <ImageView
+            android:id="@+id/uploaded_photo_image"
+            android:layout_width="200dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="68dp"
+            app:layout_constraintDimensionRatio="h,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/upload_title_text"
+            app:srcCompat="@drawable/no_image_preview" />
+
+        <Button
+            android:id="@+id/choose_file_btn"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="@string/choose_photo"
+            android:textColor="@color/subtitle_text_custom_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/uploaded_photo_image"
+            app:rippleColor="@color/title_text_custom_color" />
+
+        <Button
+            android:id="@+id/upload_btn"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+
+            android:text="@string/upload"
+            android:textColor="@color/subtitle_text_custom_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/choose_file_btn"
+            app:rippleColor="@color/title_text_custom_color" />
+
+        <ProgressBar
+            android:id="@+id/upload_photo_progress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/upload_title" />
+
+        <ImageView
+            android:id="@+id/close_upload_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_cancel_24" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

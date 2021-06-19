@@ -7,6 +7,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.iti.example.findpe2.utils.isValidEmail
 import com.iti.example.findpe2.utils.setAllClickable
@@ -17,13 +19,16 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth:FirebaseAuth
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var database: DatabaseReference
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
-
+        database = FirebaseDatabase.getInstance().reference
 
         binding.finishBtn.setOnClickListener{
             finish()
@@ -53,8 +58,10 @@ class LoginActivity : AppCompatActivity() {
                 .addOnCompleteListener(this) { task ->
                     clearLoading()
                     if (task.isSuccessful) {
+                        val currentUser = auth.currentUser!!
                         // Sign in success, update UI with the signed-in user's information
-                        if(auth.currentUser!!.isEmailVerified) {
+                        if(currentUser.isEmailVerified) {
+                            database.child("usersImages").child(currentUser.uid).setValue(currentUser.photoUrl.toString())
                             val signInIntent = Intent(this, HomeActivity::class.java)
                             signInIntent.flags =
                                 Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

@@ -1,14 +1,256 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".companionHolder.levels.professional.views.ProfessionalRequirementsFragment">
+<layout>
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.iti.example.findpe2.companionHolder.levels.professional.viewmodels.ProReqViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/pro_req_view_group"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".companionHolder.levels.amateur.views.AmateurRequirementsFragment">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/pro_personal_photo_check_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/checklist" />
+
+        <View
+            android:id="@+id/divider6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toBottomOf="@+id/pro_personal_photo_check_list" />
+
+        <TextView
+            android:id="@+id/pro_personal_photo_text"
+            style="@style/title_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/personal_picture"
+            app:layout_constraintStart_toEndOf="@+id/pro_personal_photo_check_list"
+            app:layout_constraintTop_toTopOf="@+id/pro_personal_photo_check_list" />
+
+        <Button
+            android:id="@+id/pro_perspnal_picture_upload_btn"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/upload"
+            android:textColor="@color/subtitle_text_custom_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pro_personal_photo_text"
+            app:rippleColor="@color/title_text_custom_color" />
+
+        <Button
+            android:id="@+id/pro_id_card_upload_btn"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/upload"
+            android:textColor="@color/subtitle_text_custom_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pro_id_text"
+            app:rippleColor="@color/title_text_custom_color" />
+
+        <Button
+            android:id="@+id/pro_censorship_id_upload_btn"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/upload"
+            android:textColor="@color/subtitle_text_custom_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/censorship_id_text"
+            app:rippleColor="@color/title_text_custom_color" />
+
+        <Button
+            android:id="@+id/pro_criminal_rec_upload_btn"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/upload"
+            android:textColor="@color/subtitle_text_custom_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/criminal_rec_text"
+            app:rippleColor="@color/title_text_custom_color" />
+
+        <ImageView
+            android:id="@+id/pro_id_card_checklist_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/checklist"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider6" />
+
+        <ImageView
+            android:id="@+id/pro_censorship_id_checklist_image2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/checklist"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider12" />
+
+        <ImageView
+            android:id="@+id/pro_criminal_rec_checklist_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/checklist"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider13" />
+
+        <View
+            android:id="@+id/divider12"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toBottomOf="@+id/pro_id_card_checklist_image"
+            tools:layout_editor_absoluteX="1dp" />
+
+        <TextView
+            android:id="@+id/pro_id_text"
+            style="@style/title_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/id_card"
+            app:layout_constraintStart_toEndOf="@+id/pro_id_card_checklist_image"
+            app:layout_constraintTop_toTopOf="@+id/pro_id_card_checklist_image" />
+
+        <TextView
+            android:id="@+id/censorship_id_text"
+            style="@style/title_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/censorship_id"
+            app:layout_constraintStart_toEndOf="@+id/pro_censorship_id_checklist_image2"
+            app:layout_constraintTop_toTopOf="@+id/pro_censorship_id_checklist_image2" />
+
+        <TextView
+            android:id="@+id/criminal_rec_text"
+            style="@style/title_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/criminal_record"
+            app:layout_constraintStart_toEndOf="@+id/pro_criminal_rec_checklist_image"
+            app:layout_constraintTop_toTopOf="@+id/pro_criminal_rec_checklist_image" />
+
+        <Button
+            android:id="@+id/pro_submit_btn"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/submit"
+            android:onClick="@{() -> viewModel.submit()}"
+            android:textColor="@color/subtitle_text_custom_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider14"
+            app:rippleColor="@color/title_text_custom_color" />
+
+        <View
+            android:id="@+id/divider13"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toBottomOf="@+id/pro_censorship_id_checklist_image2"
+            tools:layout_editor_absoluteX="4dp" />
+
+        <View
+            android:id="@+id/divider14"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toBottomOf="@+id/pro_criminal_rec_checklist_image"
+            tools:layout_editor_absoluteX="2dp" />
+
+        <ImageView
+            android:id="@+id/pro_pesonal_pic_check_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:visibility="@{viewModel.personalPicCheckedVisibility}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.742"
+            app:layout_constraintStart_toEndOf="@+id/pro_personal_photo_text"
+            app:layout_constraintTop_toTopOf="@+id/pro_personal_photo_text"
+            app:srcCompat="@drawable/checked_icon" />
+
+        <ImageView
+            android:id="@+id/pro_id_card_check_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:visibility="@{viewModel.idCheckedVisibility}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.854"
+            app:layout_constraintStart_toEndOf="@+id/pro_id_text"
+            app:layout_constraintTop_toTopOf="@+id/pro_id_text"
+            app:srcCompat="@drawable/checked_icon" />
+
+        <ImageView
+            android:id="@+id/pro_censorship_check_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:visibility="@{viewModel.censorshipCheckedVisibility}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.787"
+            app:layout_constraintStart_toEndOf="@+id/censorship_id_text"
+            app:layout_constraintTop_toTopOf="@+id/censorship_id_text"
+            app:srcCompat="@drawable/checked_icon" />
+
+        <ImageView
+            android:id="@+id/pro_criminal_rec_check_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:visibility="@{viewModel.criminalRecordCheckedVisibility}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.754"
+            app:layout_constraintStart_toEndOf="@+id/criminal_rec_text"
+            app:layout_constraintTop_toTopOf="@+id/criminal_rec_text"
+            app:srcCompat="@drawable/checked_icon" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -14,5 +14,7 @@ class Keys {
         const val CHAT_ROOM_KEY = "chat_room_key"
         const val CATEGORY_KEY = "category_key"
         const val ALL_TRIPS_KEY = "all_trips_key"
+        const val DOCUMENT_REQ_KEY = "document_req_key"
+        const val UPLOADED_DOC_KEY = "uploaded_doc_key"
     }
 }
