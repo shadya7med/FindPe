@@ -14,13 +14,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".home.profile.views.ProfileFragment"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        tools:context=".home.profile.views.ProfileFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/topSection_cl_profile"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_default="percent"
             app:layout_constraintHeight_percent="0.3"
@@ -36,7 +36,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.3"
+                app:layout_constraintVertical_bias="0.25"
                 app:userImage="@{profileViewModel.userPhotoUrl}"
                 tools:src="@tools:sample/avatars" />
 
@@ -45,6 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/user_level_desc"
+                app:accountLevel="@{profileViewModel.accountLevel}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.75"
@@ -67,16 +68,31 @@
                 tools:text="@string/username_holder" />
 
             <TextView
-                android:id="@+id/usertitle_txtView_profile"
+                android:id="@+id/subtitle_txtView_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@{profileViewModel.email}"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp"
+                app:profileSubtitle="@{profileViewModel.title}"
                 android:textColor="@color/subtitle_text_custom_color"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/username_txtView_profile"
                 app:layout_constraintStart_toStartOf="@+id/username_txtView_profile"
                 app:layout_constraintTop_toBottomOf="@+id/username_txtView_profile"
+                app:layout_constraintVertical_bias="0.15"
                 tools:text="@string/userTitle_holder" />
+
+            <TextView
+                android:id="@+id/bio_txtView_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:profileSubtitle="@{profileViewModel.bio}"
+                tools:text="@string/bio_placeholder"
+                android:textColor="@color/subtitle_text_custom_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/subtitle_txtView_profile" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -87,13 +103,13 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:listUserInfo="@{profileViewModel.userInfoList}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_default="percent"
             app:layout_constraintHeight_percent="0.3"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/topSection_cl_profile"
+            app:listUserInfo="@{profileViewModel.userInfoList}"
             tools:itemCount="4"
             tools:listitem="@layout/list_item_user_info">
 
@@ -103,17 +119,32 @@
             android:id="@+id/user_gallery_rv_profile"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="50dp"
             android:clipToPadding="true"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/userInfo_rv_profile"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/userInfo_rv_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/userInfo_rv_profile"
             app:listUserGallery="@{profileViewModel.userImageUrlList}"
             tools:itemCount="9"
             tools:listitem="@layout/list_item_user_gallery" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_photos_fab_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="75dp"
+            android:clickable="true"
+            android:contentDescription="@string/add_photos_fab_desc"
+            android:focusable="true"
+            android:visibility="@{profileViewModel.photoPickerStatus}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_baseline_add_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

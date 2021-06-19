@@ -204,5 +204,6 @@
     <string name="submit">Submit</string>
     <string name="censorship_id">Censorship ID</string>
     <string name="criminal_record">Criminal Record</string>
+    <string name="add_photos_fab_desc">this is add photos button</string>
 
 </resources>

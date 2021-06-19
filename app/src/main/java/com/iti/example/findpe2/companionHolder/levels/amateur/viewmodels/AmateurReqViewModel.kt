@@ -5,7 +5,7 @@ import androidx.lifecycle.*
 import com.google.firebase.auth.FirebaseAuth
 import com.iti.example.findpe2.models.TripApi
 import com.iti.example.findpe2.pojos.AccountLevel
-import com.iti.example.findpe2.pojos.Companion
+import com.iti.example.findpe2.pojos.CompanionUser
 import com.iti.example.findpe2.pojos.ExpertLevel
 import com.iti.example.findpe2.pojos.RegistrationInfo
 import kotlinx.coroutines.launch
@@ -61,15 +61,15 @@ class AmateurReqViewModel(private val registrationInfo: RegistrationInfo): ViewM
             _toastVisibility.value = true
             return
         }
-        val companion = Companion(
+        val companion = CompanionUser(
             FirebaseAuth.getInstance().currentUser!!.uid,
-            ExpertLevel.PROFESSIONAL,
+            ExpertLevel.PROFESSIONAL.value,
             registrationInfo.city,
             registrationInfo.country,
             "Egyptian",
             "N/A",
             true,
-            AccountLevel.BRONZE,
+            AccountLevel.BRONZE.value,
             idUrl.value!!,
             "N/A",
             1

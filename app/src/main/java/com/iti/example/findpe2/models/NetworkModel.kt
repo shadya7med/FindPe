@@ -1,7 +1,7 @@
 package com.iti.example.findpe2.models
 
 import com.iti.example.findpe2.constants.URLs.Companion.NOT_SECURE_BASE_URL
-import com.iti.example.findpe2.pojos.Companion
+import com.iti.example.findpe2.pojos.CompanionUser
 import com.iti.example.findpe2.pojos.User
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -80,8 +80,8 @@ object TripApi {
     suspend fun deleteTripForUser(userID: String, tripId: Int) =
         tripsApi.deleteTripForUser(userID, tripId)
 
-    suspend fun addANewCompanion(companion: Companion) = tripsApi.addANewsCompanion(companion)
-    suspend fun updateACompanion(companion: Companion) = tripsApi.updateACompanion(companion)
+    suspend fun addANewCompanion(companionUser: CompanionUser) = tripsApi.addANewsCompanion(companionUser)
+    suspend fun updateACompanion(companionUser: CompanionUser) = tripsApi.updateACompanion(companionUser)
     suspend fun getAllCompanions() = tripsApi.getAllCompanions()
 
 }

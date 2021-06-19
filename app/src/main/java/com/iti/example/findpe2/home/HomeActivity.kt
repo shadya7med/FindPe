@@ -87,7 +87,7 @@ class HomeActivity : AppCompatActivity() {
         homeViewModel.onNavigateToProfile.observe(this){
             it?.let{
                 if(it){
-                    navController.navigate(HomeNavGraphDirections.actionGlobalProfileFragment())
+                    navController.navigate(HomeNavGraphDirections.actionGlobalProfileFragment(false,null))
                     binding.homeDrawerLayout.close()
                     homeViewModel.onDoneNavigationToProfile()
                 }

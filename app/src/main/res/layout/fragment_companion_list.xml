@@ -38,7 +38,7 @@
                 android:layout_marginBottom="50dp"
                 android:clipToPadding="true"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:listCompanions="@{companionListViewModel.companionList}"
+                app:listCompanions="@{companionListViewModel.companionUserList}"
                 app:visibilityAgainstStatus="@{companionListViewModel.loadingStatus}"
                 tools:itemCount="5"
                 tools:listitem="@layout/list_item_companion_info" />

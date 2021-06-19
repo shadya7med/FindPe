@@ -82,7 +82,16 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.iti.example.findpe2.home.profile.views.ProfileFragment"
-        android:label="@string/profile_text" />
+        android:label="@string/profile_text" >
+        <argument
+            android:name="isCompanion"
+            app:argType="boolean" />
+        <argument
+            android:name="companion"
+            app:argType="com.iti.example.findpe2.pojos.CompanionUser"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
     <action
         android:id="@+id/action_global_profileFragment"
         app:destination="@id/profileFragment"

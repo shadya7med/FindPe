@@ -6,13 +6,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.iti.example.findpe2.models.TripApi
-import com.iti.example.findpe2.pojos.Companion
+import com.iti.example.findpe2.pojos.CompanionUser
 import kotlinx.coroutines.launch
 
 class CompanionListViewModel : ViewModel() {
 
-    private val _companionList = MutableLiveData<List<Companion>?>()
-    val companionList: LiveData<List<Companion>?>
+    private val _companionList = MutableLiveData<List<CompanionUser>?>()
+    val companionUserList: LiveData<List<CompanionUser>?>
         get() = _companionList
 
     private val _errorMsg = MutableLiveData<String?>()
@@ -30,6 +30,10 @@ class CompanionListViewModel : ViewModel() {
     private val _emptyListStatus = MutableLiveData<Int?>()
     val emptyListStatus: LiveData<Int?>
         get() = _emptyListStatus
+
+    private val _onNavigateToCompanionDetailsData = MutableLiveData<CompanionUser?>()
+    val onNavigateToCompanionUserDetailsData: LiveData<CompanionUser?>
+        get() = _onNavigateToCompanionDetailsData
 
     /*private val _isLiked = MutableLiveData<Boolean?>()
     val isLiked: LiveData<Boolean?>
@@ -67,6 +71,14 @@ class CompanionListViewModel : ViewModel() {
         }
 
 
+    }
+
+    fun onNavigateToCompanionDetails(companionUser: CompanionUser) {
+        _onNavigateToCompanionDetailsData.value = companionUser
+    }
+
+    fun onDoneNavigationToCompanionDetails() {
+        _onNavigateToCompanionDetailsData.value = null
     }
 
     /*fun onLikeClick(clickedCompanion: Companion) {

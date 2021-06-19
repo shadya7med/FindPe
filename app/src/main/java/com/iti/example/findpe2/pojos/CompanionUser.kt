@@ -11,7 +11,7 @@ enum class ExpertLevel(val value:String){
 }
 
 @Parcelize
-data class Companion(
+data class CompanionUser(
     @SerializedName("companinID")
     val companionID: String,
     @SerializedName("title")

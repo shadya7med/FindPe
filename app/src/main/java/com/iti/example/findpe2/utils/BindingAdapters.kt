@@ -67,8 +67,8 @@ fun ImageView.setTripImage(trip: Trip) {
 }*/
 
 @BindingAdapter("userImage")
-fun ImageView.setUSerImage(userImageUrl: String) {
-    if (userImageUrl.isEmpty()) {
+fun ImageView.setUSerImage(userImageUrl: String?) {
+    if (userImageUrl.isNullOrEmpty()) {
         setImageResource(R.drawable.ic_account_circle_black_36dp)
     } else {
         Glide
@@ -154,6 +154,7 @@ fun RecyclerView.setListFeaturedTrips(list: List<Trip>?) {
 
 @BindingAdapter("listUserInfo")
 fun RecyclerView.setListUserInfo(list: List<UserInfo>?) {
+    visibility = if (list.isNullOrEmpty()) View.GONE else View.VISIBLE
     (this.adapter as UserInfoAdapter).submitList(list)
 }
 
@@ -163,7 +164,7 @@ fun RecyclerView.setListUserGallery(list: List<UserGalleryImage>?) {
 }
 
 @BindingAdapter("listCompanions")
-fun RecyclerView.setListCompanion(list: List<Companion>?) {
+fun RecyclerView.setListCompanion(list: List<CompanionUser>?) {
     (this.adapter as CompanionListAdapter).submitList(list)
 }
 
@@ -262,9 +263,9 @@ fun TextView.setUserInfoListToString(userInfoSubTitles: List<String>) {
 }
 
 @BindingAdapter("isLiked")
-fun ImageView.setIsLiked(companion: Companion) {
+fun ImageView.setIsLiked(companionUser: CompanionUser) {
     setImageResource(
-        when (companion.isLiked) {
+        when (companionUser.isLiked) {
             true -> R.drawable.filled_heart
             false -> R.drawable.heart_black_outlined
         }
@@ -326,15 +327,14 @@ fun RecyclerView.bindPlaceList(list: List<PlaceToVisit>?) {
 }
 
 @BindingAdapter("bindPlaceImageUrl")
-fun ImageView.bindPlace(placeImageUrl: String?){
-    if(placeImageUrl != null){
-            Glide.with(this.context)
-                .load(placeImageUrl)
-                .placeholder(R.drawable.loading_animation)
-                .error(R.drawable.ic_broken_image)
-                .into(this)
-        }
-    else{
+fun ImageView.bindPlace(placeImageUrl: String?) {
+    if (placeImageUrl != null) {
+        Glide.with(this.context)
+            .load(placeImageUrl)
+            .placeholder(R.drawable.loading_animation)
+            .error(R.drawable.ic_broken_image)
+            .into(this)
+    } else {
         this.setImageResource(R.drawable.no_image_preview)
     }
 }
@@ -349,14 +349,31 @@ fun TextView.setCompanionExpertLevel(expertLevel: String?) {
         }
     }
 }
+
 @BindingAdapter("accountLevel")
-fun ImageView.setAccountLevel(badge:String?){
+fun ImageView.setAccountLevel(badge: String?) {
     badge?.let {
-        setImageResource(when(it){
-            AccountLevel.GOLD.value -> R.drawable.ic_baseline_gold_badge
-            AccountLevel.SILVER.value -> R.drawable.ic_baseline_silver_badge
-            AccountLevel.BRONZE.value -> R.drawable.ic_baseline_bronze_badge
-            else -> R.drawable.ic_baseline_local_police_24
-        })
+        visibility = View.VISIBLE
+        setImageResource(
+            when (it) {
+                AccountLevel.GOLD.value -> R.drawable.ic_baseline_gold_badge
+                AccountLevel.SILVER.value -> R.drawable.ic_baseline_silver_badge
+                AccountLevel.BRONZE.value -> R.drawable.ic_baseline_bronze_badge
+                else -> R.drawable.ic_baseline_local_police_24
+            }
+        )
+        return
+    }
+    visibility = View.GONE
+}
+
+@BindingAdapter("profileSubtitle")
+fun TextView.setProfileSubtitle(subtitle: String?) {
+    text = if (subtitle.isNullOrEmpty()) {
+        visibility = View.GONE
+        ""
+    } else {
+        visibility = View.VISIBLE
+        subtitle
     }
 }

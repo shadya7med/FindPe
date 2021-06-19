@@ -7,7 +7,7 @@
 
         <variable
             name="companion"
-            type="com.iti.example.findpe2.pojos.Companion" />
+            type="com.iti.example.findpe2.pojos.CompanionUser" />
 
         <variable
             name="companionClickListener"
@@ -17,7 +17,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp">
+        android:paddingTop="8dp"
+        android:onClick="@{() -> companionClickListener.onClick(companion)}">
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"

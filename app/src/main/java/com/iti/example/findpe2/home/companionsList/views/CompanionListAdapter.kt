@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.iti.example.findpe2.databinding.ListItemCompanionInfoBinding
-import com.iti.example.findpe2.pojos.Companion
+import com.iti.example.findpe2.pojos.CompanionUser
 
 
 class CompanionListAdapter(private val companionListClickListener: CompanionListClickListener) :
-    ListAdapter<Companion, CompanionListAdapter.CompanionListViewHolder>(CompanionListDiffCallback()) {
+    ListAdapter<CompanionUser, CompanionListAdapter.CompanionListViewHolder>(CompanionListDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         CompanionListViewHolder.from(parent)
@@ -29,7 +29,7 @@ class CompanionListAdapter(private val companionListClickListener: CompanionList
             }
         }
 
-        fun bind(currentItem: com.iti.example.findpe2.pojos.Companion,companionListClickListener: CompanionListClickListener) {
+        fun bind(currentItem: CompanionUser, companionListClickListener: CompanionListClickListener) {
             binding.companion = currentItem
             binding.companionClickListener = companionListClickListener
             binding.executePendingBindings()
@@ -37,14 +37,14 @@ class CompanionListAdapter(private val companionListClickListener: CompanionList
 
     }
 
-    class CompanionListDiffCallback : DiffUtil.ItemCallback<Companion>() {
-        override fun areItemsTheSame(oldItem: Companion, newItem: Companion) =
+    class CompanionListDiffCallback : DiffUtil.ItemCallback<CompanionUser>() {
+        override fun areItemsTheSame(oldItem: CompanionUser, newItem: CompanionUser) =
             oldItem.companionID == newItem.companionID
 
-        override fun areContentsTheSame(oldItem: Companion, newItem: Companion) = oldItem == newItem
+        override fun areContentsTheSame(oldItem: CompanionUser, newItem: CompanionUser) = oldItem == newItem
     }
-    class CompanionListClickListener(val clickListener:(Companion)->Unit){
-        fun onClick(companion: Companion) = clickListener(companion)
+    class CompanionListClickListener(val clickListener:(CompanionUser)->Unit){
+        fun onClick(companionUser: CompanionUser) = clickListener(companionUser)
     }
 
 }

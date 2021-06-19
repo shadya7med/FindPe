@@ -93,12 +93,12 @@ interface TripsApiService {
 
     //Companion
     @GET("Companion")
-    suspend fun getAllCompanions(): List<Companion>
+    suspend fun getAllCompanions(): List<CompanionUser>
 
     @POST("Companion")
-    suspend fun addANewsCompanion(@Body companion: Companion)
+    suspend fun addANewsCompanion(@Body companionUser: CompanionUser)
 
     @PUT("Companion")
-    suspend fun updateACompanion(@Body companion: Companion)
+    suspend fun updateACompanion(@Body companionUser: CompanionUser)
 
 }

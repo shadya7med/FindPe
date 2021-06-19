@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.iti.example.findpe2.HomeNavGraphDirections
 import com.iti.example.findpe2.databinding.FragmentCompanionListBinding
 import com.iti.example.findpe2.home.companionsList.viewModels.CompanionListViewModel
 
@@ -32,7 +34,14 @@ class CompanionListFragment : Fragment() {
         binding.companionListRv.adapter = CompanionListAdapter(CompanionListAdapter.CompanionListClickListener {
             //companionViewModel.onLikeClick(it)
             //it should navigate to companion Details
+            companionViewModel.onNavigateToCompanionDetails(it)
         })
+        companionViewModel.onNavigateToCompanionUserDetailsData.observe(viewLifecycleOwner){
+            it?.let {
+                findNavController().navigate(HomeNavGraphDirections.actionGlobalProfileFragment(true,it))
+                companionViewModel.onDoneNavigationToCompanionDetails()
+            }
+        }
         binding.swipeRefreshCompanionList.setOnRefreshListener {
             companionViewModel.getAllCompanions()
         }

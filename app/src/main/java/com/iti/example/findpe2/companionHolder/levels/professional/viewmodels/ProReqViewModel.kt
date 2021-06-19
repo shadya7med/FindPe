@@ -1,12 +1,11 @@
 package com.iti.example.findpe2.companionHolder.levels.professional.viewmodels
 
-import android.opengl.Visibility
 import android.view.View
 import androidx.lifecycle.*
 import com.google.firebase.auth.FirebaseAuth
 import com.iti.example.findpe2.models.TripApi
 import com.iti.example.findpe2.pojos.AccountLevel
-import com.iti.example.findpe2.pojos.Companion
+import com.iti.example.findpe2.pojos.CompanionUser
 import com.iti.example.findpe2.pojos.ExpertLevel
 import com.iti.example.findpe2.pojos.RegistrationInfo
 import kotlinx.coroutines.launch
@@ -96,15 +95,15 @@ class ProReqViewModel(private val registrationInfo: RegistrationInfo): ViewModel
             _toastVisibility.value = true
             return
         }
-        val companion = Companion(
+        val companion = CompanionUser(
             FirebaseAuth.getInstance().currentUser!!.uid,
-            ExpertLevel.PROFESSIONAL,
+            ExpertLevel.PROFESSIONAL.value,
             registrationInfo.city,
             registrationInfo.country,
             "Egyptian",
             criminalRecordUrl.value!!,
             true,
-            AccountLevel.BRONZE,
+            AccountLevel.BRONZE.value,
             idUrl.value!!,
             censorshipUrl.value!!,
             1
