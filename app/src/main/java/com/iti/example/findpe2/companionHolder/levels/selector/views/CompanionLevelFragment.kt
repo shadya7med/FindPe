@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.iti.example.findpe2.R
+import com.iti.example.findpe2.databinding.FragmentCompanionLevelBinding
 
 
 class CompanionLevelFragment : Fragment() {
-
+    lateinit var binding: FragmentCompanionLevelBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -19,8 +22,17 @@ class CompanionLevelFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_companion_level, container, false)
+        binding =  FragmentCompanionLevelBinding.inflate(layoutInflater, container, false)
+        val args by navArgs<CompanionLevelFragmentArgs>()
+        binding.levelProGetStartedBtn.setOnClickListener {
+            this.findNavController().navigate(CompanionLevelFragmentDirections.actionCompanionLevelFragmentToProfessionalRequirementsFragment(args.registerationInfo))
+        }
+        binding.levelAmatuerGetStartedBtn.setOnClickListener {
+            this.findNavController().navigate(CompanionLevelFragmentDirections.actionCompanionLevelFragmentToAmateurRequirementsFragment(args.registerationInfo))
+        }
+        binding.levelCompanionNameText.text = args.registerationInfo.firstName
+
+        return binding.root
     }
 
 

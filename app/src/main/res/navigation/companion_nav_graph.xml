@@ -8,7 +8,11 @@
     <fragment
         android:id="@+id/amateurRequirementsFragment"
         android:name="com.iti.example.findpe2.companionHolder.levels.amateur.views.AmateurRequirementsFragment"
-        tools:layout="@layout/fragment_amatuer_requirements" />
+        tools:layout="@layout/fragment_amatuer_requirements" >
+        <argument
+            android:name="registerationInfo"
+            app:argType="com.iti.example.findpe2.pojos.RegistrationInfo" />
+    </fragment>
     <fragment
         android:id="@+id/companionLevelFragment"
         android:name="com.iti.example.findpe2.companionHolder.levels.selector.views.CompanionLevelFragment"
@@ -22,13 +26,17 @@
             app:destination="@id/amateurRequirementsFragment"
             app:popUpTo="@id/companionLevelFragment" />
         <argument
-            android:name="companionName"
-            app:argType="string" />
+            android:name="registerationInfo"
+            app:argType="com.iti.example.findpe2.pojos.RegistrationInfo" />
     </fragment>
     <fragment
         android:id="@+id/professionalRequirementsFragment"
         android:name="com.iti.example.findpe2.companionHolder.levels.professional.views.ProfessionalRequirementsFragment"
-        tools:layout="@layout/fragment_professional_requirements" />
+        tools:layout="@layout/fragment_professional_requirements" >
+        <argument
+            android:name="registerationInfo"
+            app:argType="com.iti.example.findpe2.pojos.RegistrationInfo" />
+    </fragment>
     <fragment
         android:id="@+id/companionRegistrationFragment"
         android:name="com.iti.example.findpe2.companionHolder.registration.views.CompanionRegistrationFragment"

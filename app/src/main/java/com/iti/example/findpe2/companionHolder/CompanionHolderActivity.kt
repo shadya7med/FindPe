@@ -14,17 +14,15 @@ import com.iti.example.findpe2.databinding.ActivityCompanionHolderBinding
 class CompanionHolderActivity : AppCompatActivity() {
 
 
-    lateinit var navController: NavController
-
+    private lateinit var navController: NavController
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityCompanionHolderBinding.inflate(LayoutInflater.from(this))
-        navController =
-            (supportFragmentManager.findFragmentById(R.id.companion_nav_host) as NavHostFragment)
-                .findNavController()
-
-        NavigationUI.setupActionBarWithNavController(this,navController)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.companion_nav_host) as NavHostFragment
+        navController = navHostFragment.findNavController()
+        appBarConfiguration = AppBarConfiguration(navController.graph)
 
         //make up button appear in top destination fragment
         val actionBar = supportActionBar
@@ -36,7 +34,7 @@ class CompanionHolderActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp()
+        return NavigationUI.navigateUp(navController, appBarConfiguration)
     }
 
 }

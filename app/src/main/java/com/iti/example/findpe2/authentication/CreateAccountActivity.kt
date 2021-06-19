@@ -21,6 +21,8 @@ import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.iti.example.findpe2.R
 import com.iti.example.findpe2.utils.setAllClickable
@@ -33,6 +35,7 @@ class CreateAccountActivity : AppCompatActivity() {
 
     private val RC_SIGN_IN: Int = 9001
 
+
     companion object {
         const val USER_EMAIL:String = "USER_EMAIL"
 
@@ -43,9 +46,12 @@ class CreateAccountActivity : AppCompatActivity() {
 
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
+    private lateinit var database: DatabaseReference
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        database = FirebaseDatabase.getInstance().reference
 
         binding = ActivityCreateAccountBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -150,8 +156,10 @@ class CreateAccountActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
-                    auth.currentUser
+                    val currentUser = auth.currentUser!!
                     //Go to Home Activity
+                    database.child("usersImages").child(currentUser.uid).setValue(currentUser.photoUrl.toString())
+
                     startActivity(Intent(this, HomeActivity::class.java))
                     finish()
                 } else {
@@ -176,9 +184,10 @@ class CreateAccountActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 clearLoading()
                 if (task.isSuccessful) {
+                    val currentUser = auth.currentUser!!
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
-
+                    database.child("usersImages").child(currentUser.uid).setValue(currentUser.photoUrl.toString())
                     //Go to Home Activity
                     startActivity(Intent(this, HomeActivity::class.java))
                     finish()

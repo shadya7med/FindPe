@@ -326,16 +326,16 @@ fun RecyclerView.bindPlaceList(list: List<PlaceToVisit>?) {
 }
 
 @BindingAdapter("bindPlaceImageUrl")
-fun ImageView.bindPlace(placeImageUrl: String?) {
-    placeImageUrl?.let {
-        if (it.isNotEmpty()) {
+fun ImageView.bindPlace(placeImageUrl: String?){
+    if(placeImageUrl != null){
             Glide.with(this.context)
-                .load(it)
+                .load(placeImageUrl)
                 .placeholder(R.drawable.loading_animation)
                 .error(R.drawable.ic_broken_image)
                 .into(this)
         }
-        return
+    else{
+        this.setImageResource(R.drawable.no_image_preview)
     }
 }
 

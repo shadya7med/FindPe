@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FindPe">
-        <activity android:name=".categoryActivity.views.CategoryTripsActivity"></activity>
+        <activity android:name=".upload.UploadActivity"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
+        <activity android:name=".categoryActivity.views.CategoryTripsActivity" />
         <activity android:name=".companionHolder.CompanionHolderActivity" />
         <activity
             android:name=".network.NetworkActivity"

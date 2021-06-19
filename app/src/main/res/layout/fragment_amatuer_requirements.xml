@@ -1,14 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".companionHolder.levels.amateur.views.AmateurRequirementsFragment">
+<layout>
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.iti.example.findpe2.companionHolder.levels.amateur.viewmodels.AmateurReqViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/pro_req_view_group"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".companionHolder.levels.amateur.views.AmateurRequirementsFragment">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/amateur_personal_photo_check_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/checklist" />
+
+        <View
+            android:id="@+id/divider6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toBottomOf="@+id/amateur_personal_photo_check_list" />
+
+        <TextView
+            android:id="@+id/amateur_personal_photo_text"
+            style="@style/title_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/personal_picture"
+            app:layout_constraintStart_toEndOf="@+id/amateur_personal_photo_check_list"
+            app:layout_constraintTop_toTopOf="@+id/amateur_personal_photo_check_list" />
+
+        <Button
+            android:id="@+id/amateur_perspnal_picture_upload_btn"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/upload"
+            android:textColor="@color/subtitle_text_custom_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/amateur_personal_photo_text"
+            app:rippleColor="@color/title_text_custom_color" />
+
+        <Button
+            android:id="@+id/amatuer_id_card_upload_btn"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/upload"
+            android:textColor="@color/subtitle_text_custom_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/amatuer_id_text"
+            app:rippleColor="@color/title_text_custom_color" />
+
+        <ImageView
+            android:id="@+id/amateur_id_card_checklist_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/checklist"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider6" />
+
+        <View
+            android:id="@+id/divider12"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toBottomOf="@+id/amateur_id_card_checklist_image"
+            tools:layout_editor_absoluteX="1dp" />
+
+        <TextView
+            android:id="@+id/amatuer_id_text"
+            style="@style/title_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/id_card"
+            app:layout_constraintStart_toEndOf="@+id/amateur_id_card_checklist_image"
+            app:layout_constraintTop_toTopOf="@+id/amateur_id_card_checklist_image" />
+
+        <Button
+            android:id="@+id/amatuer_submit_btn"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:onClick="@{() -> viewModel.submit()}"
+            android:text="@string/submit"
+            android:textColor="@color/subtitle_text_custom_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider12"
+            app:rippleColor="@color/title_text_custom_color" />
+
+        <ImageView
+            android:id="@+id/amateur_pesonal_pic_check_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:visibility="@{viewModel.personalPicCheckedVisibility}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.733"
+            app:layout_constraintStart_toEndOf="@+id/amateur_personal_photo_text"
+            app:layout_constraintTop_toTopOf="@+id/amateur_personal_photo_text"
+            app:srcCompat="@drawable/checked_icon" />
+
+        <ImageView
+            android:id="@+id/amateur_id_card_check_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:visibility="@{viewModel.idCheckedVisibility}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.849"
+            app:layout_constraintStart_toEndOf="@+id/amatuer_id_text"
+            app:layout_constraintTop_toTopOf="@+id/amatuer_id_text"
+            app:srcCompat="@drawable/checked_icon" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -29,3 +29,4 @@ data class Companion(
     @SerializedName("user")
     val userInfo: User? = null,
 ) : Parcelable
+
