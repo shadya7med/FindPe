@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FindPe">
-        <activity android:name=".jobrequest.JobRequestActivity"></activity>
+        <activity android:name=".jobrequest.views.JobRequestActivity"></activity>
         <activity android:name=".jobHolder.JobActivityHolder" />
         <activity
             android:name=".upload.UploadActivity"

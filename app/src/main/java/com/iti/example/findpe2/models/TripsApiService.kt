@@ -48,7 +48,7 @@ interface TripsApiService {
     @POST("User")
     suspend fun addANewUser(@Body user: User)//:User
 
-    @GET("User")
+    @GET("User/{id}")
     suspend fun getUserByID(@Path("id") userID: String): User
 
     @GET("User")
@@ -99,5 +99,19 @@ interface TripsApiService {
 
     @PUT("Companion")
     suspend fun updateACompanion(@Body companionUser: CompanionUser)
+
+
+    //job
+    @GET("Jop")
+    suspend fun getAllJobs(): List<Job>
+
+    @POST("Jop")
+    suspend fun addANewJob(@Body job: Job)
+
+    @PUT("Jop")
+    suspend fun updateJob(@Body job: Job)
+
+
+
 
 }

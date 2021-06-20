@@ -10,7 +10,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".jobrequest.JobRequestActivity">
+            tools:context=".jobrequest.views.JobRequestActivity">
 
             <TextView
                 android:id="@+id/job_describtion"

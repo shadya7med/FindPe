@@ -84,11 +84,14 @@ class AmateurReqViewModel(private val registrationInfo: RegistrationInfo) : View
                 AccountLevel.BRONZE.value,
                 idUrl.value!!,
                 "N/A",
-                1
+                1,
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet nisl purus in mollis. Mauris ultrices eros in cursus turpis massa."
             )
             viewModelScope.launch {
+                _loadingVisibility.value = View.VISIBLE
                 try {
                     TripApi.addANewCompanion(companion)
+                    finishActivity()
                 } catch (t: Throwable) {
 
                 }
