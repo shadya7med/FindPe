@@ -29,11 +29,11 @@ class DiscoverViewModel : ViewModel() {
                 val randomIndexes = arrayListOf<Int>()
                 for (index in 0..3) {
                     var randomInt = Random.nextInt(0, it.size)
-                    if (randomIndexes.contains(randomInt)) {
+                    while (randomIndexes.contains(randomInt)) {
                         randomInt = Random.nextInt(0, it.size)
-                    } else {
-                        randomIndexes.add(randomInt)
                     }
+                        randomIndexes.add(randomInt)
+
                 }
                 for (index in randomIndexes) {
                     randomTrips.add(it[index])

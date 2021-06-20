@@ -58,7 +58,7 @@ class AllTripsViewModel : ViewModel() {
         _errorStatus.value = View.GONE
         _loadingStatus.value = View.GONE
         _isFilteredShown.value = View.GONE
-        getAllTrips()
+        //getAllTrips()
 
     }
 

@@ -50,6 +50,11 @@ object TripApi {
     suspend fun getUserByID(userID: String) = tripsApi.getUserByID(userID)
     suspend fun getAllUsers() = tripsApi.getAllUsers()
 
+    suspend fun uploadImageForUser(id: String, profileImageUrl: String) =
+        tripsApi.uploadImageUrlForUser(id, profileImageUrl)
+
+    suspend fun getAllImagesForUser(id: String) = tripsApi.getAllProfileUserImages(id)
+
     suspend fun getAllSavedTripsForUser(userID: String) =
         tripsApi.getAllSavedTripsForUserByID(userID)
 
@@ -80,8 +85,12 @@ object TripApi {
     suspend fun deleteTripForUser(userID: String, tripId: Int) =
         tripsApi.deleteTripForUser(userID, tripId)
 
-    suspend fun addANewCompanion(companionUser: CompanionUser) = tripsApi.addANewsCompanion(companionUser)
-    suspend fun updateACompanion(companionUser: CompanionUser) = tripsApi.updateACompanion(companionUser)
+    suspend fun addANewCompanion(companionUser: CompanionUser) =
+        tripsApi.addANewsCompanion(companionUser)
+
+    suspend fun updateACompanion(companionUser: CompanionUser) =
+        tripsApi.updateACompanion(companionUser)
+
     suspend fun getAllCompanions() = tripsApi.getAllCompanions()
 
 }

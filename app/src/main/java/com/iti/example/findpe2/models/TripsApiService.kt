@@ -48,11 +48,21 @@ interface TripsApiService {
     @POST("User")
     suspend fun addANewUser(@Body user: User)//:User
 
-    @GET("User")
+    @GET("User/{id}")
     suspend fun getUserByID(@Path("id") userID: String): User
 
     @GET("User")
     suspend fun getAllUsers(): List<User>
+
+    //user Images
+    @POST("UserImages/Upload/{id}")
+    suspend fun uploadImageUrlForUser(
+        @Path("id") id: String,
+        @Query("file") profileImageUrl: String
+    )
+
+    @GET("UserImages/{id}")
+    suspend fun getAllProfileUserImages(@Path("id") id: String): List<String>
 
     //user-trips requests
     @GET("UserTrip/GetTripSaved/{userID}")

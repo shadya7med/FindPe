@@ -217,5 +217,6 @@
     <string name="job_task_sub_title">list the task needed in your job</string>
     <string name="offered_amount">"Offered Amount EGP : "</string>
     <string name="send_request">Send Request</string>
+    <string name="picked_text">Picked For You</string>
 
 </resources>

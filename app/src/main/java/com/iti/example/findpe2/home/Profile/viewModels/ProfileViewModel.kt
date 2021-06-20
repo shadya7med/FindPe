@@ -6,14 +6,17 @@ import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import com.iti.example.findpe2.models.TripApi
 import com.iti.example.findpe2.pojos.CompanionUser
 import com.iti.example.findpe2.pojos.UserGalleryImage
 import com.iti.example.findpe2.pojos.UserInfo
 import com.iti.example.findpe2.pojos.UserInfoTitleType
+import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 
 class ProfileViewModel(
@@ -98,7 +101,27 @@ class ProfileViewModel(
             )
         )
         //get user images from firebase
-        _userImagesUrlList.value = listOf(
+        viewModelScope.launch {
+            try {
+                _userImagesUrlList.value = if (isCompanion) {
+                    companionUser?.let {
+                        TripApi.getAllImagesForUser(it.companionID).map { url ->
+                            UserGalleryImage(url)
+                        }
+                    }
+                } else {
+                    auth.currentUser?.let { user ->
+                        TripApi.getAllImagesForUser(user.uid).map { url ->
+                            UserGalleryImage(url)
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                Log.i("ProfileVM", e.localizedMessage)
+            }
+        }
+
+        /*_userImagesUrlList.value = listOf(
             UserGalleryImage("https://picsum.photos/id/237/200"),
             UserGalleryImage("https://picsum.photos/id/10/100"),
             UserGalleryImage("https://picsum.photos/id/100/500"),
@@ -106,39 +129,38 @@ class ProfileViewModel(
             UserGalleryImage("https://picsum.photos/id/1015/250"),
             UserGalleryImage("https://picsum.photos/id/1016/350"),
             UserGalleryImage("https://picsum.photos/id/237/200"),
-        )
+        )*/
     }
 
     fun uploadUserImage(userImage: Bitmap) {
-        //scale image
-        /*val scaleWidth: Int = userImage.width / 4
-        val scaleHeight: Int = userImage.height / 4
-        val scaledBitmap =
-            Bitmap.createScaledBitmap(userImage, scaleWidth, scaleHeight, true)*/
         //compress image
         val baos = ByteArrayOutputStream()
         userImage.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         val data = baos.toByteArray()
         //upload image
-        var uploadTask = FirebaseStorage.getInstance().reference.child("UserProfileImages")
+        val imageRef = FirebaseStorage.getInstance().reference.child("UserProfileImages")
             .child(auth.currentUser?.uid!!).child("profileImages")
-            .child(userImage.generationId.toString()).putBytes(data)
-        uploadTask.addOnFailureListener {
-            // Handle unsuccessful uploads
-            Log.i("ProfileVM", it.localizedMessage!!)
-        }.addOnSuccessListener { taskSnapshot ->
-            // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
-            taskSnapshot.metadata?.reference?.downloadUrl?.addOnFailureListener {
-                Log.i("ProfileVM", "task Failed")
-            }?.addOnSuccessListener {
-                //put imageUrl in user Api
-                val uploadedImageUrl = it.path
-                uploadedImageUrl?.let { url ->
-                    Log.i("ProfileVM", url)
-                    _onSuccessUploadingImage.value = true
+            .child(userImage.generationId.toString())
+        val uploadTask = imageRef.putBytes(data)
+        uploadTask.addOnCompleteListener {
+            if (it.isSuccessful) {
+                imageRef.downloadUrl.addOnSuccessListener {
+                    auth.currentUser?.let { user ->
+                        viewModelScope.launch {
+                            try {
+                                TripApi.uploadImageForUser(user.uid, it.toString())
+                                _userImagesUrlList.value = TripApi.getAllImagesForUser(user.uid).map { url ->
+                                    UserGalleryImage(url)
+                                }
+                                _onSuccessUploadingImage.value = true
+                            } catch (e: Exception) {
+                                Log.i("ProfileVM", e.localizedMessage)
+                            }
+                        }
+                    }
                 }
-            }
 
+            }
         }
     }
 
