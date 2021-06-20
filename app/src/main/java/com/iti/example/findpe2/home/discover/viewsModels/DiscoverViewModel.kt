@@ -148,7 +148,7 @@ class DiscoverViewModel : ViewModel() {
                 _errorStatus.value = View.VISIBLE
                 _loadingStatus.value = View.GONE
                 _emptyListStatus.value = View.GONE
-
+                Log.i(TAG, "getAllTrips: ${e.localizedMessage}")
             }
 
         }

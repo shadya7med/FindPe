@@ -207,5 +207,15 @@
     <string name="add_photos_fab_desc">this is add photos button</string>
     <string name="you_are_a_companion">You are a companion</string>
     <string name="show_jobs">Show jobs</string>
+    <string name="client_name">Client Name</string>
+    <string name="job_desc">Job desc</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id aliquet risus feugiat in. Massa enim nec dui nunc mattis enim ut tellus elementum</string>
+    <string name="job_cost">0.0 EGP</string>
+    <string name="job_describtion">"Job Describtion : "</string>
+    <string name="desc_sub_title">please describe what exactly you need to be done in you job</string>
+    <string name="job_tasks">"Job Tasks : "</string>
+    <string name="job_task_sub_title">list the task needed in your job</string>
+    <string name="offered_amount">"Offered Amount EGP : "</string>
+    <string name="send_request">Send Request</string>
 
 </resources>

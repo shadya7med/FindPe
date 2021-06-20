@@ -1,15 +1,17 @@
 package com.iti.example.findpe2.home.companionsList.views
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.iti.example.findpe2.HomeNavGraphDirections
+import com.iti.example.findpe2.R
+import com.iti.example.findpe2.constants.Keys
 import com.iti.example.findpe2.databinding.FragmentCompanionListBinding
 import com.iti.example.findpe2.home.companionsList.viewModels.CompanionListViewModel
+import com.iti.example.findpe2.jobrequest.JobRequestActivity
 
 
 class CompanionListFragment : Fragment() {
@@ -45,7 +47,6 @@ class CompanionListFragment : Fragment() {
         binding.swipeRefreshCompanionList.setOnRefreshListener {
             companionViewModel.getAllCompanions()
         }
-
 
 
         return binding.root

@@ -16,5 +16,6 @@ class Keys {
         const val ALL_TRIPS_KEY = "all_trips_key"
         const val DOCUMENT_REQ_KEY = "document_req_key"
         const val UPLOADED_DOC_KEY = "uploaded_doc_key"
+        const val COMPANION_ID_KEY = "companion_id_key"
     }
 }

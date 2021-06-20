@@ -27,10 +27,10 @@ data class Trip(
     val tripImages: List<TripImage>?,
     val users: List<User>?,
     val tripDurations: List<TripInfo>?,
-    val company: String?,
+    val company: Company?,
     val hotel: Hotel?,
     val timelineSlots: TimelineSlot?,
-    val tripCategory: String?,
+    val tripCategory: TripCategory?,
     var isLiked:Boolean = false
 ) : Parcelable
 
@@ -74,3 +74,23 @@ data class Trip(
 //    "tripCategory": null
 //}
 //]
+//"tripID": 1,
+//"code": "D3",
+//"priceBefore": 3500,
+//"priceAfter": 3150,
+//"discound": 0.1,
+//"name": "Dahab Fun Tour",
+//"origin": "Alexandria",
+//"destination": "Dahab",
+//"dateTimeStart": "2021-08-01T00:00:00",
+//"dateTimeEnd": "2021-08-08T00:00:00",
+//"duration": 7,
+//"tripDescription": "j d  dicjncjcd ddjcncjdjcdbcc dkncjdcjdcndjc   d cjncdjjdcnjcdjncjd",
+//"featured": true,
+//"noOfLikes": 120,
+//"noOfBook": 50,
+//"rateing": 4,
+//"isRemoved": false,
+//"hotelID": 2,
+//"companyID": 1,
+//"categoryID": 1,

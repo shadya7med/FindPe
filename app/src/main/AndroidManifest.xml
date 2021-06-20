@@ -13,7 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FindPe">
-        <activity android:name=".upload.UploadActivity"
+        <activity android:name=".jobrequest.JobRequestActivity"></activity>
+        <activity android:name=".jobHolder.JobActivityHolder" />
+        <activity
+            android:name=".upload.UploadActivity"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
         <activity android:name=".categoryActivity.views.CategoryTripsActivity" />
         <activity android:name=".companionHolder.CompanionHolderActivity" />

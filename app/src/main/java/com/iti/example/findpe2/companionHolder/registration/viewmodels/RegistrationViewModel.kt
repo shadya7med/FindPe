@@ -21,6 +21,17 @@ class RegistrationViewModel : ViewModel() {
     val loadingVisibility: LiveData<Int?>
         get() = _loadingVisibility
 
+    val formVisibility = Transformations.map(_loadingVisibility){
+        if(it != null){
+            if(it == View.VISIBLE){
+                View.INVISIBLE
+            }else{
+                View.VISIBLE
+            }
+        }else{
+            View.VISIBLE
+        }
+    }
 
     private val _selectedCountry = MutableLiveData<String?>()
     val selectedCountry: LiveData<String?>

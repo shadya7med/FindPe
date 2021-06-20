@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".jobrequest.JobRequestActivity">
+
+            <TextView
+                android:id="@+id/job_describtion"
+                style="@style/title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/job_describtion"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/job_desc_sub"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/desc_sub_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/job_describtion"
+                app:layout_constraintTop_toBottomOf="@+id/job_describtion" />
+
+            <TextView
+                android:id="@+id/job_task_sub"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/job_task_sub_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/job_tasks"
+                app:layout_constraintTop_toBottomOf="@+id/job_tasks" />
+
+            <EditText
+                android:id="@+id/job_description_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:maxLines="3"
+                app:layout_constraintEnd_toEndOf="@+id/job_desc_sub"
+                app:layout_constraintStart_toStartOf="@+id/job_desc_sub"
+                app:layout_constraintTop_toBottomOf="@+id/job_desc_sub" />
+
+            <EditText
+                android:id="@+id/job_task_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:maxLines="5"
+                app:layout_constraintEnd_toEndOf="@+id/job_task_sub"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/job_task_sub"
+                app:layout_constraintTop_toBottomOf="@+id/job_task_sub" />
+
+            <TextView
+                android:id="@+id/job_tasks"
+                style="@style/title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:text="@string/job_tasks"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/job_description_text" />
+
+            <TextView
+                android:id="@+id/offered_amount"
+                style="@style/title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:text="@string/offered_amount"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/job_task_text" />
+
+            <EditText
+                android:id="@+id/job_request_cost"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:hint="@string/job_cost"
+                android:inputType="number"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/offered_amount" />
+
+            <Button
+                android:id="@+id/send_request_btn"
+                style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/send_request"
+                android:textColor="@color/subtitle_text_custom_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/job_request_cost"
+                app:rippleColor="@color/title_text_custom_color" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

@@ -14,14 +14,13 @@ interface TripsApiService {
 
     @GET("Trips/FillterByCategory/{category}")
     suspend fun getTripsByCategory(
-        @Path("category") category: String,
-        @Query("id") id: Int
+        @Path("category") category: Int,
     ): List<Trip>
 
     @GET("TripDuration/GetTripDurations/{id}")
     suspend fun getTripDurations(@Path("id") id: Int): List<TripDuration>
 
-    @GET("TimeLine/GetTimeLineSlots/{id}")
+    @GET("TimeLine/GetTimeLineToTripByID/{id}")
     suspend fun getTimelineSlot(@Path("id") id: Int): List<TimelineSlot>
 
     @GET("Trips/CityTo")

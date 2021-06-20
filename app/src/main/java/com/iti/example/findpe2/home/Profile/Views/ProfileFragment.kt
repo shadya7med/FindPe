@@ -4,25 +4,28 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import com.iti.example.findpe2.R
 import com.iti.example.findpe2.constants.Constants
+import com.iti.example.findpe2.constants.Keys
 import com.iti.example.findpe2.databinding.FragmentProfileBinding
 import com.iti.example.findpe2.home.profile.viewModels.ProfileViewModel
 import com.iti.example.findpe2.home.profile.viewModels.ProfileViewModelFactory
+import com.iti.example.findpe2.jobrequest.JobRequestActivity
+import com.iti.example.findpe2.pojos.CompanionUser
 import java.io.IOException
 
 
 class ProfileFragment : Fragment() {
 
     lateinit var profileViewModel: ProfileViewModel
-
+    val isCompanion = ProfileFragmentArgs.fromBundle(requireArguments()).isCompanion
+    var companion: CompanionUser? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +34,7 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
         val binding = FragmentProfileBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
+        companion = ProfileFragmentArgs.fromBundle(requireArguments()).companion
 
         profileViewModel = ViewModelProvider(
             this,
@@ -74,7 +78,7 @@ class ProfileFragment : Fragment() {
             }
 
         }
-
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -97,6 +101,24 @@ class ProfileFragment : Fragment() {
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 Toast.makeText(activity, "Canceled", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        if (isCompanion)
+            inflater.inflate(R.menu.companion_list_menu, menu)
+        else
+            super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.send_request_menu_item -> {
+                val openCompanionHolderIntent = Intent(activity, JobRequestActivity::class.java)
+                openCompanionHolderIntent.putExtra(Keys.COMPANION_ID_KEY, companion)
+                startActivity(openCompanionHolderIntent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

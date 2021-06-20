@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<data>
+    <variable
+        name="job"
+        type="com.iti.example.findpe2.pojos.Job" />
+    <variable
+        name="clickListener"
+        type="com.iti.example.findpe2.jobHolder.browseJobs.views.JobOnClickListener" />
+</data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/job_item_client_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/job_item_client_name_text"
+            style="@style/title_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/client_name"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/job_item_client_image"
+            app:layout_constraintTop_toTopOf="@+id/job_item_client_image" />
+
+        <TextView
+            android:id="@+id/job_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/job_desc"
+            app:layout_constraintStart_toStartOf="@+id/job_item_client_name_text"
+            app:layout_constraintTop_toBottomOf="@+id/job_item_client_name_text" />
+
+        <TextView
+            android:id="@+id/job_desc_text"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/lorem_ipsum"
+            app:layout_constraintBottom_toBottomOf="@+id/job_cost_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/job_desc"
+            app:layout_constraintTop_toBottomOf="@+id/job_desc" />
+
+        <TextView
+            android:id="@+id/job_cost_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:text="@string/job_cost"
+            app:layout_constraintEnd_toEndOf="@+id/job_item_client_image"
+            app:layout_constraintStart_toStartOf="@+id/job_item_client_image"
+            app:layout_constraintTop_toBottomOf="@+id/job_item_client_image" />
+
+        <View
+            android:id="@+id/divider15"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/job_desc_text"
+            tools:layout_editor_absoluteX="6dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

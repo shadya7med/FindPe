@@ -53,7 +53,7 @@ class CategoryViewModel(private val categoryName: String, private val categoryId
         _loadingStatus.value = View.VISIBLE
         viewModelScope.launch {
             try {
-                _tripList.value = TripApi.getTripsByCategory(categoryName, categoryId)
+                _tripList.value = TripApi.getTripsByCategory(categoryId)
                 _loadingStatus.value = View.GONE
                 _errorMsgStatus.value = View.GONE
             }catch (t: Throwable){

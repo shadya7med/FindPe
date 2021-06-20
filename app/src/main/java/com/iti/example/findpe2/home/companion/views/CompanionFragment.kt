@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.iti.example.findpe2.companionHolder.CompanionHolderActivity
 import com.iti.example.findpe2.databinding.FragmentCompanionBinding
 import com.iti.example.findpe2.home.companion.viewModels.CompanionViewModel
+import com.iti.example.findpe2.jobrequest.JobRequestActivity
 
 class CompanionFragment : Fragment() {
     lateinit var companionViewModel: CompanionViewModel
@@ -45,6 +46,13 @@ class CompanionFragment : Fragment() {
                     navController.navigate(CompanionFragmentDirections.actionCompanionFragmentHomeToCompanionListFragment())
                     companionViewModel.onDoneNavigationToCompanionList()
                 }
+            }
+        }
+        companionViewModel.navigateToJobRequest.observe(viewLifecycleOwner){
+            it?.let {
+                val openCompanionHolderIntent = Intent(activity,JobRequestActivity::class.java)
+                startActivity(openCompanionHolderIntent)
+                companionViewModel.displayJobRequestActivityCompleted()
             }
         }
 
