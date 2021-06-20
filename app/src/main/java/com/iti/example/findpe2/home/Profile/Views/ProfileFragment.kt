@@ -17,15 +17,12 @@ import com.iti.example.findpe2.databinding.FragmentProfileBinding
 import com.iti.example.findpe2.home.profile.viewModels.ProfileViewModel
 import com.iti.example.findpe2.home.profile.viewModels.ProfileViewModelFactory
 import com.iti.example.findpe2.jobrequest.JobRequestActivity
-import com.iti.example.findpe2.pojos.CompanionUser
 import java.io.IOException
 
 
 class ProfileFragment : Fragment() {
 
     lateinit var profileViewModel: ProfileViewModel
-    val isCompanion = ProfileFragmentArgs.fromBundle(requireArguments()).isCompanion
-    var companion: CompanionUser? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +31,6 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
         val binding = FragmentProfileBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
-        companion = ProfileFragmentArgs.fromBundle(requireArguments()).companion
 
         profileViewModel = ViewModelProvider(
             this,
@@ -104,7 +100,7 @@ class ProfileFragment : Fragment() {
         }
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        if (isCompanion)
+        if (profileViewModel.getIsCompanion())
             inflater.inflate(R.menu.companion_list_menu, menu)
         else
             super.onCreateOptionsMenu(menu, inflater)
@@ -114,7 +110,7 @@ class ProfileFragment : Fragment() {
         return when(item.itemId){
             R.id.send_request_menu_item -> {
                 val openCompanionHolderIntent = Intent(activity, JobRequestActivity::class.java)
-                openCompanionHolderIntent.putExtra(Keys.COMPANION_ID_KEY, companion)
+                openCompanionHolderIntent.putExtra(Keys.COMPANION_ID_KEY, profileViewModel.getCompanion())
                 startActivity(openCompanionHolderIntent)
                 true
             }

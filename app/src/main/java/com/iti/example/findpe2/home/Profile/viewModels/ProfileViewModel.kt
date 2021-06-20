@@ -17,8 +17,8 @@ import com.iti.example.findpe2.pojos.UserInfoTitleType
 import java.io.ByteArrayOutputStream
 
 class ProfileViewModel(
-    private val isCompanion: Boolean,
-    private val companionUser: CompanionUser?
+    isCompanion: Boolean,
+    companionUser: CompanionUser?
 ) : ViewModel() {
 
 
@@ -58,8 +58,12 @@ class ProfileViewModel(
         get() = _photoPickerStatus
 
     private val _onSuccessUploadingImage = MutableLiveData<Boolean?>()
-    val onSuccessUploadingImage :LiveData<Boolean?>
+    val onSuccessUploadingImage: LiveData<Boolean?>
         get() = _onSuccessUploadingImage
+
+    private var isCompanion: Boolean = false
+    private var companion: CompanionUser? = null
+
 
     init {
         _username.value =
@@ -70,6 +74,10 @@ class ProfileViewModel(
         _bio.value = if (isCompanion) companionUser?.nationality else null
         _accountLevel.value = if (isCompanion) companionUser?.badge else null
         _photoPickerStatus.value = if (isCompanion) View.GONE else View.VISIBLE
+        this.isCompanion = isCompanion
+        companionUser?.let {
+            companion = it
+        }
         //it should be replaced with fetching from API
         _userInfoList.value = if (isCompanion) null else listOf(
             UserInfo(
@@ -113,7 +121,8 @@ class ProfileViewModel(
         val data = baos.toByteArray()
         //upload image
         var uploadTask = FirebaseStorage.getInstance().reference.child("UserProfileImages")
-            .child(auth.currentUser?.uid!!).child("profileImages").child(userImage.generationId.toString()).putBytes(data)
+            .child(auth.currentUser?.uid!!).child("profileImages")
+            .child(userImage.generationId.toString()).putBytes(data)
         uploadTask.addOnFailureListener {
             // Handle unsuccessful uploads
             Log.i("ProfileVM", it.localizedMessage!!)
@@ -133,7 +142,10 @@ class ProfileViewModel(
         }
     }
 
-    fun onDoneNotifyingUserOfUploading(){
+    fun getIsCompanion() = isCompanion
+    fun getCompanion() = companion
+
+    fun onDoneNotifyingUserOfUploading() {
         _onSuccessUploadingImage.value = null
     }
 
