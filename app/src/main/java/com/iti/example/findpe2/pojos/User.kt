@@ -16,12 +16,12 @@ data class User(
     @SerializedName("userName")
     val name: String,
     @SerializedName("passsword")
-    val password: String,
+    val password: String? = null,
     val email: String,
     val imageUrl: String,
     val isVerified: Boolean,
     val balance: Int,
-    val profileImageUrl: String,
+    val profileImageUrl: String? = null,
     val discreminator: String,
     val creditCards: CreditCard? = null
 ) : Parcelable

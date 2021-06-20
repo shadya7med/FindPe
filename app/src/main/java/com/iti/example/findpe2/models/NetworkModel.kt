@@ -2,6 +2,7 @@ package com.iti.example.findpe2.models
 
 import com.iti.example.findpe2.constants.URLs.Companion.NOT_SECURE_BASE_URL
 import com.iti.example.findpe2.pojos.CompanionUser
+import com.iti.example.findpe2.pojos.Job
 import com.iti.example.findpe2.pojos.User
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -92,5 +93,13 @@ object TripApi {
         tripsApi.updateACompanion(companionUser)
 
     suspend fun getAllCompanions() = tripsApi.getAllCompanions()
+
+
+    //job
+
+    suspend fun addANewJob(job: Job) = tripsApi.addANewJob(job)
+    suspend fun updateJob(job: Job) = tripsApi.updateJob(job)
+    suspend fun getAllJobs() = tripsApi.getAllJobs()
+
 
 }

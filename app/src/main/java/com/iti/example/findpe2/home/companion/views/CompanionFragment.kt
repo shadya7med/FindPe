@@ -11,7 +11,8 @@ import androidx.navigation.fragment.findNavController
 import com.iti.example.findpe2.companionHolder.CompanionHolderActivity
 import com.iti.example.findpe2.databinding.FragmentCompanionBinding
 import com.iti.example.findpe2.home.companion.viewModels.CompanionViewModel
-import com.iti.example.findpe2.jobrequest.JobRequestActivity
+import com.iti.example.findpe2.jobHolder.JobActivityHolder
+import com.iti.example.findpe2.jobrequest.views.JobRequestActivity
 
 class CompanionFragment : Fragment() {
     lateinit var companionViewModel: CompanionViewModel
@@ -50,9 +51,16 @@ class CompanionFragment : Fragment() {
         }
         companionViewModel.navigateToJobRequest.observe(viewLifecycleOwner){
             it?.let {
-                val openCompanionHolderIntent = Intent(activity,JobRequestActivity::class.java)
-                startActivity(openCompanionHolderIntent)
+                val intent = Intent(activity, JobRequestActivity::class.java)
+                startActivity(intent)
                 companionViewModel.displayJobRequestActivityCompleted()
+            }
+        }
+        companionViewModel.navigateToBrowseJob.observe(viewLifecycleOwner){
+            it?.let {
+                val intent = Intent(activity,JobActivityHolder::class.java)
+                startActivity(intent)
+                companionViewModel.displayBrowseJobActivityCompleted()
             }
         }
 

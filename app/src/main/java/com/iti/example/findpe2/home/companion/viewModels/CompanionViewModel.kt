@@ -56,6 +56,10 @@ class CompanionViewModel : ViewModel() {
     val  navigateToJobRequest: LiveData<Boolean?>
         get() =  _navigateToJobRequest
 
+    private val _navigateToBrowseJob = MutableLiveData<Boolean?>()
+    val  navigateToBrowseJob: LiveData<Boolean?>
+        get() =  _navigateToBrowseJob
+
     fun onNavigateToCompanionList() {
         _onNavigateToCompanionListData.value = true
     }
@@ -93,6 +97,12 @@ class CompanionViewModel : ViewModel() {
     }
     fun displayJobRequestActivityCompleted(){
         _navigateToJobRequest.value = null
+    }
 
+    fun displayBrowseJobActivity(){
+        _navigateToBrowseJob.value = true
+    }
+    fun displayBrowseJobActivityCompleted(){
+        _navigateToBrowseJob.value = null
     }
 }

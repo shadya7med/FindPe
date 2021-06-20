@@ -6,5 +6,5 @@
     <fragment
         android:id="@+id/browseJobsFragment"
         android:name="com.iti.example.findpe2.jobHolder.browseJobs.views.BrowseJobsFragment"
-        android:label="BrowseJobsFragment" />
+        android:label="Jobs" />
 </navigation>

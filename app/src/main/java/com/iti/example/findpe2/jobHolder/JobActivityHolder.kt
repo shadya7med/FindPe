@@ -8,8 +8,10 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.iti.example.findpe2.R
 import com.iti.example.findpe2.databinding.ActivityCompanionHolderBinding
+import com.iti.example.findpe2.databinding.ActivityJobHolderBinding
 
 class JobActivityHolder : AppCompatActivity() {
 
@@ -18,12 +20,11 @@ class JobActivityHolder : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_job_holder)
-        val binding = ActivityCompanionHolderBinding.inflate(layoutInflater)
+
+        val binding = ActivityJobHolderBinding.inflate(layoutInflater)
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.job_nav_host) as NavHostFragment
         navController = navHostFragment.findNavController()
         appBarConfiguration = AppBarConfiguration(navController.graph)
-
         //make up button appear in top destination fragment
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)

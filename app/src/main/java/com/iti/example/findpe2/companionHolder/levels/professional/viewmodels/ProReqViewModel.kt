@@ -1,5 +1,6 @@
 package com.iti.example.findpe2.companionHolder.levels.professional.viewmodels
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.*
 import com.google.firebase.auth.FirebaseAuth
@@ -9,6 +10,8 @@ import com.iti.example.findpe2.pojos.CompanionUser
 import com.iti.example.findpe2.pojos.ExpertLevel
 import com.iti.example.findpe2.pojos.RegistrationInfo
 import kotlinx.coroutines.launch
+
+private const val TAG = "ProViewModel"
 
 class ProReqViewModel(private val registrationInfo: RegistrationInfo) : ViewModel() {
     private val _snackbarEvent = MutableLiveData<Boolean?>()
@@ -118,13 +121,16 @@ class ProReqViewModel(private val registrationInfo: RegistrationInfo) : ViewMode
                 AccountLevel.BRONZE.value,
                 idUrl.value!!,
                 censorshipUrl.value!!,
-                1
+                1,
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet nisl purus in mollis. Mauris ultrices eros in cursus turpis massa."
             )
             viewModelScope.launch {
+                _loadingVisibility.value = View.VISIBLE
                 try {
                     TripApi.addANewCompanion(companion)
+                    finishActivity()
                 } catch (t: Throwable) {
-
+                    Log.i(TAG, "submit: ${t.localizedMessage}")
                 }
 
             }

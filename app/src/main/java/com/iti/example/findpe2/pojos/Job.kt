@@ -5,16 +5,16 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 
-enum class JobType (value:String){
+enum class JobType (val value: String){
     PERSONAL("personal"),
     BUSINESS("Business")
 }
 
 @Parcelize
 data class Job(
-    @SerializedName("JopId")
-    val jobID:Int,
-    val clientId:Int,
+    @SerializedName("jopId")
+    val jobID:Int?,
+    val clientId:String,
     @SerializedName("deacription")
     val description:String,
     @SerializedName("jopPrice")
@@ -28,7 +28,7 @@ data class Job(
     @SerializedName("currenTBid")
     val currentBid:Int,
     @SerializedName("typeOfJop")
-    val JobType:JobType,
-    val companionID:String
-
+    val JobType: String,
+    val companionID:String?,
+    val user: User?
 ):Parcelable

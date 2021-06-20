@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 <data>
     <variable
         name="job"
@@ -8,22 +10,33 @@
         name="clickListener"
         type="com.iti.example.findpe2.jobHolder.browseJobs.views.JobOnClickListener" />
 </data>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="30dp"
+        android:layout_marginBottom="16dp"
+        app:cardBackgroundColor="@color/card_background"
+        >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onClick(job)}">
+        <androidx.cardview.widget.CardView
             android:id="@+id/job_item_client_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="120dp"
+            android:layout_height="0dp"
             android:layout_marginStart="16dp"
+            app:cardCornerRadius="60dp"
             android:layout_marginTop="16dp"
+            app:layout_constraintDimensionRatio="h,1:1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:bindPlaceImageUrl="@{job.user.imageUrl}"
             tools:srcCompat="@tools:sample/avatars" />
-
+        </androidx.cardview.widget.CardView>
         <TextView
             android:id="@+id/job_item_client_name_text"
             style="@style/title_style"
@@ -31,7 +44,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:text="@string/client_name"
+            tools:text="@string/client_name"
+            android:text="@{job.user.name}"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/job_item_client_image"
@@ -50,9 +64,10 @@
             android:id="@+id/job_desc_text"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:text="@{job.description}"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="16dp"
-            android:text="@string/lorem_ipsum"
+            tools:text="@string/lorem_ipsum"
             app:layout_constraintBottom_toBottomOf="@+id/job_cost_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/job_desc"
@@ -63,7 +78,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="11dp"
-            android:text="@string/job_cost"
+            tools:text="@string/job_cost"
+            android:text="@{@string/price_format(job.jobPrice)}"
             app:layout_constraintEnd_toEndOf="@+id/job_item_client_image"
             app:layout_constraintStart_toStartOf="@+id/job_item_client_image"
             app:layout_constraintTop_toBottomOf="@+id/job_item_client_image" />
@@ -78,4 +94,5 @@
             app:layout_constraintTop_toBottomOf="@+id/job_desc_text"
             tools:layout_editor_absoluteX="6dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

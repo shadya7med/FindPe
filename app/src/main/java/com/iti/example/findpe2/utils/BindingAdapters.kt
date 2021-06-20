@@ -24,6 +24,7 @@ import com.iti.example.findpe2.home.profile.views.UserInfoAdapter
 import com.iti.example.findpe2.home.saved.views.SavedTripsAdapter
 import com.iti.example.findpe2.home.timeline.views.TimelineAdapter
 import com.iti.example.findpe2.home.travelling.views.TravellingTripAdapter
+import com.iti.example.findpe2.jobHolder.browseJobs.views.BrowseJobsAdapter
 import com.iti.example.findpe2.pojos.*
 import com.iti.example.findpe2.tripCheckout.booking.views.TripDurationsAdapter
 import com.iti.example.findpe2.tripCheckout.tripDetails.viewModels.SaveState
@@ -154,6 +155,12 @@ fun RecyclerView.setListFeaturedTrips(list: List<Trip>?) {
 fun RecyclerView.setListUserInfo(list: List<UserInfo>?) {
     visibility = if (list.isNullOrEmpty()) View.GONE else View.VISIBLE
     (this.adapter as UserInfoAdapter).submitList(list)
+}
+
+@BindingAdapter("listJobs")
+fun RecyclerView.listJobs(list: List<Job>?) {
+    visibility = if (list.isNullOrEmpty()) View.GONE else View.VISIBLE
+    (this.adapter as BrowseJobsAdapter).submitList(list)
 }
 
 @BindingAdapter("listUserGallery")

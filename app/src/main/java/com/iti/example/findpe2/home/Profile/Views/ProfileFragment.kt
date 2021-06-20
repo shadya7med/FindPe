@@ -16,7 +16,7 @@ import com.iti.example.findpe2.constants.Keys
 import com.iti.example.findpe2.databinding.FragmentProfileBinding
 import com.iti.example.findpe2.home.profile.viewModels.ProfileViewModel
 import com.iti.example.findpe2.home.profile.viewModels.ProfileViewModelFactory
-import com.iti.example.findpe2.jobrequest.JobRequestActivity
+import com.iti.example.findpe2.jobrequest.views.JobRequestActivity
 import java.io.IOException
 
 
