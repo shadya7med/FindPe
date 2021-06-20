@@ -5,10 +5,16 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.Toast
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.iti.example.findpe2.R
 import com.iti.example.findpe2.companionHolder.registration.viewmodels.RegistrationViewModel
 import com.iti.example.findpe2.databinding.FragmentCompanionRegisterationBinding
@@ -69,16 +75,16 @@ class CompanionRegistrationFragment : Fragment() {
                         return@setOnClickListener
                     }
                 }
-                registrationCountryText.apply {
-                    if (text.length < 3){
-                        error = "Country is not valid"
+                countryDropList.apply {
+                    if (selectedItem as String == "Country"){
+                        Toast.makeText(requireContext(), "Choose a country", Toast.LENGTH_LONG).show()
                         requestFocus()
                         return@setOnClickListener
                     }
                 }
-                registrationCityText.apply {
-                    if (text.length < 3){
-                        error = "City is not valid"
+                cityDropList.apply {
+                    if (selectedItem as String == "City"){
+                        Toast.makeText(requireContext(), "Choose a city", Toast.LENGTH_LONG).show()
                         requestFocus()
                         return@setOnClickListener
                     }
@@ -89,15 +95,28 @@ class CompanionRegistrationFragment : Fragment() {
                         registrationLastNameText.text.toString(),
                         registrationEmailText.text.toString(),
                         registrationPhoneText.text.toString(),
-                        registrationCountryText.text.toString(),
-                        registrationCityText.text.toString()
+                        countryDropList.selectedItem.toString(),
+                        countryDropList.selectedItem.toString()
                     )
                 findNavController().navigate(CompanionRegistrationFragmentDirections.actionCompanionRegistrationFragmentToCompanionLevelFragment(registrationInfo))
             }
 
 
         }
+        binding.countryDropList.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                viewModel.setSelectedCountry(parent?.getItemAtPosition(position) as String)
+            }
 
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+        }
         // Inflate the layout for this fragment
         return binding.root
     }

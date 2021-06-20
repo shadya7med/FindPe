@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 import com.iti.example.findpe2.R
 import com.iti.example.findpe2.companionHolder.levels.professional.viewmodels.ProReqViewModel
 import com.iti.example.findpe2.companionHolder.levels.professional.viewmodels.ProReqViewModelFactory
@@ -67,10 +68,19 @@ class ProfessionalRequirementsFragment : Fragment() {
             uploadIntent.putExtra(Keys.DOCUMENT_REQ_KEY, "criminal_record")
             startActivityForResult(uploadIntent,CRIMINAL_REQ)
         }
-        viewModel.toastVisibility.observe(viewLifecycleOwner, Observer {
+        viewModel.snackbarEvent.observe(viewLifecycleOwner, Observer {
             it?.let {
-                Toast.makeText(context, "Please upload unchecked Documents", Toast.LENGTH_SHORT)
+                Snackbar.make(
+                    requireView(),
+                    "Please upload unchecked Documents",
+                    Snackbar.LENGTH_SHORT // How long to display the message.
+                ).show()
                 viewModel.toastAppearanceCompleted()
+            }
+        })
+        viewModel.finishEvent.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                requireActivity().finish()
             }
         })
 

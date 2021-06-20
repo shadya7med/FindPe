@@ -10,19 +10,23 @@ import com.iti.example.findpe2.pojos.ExpertLevel
 import com.iti.example.findpe2.pojos.RegistrationInfo
 import kotlinx.coroutines.launch
 
-class ProReqViewModel(private val registrationInfo: RegistrationInfo): ViewModel() {
-    private val _toastVisibility = MutableLiveData<Boolean?>()
-    val toastVisibility: LiveData<Boolean?>
-        get() = _toastVisibility
+class ProReqViewModel(private val registrationInfo: RegistrationInfo) : ViewModel() {
+    private val _snackbarEvent = MutableLiveData<Boolean?>()
+    val snackbarEvent: LiveData<Boolean?>
+        get() = _snackbarEvent
+
+    private val _finishEvent = MutableLiveData<Boolean?>()
+    val finishEvent: LiveData<Boolean?>
+        get() = _finishEvent
 
     private val _personalPicUrl = MutableLiveData<String?>()
     val personalPicUrl: LiveData<String?>
         get() = _personalPicUrl
 
-    val personalPicCheckedVisibility = Transformations.map(personalPicUrl){
-        if(it != null){
+    val personalPicCheckedVisibility = Transformations.map(personalPicUrl) {
+        if (it != null) {
             View.VISIBLE
-        }else{
+        } else {
             View.GONE
         }
     }
@@ -31,10 +35,10 @@ class ProReqViewModel(private val registrationInfo: RegistrationInfo): ViewModel
     val idUrl: LiveData<String?>
         get() = _idUrl
 
-    val idCheckedVisibility = Transformations.map(idUrl){
-        if(it != null){
+    val idCheckedVisibility = Transformations.map(idUrl) {
+        if (it != null) {
             View.VISIBLE
-        }else{
+        } else {
             View.GONE
         }
     }
@@ -42,10 +46,10 @@ class ProReqViewModel(private val registrationInfo: RegistrationInfo): ViewModel
     val censorshipUrl: LiveData<String?>
         get() = _censorshipUrl
 
-    val censorshipCheckedVisibility = Transformations.map(censorshipUrl){
-        if(it != null){
+    val censorshipCheckedVisibility = Transformations.map(censorshipUrl) {
+        if (it != null) {
             View.VISIBLE
-        }else{
+        } else {
             View.GONE
         }
     }
@@ -53,15 +57,20 @@ class ProReqViewModel(private val registrationInfo: RegistrationInfo): ViewModel
     val criminalRecordUrl: LiveData<String?>
         get() = _criminalRecordUrl
 
-    val criminalRecordCheckedVisibility = Transformations.map(criminalRecordUrl){
-        if(it != null){
+    val criminalRecordCheckedVisibility = Transformations.map(criminalRecordUrl) {
+        if (it != null) {
             View.VISIBLE
-        }else{
+        } else {
             View.GONE
         }
     }
 
+    private val _loadingVisibility = MutableLiveData<Int?>()
+    val loadingVisibility: LiveData<Int?>
+        get() = _loadingVisibility
+
     init {
+        _loadingVisibility.value = View.GONE
         _personalPicUrl.value = null
         _idUrl.value = null
         _criminalRecordUrl.value = null
@@ -69,53 +78,62 @@ class ProReqViewModel(private val registrationInfo: RegistrationInfo): ViewModel
     }
 
 
-
-    fun setIdUrl(idUrl: String){
+    fun setIdUrl(idUrl: String) {
         _idUrl.value = idUrl
     }
-    fun setProfilePicUrl(profilePicUrl: String){
+
+    fun setProfilePicUrl(profilePicUrl: String) {
         _personalPicUrl.value = profilePicUrl
     }
-    fun setCensorshipUrl(censorshipUrl: String){
+
+    fun setCensorshipUrl(censorshipUrl: String) {
         _censorshipUrl.value = censorshipUrl
     }
-    fun setCriminalRecUrl(criminalRecUrl: String){
+
+    fun setCriminalRecUrl(criminalRecUrl: String) {
         _criminalRecordUrl.value = criminalRecUrl
     }
-    fun toastAppearanceCompleted(){
-        _toastVisibility.value = null
+
+    fun toastAppearanceCompleted() {
+        _snackbarEvent.value = null
 
     }
 
-    fun submit(){
-        if (personalPicCheckedVisibility.value != View.VISIBLE &&
-            idCheckedVisibility.value != View.VISIBLE &&
-            censorshipCheckedVisibility.value != View.VISIBLE &&
-            criminalRecordCheckedVisibility.value != View.VISIBLE){
-            _toastVisibility.value = true
-            return
-        }
-        val companion = CompanionUser(
-            FirebaseAuth.getInstance().currentUser!!.uid,
-            ExpertLevel.PROFESSIONAL.value,
-            registrationInfo.city,
-            registrationInfo.country,
-            "Egyptian",
-            criminalRecordUrl.value!!,
-            true,
-            AccountLevel.BRONZE.value,
-            idUrl.value!!,
-            censorshipUrl.value!!,
-            1
-        )
-        viewModelScope.launch {
-            try {
-                TripApi.addANewCompanion(companion)
-            }catch (t: Throwable){
+    fun submit() {
+        if (personalPicCheckedVisibility.value != View.VISIBLE ||
+            idCheckedVisibility.value != View.VISIBLE ||
+            censorshipCheckedVisibility.value != View.VISIBLE ||
+            criminalRecordCheckedVisibility.value != View.VISIBLE
+        ) {
+            _snackbarEvent.value = true
+        } else {
+            val companion = CompanionUser(
+                FirebaseAuth.getInstance().currentUser!!.uid,
+                ExpertLevel.PROFESSIONAL.value,
+                registrationInfo.city,
+                registrationInfo.country,
+                "Egyptian",
+                criminalRecordUrl.value!!,
+                true,
+                AccountLevel.BRONZE.value,
+                idUrl.value!!,
+                censorshipUrl.value!!,
+                1
+            )
+            viewModelScope.launch {
+                try {
+                    TripApi.addANewCompanion(companion)
+                } catch (t: Throwable) {
+
+                }
+
             }
         }
     }
 
+    private fun finishActivity() {
+        _finishEvent.value = true
+    }
 
 
 }

@@ -13,7 +13,7 @@ import com.iti.example.findpe2.databinding.FragmentCompanionBinding
 import com.iti.example.findpe2.home.companion.viewModels.CompanionViewModel
 
 class CompanionFragment : Fragment() {
-
+    lateinit var companionViewModel: CompanionViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,7 +23,7 @@ class CompanionFragment : Fragment() {
         val binding = FragmentCompanionBinding.inflate(inflater,container,false)
         binding.lifecycleOwner = viewLifecycleOwner
 
-        val companionViewModel = ViewModelProvider(this).get(CompanionViewModel::class.java)
+        companionViewModel = ViewModelProvider(this).get(CompanionViewModel::class.java)
         binding.companionViewModel = companionViewModel
 
         val navController = findNavController()
@@ -49,6 +49,11 @@ class CompanionFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        companionViewModel.getCompanionList()
     }
 
 

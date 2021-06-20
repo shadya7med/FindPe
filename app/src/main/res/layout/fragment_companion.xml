@@ -84,6 +84,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/join_us"
+                android:visibility="@{companionViewModel.joinUsVisibility}"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/apply_as_companion_image" />
+
+            <TextView
+                android:id="@+id/you_are_a_companion"
+                style="@style/companion_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/you_are_a_companion"
+                android:visibility="@{companionViewModel.jobListVisibility}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/apply_as_companion_image" />
@@ -95,10 +108,24 @@
                 android:layout_height="wrap_content"
                 android:onClick="@{()->companionViewModel.onNavigateToBeCompanionHolderList()}"
                 android:text="@string/apply_companion"
+                android:visibility="@{companionViewModel.joinUsVisibility}"
                 android:textColor="@color/subtitle_text_custom_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/join_us"
+                app:rippleColor="@color/title_text_custom_color" />
+
+            <Button
+                android:id="@+id/show_job_list"
+                style="@style/companion_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/show_jobs"
+                android:visibility="@{companionViewModel.jobListVisibility}"
+                android:textColor="@color/subtitle_text_custom_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/you_are_a_companion"
                 app:rippleColor="@color/title_text_custom_color" />
 
             <TextView
@@ -114,6 +141,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/apply_as_companion_btn" />
+
+            <ProgressBar
+                android:id="@+id/progressBar3"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:visibility="@{companionViewModel.loadingVisibility}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider9" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -3,9 +3,7 @@ package com.iti.example.findpe2.utils
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
@@ -375,5 +373,23 @@ fun TextView.setProfileSubtitle(subtitle: String?) {
     } else {
         visibility = View.VISIBLE
         subtitle
+    }
+}
+
+@BindingAdapter("listCountries")
+fun AutoCompleteTextView.listCountries(countries: List<String>?) {
+    countries?.let {
+        this.setAdapter(ArrayAdapter(this.context, android.R.layout.simple_list_item_1, it))
+    }
+}
+
+@BindingAdapter("listCountrieCities")
+fun Spinner.listCountries(countries: List<String>?) {
+    countries?.let {
+        adapter = ArrayAdapter(this.context, android.R.layout.simple_spinner_item, it)
+            .also { arrayAdapter ->
+                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            }
+        this.adapter = adapter
     }
 }

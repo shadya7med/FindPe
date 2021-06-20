@@ -205,5 +205,7 @@
     <string name="censorship_id">Censorship ID</string>
     <string name="criminal_record">Criminal Record</string>
     <string name="add_photos_fab_desc">this is add photos button</string>
+    <string name="you_are_a_companion">You are a companion</string>
+    <string name="show_jobs">Show jobs</string>
 
 </resources>

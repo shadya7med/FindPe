@@ -10,19 +10,23 @@ import com.iti.example.findpe2.pojos.ExpertLevel
 import com.iti.example.findpe2.pojos.RegistrationInfo
 import kotlinx.coroutines.launch
 
-class AmateurReqViewModel(private val registrationInfo: RegistrationInfo): ViewModel() {
-    private val _toastVisibility = MutableLiveData<Boolean?>()
-    val toastVisibility: LiveData<Boolean?>
-        get() = _toastVisibility
+class AmateurReqViewModel(private val registrationInfo: RegistrationInfo) : ViewModel() {
+    private val _snackbarEvent = MutableLiveData<Boolean?>()
+    val snackbarEvent: LiveData<Boolean?>
+        get() = _snackbarEvent
+
+    private val _finishEvent = MutableLiveData<Boolean?>()
+    val finishEvent: LiveData<Boolean?>
+        get() = _finishEvent
 
     private val _personalPicUrl = MutableLiveData<String?>()
     val personalPicUrl: LiveData<String?>
         get() = _personalPicUrl
 
-    val personalPicCheckedVisibility = Transformations.map(personalPicUrl){
-        if(it != null){
+    val personalPicCheckedVisibility = Transformations.map(personalPicUrl) {
+        if (it != null) {
             View.VISIBLE
-        }else{
+        } else {
             View.GONE
         }
     }
@@ -31,56 +35,69 @@ class AmateurReqViewModel(private val registrationInfo: RegistrationInfo): ViewM
     val idUrl: LiveData<String?>
         get() = _idUrl
 
-    val idCheckedVisibility = Transformations.map(idUrl){
-        if(it != null){
+    val idCheckedVisibility = Transformations.map(idUrl) {
+        if (it != null) {
             View.VISIBLE
-        }else{
+        } else {
             View.GONE
         }
     }
 
+    private val _loadingVisibility = MutableLiveData<Int?>()
+    val loadingVisibility: LiveData<Int?>
+        get() = _loadingVisibility
+
     init {
+        _loadingVisibility.value = View.GONE
         _personalPicUrl.value = null
         _idUrl.value = null
     }
-    fun toastAppearanceCompleted(){
-        _toastVisibility.value = null
+
+    fun snackbarAppearanceCompleted() {
+        _snackbarEvent.value = null
 
     }
 
 
-    fun setIdUrl(idUrl: String){
+    fun setIdUrl(idUrl: String) {
         _idUrl.value = idUrl
     }
-    fun setProfilePicUrl(profilePicUrl: String){
+
+    fun setProfilePicUrl(profilePicUrl: String) {
         _personalPicUrl.value = profilePicUrl
     }
-    fun submit(){
-        if (personalPicCheckedVisibility.value != View.VISIBLE &&
-            idCheckedVisibility.value != View.VISIBLE){
-            _toastVisibility.value = true
-            return
-        }
-        val companion = CompanionUser(
-            FirebaseAuth.getInstance().currentUser!!.uid,
-            ExpertLevel.PROFESSIONAL.value,
-            registrationInfo.city,
-            registrationInfo.country,
-            "Egyptian",
-            "N/A",
-            true,
-            AccountLevel.BRONZE.value,
-            idUrl.value!!,
-            "N/A",
-            1
-        )
-        viewModelScope.launch {
-            try {
-                TripApi.addANewCompanion(companion)
-            }catch (t: Throwable){
+
+    fun submit() {
+        if (personalPicCheckedVisibility.value != View.VISIBLE ||
+            idCheckedVisibility.value != View.VISIBLE
+        ) {
+            _snackbarEvent.value = true
+        } else {
+            val companion = CompanionUser(
+                FirebaseAuth.getInstance().currentUser!!.uid,
+                ExpertLevel.PROFESSIONAL.value,
+                registrationInfo.city,
+                registrationInfo.country,
+                "Egyptian",
+                "N/A",
+                true,
+                AccountLevel.BRONZE.value,
+                idUrl.value!!,
+                "N/A",
+                1
+            )
+            viewModelScope.launch {
+                try {
+                    TripApi.addANewCompanion(companion)
+                } catch (t: Throwable) {
+
+                }
             }
         }
     }
 
+    private fun finishActivity() {
+        _finishEvent.value = true
+    }
 
 }
