@@ -84,15 +84,17 @@
 
             <TextView
                 android:id="@+id/bio_txtView_profile"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
-                app:profileSubtitle="@{profileViewModel.bio}"
-                tools:text="@string/bio_placeholder"
+                android:layout_marginEnd="16dp"
                 android:textColor="@color/subtitle_text_custom_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/subtitle_txtView_profile" />
+                app:layout_constraintTop_toBottomOf="@+id/subtitle_txtView_profile"
+                app:profileSubtitle="@{profileViewModel.bio}"
+                tools:text="@string/bio_placeholder" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView

@@ -104,6 +104,9 @@ interface TripsApiService {
     @GET("Companion")
     suspend fun getAllCompanions(): List<CompanionUser>
 
+    @GET("Companion/{id}")
+    suspend fun getACompanionById(@Path("id")id:String):CompanionUser
+
     @POST("Companion")
     suspend fun addANewsCompanion(@Body companionUser: CompanionUser)
 

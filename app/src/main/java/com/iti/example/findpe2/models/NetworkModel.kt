@@ -88,10 +88,9 @@ object TripApi {
 
     suspend fun addANewCompanion(companionUser: CompanionUser) =
         tripsApi.addANewsCompanion(companionUser)
-
+    suspend fun getACompanionById(id:String) = tripsApi.getACompanionById(id)
     suspend fun updateACompanion(companionUser: CompanionUser) =
         tripsApi.updateACompanion(companionUser)
-
     suspend fun getAllCompanions() = tripsApi.getAllCompanions()
 
 

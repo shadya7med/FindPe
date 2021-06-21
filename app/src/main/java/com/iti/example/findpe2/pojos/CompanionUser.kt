@@ -25,7 +25,7 @@ data class CompanionUser(
     val idCardImageUrl:String,
     val censorshipImageUrl:String,
     val rating:Int,
-    val bio: String,
+    var bio: String,
     @SerializedName("jop")
     val job:Job? = null,
     @SerializedName("user")

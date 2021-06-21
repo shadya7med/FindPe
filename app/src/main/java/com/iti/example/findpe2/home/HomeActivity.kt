@@ -57,7 +57,7 @@ class HomeActivity : AppCompatActivity() {
             R.id.travelingFragmentHome
         )
         //configure the Top-Level destinations with DrawerLayout
-        appBarConfiguration = AppBarConfiguration(topLevelDestinationsSet,homeDrawerLayout)
+        appBarConfiguration = AppBarConfiguration(topLevelDestinationsSet, homeDrawerLayout)
         //setup the up Button for non-Top level destinations will change for up button automatically for non-Top level
         //hook DrawerLayout with the navController via NavigationUI --> modify View
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
@@ -84,10 +84,16 @@ class HomeActivity : AppCompatActivity() {
             .placeholder(R.drawable.background_gradient)
             .circleCrop()
             .into(drawerHeaderBinder.userImageImgViewNavHeaderHome)*/
-        homeViewModel.onNavigateToProfile.observe(this){
-            it?.let{
-                if(it){
-                    navController.navigate(HomeNavGraphDirections.actionGlobalProfileFragment(false,null))
+        homeViewModel.onNavigateToProfile.observe(this) {
+            it?.let {
+                if (it) {
+                    navController.navigate(
+                        HomeNavGraphDirections.actionGlobalProfileFragment(
+                            false,
+                            homeViewModel.getUserAlsoCompanion(),
+                            homeViewModel.getIsUserAlsoCompanion()
+                        )
+                    )
                     binding.homeDrawerLayout.close()
                     homeViewModel.onDoneNavigationToProfile()
                 }
@@ -136,13 +142,15 @@ class HomeActivity : AppCompatActivity() {
         super.onDestroy()
         unregisterReceiver(receiver)
     }
-    private val receiver = object : BroadcastReceiver(){
+
+    private val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
-            if (!checkInternet(context!!)){
+            if (!checkInternet(context!!)) {
                 finish()
                 startActivity(Intent(context, NetworkActivity::class.java))
             }
         }
+
         private fun checkInternet(context: Context): Boolean {
             val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             val netInfo = cm.activeNetworkInfo

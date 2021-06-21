@@ -20,8 +20,9 @@ import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 
 class ProfileViewModel(
-    isCompanion: Boolean,
-    companionUser: CompanionUser?
+    val isShownAsCompanion: Boolean,
+    var companionUser: CompanionUser?,
+    val isUserAlsoCompanion:Boolean
 ) : ViewModel() {
 
 
@@ -64,25 +65,19 @@ class ProfileViewModel(
     val onSuccessUploadingImage: LiveData<Boolean?>
         get() = _onSuccessUploadingImage
 
-    private var isCompanion: Boolean = false
-    private var companion: CompanionUser? = null
-
+    
 
     init {
         _username.value =
-            if (isCompanion) companionUser?.userInfo?.name else auth.currentUser!!.displayName
+            if (isShownAsCompanion) companionUser?.userInfo?.name else auth.currentUser!!.displayName
         _userPhotoUrl.value =
-            if (isCompanion) companionUser?.userInfo?.imageUrl else auth.currentUser!!.photoUrl.toString()
-        _title.value = if (isCompanion) companionUser?.expertLevel else null
-        _bio.value = if (isCompanion) companionUser?.nationality else null
-        _accountLevel.value = if (isCompanion) companionUser?.badge else null
-        _photoPickerStatus.value = if (isCompanion) View.GONE else View.VISIBLE
-        this.isCompanion = isCompanion
-        companionUser?.let {
-            companion = it
-        }
-        //it should be replaced with fetching from API
-        _userInfoList.value = if (isCompanion) null else listOf(
+            if (isShownAsCompanion) companionUser?.userInfo?.imageUrl else auth.currentUser!!.photoUrl.toString()
+        _title.value = if (isShownAsCompanion) companionUser?.expertLevel else null
+        _bio.value = if (isShownAsCompanion) companionUser?.bio else null
+        _accountLevel.value = if (isShownAsCompanion) companionUser?.badge else null
+        _photoPickerStatus.value = if (isShownAsCompanion) View.GONE else View.VISIBLE
+
+        _userInfoList.value = if (isShownAsCompanion) null else listOf(
             UserInfo(
                 UserInfoTitleType.TRIPS_HISTORY,
                 arrayListOf("Dahab", "Cairo", "Jordan", "Alexandria")
@@ -100,10 +95,11 @@ class ProfileViewModel(
                 arrayListOf("Arabic", "English", "French")
             )
         )
+        
         //get user images from firebase
         viewModelScope.launch {
             try {
-                _userImagesUrlList.value = if (isCompanion) {
+                _userImagesUrlList.value = if (isShownAsCompanion) {
                     companionUser?.let {
                         TripApi.getAllImagesForUser(it.companionID).map { url ->
                             UserGalleryImage(url)
@@ -121,15 +117,6 @@ class ProfileViewModel(
             }
         }
 
-        /*_userImagesUrlList.value = listOf(
-            UserGalleryImage("https://picsum.photos/id/237/200"),
-            UserGalleryImage("https://picsum.photos/id/10/100"),
-            UserGalleryImage("https://picsum.photos/id/100/500"),
-            UserGalleryImage("https://picsum.photos/id/101/320"),
-            UserGalleryImage("https://picsum.photos/id/1015/250"),
-            UserGalleryImage("https://picsum.photos/id/1016/350"),
-            UserGalleryImage("https://picsum.photos/id/237/200"),
-        )*/
     }
 
     fun uploadUserImage(userImage: Bitmap) {
@@ -149,12 +136,14 @@ class ProfileViewModel(
                         viewModelScope.launch {
                             try {
                                 TripApi.uploadImageForUser(user.uid, it.toString())
-                                _userImagesUrlList.value = TripApi.getAllImagesForUser(user.uid).map { url ->
-                                    UserGalleryImage(url)
-                                }
+                                _userImagesUrlList.value =
+                                    TripApi.getAllImagesForUser(user.uid).map { url ->
+                                        UserGalleryImage(url)
+                                    }
                                 _onSuccessUploadingImage.value = true
                             } catch (e: Exception) {
                                 Log.i("ProfileVM", e.localizedMessage)
+                                _onSuccessUploadingImage.value = false
                             }
                         }
                     }
@@ -164,8 +153,14 @@ class ProfileViewModel(
         }
     }
 
-    fun getIsCompanion() = isCompanion
-    fun getCompanion() = companion
+
+    fun updateBio(bio:String?){
+        //update local companion for the current user object
+        if (!bio.isNullOrEmpty()){
+            companionUser?.bio = bio
+        }
+    }
+
 
     fun onDoneNotifyingUserOfUploading() {
         _onSuccessUploadingImage.value = null

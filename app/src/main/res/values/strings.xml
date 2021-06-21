@@ -218,5 +218,7 @@
     <string name="offered_amount">"Offered Amount EGP : "</string>
     <string name="send_request">Send Request</string>
     <string name="picked_text">Picked For You</string>
+    <string name="bio_item">Edit Bio</string>
+    <string name="save">Save</string>
 
 </resources>

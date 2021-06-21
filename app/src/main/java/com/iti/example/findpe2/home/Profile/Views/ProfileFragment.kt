@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.*
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -14,6 +16,7 @@ import com.iti.example.findpe2.R
 import com.iti.example.findpe2.constants.Constants
 import com.iti.example.findpe2.constants.Keys
 import com.iti.example.findpe2.databinding.FragmentProfileBinding
+import com.iti.example.findpe2.home.profile.bio.views.EditBioActivity
 import com.iti.example.findpe2.home.profile.viewModels.ProfileViewModel
 import com.iti.example.findpe2.home.profile.viewModels.ProfileViewModelFactory
 import com.iti.example.findpe2.jobrequest.views.JobRequestActivity
@@ -23,6 +26,7 @@ import java.io.IOException
 class ProfileFragment : Fragment() {
 
     lateinit var profileViewModel: ProfileViewModel
+    lateinit var resultActivityLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,8 +39,9 @@ class ProfileFragment : Fragment() {
         profileViewModel = ViewModelProvider(
             this,
             ProfileViewModelFactory(
-                ProfileFragmentArgs.fromBundle(requireArguments()).isCompanion,
-                ProfileFragmentArgs.fromBundle(requireArguments()).companion
+                ProfileFragmentArgs.fromBundle(requireArguments()).isShownAsCompanion,
+                ProfileFragmentArgs.fromBundle(requireArguments()).companion,
+                ProfileFragmentArgs.fromBundle(requireArguments()).isUserAlsoCompanion
             )
         ).get(ProfileViewModel::class.java)
         binding.profileViewModel = profileViewModel
@@ -63,17 +68,32 @@ class ProfileFragment : Fragment() {
         }
         profileViewModel.onSuccessUploadingImage.observe(viewLifecycleOwner) {
             it?.let {
-                if (it){
+                if (it) {
                     Snackbar.make(
                         requireActivity().findViewById(android.R.id.content),
                         "The selected image has been uploaded",
                         Snackbar.LENGTH_LONG
                     ).show()
                     profileViewModel.onDoneNotifyingUserOfUploading()
+                } else {
+                    Snackbar.make(
+                        requireActivity().findViewById(android.R.id.content),
+                        "The images was not uploaded successfully ",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                    profileViewModel.onDoneNotifyingUserOfUploading()
                 }
             }
-
         }
+
+        resultActivityLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK) {
+                    profileViewModel.updateBio(result.data?.getStringExtra(Keys.UPDATED_BIO_KEY))
+                }
+
+            }
+
         setHasOptionsMenu(true)
         return binding.root
     }
@@ -99,23 +119,48 @@ class ProfileFragment : Fragment() {
             }
         }
     }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        if (profileViewModel.getIsCompanion())
+        if (profileViewModel.isShownAsCompanion)
             inflater.inflate(R.menu.companion_list_menu, menu)
-        else
-            super.onCreateOptionsMenu(menu, inflater)
+        else {
+            if (profileViewModel.isUserAlsoCompanion) {
+                inflater.inflate(R.menu.profile_bio_menu, menu)
+            } else {
+                super.onCreateOptionsMenu(menu, inflater)
+            }
+        }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
+        return when (item.itemId) {
             R.id.send_request_menu_item -> {
                 val openCompanionHolderIntent = Intent(activity, JobRequestActivity::class.java)
-                openCompanionHolderIntent.putExtra(Keys.COMPANION_ID_KEY, profileViewModel.getCompanion())
+                openCompanionHolderIntent.putExtra(
+                    Keys.COMPANION_ID_KEY,
+                    profileViewModel.companionUser
+                )
                 startActivity(openCompanionHolderIntent)
+                true
+            }
+            R.id.edit_bio_item_profile -> {
+                val openEditBioCompanionIntent = Intent(activity, EditBioActivity::class.java)
+                openEditBioCompanionIntent.putExtra(
+                    Keys.CURRENT_USER_AS_COMPANION,
+                    profileViewModel.companionUser
+                )
+                resultActivityLauncher.launch(openEditBioCompanionIntent)
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        //profileViewModel.updateBio()
+    }
+
 }
+

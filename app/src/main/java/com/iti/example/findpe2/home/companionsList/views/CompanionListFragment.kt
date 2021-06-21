@@ -1,7 +1,9 @@
 package com.iti.example.findpe2.home.companionsList.views
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -36,7 +38,7 @@ class CompanionListFragment : Fragment() {
         })
         companionViewModel.onNavigateToCompanionUserDetailsData.observe(viewLifecycleOwner){
             it?.let {
-                findNavController().navigate(HomeNavGraphDirections.actionGlobalProfileFragment(true,it))
+                findNavController().navigate(HomeNavGraphDirections.actionGlobalProfileFragment(true,it,false))
                 companionViewModel.onDoneNavigationToCompanionDetails()
             }
         }

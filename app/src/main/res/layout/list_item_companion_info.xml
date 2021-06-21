@@ -127,11 +127,12 @@
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:singleLine="false"
+                    android:text="@{companion.bio}"
                     android:textColor="@color/subtitle_text_custom_color"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/expertLevel_txtView_listItem_companionList"
                     app:layout_constraintTop_toTopOf="@+id/registration_agreement"
-                    android:text="@string/bio_placeholder" />
+                    tools:text="@string/bio_placeholder" />
 
                 <ImageView
                     android:id="@+id/isLiked_imgView_listItem_companionList"
