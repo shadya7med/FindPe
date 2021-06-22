@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import android.view.View
+import androidx.lifecycle.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -17,6 +19,18 @@ class HomeViewModel:ViewModel() {
 
     var auth: FirebaseAuth = Firebase.auth
 
+    private val _companionList = MutableLiveData<List<CompanionUser>?>()
+
+    val companionSecVisibility = Transformations.map(_companionList) {
+        if (it != null) {
+            val companionIdList = it.map { companion ->
+                companion.companionID
+            }
+            companionIdList.contains(FirebaseAuth.getInstance().currentUser!!.uid)
+        } else {
+            false
+        }
+    }
 
     private val _email:MutableLiveData<String> = MutableLiveData()
     val email:LiveData<String>
@@ -51,10 +65,24 @@ class HomeViewModel:ViewModel() {
             }
 
         }
+        _companionList.value = null
+        getCompanionList()
     }
 
     fun getIsUserAlsoCompanion() = isUserAlsoCompanion
     fun getUserAlsoCompanion() = userAlsoCompanion
+
+
+
+    private fun getCompanionList() {
+        viewModelScope.launch {
+            try {
+                _companionList.value = TripApi.getAllCompanions()
+            } catch (t: Throwable) {
+
+            }
+        }
+    }
 
     fun onNavigateToProfile(){
         _onNavigateToProfile.value = true

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/job_nav_graph"
-    app:startDestination="@id/browseJobsFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/requests_nav_graph"
+    app:startDestination="@id/requestsFragmentHome">
 
     <fragment
-        android:id="@+id/browseJobsFragment"
-        android:name="com.iti.example.findpe2.jobHolder.browseJobs.views.BrowseJobsFragment"
-        android:label="Jobs" >
+        android:id="@+id/requestsFragmentHome"
+        android:name="com.iti.example.findpe2.home.jobrequests.views.RequestsFragmentHome"
+        android:label="RequestsFragmentHome" >
         <action
-            android:id="@+id/action_browseJobsFragment_to_jobDetailFragment3"
-            app:destination="@id/jobDetailFragment3" />
+            android:id="@+id/action_requestsFragmentHome_to_jobDetailFragment"
+            app:destination="@id/jobDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/jobDetailFragment3"
+        android:id="@+id/jobDetailFragment"
         android:name="com.iti.example.findpe2.jobHolder.jobdetails.views.JobDetailFragment"
         android:label="JobDetailFragment" >
         <argument

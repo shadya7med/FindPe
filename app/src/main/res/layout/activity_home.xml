@@ -44,7 +44,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:backgroundTint="@color/card_background"
+            app:itemTextColor="@color/title_text_custom_color"
+            app:itemIconTint="@color/title_text_custom_color"
             app:menu="@menu/home_drawer_menu"
             />
     </androidx.drawerlayout.widget.DrawerLayout>

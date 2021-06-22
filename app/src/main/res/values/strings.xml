@@ -211,7 +211,7 @@
     <string name="job_desc">Job desc</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id aliquet risus feugiat in. Massa enim nec dui nunc mattis enim ut tellus elementum</string>
     <string name="job_cost">0.0 EGP</string>
-    <string name="job_describtion">"Job Describtion : "</string>
+    <string name="job_description">"Job Description : "</string>
     <string name="desc_sub_title">please describe what exactly you need to be done in you job</string>
     <string name="job_tasks">"Job Tasks : "</string>
     <string name="job_task_sub_title">list the task needed in your job</string>
@@ -220,5 +220,14 @@
     <string name="picked_text">Picked For You</string>
     <string name="bio_item">Edit Bio</string>
     <string name="save">Save</string>
+    <string name="request_text">Requests</string>
+    <string name="status">Status</string>
+    <string name="job_details">Job Details</string>
+    <string name="accept">Accept</string>
+    <string name="reject">Reject</string>
+    <string name="job_offers">Job Offers</string>
+    <string name="companion_name">Companion name</string>
+    <string name="state">"State : "</string>
+    <string name="delete">Delete</string>
 
 </resources>

@@ -6,10 +6,9 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -21,6 +20,8 @@ import com.iti.example.findpe2.R
 import com.iti.example.findpe2.authentication.CreateAccountActivity
 import com.iti.example.findpe2.databinding.ActivityHomeBinding
 import com.iti.example.findpe2.databinding.HomeDrawerHeaderBinding
+import com.iti.example.findpe2.home.joboffers.JobOffersActivity
+import com.iti.example.findpe2.home.jobrequests.RequestsActivity
 import com.iti.example.findpe2.network.NetworkActivity
 
 
@@ -99,6 +100,11 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
         }
+        homeViewModel.companionSecVisibility.observe(this, Observer {
+            it?.let {
+                binding.homeDrawerNavView.menu.setGroupVisible(R.id.home_drawer_group_companion, it)
+            }
+        })
 
         binding.homeDrawerNavView.setNavigationItemSelectedListener {
             when (it.itemId) {
@@ -107,6 +113,14 @@ class HomeActivity : AppCompatActivity() {
                     val signoutIntent = Intent(this@HomeActivity, CreateAccountActivity::class.java)
                     startActivity(signoutIntent)
                     finish()
+                }
+                R.id.RequestsFragmentHome ->{
+                    val requestIntent = Intent(this@HomeActivity, RequestsActivity::class.java)
+                    startActivity(requestIntent)
+                }
+                R.id.jobsFragmentHome -> {
+                    val jobOffersIntent = Intent(this@HomeActivity, JobOffersActivity::class.java)
+                    startActivity(jobOffersIntent)
                 }
             }
             true
@@ -145,8 +159,9 @@ class HomeActivity : AppCompatActivity() {
 
     private val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
-            if (!checkInternet(context!!)) {
-                finish()
+
+            if (!checkInternet(context!!)){
+                finishAffinity()
                 startActivity(Intent(context, NetworkActivity::class.java))
             }
         }
