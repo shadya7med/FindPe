@@ -19,8 +19,10 @@ import com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatRoomsListAdapte
 import com.iti.example.findpe2.home.companionsList.views.CompanionListAdapter
 import com.iti.example.findpe2.home.discover.views.DiscoverFeaturedAdapter
 import com.iti.example.findpe2.home.discover.views.DiscoverPlacesAdapter
+import com.iti.example.findpe2.home.joboffers.views.JobOfferAdapter
 import com.iti.example.findpe2.home.profile.views.UserGalleryAdapter
 import com.iti.example.findpe2.home.profile.views.UserInfoAdapter
+import com.iti.example.findpe2.home.jobrequests.views.RequestsAdapter
 import com.iti.example.findpe2.home.saved.views.SavedTripsAdapter
 import com.iti.example.findpe2.home.timeline.views.TimelineAdapter
 import com.iti.example.findpe2.home.travelling.views.TravellingTripAdapter
@@ -398,5 +400,24 @@ fun Spinner.listCountries(countries: List<String>?) {
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             }
         this.adapter = adapter
+    }
+}
+@BindingAdapter("listRequests")
+fun RecyclerView.listRequests(list: List<ReceivedJobRequest>?) {
+    visibility = if (list.isNullOrEmpty()) View.GONE else View.VISIBLE
+    (this.adapter as RequestsAdapter).submitList(list)
+}
+
+@BindingAdapter("listJobOffers")
+fun RecyclerView.listJobOffers(list: List<SentJobRequest>?) {
+    visibility = if (list.isNullOrEmpty()) View.GONE else View.VISIBLE
+    (this.adapter as JobOfferAdapter).submitList(list)
+}
+@BindingAdapter("setStatusTextColor")
+fun TextView.setStatusTextColor(status: String){
+    when(status){
+        RequestStatus.ACCEPTED.value -> setTextColor(Color.GREEN)
+        RequestStatus.REJECTED.value -> setTextColor(Color.RED)
+        else -> setTextColor(Color.BLUE)
     }
 }

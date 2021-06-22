@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.iti.example.findpe2.databinding.ListItemJobBinding
-import com.iti.example.findpe2.home.discover.views.PlaceOnClickListener
 import com.iti.example.findpe2.pojos.Job
 
 class BrowseJobsAdapter(private val clickListener: JobOnClickListener): ListAdapter<Job, BrowseJobsAdapter.VH>(object : DiffUtil.ItemCallback<Job>(){

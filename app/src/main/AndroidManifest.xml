@@ -14,7 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FindPe">
         <activity android:name=".home.profile.bio.views.EditBioActivity"></activity>
-        <activity android:name=".jobrequest.views.JobRequestActivity" />
+
+        <activity android:name=".home.joboffers.JobOffersActivity"></activity>
+        <activity android:name=".home.jobrequests.RequestsActivity" />
+        <activity android:name=".jobsendrequest.views.JobRequestActivity" />
         <activity android:name=".jobHolder.JobActivityHolder" />
         <activity
             android:name=".upload.UploadActivity"

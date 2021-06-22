@@ -12,7 +12,7 @@ import com.iti.example.findpe2.companionHolder.CompanionHolderActivity
 import com.iti.example.findpe2.databinding.FragmentCompanionBinding
 import com.iti.example.findpe2.home.companion.viewModels.CompanionViewModel
 import com.iti.example.findpe2.jobHolder.JobActivityHolder
-import com.iti.example.findpe2.jobrequest.views.JobRequestActivity
+import com.iti.example.findpe2.jobsendrequest.views.JobRequestActivity
 
 class CompanionFragment : Fragment() {
     lateinit var companionViewModel: CompanionViewModel

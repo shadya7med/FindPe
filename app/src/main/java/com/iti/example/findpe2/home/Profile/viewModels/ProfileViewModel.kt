@@ -9,13 +9,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.iti.example.findpe2.models.TripApi
-import com.iti.example.findpe2.pojos.CompanionUser
-import com.iti.example.findpe2.pojos.UserGalleryImage
-import com.iti.example.findpe2.pojos.UserInfo
-import com.iti.example.findpe2.pojos.UserInfoTitleType
+import com.iti.example.findpe2.pojos.*
 import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 
@@ -161,6 +159,9 @@ class ProfileViewModel(
         }
     }
 
+
+    fun getIsCompanion() = isUserAlsoCompanion
+    fun getCompanion() = companionUser
 
     fun onDoneNotifyingUserOfUploading() {
         _onSuccessUploadingImage.value = null

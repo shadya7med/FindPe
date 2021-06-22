@@ -12,6 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 import com.iti.example.findpe2.R
 import com.iti.example.findpe2.constants.Constants
 import com.iti.example.findpe2.constants.Keys
@@ -19,7 +22,7 @@ import com.iti.example.findpe2.databinding.FragmentProfileBinding
 import com.iti.example.findpe2.home.profile.bio.views.EditBioActivity
 import com.iti.example.findpe2.home.profile.viewModels.ProfileViewModel
 import com.iti.example.findpe2.home.profile.viewModels.ProfileViewModelFactory
-import com.iti.example.findpe2.jobrequest.views.JobRequestActivity
+import com.iti.example.findpe2.jobsendrequest.views.JobRequestActivity
 import java.io.IOException
 
 
@@ -136,12 +139,7 @@ class ProfileFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.send_request_menu_item -> {
-                val openCompanionHolderIntent = Intent(activity, JobRequestActivity::class.java)
-                openCompanionHolderIntent.putExtra(
-                    Keys.COMPANION_ID_KEY,
-                    profileViewModel.companionUser
-                )
-                startActivity(openCompanionHolderIntent)
+                getJobRequests()
                 true
             }
             R.id.edit_bio_item_profile -> {
@@ -162,5 +160,27 @@ class ProfileFragment : Fragment() {
         //profileViewModel.updateBio()
     }
 
-}
 
+    private fun getJobRequests() {
+        val mDatabase = FirebaseDatabase.getInstance().reference
+        val companion = profileViewModel.getCompanion()
+        val userId = Firebase.auth.currentUser?.uid
+        mDatabase.child("ReceivedJobRequests").child(companion?.companionID!!).child(userId!!).get()
+            .addOnSuccessListener {
+                if (it.value == null) {
+                    val openCompanionHolderIntent = Intent(activity, JobRequestActivity::class.java)
+                    openCompanionHolderIntent.putExtra(
+                        Keys.COMPANION_ID_KEY,
+                        profileViewModel.getCompanion())
+                    openCompanionHolderIntent.putExtra(Keys.FOR_A_COMPANION_KEY, true)
+                    startActivity(openCompanionHolderIntent)
+                } else {
+                    Snackbar.make(
+                        requireView(),
+                        "There is a job between you and the companion you can edit it from job offers",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+            }
+    }
+}

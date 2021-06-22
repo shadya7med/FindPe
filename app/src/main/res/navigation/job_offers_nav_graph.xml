@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/job_offers_nav_graph"
+    app:startDestination="@id/jobOffersMainFragment">
+
+    <fragment
+        android:id="@+id/jobOffersMainFragment"
+        android:name="com.iti.example.findpe2.home.joboffers.views.JobOffersMainFragment"
+        android:label="fragment_job_offers_main"
+        tools:layout="@layout/fragment_job_offers_main" />
+</navigation>

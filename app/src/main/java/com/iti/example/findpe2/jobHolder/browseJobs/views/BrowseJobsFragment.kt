@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.iti.example.findpe2.R
 import com.iti.example.findpe2.databinding.FragmentBrowseJobsBinding
+import com.iti.example.findpe2.jobHolder.JobActivityHolder
 import com.iti.example.findpe2.jobHolder.browseJobs.viewmodels.BrowseJobsViewModel
 
 
@@ -23,15 +24,16 @@ class BrowseJobsFragment : Fragment() {
         binding = FragmentBrowseJobsBinding.inflate(layoutInflater, container, false)
 
         binding.jobRecyclerview.adapter = BrowseJobsAdapter(JobOnClickListener { job ->
-//            findNavController().navigate()
+            findNavController().navigate(BrowseJobsFragmentDirections.actionBrowseJobsFragmentToJobDetailFragment3(null , job))
         })
-
+        (requireActivity() as JobActivityHolder).setActionBarTitle("Jobs")
 
         val viewModel = ViewModelProvider(this).get(BrowseJobsViewModel::class.java)
 
         binding.viewModel = viewModel
 
         binding.lifecycleOwner = this
+        requireActivity().actionBar?.title = "Jobs"
 
         setHasOptionsMenu(true)
         return binding.root
