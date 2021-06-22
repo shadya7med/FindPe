@@ -5,9 +5,9 @@ import kotlinx.parcelize.Parcelize
 
 
 enum class RequestStatus(val value: String){
-    WAITING("waiting"),
-    ACCEPTED("accepted"),
-    REJECTED("rejected")
+    WAITING("Waiting"),
+    ACCEPTED("Accepted"),
+    REJECTED("Rejected")
 }
 @Parcelize
 data class ReceivedJobRequest(
