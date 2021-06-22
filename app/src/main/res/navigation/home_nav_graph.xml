@@ -104,6 +104,9 @@
         android:name="com.iti.example.findpe2.home.companionsList.views.CompanionListFragment"
         android:label="@string/companion_list"
         tools:layout="@layout/fragment_companion_list" />
+    <action
+        android:id="@+id/action_global_chatFragmentHome"
+        app:destination="@id/chatFragmentHome" />
 
 
 </navigation>

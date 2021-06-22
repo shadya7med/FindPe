@@ -6,7 +6,7 @@
     <fragment
         android:id="@+id/requestsFragmentHome"
         android:name="com.iti.example.findpe2.home.jobrequests.views.RequestsFragmentHome"
-        android:label="RequestsFragmentHome" >
+        android:label="@string/request_text">
         <action
             android:id="@+id/action_requestsFragmentHome_to_jobDetailFragment"
             app:destination="@id/jobDetailFragment" />
@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/jobDetailFragment"
         android:name="com.iti.example.findpe2.jobHolder.jobdetails.views.JobDetailFragment"
-        android:label="JobDetailFragment" >
+        android:label="@string/job_details">
         <argument
             android:name="request"
             app:argType="com.iti.example.findpe2.pojos.ReceivedJobRequest"

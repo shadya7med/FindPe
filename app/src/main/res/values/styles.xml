@@ -152,4 +152,7 @@
         <item name="android:textColor">@color/filter_background_grey</item>
         <item name="android:textSize">10sp</item>
     </style>
+    <style name="congratulation_dialog_theme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/title_text_custom_color</item>
+    </style>
 </resources>

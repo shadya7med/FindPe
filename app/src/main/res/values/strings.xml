@@ -229,5 +229,7 @@
     <string name="companion_name">Companion name</string>
     <string name="state">"State : "</string>
     <string name="delete">Delete</string>
-
+    <string name="congratulations">Congratulations</string>
+    <string name="chat_room_created_dialog">A Chat room is created between you and the client </string>
+    <string name="ok">Ok</string>
 </resources>

@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
@@ -106,6 +107,15 @@ class HomeActivity : AppCompatActivity() {
             }
         })
 
+        val requestsActivityLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == RESULT_OK){
+                    binding.homeDrawerLayout.close()
+                    //chat room added successfully
+                    navController.navigate(HomeNavGraphDirections.actionGlobalChatFragmentHome())
+                }
+            }
+
         binding.homeDrawerNavView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.logoutFragmentHome -> {
@@ -114,9 +124,9 @@ class HomeActivity : AppCompatActivity() {
                     startActivity(signoutIntent)
                     finish()
                 }
-                R.id.RequestsFragmentHome ->{
+                R.id.RequestsFragmentHome -> {
                     val requestIntent = Intent(this@HomeActivity, RequestsActivity::class.java)
-                    startActivity(requestIntent)
+                    requestsActivityLauncher.launch(requestIntent)
                 }
                 R.id.jobsFragmentHome -> {
                     val jobOffersIntent = Intent(this@HomeActivity, JobOffersActivity::class.java)
@@ -160,7 +170,7 @@ class HomeActivity : AppCompatActivity() {
     private val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
 
-            if (!checkInternet(context!!)){
+            if (!checkInternet(context!!)) {
                 finishAffinity()
                 startActivity(Intent(context, NetworkActivity::class.java))
             }
