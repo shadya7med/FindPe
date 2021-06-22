@@ -107,7 +107,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_default="percent"
-            app:layout_constraintHeight_percent="0.3"
+            app:layout_constraintHeight_percent="0.15"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/topSection_cl_profile"

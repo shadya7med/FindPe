@@ -18,7 +18,7 @@ data class Trip(
     val duration: Int,
     val tripDescription: String,
     val featured: Boolean,
-    val noOfLikes: Int,
+    var noOfLikes: Int,
     val noOfBook: Int,
     val rateing: Int,
     val hotelID: Int,

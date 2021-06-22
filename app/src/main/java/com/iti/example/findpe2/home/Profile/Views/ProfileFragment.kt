@@ -59,10 +59,10 @@ class ProfileFragment : Fragment() {
 
         binding.userGalleryRvProfile.adapter = UserGalleryAdapter()
         binding.addPhotosFabProfile.setOnClickListener {
-            val openPhotoPicker = Intent(Intent.ACTION_GET_CONTENT)
-            openPhotoPicker.type = "image/*"
+            val openGalleryIntent =
+                Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(
-                Intent.createChooser(openPhotoPicker, "Select Picture"),
+                openGalleryIntent,
                 Constants.SELECT_IMAGE
             )
         }

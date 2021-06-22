@@ -109,6 +109,7 @@ class SavedTripsViewModel : ViewModel() {
                                 val list = _savedTripsList.value
                                 list?.let { list ->
                                     list[index].isLiked = false
+                                    list[index].noOfLikes -= 1
                                     _savedTripsList.value = list
                                     _isLiked.value = false
                                 }
@@ -122,6 +123,7 @@ class SavedTripsViewModel : ViewModel() {
                                 val list = _savedTripsList.value
                                 list?.let { list ->
                                     list[index].isLiked = true
+                                    list[index].noOfLikes += 1
                                     _savedTripsList.value = list
                                     _isLiked.value = true
                                 }
