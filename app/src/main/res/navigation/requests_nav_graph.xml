@@ -23,5 +23,16 @@
             android:name="job"
             app:argType="com.iti.example.findpe2.pojos.Job"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_jobDetailFragment_to_previewClientProfileFragment"
+            app:destination="@id/previewClientProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/previewClientProfileFragment"
+        android:name="com.iti.example.findpe2.home.previewClient.views.PreviewClientProfileFragment"
+        android:label="@string/profile_text">
+        <argument
+            android:name="clientID"
+            app:argType="string" />
     </fragment>
 </navigation>

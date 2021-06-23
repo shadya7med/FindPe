@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="previewClientViewModel"
+            type="com.iti.example.findpe2.home.previewClient.viewmodels.PreviewClientViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".home.previewClient.views.PreviewClientProfileFragment">
+
+        <ImageView
+            android:id="@+id/userImage_imgView_preview_client"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="50dp"
+            android:contentDescription="@string/userImg_desc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:userImage="@{previewClientViewModel.userPhotoUrl}"
+            app:visibilityAgainstStatus="@{previewClientViewModel.loadingStatus}"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/username_txtView_preview_client"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@{previewClientViewModel.username}"
+            android:textColor="@color/title_text_custom_color"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="@+id/userImage_imgView_preview_client"
+            app:layout_constraintStart_toStartOf="@+id/userImage_imgView_preview_client"
+            app:layout_constraintTop_toBottomOf="@+id/userImage_imgView_preview_client"
+            app:visibilityAgainstStatus="@{previewClientViewModel.loadingStatus}"
+            tools:text="@string/username_holder" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/user_gallery_rv_preview_client"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="50dp"
+            android:clipToPadding="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/username_txtView_preview_client"
+            app:listUserGallery="@{previewClientViewModel.userImageUrlList}"
+            app:visibilityAgainstStatus="@{previewClientViewModel.loadingStatus}"
+            tools:itemCount="9"
+            tools:listitem="@layout/list_item_user_gallery" />
+
+        <ProgressBar
+            android:id="@+id/loading_pb_preview"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{previewClientViewModel.loadingStatus}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
