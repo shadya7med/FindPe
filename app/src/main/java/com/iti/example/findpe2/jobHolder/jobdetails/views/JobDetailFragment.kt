@@ -24,11 +24,11 @@ class JobDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentJobDetailBinding.inflate(layoutInflater, container, false)
-
+        val job = JobDetailFragmentArgs.fromBundle(requireArguments()).job
 
         val viewModelFactory = JobDetailViewModelFactory(
             JobDetailFragmentArgs.fromBundle(requireArguments()).request,
-            JobDetailFragmentArgs.fromBundle(requireArguments()).job
+            job
         )
         viewModel =
             ViewModelProvider(this, viewModelFactory).get(JobDetailViewModel::class.java)
@@ -73,7 +73,16 @@ class JobDetailFragment : Fragment() {
                 viewModel.navigateUpCompleted()
             }
         })
+
+        viewModel.navigateToBidFragment.observe(viewLifecycleOwner){
+            it?.let {
+                findNavController().navigate(JobDetailFragmentDirections.actionJobDetailFragment3ToBidDetails(job!!))
+                viewModel.displayBidFragmentCompleted()
+            }
+        }
+
         binding.viewModel = viewModel
+
         binding.lifecycleOwner = this
         val activityType = requireActivity()
 

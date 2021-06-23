@@ -23,7 +23,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12"
+            app:layout_constraintTop_toBottomOf="@+id/job_offer_text"
             app:layout_constraintVertical_bias="0.25" />
 
         <TextView
@@ -98,7 +98,7 @@
             app:layout_constraintTop_toBottomOf="@+id/job_details_tasks_text" />
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/job_offer_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -125,9 +125,24 @@
             app:layout_constraintEnd_toStartOf="@+id/job_reject_btn"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12"
-            app:rippleColor="@color/colorBlueLight"
-            app:visibilityAgainstStatus="@{viewModel.loadingStatus}" />
+            app:layout_constraintTop_toBottomOf="@+id/job_offer_text"
+            app:rippleColor="@color/colorBlueLight" />
+
+        <Button
+            android:id="@+id/bid_send_btn"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
+            android:onClick="@{() -> viewModel.displayBidFragment()}"
+            android:text="@string/bid"
+            android:textColor="@color/colorGreen"
+            android:visibility="@{viewModel.jobBidVisibility}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/job_offer_text"
+            app:rippleColor="@color/colorGreenLight" />
 
         <Button
             android:id="@+id/job_reject_btn"
@@ -143,8 +158,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/job_accept_btn"
             app:layout_constraintTop_toTopOf="@+id/job_accept_btn"
-            app:rippleColor="@color/colorRedLight"
-            app:visibilityAgainstStatus="@{viewModel.loadingStatus}" />
+            app:rippleColor="@color/colorRedLight" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

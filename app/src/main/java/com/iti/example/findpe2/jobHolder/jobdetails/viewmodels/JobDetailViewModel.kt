@@ -2,10 +2,7 @@ package com.iti.example.findpe2.jobHolder.jobdetails.viewmodels
 
 import android.util.Log
 import android.view.View
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.ktx.firestore
@@ -42,6 +39,10 @@ class JobDetailViewModel(private val request: ReceivedJobRequest?, private val j
     val navigateToChatRoom: LiveData<Boolean?>
         get() = _navigateToChatRoom
 
+    private val _navigateToBidFragment = MutableLiveData<Boolean?>()
+    val navigateToBidFragment: LiveData<Boolean?>
+        get() = _navigateToBidFragment
+
     private val _loadingStatus = MutableLiveData<Int?>()
     val loadingStatus: LiveData<Int?>
         get() = _loadingStatus
@@ -53,6 +54,15 @@ class JobDetailViewModel(private val request: ReceivedJobRequest?, private val j
     private val _clientID = request?.clientID
     private var companionImageUrl = ""
 
+    val jobBidVisibility = Transformations.map(offerBtnVisibility){
+        it?.let {
+            if(it == View.GONE){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
+        }
+    }
     init {
         _loadingStatus.value = View.GONE
         _jobDesc.value = request?.desc ?: job?.description ?: ""
@@ -60,6 +70,8 @@ class JobDetailViewModel(private val request: ReceivedJobRequest?, private val j
         _jobOffer.value = request?.offer?.toString() ?: job?.jobPrice?.toString() ?: ""
         if (request != null) {
             _offerBtnVisibility.value = View.VISIBLE
+        }else{
+            _offerBtnVisibility.value = View.GONE
         }
         FirebaseDatabase.getInstance().reference.child("usersImages") //FirebaseAuth.getInstance().currentUser?.photoUrl!!
             .child(FirebaseAuth.getInstance().currentUser?.uid!!)
@@ -203,6 +215,15 @@ class JobDetailViewModel(private val request: ReceivedJobRequest?, private val j
 
     fun navigateUpCompleted() {
         _navigateUp.value = null
+    }
+
+    fun displayBidFragment(){
+        _navigateToBidFragment.value = true
+
+    }
+    fun displayBidFragmentCompleted(){
+        _navigateToBidFragment.value = null
+
     }
 
 }
