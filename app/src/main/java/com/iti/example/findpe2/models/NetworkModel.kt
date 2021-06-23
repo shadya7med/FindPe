@@ -100,5 +100,7 @@ object TripApi {
     suspend fun updateJob(job: Job) = tripsApi.updateJob(job)
     suspend fun getAllJobs() = tripsApi.getAllJobs()
 
+    //hotel
+    suspend fun getHotelForID(hotelID:Int) = tripsApi.getHotelForID(hotelID)
 
 }

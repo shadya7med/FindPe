@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.iti.example.findpe2.models.TripApi
+import com.iti.example.findpe2.pojos.Hotel
 import com.iti.example.findpe2.pojos.Trip
 import kotlinx.coroutines.launch
 
@@ -31,6 +32,9 @@ class TripDetailsViewModel(trip: Trip, private var isSaved: Boolean) : ViewModel
     val navigateToTimeline: LiveData<Int?>
         get() = _navigateToTimeline
 
+    private val _selectedHotel = MutableLiveData<Hotel?>()
+    val selectedHotel : LiveData<Hotel?>
+        get() = _selectedHotel
 
     private val _saveState = MutableLiveData<SaveState>()
     val saveState: LiveData<SaveState>
@@ -38,6 +42,7 @@ class TripDetailsViewModel(trip: Trip, private var isSaved: Boolean) : ViewModel
 
     init {
         _selectedTrip.value = trip
+        getHotelForID(trip.hotelID)
         _saveState.value = when (isSaved) {
             true -> SaveState.SAVED
             false -> SaveState.NOT_SAVED
@@ -50,6 +55,16 @@ class TripDetailsViewModel(trip: Trip, private var isSaved: Boolean) : ViewModel
 
     fun displayBookingComplete() {
         _navigateToBooking.value = null
+    }
+
+    private fun getHotelForID(hotelID:Int){
+        viewModelScope.launch {
+            try{
+                _selectedHotel.value = TripApi.getHotelForID(hotelID)
+            }catch (e:Exception){
+                Log.i("TripDetailsVM", e.localizedMessage)
+            }
+        }
     }
 
     fun onSaveTripClicked() {

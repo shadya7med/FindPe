@@ -20,9 +20,9 @@ import com.iti.example.findpe2.home.companionsList.views.CompanionListAdapter
 import com.iti.example.findpe2.home.discover.views.DiscoverFeaturedAdapter
 import com.iti.example.findpe2.home.discover.views.DiscoverPlacesAdapter
 import com.iti.example.findpe2.home.joboffers.views.JobOfferAdapter
+import com.iti.example.findpe2.home.jobrequests.views.RequestsAdapter
 import com.iti.example.findpe2.home.profile.views.UserGalleryAdapter
 import com.iti.example.findpe2.home.profile.views.UserInfoAdapter
-import com.iti.example.findpe2.home.jobrequests.views.RequestsAdapter
 import com.iti.example.findpe2.home.saved.views.SavedTripsAdapter
 import com.iti.example.findpe2.home.timeline.views.TimelineAdapter
 import com.iti.example.findpe2.home.travelling.views.TravellingTripAdapter
@@ -402,6 +402,7 @@ fun Spinner.listCountries(countries: List<String>?) {
         this.adapter = adapter
     }
 }
+
 @BindingAdapter("listRequests")
 fun RecyclerView.listRequests(list: List<ReceivedJobRequest>?) {
     visibility = if (list.isNullOrEmpty()) View.GONE else View.VISIBLE
@@ -413,11 +414,28 @@ fun RecyclerView.listJobOffers(list: List<SentJobRequest>?) {
     visibility = if (list.isNullOrEmpty()) View.GONE else View.VISIBLE
     (this.adapter as JobOfferAdapter).submitList(list)
 }
+
 @BindingAdapter("setStatusTextColor")
-fun TextView.setStatusTextColor(status: String){
-    when(status){
+fun TextView.setStatusTextColor(status: String) {
+    when (status) {
         RequestStatus.ACCEPTED.value -> setTextColor(Color.GREEN)
         RequestStatus.REJECTED.value -> setTextColor(Color.RED)
         else -> setTextColor(Color.BLUE)
+    }
+}
+
+@BindingAdapter("coloredAmenityVisibility")
+fun View.SetColoredAmentiyVisibility(hasFeature:Boolean){
+    visibility = when(hasFeature){
+        true -> View.VISIBLE
+        false -> View.GONE
+    }
+}
+
+@BindingAdapter("amenityVisibility")
+fun View.SetAmentiyVisibility(hasFeature:Boolean){
+    visibility = when(hasFeature){
+        true -> View.GONE
+        false -> View.VISIBLE
     }
 }

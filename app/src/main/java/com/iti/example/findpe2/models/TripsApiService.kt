@@ -124,7 +124,9 @@ interface TripsApiService {
     @PUT("Jop")
     suspend fun updateJob(@Body job: Job)
 
-
+    //hotel
+    @GET("Hotel/{id}")
+    suspend fun getHotelForID(@Path("id")hotelID:Int):Hotel
 
 
 }

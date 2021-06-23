@@ -2,11 +2,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="viewModel"
             type="com.iti.example.findpe2.tripCheckout.tripDetails.viewModels.TripDetailsViewModel" />
     </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -20,11 +23,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="333dp"
                 android:scaleType="centerCrop"
+                app:imageUrl="@{viewModel.selectedTrip.tripImages}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:imageUrl="@{viewModel.selectedTrip.tripImages}"
                 tools:srcCompat="@drawable/trip_pic" />
 
             <TextView
@@ -94,13 +97,13 @@
                 android:layout_marginTop="312dp"
                 android:layout_marginEnd="16dp"
                 android:clickable="true"
+                android:focusable="true"
                 android:onClick="@{()->viewModel.onSaveTripClicked()}"
                 app:backgroundTint="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:rippleColor="@color/black"
-                app:saveButtonIcon="@{viewModel.saveState}"
-                android:focusable="true" />
+                app:saveButtonIcon="@{viewModel.saveState}" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/temp_rate_card"
@@ -214,14 +217,14 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="20dp"
-                android:text="@string/see_timeline"
-                app:rippleColor="@color/title_text_custom_color"
-                android:textColor="@color/subtitle_text_custom_color"
                 android:onClick="@{() -> viewModel.displayTimeline(viewModel.selectedTrip.tripID)}"
+                android:text="@string/see_timeline"
+                android:textColor="@color/subtitle_text_custom_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/amenities_card" />
+                app:layout_constraintTop_toBottomOf="@id/amenities_card"
+                app:rippleColor="@color/title_text_custom_color" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/amenities_card"
@@ -236,16 +239,108 @@
                     android:layout_height="match_parent">
 
                     <TextView
+                        android:id="@+id/amenity4_colored_text"
+                        style="@style/amenity_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="125dp"
+                        android:text="@string/drinks"
+                        android:textSize="18sp"
+                        app:coloredAmenityVisibility="@{viewModel.selectedHotel.bar}"
+                        app:drawableTopCompat="@drawable/ic_baseline_colored_local_bar_24_2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.18"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/trip_amenities" />
+
+                    <TextView
+                        android:id="@+id/amenity1_colored_text"
+                        style="@style/amenity_style"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:text="@string/Wifi"
+                        android:textSize="18sp"
+                        app:coloredAmenityVisibility="@{viewModel.selectedHotel.wifi}"
+                        app:drawableTopCompat="@drawable/ic_baseline_colored_wifi_24"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.18"
+                        app:layout_constraintHorizontal_chainStyle="spread"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/trip_amenities" />
+
+                    <TextView
+                        android:id="@+id/amenity3_colored_text"
+                        style="@style/amenity_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:text="@string/pool"
+                        android:textSize="18sp"
+                        app:coloredAmenityVisibility="@{viewModel.selectedHotel.pool}"
+                        app:drawableTopCompat="@drawable/ic_baseline_colored_pool_24"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.82"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/trip_amenities" />
+
+                    <TextView
+                        android:id="@+id/amenity2_colored_text"
+                        style="@style/amenity_style"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:text="@string/food"
+                        android:textSize="18sp"
+                        app:coloredAmenityVisibility="@{viewModel.selectedHotel.restaurant}"
+                        app:drawableTopCompat="@drawable/ic_baseline_colored_restaurant_menu_24"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/trip_amenities" />
+
+                    <TextView
+                        android:id="@+id/amenity6_colored_text"
+                        style="@style/amenity_style"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="125dp"
+                        android:text="@string/nightClub"
+                        android:textSize="18sp"
+                        app:coloredAmenityVisibility="@{viewModel.selectedHotel.bar}"
+                        app:drawableTopCompat="@drawable/ic_baseline_colored_speaker_24"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.82"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/trip_amenities" />
+
+                    <TextView
+                        android:id="@+id/amenity5_colored_text"
+                        style="@style/amenity_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="125dp"
+                        android:text="@string/parking"
+                        android:textSize="18sp"
+                        app:coloredAmenityVisibility="@{viewModel.selectedHotel.parkingSpot}"
+                        app:drawableTopCompat="@drawable/ic_baselinge_colored_local_parking_24"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/trip_amenities" />
+
+                    <TextView
                         android:id="@+id/trip_amenities"
                         style="@style/title_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="24dp"
+                        android:layout_marginBottom="225dp"
                         android:text="@string/amenities"
                         android:textColor="@color/title_text_custom_color"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.5" />
 
                     <TextView
                         android:id="@+id/amenity1_text"
@@ -255,9 +350,10 @@
                         android:layout_marginTop="24dp"
                         android:text="@string/Wifi"
                         android:textSize="18sp"
+                        app:amenityVisibility="@{viewModel.selectedHotel.wifi}"
                         app:drawableTopCompat="@drawable/ic_baseline_wifi_24_2"
-                        app:layout_constraintEnd_toStartOf="@+id/amenity2_text"
-                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.18"
                         app:layout_constraintHorizontal_chainStyle="spread"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/trip_amenities" />
@@ -267,68 +363,73 @@
                         style="@style/amenity_style"
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
                         android:text="@string/food"
                         android:textSize="18sp"
+                        app:amenityVisibility="@{viewModel.selectedHotel.restaurant}"
                         app:drawableTopCompat="@drawable/ic_baseline_restaurant_menu_24"
-                        app:layout_constraintEnd_toStartOf="@+id/amenity3_text"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/amenity1_text"
-                        app:layout_constraintTop_toTopOf="@+id/amenity1_text" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/trip_amenities" />
 
                     <TextView
                         android:id="@+id/amenity3_text"
                         style="@style/amenity_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
                         android:text="@string/pool"
                         android:textSize="18sp"
+                        app:amenityVisibility="@{viewModel.selectedHotel.pool}"
                         app:drawableTopCompat="@drawable/ic_baseline_pool_24"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/amenity2_text"
-                        app:layout_constraintTop_toTopOf="@+id/amenity2_text" />
+                        app:layout_constraintHorizontal_bias="0.82"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/trip_amenities" />
 
                     <TextView
                         android:id="@+id/amenity4_text"
                         style="@style/amenity_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="125dp"
                         android:text="@string/drinks"
                         android:textSize="18sp"
+                        app:amenityVisibility="@{viewModel.selectedHotel.bar}"
                         app:drawableTopCompat="@drawable/ic_baseline_local_bar_24_2"
-                        app:layout_constraintEnd_toStartOf="@+id/amenity5_text"
-                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.18"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/amenity1_text" />
+                        app:layout_constraintTop_toBottomOf="@+id/trip_amenities" />
 
                     <TextView
                         android:id="@+id/amenity5_text"
                         style="@style/amenity_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="125dp"
                         android:text="@string/parking"
                         android:textSize="18sp"
+                        app:amenityVisibility="@{viewModel.selectedHotel.parkingSpot}"
                         app:drawableTopCompat="@drawable/ic_baseline_local_parking_24"
-                        app:layout_constraintEnd_toStartOf="@+id/amenity6_text"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/amenity4_text"
-                        app:layout_constraintTop_toTopOf="@+id/amenity4_text" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/trip_amenities" />
 
                     <TextView
                         android:id="@+id/amenity6_text"
                         style="@style/amenity_style"
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="24dp"
+                        android:layout_marginTop="125dp"
                         android:text="@string/nightClub"
                         android:textSize="18sp"
+                        app:amenityVisibility="@{viewModel.selectedHotel.bar}"
                         app:drawableTopCompat="@drawable/ic_baseline_speaker_24"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/amenity5_text"
-                        app:layout_constraintTop_toTopOf="@+id/amenity5_text" />
+                        app:layout_constraintHorizontal_bias="0.82"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/trip_amenities" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

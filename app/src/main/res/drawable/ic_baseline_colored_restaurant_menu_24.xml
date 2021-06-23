@@ -1,7 +1,7 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="50dp"
     android:height="50dp"
-    android:tint="@color/title_text_custom_color"
+    android:tint="@color/feature_selected_btn_background"
     android:viewportWidth="24"
     android:viewportHeight="24">
     <path
