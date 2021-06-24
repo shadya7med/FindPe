@@ -232,10 +232,11 @@
     <string name="congratulations">Congratulations</string>
     <string name="chat_room_created_dialog">A Chat room is created between you and the client </string>
     <string name="ok">Ok</string>
-    <string name="bid">Bid</string>
+    <string name="bid">Send Proposal</string>
     <string name="proposal">Enter You Proposal</string>
     <string name="bids">Bids</string>
     <string name="comp_name">Companion Name</string>
     <string name="proposal_text">Proposal</string>
     <string name="job_id">"Job ID : "</string>
+    <string name="bid_details">Bid Details</string>
 </resources>

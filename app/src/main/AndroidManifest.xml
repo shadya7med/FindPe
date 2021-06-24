@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FindPe">
-        <activity android:name=".home.bidsOffers.BidActivity"></activity>
+        <activity android:name=".home.bidsReceived.ReceivedBidActivity"></activity>
+        <activity android:name=".home.bidsOffers.BidActivity" />
         <activity android:name=".home.profile.bio.views.EditBioActivity" />
         <activity android:name=".home.joboffers.JobOffersActivity" />
         <activity android:name=".home.jobrequests.RequestsActivity" />

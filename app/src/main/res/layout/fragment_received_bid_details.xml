@@ -1,0 +1,123 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.iti.example.findpe2.home.bidsReceivedDetails.viewmodels.ReceivedBidsDetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ProgressBar
+            android:id="@+id/progressBar8"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:visibility="@{viewModel.loadingStatus}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bid_offer_text"
+            app:layout_constraintVertical_bias="0.25" />
+
+        <TextView
+            android:id="@+id/bid_details_text"
+            style="@style/title_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/bid_details"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/bid_details_proposal"
+            style="@style/title_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/proposal_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bid_details_text" />
+
+        <TextView
+            android:id="@+id/job_details_desc_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{viewModel.bidProposal}"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/bid_details_proposal"
+            app:layout_constraintTop_toBottomOf="@+id/bid_details_proposal"
+            tools:text="@string/lorem_ipsum" />
+
+        <TextView
+            android:id="@+id/bid_details_offer"
+            style="@style/title_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/offered_amount"
+            app:layout_constraintStart_toStartOf="@+id/job_details_desc_text"
+            app:layout_constraintTop_toBottomOf="@+id/job_details_desc_text" />
+
+        <TextView
+            android:id="@+id/bid_offer_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@{viewModel.bidOffer}"
+
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bid_details_offer"
+            tools:text="@string/job_cost" />
+
+        <Button
+            android:id="@+id/bid_accept_btn"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="16dp"
+            android:onClick="@{() -> viewModel.openChatRoom()}"
+            android:text="@string/accept"
+            android:textColor="@color/colorBlue"
+            app:layout_constraintEnd_toStartOf="@+id/bid_reject_btn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bid_offer_text"
+            app:rippleColor="@color/colorBlueLight" />
+
+        <Button
+            android:id="@+id/bid_reject_btn"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:onClick="@{() -> viewModel.rejectedPressed()}"
+            android:text="@string/reject"
+            android:textColor="@color/colorRed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/bid_accept_btn"
+            app:layout_constraintTop_toTopOf="@+id/bid_accept_btn"
+            app:rippleColor="@color/colorRedLight" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

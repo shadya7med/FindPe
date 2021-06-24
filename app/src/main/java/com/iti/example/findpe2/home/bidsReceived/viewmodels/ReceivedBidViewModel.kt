@@ -10,7 +10,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.iti.example.findpe2.pojos.ReceivedBid
 
-class ReceivedBidViewModel(private val jobId: Int): ViewModel(){
+class ReceivedBidViewModel(private val jobId: String): ViewModel(){
     private val _listOfReceivedBid = MutableLiveData<List<ReceivedBid>?>()
     val listOfReceivedBid: LiveData<List<ReceivedBid>?>
         get() = _listOfReceivedBid
@@ -28,7 +28,7 @@ class ReceivedBidViewModel(private val jobId: Int): ViewModel(){
         _loadingVisibility.value = View.VISIBLE
         val mDatabase = FirebaseDatabase.getInstance().reference
         val userId = Firebase.auth.currentUser?.uid
-        mDatabase.child("ReceivedBidOffers").child(userId!!).child(jobId.toString()).get().addOnSuccessListener {
+        mDatabase.child("ReceivedBidOffers").child(userId!!).child(jobId).get().addOnSuccessListener {
             val response = it.value as Map<String, Map<String, Map<String, Any?>>>?
             val list = mutableListOf<ReceivedBid>()
             response?.forEach { (t, u) ->

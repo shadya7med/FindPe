@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/received_bid_nav_graph.xml"
+    app:startDestination="@id/receivedBidFragment">
+
+    <fragment
+        android:id="@+id/receivedBidFragment"
+        android:name="com.iti.example.findpe2.home.bidsReceived.views.ReceivedBidFragment"
+        android:label="ReceivedBidFragment" >
+        <action
+            android:id="@+id/action_receivedBidFragment_to_receivedBidDetailsFragment"
+            app:destination="@id/receivedBidDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/receivedBidDetailsFragment"
+        android:name="com.iti.example.findpe2.home.bidsReceivedDetails.views.ReceivedBidDetailsFragment"
+        android:label="ReceivedBidDetailsFragment" >
+        <argument
+            android:name="receivedBid"
+            app:argType="com.iti.example.findpe2.pojos.ReceivedBid" />
+    </fragment>
+</navigation>

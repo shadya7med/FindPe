@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.iti.example.findpe2.home.timeline.viewmodels.TimelineViewModel
 
 class ReceivedBidViewModelFactory (
-    private val jobId: Int
+    private val jobId: String
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
