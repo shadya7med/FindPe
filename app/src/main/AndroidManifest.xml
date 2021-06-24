@@ -13,9 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FindPe">
-        <activity android:name=".home.profile.bio.views.EditBioActivity"></activity>
-
-        <activity android:name=".home.joboffers.JobOffersActivity"></activity>
+        <activity android:name=".home.bidsOffers.BidActivity"></activity>
+        <activity android:name=".home.profile.bio.views.EditBioActivity" />
+        <activity android:name=".home.joboffers.JobOffersActivity" />
         <activity android:name=".home.jobrequests.RequestsActivity" />
         <activity android:name=".jobsendrequest.views.JobRequestActivity" />
         <activity android:name=".jobHolder.JobActivityHolder" />

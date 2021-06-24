@@ -9,9 +9,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.iti.example.findpe2.R
+import com.iti.example.findpe2.constants.Keys
 import com.iti.example.findpe2.databinding.FragmentJobDetailBinding
 import com.iti.example.findpe2.home.jobrequests.RequestsActivity
 import com.iti.example.findpe2.jobHolder.JobActivityHolder
+import com.iti.example.findpe2.jobHolder.biddetails.views.BidDetailsFragment
 import com.iti.example.findpe2.jobHolder.jobdetails.viewmodels.JobDetailViewModel
 import com.iti.example.findpe2.jobHolder.jobdetails.viewmodels.JobDetailViewModelFactory
 
@@ -76,11 +78,23 @@ class JobDetailFragment : Fragment() {
 
         viewModel.navigateToBidFragment.observe(viewLifecycleOwner){
             it?.let {
-                findNavController().navigate(JobDetailFragmentDirections.actionJobDetailFragment3ToBidDetails(job!!))
+                val bundle = Bundle()
+                bundle.putParcelable(Keys.JOB_KEY,job)
+                findNavController().navigate(R.id.action_jobDetailFragment3_to_bidDetailsFragment, bundle)
                 viewModel.displayBidFragmentCompleted()
             }
         }
+        viewModel.snackBarDisplay.observe(viewLifecycleOwner){
+            it?.let {
+                Snackbar.make(
+                    requireView(),
+                    "You already bid in this job you can edit it from bids",
+                    Snackbar.LENGTH_SHORT
+                ).show()
+                viewModel.displaySnackBarComplete()
+            }
 
+        }
         binding.viewModel = viewModel
 
         binding.lifecycleOwner = this
@@ -104,12 +118,22 @@ class JobDetailFragment : Fragment() {
         return when (item.itemId) {
             R.id.preview_client -> {
                 viewModel.getClientID()?.let {
-                    findNavController().navigate(
-                        JobDetailFragmentDirections
-                            .actionJobDetailFragmentToPreviewClientProfileFragment(
-                                it
-                            )
-                    )
+                    val activityType = requireActivity()
+                    if(activityType is JobActivityHolder){
+                        val bundle = Bundle()
+                        bundle.putString("clientID", it)
+                        findNavController().navigate(
+                            R.id.action_jobDetailFragment3_to_previewClientProfileFragment2,
+                            bundle
+                        )
+                    }else {
+                        findNavController().navigate(
+                            JobDetailFragmentDirections
+                                .actionJobDetailFragmentToPreviewClientProfileFragment(
+                                    it
+                                )
+                        )
+                    }
                 }
                 true
             }

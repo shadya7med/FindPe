@@ -24,15 +24,26 @@
             app:argType="com.iti.example.findpe2.pojos.Job"
             app:nullable="true" />
         <action
-            android:id="@+id/action_jobDetailFragment3_to_bidDetails"
-            app:destination="@id/bidDetails" />
+            android:id="@+id/action_jobDetailFragment3_to_bidDetailsFragment"
+            app:destination="@id/bidDetailsFragment" />
+        <action
+            android:id="@+id/action_jobDetailFragment3_to_previewClientProfileFragment2"
+            app:destination="@id/previewClientProfileFragment2" />
     </fragment>
     <fragment
-        android:id="@+id/bidDetails"
+        android:id="@+id/bidDetailsFragment"
         android:name="com.iti.example.findpe2.jobHolder.biddetails.views.BidDetailsFragment"
-        android:label="BidDetails" >
+        android:label="BidDetailsFragment" >
         <argument
             android:name="job"
             app:argType="com.iti.example.findpe2.pojos.Job" />
+    </fragment>
+    <fragment
+        android:id="@+id/previewClientProfileFragment2"
+        android:name="com.iti.example.findpe2.home.previewClient.views.PreviewClientProfileFragment"
+        android:label="PreviewClientProfileFragment" >
+        <argument
+            android:name="clientID"
+            app:argType="string" />
     </fragment>
 </navigation>

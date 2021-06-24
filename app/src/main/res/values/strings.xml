@@ -234,4 +234,8 @@
     <string name="ok">Ok</string>
     <string name="bid">Bid</string>
     <string name="proposal">Enter You Proposal</string>
+    <string name="bids">Bids</string>
+    <string name="comp_name">Companion Name</string>
+    <string name="proposal_text">Proposal</string>
+    <string name="job_id">"Job ID : "</string>
 </resources>
