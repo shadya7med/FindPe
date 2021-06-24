@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="bidOffer"
+            type="com.iti.example.findpe2.pojos.SentBid" />
+
+        <variable
+            name="clickListener"
+            type="com.iti.example.findpe2.home.bidsOffers.views.BidOnClickListener" />
+    </data>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:cardBackgroundColor="@color/card_background"
+        app:cardCornerRadius="30dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:onClick="@{() -> clickListener.onClick(bidOffer)}"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/job_offer_companion_name_text"
+                style="@style/title_style"
+                android:text="@{bidOffer.name}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                tools:text="@string/companion_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/job_offer_status"
+                style="@style/title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/state"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/job_offer_companion_name_text"
+                app:layout_constraintTop_toBottomOf="@+id/job_offer_companion_name_text" />
+
+            <TextView
+                android:id="@+id/job_offer_status_text"
+                style="@style/title_style"
+                android:text="@{bidOffer.status}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textAlignment="center"
+                app:setStatusTextColor="@{bidOffer.status}"
+                app:layout_constraintBaseline_toBaselineOf="@+id/job_offer_status"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/job_offer_status" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

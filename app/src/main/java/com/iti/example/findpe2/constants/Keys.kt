@@ -2,6 +2,8 @@ package com.iti.example.findpe2.constants
 
 class Keys {
     companion object{
+        const val SENT_BID_KEY = "sent_bid_key"
+        const val JOB_KEY = "job_key"
         const val JOB_OFFER = "job_offer_key"
         const val TRIP_ID_KEY = "trip_id_key"
         const val FROM_PLACE_KEY = "from_place_key"

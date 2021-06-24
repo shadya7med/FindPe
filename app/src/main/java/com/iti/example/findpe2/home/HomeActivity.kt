@@ -21,6 +21,7 @@ import com.iti.example.findpe2.R
 import com.iti.example.findpe2.authentication.CreateAccountActivity
 import com.iti.example.findpe2.databinding.ActivityHomeBinding
 import com.iti.example.findpe2.databinding.HomeDrawerHeaderBinding
+import com.iti.example.findpe2.home.bidsOffers.BidActivity
 import com.iti.example.findpe2.home.joboffers.JobOffersActivity
 import com.iti.example.findpe2.home.jobrequests.RequestsActivity
 import com.iti.example.findpe2.network.NetworkActivity
@@ -131,6 +132,9 @@ class HomeActivity : AppCompatActivity() {
                 R.id.jobsFragmentHome -> {
                     val jobOffersIntent = Intent(this@HomeActivity, JobOffersActivity::class.java)
                     startActivity(jobOffersIntent)
+                }
+                R.id.Bid ->{
+                    startActivity(Intent(this@HomeActivity, BidActivity::class.java))
                 }
             }
             true

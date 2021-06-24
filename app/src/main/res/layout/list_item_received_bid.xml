@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="request"
-            type="com.iti.example.findpe2.pojos.ReceivedJobRequest" />
+            name="receivedBid"
+            type="com.iti.example.findpe2.pojos.ReceivedBid" />
         <variable
             name="clickListener"
-            type="com.iti.example.findpe2.home.jobrequests.views.RequestOnClickListener" />
+            type="com.iti.example.findpe2.home.bidsReceived.views.ReceivedBidOnClickListener" />
     </data>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -20,9 +20,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> clickListener.onClick(request)}">
+            android:onClick="@{() -> clickListener.onClick(receivedBid)}">
             <androidx.cardview.widget.CardView
-                android:id="@+id/request_item_client_image"
+                android:id="@+id/received_item_companion_image"
                 android:layout_width="120dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="16dp"
@@ -34,9 +34,10 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:bindPlaceImageUrl="@{request.clientImage}"
+                    app:bindPlaceImageUrl="@{receivedBid.companionImage}"
                     tools:srcCompat="@tools:sample/avatars" />
             </androidx.cardview.widget.CardView>
+
             <TextView
                 android:id="@+id/received_item_companion_name_text"
                 style="@style/title_style"
@@ -44,50 +45,47 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                tools:text="@string/client_name"
-                android:text="@{request.clientName}"
+                android:text="@{receivedBid.companionName}"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/request_item_client_image"
-                app:layout_constraintTop_toTopOf="@+id/request_item_client_image" />
+                app:layout_constraintStart_toEndOf="@+id/received_item_companion_image"
+                app:layout_constraintTop_toTopOf="@+id/received_item_companion_image"
+                tools:text="@string/comp_name" />
 
             <TextView
-                android:id="@+id/job_desc"
+                android:id="@+id/proposal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="@string/job_desc"
+                android:text="@string/proposal_text"
                 app:layout_constraintStart_toStartOf="@+id/received_item_companion_name_text"
                 app:layout_constraintTop_toBottomOf="@+id/received_item_companion_name_text" />
 
             <TextView
-                android:id="@+id/request_desc_text"
+                android:id="@+id/received_proposal_text"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="@{request.desc}"
+                android:text="@{receivedBid.proposal}"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="16dp"
                 tools:text="@string/lorem_ipsum"
-                app:layout_constraintBottom_toBottomOf="@+id/request_cost_text"
+                app:layout_constraintBottom_toBottomOf="@+id/received_offer_text"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/job_desc"
-                app:layout_constraintTop_toBottomOf="@+id/job_desc" />
+                app:layout_constraintStart_toStartOf="@+id/proposal"
+                app:layout_constraintTop_toBottomOf="@+id/proposal" />
 
             <TextView
-                android:id="@+id/request_cost_text"
+                android:id="@+id/received_offer_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="11dp"
                 android:layout_marginBottom="16dp"
-                android:text="@{@string/price_format(request.offer)}"
+                android:text="@{@string/price_format(receivedBid.offer)}"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/request_item_client_image"
-                app:layout_constraintStart_toStartOf="@+id/request_item_client_image"
-                app:layout_constraintTop_toBottomOf="@+id/request_item_client_image"
+                app:layout_constraintEnd_toEndOf="@+id/received_item_companion_image"
+                app:layout_constraintStart_toStartOf="@+id/received_item_companion_image"
+                app:layout_constraintTop_toBottomOf="@+id/received_item_companion_image"
                 tools:text="@string/job_cost" />
-
-
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

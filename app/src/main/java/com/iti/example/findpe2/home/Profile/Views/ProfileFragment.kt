@@ -23,6 +23,7 @@ import com.iti.example.findpe2.home.profile.bio.views.EditBioActivity
 import com.iti.example.findpe2.home.profile.viewModels.ProfileViewModel
 import com.iti.example.findpe2.home.profile.viewModels.ProfileViewModelFactory
 import com.iti.example.findpe2.jobsendrequest.views.JobRequestActivity
+import com.iti.example.findpe2.utils.setAllClickable
 import java.io.IOException
 
 
@@ -30,13 +31,14 @@ class ProfileFragment : Fragment() {
 
     lateinit var profileViewModel: ProfileViewModel
     lateinit var resultActivityLauncher: ActivityResultLauncher<Intent>
+    private lateinit var binding: FragmentProfileBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binding = FragmentProfileBinding.inflate(inflater, container, false)
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
 
         profileViewModel = ViewModelProvider(
@@ -162,12 +164,14 @@ class ProfileFragment : Fragment() {
 
 
     private fun getJobRequests() {
+        setLoading()
         val mDatabase = FirebaseDatabase.getInstance().reference
         val companion = profileViewModel.getCompanion()
         val userId = Firebase.auth.currentUser?.uid
         mDatabase.child("ReceivedJobRequests").child(companion?.companionID!!).child(userId!!).get()
             .addOnSuccessListener {
                 if (it.value == null) {
+                    clearLoading()
                     val openCompanionHolderIntent = Intent(activity, JobRequestActivity::class.java)
                     openCompanionHolderIntent.putExtra(
                         Keys.COMPANION_ID_KEY,
@@ -175,6 +179,7 @@ class ProfileFragment : Fragment() {
                     openCompanionHolderIntent.putExtra(Keys.FOR_A_COMPANION_KEY, true)
                     startActivity(openCompanionHolderIntent)
                 } else {
+                    clearLoading()
                     Snackbar.make(
                         requireView(),
                         "There is a job between you and the companion you can edit it from job offers",
@@ -182,5 +187,11 @@ class ProfileFragment : Fragment() {
                     ).show()
                 }
             }
+    }
+    private fun setLoading() {
+        binding.profileProgressBar.visibility = View.VISIBLE
+    }
+    private fun clearLoading() {
+        binding.profileProgressBar.visibility = View.GONE
     }
 }

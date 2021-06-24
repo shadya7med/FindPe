@@ -6,10 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.iti.example.findpe2.R
+import com.iti.example.findpe2.constants.Keys
 import com.iti.example.findpe2.databinding.FragmentBidDetailsBinding
+import com.iti.example.findpe2.home.bidsOffers.BidActivity
 import com.iti.example.findpe2.jobHolder.JobActivityHolder
 import com.iti.example.findpe2.jobHolder.jobdetails.views.JobDetailFragmentArgs
 import com.iti.example.findpe2.pojos.ReceivedBid
@@ -31,7 +34,22 @@ class BidDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentBidDetailsBinding.inflate(layoutInflater, container, false)
-        val job = BidDetailsFragmentArgs.fromBundle(requireArguments()).job
+        val job: com.iti.example.findpe2.pojos.Job? = arguments?.getParcelable(Keys.JOB_KEY)
+        val sentBid: SentBid? = arguments?.getParcelable(Keys.SENT_BID_KEY)
+
+        if (sentBid != null) {
+            binding.bidDeleteBtn.visibility = View.VISIBLE
+            binding.bidProposalText.setText(sentBid.proposal)
+            binding.bidOfferedAmountText.setText(sentBid.offer.toString())
+
+            if (sentBid.status != RequestStatus.WAITING.value) {
+                binding.bidProposalText.isEnabled = false
+                binding.bidOfferedAmountText.isEnabled = false
+                binding.bidBtn.visibility = View.INVISIBLE
+            }
+
+
+        }
 
         coroutinejob = Job()
         val scope = CoroutineScope(Dispatchers.Main + coroutinejob)
@@ -60,25 +78,28 @@ class BidDetailsFragment : Fragment() {
 
                 val database = FirebaseDatabase.getInstance().reference
                 database.child("ReceivedBidOffers")
-                    .child(job.clientId)
+                    .child(job?.clientId ?: sentBid?.clientID!!)
+                    .child(job?.jobID?.toString() ?: sentBid?.jobID.toString())
                     .child(id)
                     .setValue(
                         ReceivedBid(
                             id,
-                            name,
+                            job?.clientId ?: sentBid?.clientID!!,
                             image,
+                            name,
+                            job?.jobID?.toLong() ?: sentBid?.jobID,
                             binding.bidProposalText.text.toString(),
                             binding.bidOfferedAmountText.text.toString().toLong(),
                         )
                     )
                 database.child("SentBidOffers")
                     .child(id)
-                    .child(job.jobID.toString())
+                    .child(job?.jobID?.toString() ?: sentBid?.jobID.toString())
                     .setValue(
                         SentBid(
-                            job.jobID?.toLong(),
-                            job.clientId,
-                            job.user?.name,
+                            job?.jobID?.toLong() ?: sentBid?.jobID,
+                            job?.clientId ?: sentBid?.clientID,
+                            job?.user?.name ?: sentBid?.name,
                             binding.bidProposalText.text.toString(),
                             binding.bidOfferedAmountText.text.toString().toLong(),
                             RequestStatus.WAITING.value
@@ -86,18 +107,43 @@ class BidDetailsFragment : Fragment() {
                     )
             }
 
-            Toast.makeText(requireActivity().applicationContext, "bid Sent", Toast.LENGTH_SHORT).show()
-            requireActivity().finish()
-
+            Toast.makeText(requireActivity().applicationContext, "bid Sent", Toast.LENGTH_SHORT)
+                .show()
+            findNavController().navigateUp()
 
         }
         val activityType = requireActivity()
         if (activityType is JobActivityHolder) {
             activityType.setActionBarTitle("Bid Details")
+        } else if (activityType is BidActivity) {
+            activityType.setActionBarTitle("Bid Details")
+        }
+
+        binding.bidDeleteBtn.setOnClickListener {
+            scope.launch {
+                val id = FirebaseAuth.getInstance().currentUser?.uid!!
+                setLoading()
+                val database = FirebaseDatabase.getInstance().reference
+                database.child("SentBidOffers")
+                    .child(id)
+                    .child(sentBid?.jobID.toString())
+                    .removeValue()
+                database.child("ReceivedBidOffers")
+                    .child(sentBid?.clientID!!)
+                    .child(id)
+                    .removeValue()
+                Toast.makeText(
+                    requireActivity().applicationContext,
+                    "Request deleted",
+                    Toast.LENGTH_SHORT
+                ).show()
+                findNavController().navigateUp()
+            }
         }
 
         return binding.root
     }
+
     private fun setLoading() {
         binding.bidProgressBar.visibility = View.VISIBLE
         binding.bidViewGroup.setAllClickable(false)

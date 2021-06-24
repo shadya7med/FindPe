@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bid_offers_nav_graph.xml"
+    app:startDestination="@id/bidMainFragment">
+
+    <fragment
+        android:id="@+id/bidMainFragment"
+        android:name="com.iti.example.findpe2.home.bidsOffers.views.BidMainFragment"
+        android:label="fragment_bid_main"
+        tools:layout="@layout/fragment_bid_main" >
+        <action
+            android:id="@+id/action_bidMainFragment_to_bidDetailsFragment2"
+            app:destination="@id/bidDetailsFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/bidDetailsFragment2"
+        android:name="com.iti.example.findpe2.jobHolder.biddetails.views.BidDetailsFragment"
+        android:label="BidDetailsFragment" >
+        <argument
+            android:name="sentBid"
+            app:argType="com.iti.example.findpe2.pojos.SentBid" />
+    </fragment>
+</navigation>

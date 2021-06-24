@@ -1,13 +1,17 @@
 package com.iti.example.findpe2.jobHolder.jobdetails.viewmodels
 
+import android.content.Intent
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.*
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.iti.example.findpe2.constants.Constants
+import com.iti.example.findpe2.constants.Keys
+import com.iti.example.findpe2.jobsendrequest.views.JobRequestActivity
 import com.iti.example.findpe2.pojos.*
 import kotlinx.coroutines.launch
 import java.util.*
@@ -51,18 +55,23 @@ class JobDetailViewModel(private val request: ReceivedJobRequest?, private val j
     val navigateUp: LiveData<Boolean?>
         get() = _navigateUp
 
-    private val _clientID = request?.clientID
+    private val _clientID = request?.clientID ?: job?.clientId
     private var companionImageUrl = ""
 
-    val jobBidVisibility = Transformations.map(offerBtnVisibility){
+    val jobBidVisibility = Transformations.map(offerBtnVisibility) {
         it?.let {
-            if(it == View.GONE){
+            if (it == View.GONE) {
                 View.VISIBLE
-            }else{
+            } else {
                 View.GONE
             }
         }
     }
+
+    private val _snackBarDisplay = MutableLiveData<Boolean?>()
+    val snackBarDisplay: LiveData<Boolean?>
+        get() = _snackBarDisplay
+
     init {
         _loadingStatus.value = View.GONE
         _jobDesc.value = request?.desc ?: job?.description ?: ""
@@ -70,7 +79,7 @@ class JobDetailViewModel(private val request: ReceivedJobRequest?, private val j
         _jobOffer.value = request?.offer?.toString() ?: job?.jobPrice?.toString() ?: ""
         if (request != null) {
             _offerBtnVisibility.value = View.VISIBLE
-        }else{
+        } else {
             _offerBtnVisibility.value = View.GONE
         }
         FirebaseDatabase.getInstance().reference.child("usersImages") //FirebaseAuth.getInstance().currentUser?.photoUrl!!
@@ -217,12 +226,31 @@ class JobDetailViewModel(private val request: ReceivedJobRequest?, private val j
         _navigateUp.value = null
     }
 
-    fun displayBidFragment(){
-        _navigateToBidFragment.value = true
+    fun displayBidFragment() {
+        _loadingStatus.value = View.VISIBLE
+        val id = FirebaseAuth.getInstance().currentUser?.uid!!
+        val database = FirebaseDatabase.getInstance().reference
+        database.child("SentBidOffers")
+            .child(id)
+            .child(job?.jobID.toString()).get()
+            .addOnSuccessListener {
+                if (it.value == null) {
+                    _navigateToBidFragment.value = true
+                    _loadingStatus.value = View.GONE
+
+                } else {
+                   _snackBarDisplay.value = true
+                    _loadingStatus.value = View.GONE
+                }
+            }
+    }
+
+    fun displayBidFragmentCompleted() {
+        _navigateToBidFragment.value = null
 
     }
-    fun displayBidFragmentCompleted(){
-        _navigateToBidFragment.value = null
+    fun displaySnackBarComplete(){
+        _snackBarDisplay.value = null
 
     }
 

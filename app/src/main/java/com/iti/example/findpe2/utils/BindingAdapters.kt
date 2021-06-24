@@ -13,6 +13,8 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.iti.example.findpe2.R
 import com.iti.example.findpe2.home.allTrips.views.AllTripsAdapter
+import com.iti.example.findpe2.home.bidsOffers.views.BidOfferAdapter
+import com.iti.example.findpe2.home.bidsReceived.views.ReceivedBidsAdapter
 import com.iti.example.findpe2.home.chat.chatInstance.views.MessagesListAdapter
 import com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatFragment
 import com.iti.example.findpe2.home.chat.chatRoomsList.views.ChatRoomsListAdapter
@@ -26,6 +28,7 @@ import com.iti.example.findpe2.home.profile.views.UserInfoAdapter
 import com.iti.example.findpe2.home.saved.views.SavedTripsAdapter
 import com.iti.example.findpe2.home.timeline.views.TimelineAdapter
 import com.iti.example.findpe2.home.travelling.views.TravellingTripAdapter
+import com.iti.example.findpe2.home.userjobs.views.UserJobsAdapter
 import com.iti.example.findpe2.jobHolder.browseJobs.views.BrowseJobsAdapter
 import com.iti.example.findpe2.pojos.*
 import com.iti.example.findpe2.tripCheckout.booking.views.TripDurationsAdapter
@@ -416,7 +419,7 @@ fun RecyclerView.listJobOffers(list: List<SentJobRequest>?) {
 }
 
 @BindingAdapter("setStatusTextColor")
-fun TextView.setStatusTextColor(status: String) {
+fun TextView.setStatusTextColor(status: String?) {
     when (status) {
         RequestStatus.ACCEPTED.value -> setTextColor(Color.GREEN)
         RequestStatus.REJECTED.value -> setTextColor(Color.RED)
@@ -438,4 +441,19 @@ fun View.SetAmentiyVisibility(hasFeature:Boolean){
         true -> View.GONE
         false -> View.VISIBLE
     }
+}
+@BindingAdapter("listBidOffers")
+fun RecyclerView.listBidOffers(list: List<SentBid>?) {
+    visibility = if (list.isNullOrEmpty()) View.GONE else View.VISIBLE
+    (this.adapter as BidOfferAdapter).submitList(list)
+}
+@BindingAdapter("listReceivedBids")
+fun RecyclerView.listReceivedBids(list: List<ReceivedBid>?) {
+    visibility = if (list.isNullOrEmpty()) View.GONE else View.VISIBLE
+    (this.adapter as ReceivedBidsAdapter).submitList(list)
+}
+@BindingAdapter("listUserJobs")
+fun RecyclerView.listUserJobs(list: List<String>?) {
+    visibility = if (list.isNullOrEmpty()) View.GONE else View.VISIBLE
+    (this.adapter as UserJobsAdapter).submitList(list)
 }

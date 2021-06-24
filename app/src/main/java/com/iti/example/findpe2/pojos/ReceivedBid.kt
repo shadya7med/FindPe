@@ -7,9 +7,10 @@ import kotlinx.parcelize.Parcelize
 data class ReceivedBid (
     val companionID: String? = null,
     val clientID: String? = null,
-    val name: String? = null,
+    val companionImage: String? = null,
+    val companionName: String? = null,
+    val jobID: Long? = null,
     val proposal: String? = null,
     val offer: Long? = null,
-    val status: String? = null
 
 ): Parcelable

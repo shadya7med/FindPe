@@ -38,15 +38,7 @@ class JobOffersMainFragment : Fragment() {
         (requireActivity() as JobOffersActivity).setActionBarTitle("Offers")
         return binding.root
     }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                activity?.finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
+
 
     override fun onResume() {
         super.onResume()
