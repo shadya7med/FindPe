@@ -2,7 +2,10 @@ package com.iti.example.findpe2.home.bidsReceivedDetails.viewmodels
 
 import android.util.Log
 import android.view.View
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.ktx.firestore
@@ -40,19 +43,20 @@ class ReceivedBidsDetailsViewModel (private val receivedBid: ReceivedBid) :
     private val _snackBarDisplay = MutableLiveData<Boolean?>()
     val snackBarDisplay: LiveData<Boolean?>
         get() = _snackBarDisplay
+    private var clientImage = ""
 
     init {
         _loadingStatus.value = View.GONE
         _bidProposal.value = receivedBid.proposal
         _bidOffer.value = receivedBid.offer.toString()
 
-//        FirebaseDatabase.getInstance().reference.child("usersImages") //FirebaseAuth.getInstance().currentUser?.photoUrl!!
-//            .child(FirebaseAuth.getInstance().currentUser?.uid!!)
-//            .get().addOnSuccessListener {
-//                companionImageUrl = it.value.toString()
-//            }.addOnFailureListener {
-//                Log.i("JobDetailsVM", it.localizedMessage)
-//            }
+        FirebaseDatabase.getInstance().reference.child("usersImages") //FirebaseAuth.getInstance().currentUser?.photoUrl!!
+            .child(FirebaseAuth.getInstance().currentUser?.uid!!)
+            .get().addOnSuccessListener {
+                clientImage = it.value.toString()
+            }.addOnFailureListener {
+                Log.i("JobDetailsVM", it.localizedMessage)
+            }
 
     }
 
@@ -65,9 +69,8 @@ class ReceivedBidsDetailsViewModel (private val receivedBid: ReceivedBid) :
             val currentMsgTime = Calendar.getInstance().time
             val clientID = FirebaseAuth.getInstance().currentUser?.uid!!
             val clientName = FirebaseAuth.getInstance().currentUser?.displayName!!
-            val companionEmail = FirebaseAuth.getInstance().currentUser?.email
+            val clientEmail = FirebaseAuth.getInstance().currentUser?.email
                 ?: FirebaseAuth.getInstance().currentUser?.providerData?.get(1)?.email!!
-
 
 
             database.child("ReceivedBidOffers")
@@ -76,7 +79,7 @@ class ReceivedBidsDetailsViewModel (private val receivedBid: ReceivedBid) :
                 .child(receivedBid.companionID!!)
                 .removeValue()
             database.child("SentBidOffers")
-                .child(receivedBid.companionID!!)
+                .child(receivedBid.companionID)
                 .child(receivedBid.jobID.toString())
                 .setValue(
                     SentBid(
@@ -88,71 +91,73 @@ class ReceivedBidsDetailsViewModel (private val receivedBid: ReceivedBid) :
                         RequestStatus.ACCEPTED.value
                     )
                 )
-//            val firestoreDB = Firebase.firestore
-//            //add user to companion contacts
-//            firestoreDB
-//                .collection(companionID)
-//                .document(request.clientID!!)//userID
-//                .set(
-//                    ChatRoom(
-//                        request.clientID,
-//                        request.clientName,
-//                        request.clientImage,
-//                        Constants.CHAT_COMP_INITIAL_MSG,
-//                        currentMsgTime
-//                    )
-//                ).addOnSuccessListener {
-//                    //add companion to user contacts
-//                    firestoreDB.collection(request.clientID)
-//                        .document(companionID)
-//                        .set(
-//                            ChatRoom(
-//                                companionID,
-//                                companionName,
-//                                companionImageUrl.toString(),
-//                                Constants.CHAT_USER_INITIAL_MSG,
-//                                currentMsgTime
-//                            )
-//                        ).addOnSuccessListener {
-//                            //open chat Room
-//                            val collectionName =
-//                                if (companionID <= request.clientID!!) {
-//                                    companionID + request.clientID!!
-//                                } else {
-//                                    request.clientID!! + companionID
-//                                }
-//                            //add companion first msg to chat
-//                            firestoreDB.collection(collectionName)
-//                                .add(
-//                                    Message(
-//                                        Constants.CHAT_COMP_INITIAL_MSG,
-//                                        request.clientID!!,
-//                                        companionID,
-//                                        companionEmail,
-//                                        companionImageUrl.toString(),
-//                                        currentMsgTime
-//                                    )
-//                                ).addOnSuccessListener {
-//                                    //add user first msg to chat
-//                                    firestoreDB.collection(collectionName)
-//                                        .add(
-//                                            Message(
-//                                                Constants.CHAT_USER_INITIAL_MSG,
-//                                                companionID,
-//                                                request.clientID!!,
-//                                                Constants.REQUEST_SENDER_DUMMY_MAIL,//it should be replaced with user email but it's never used anyway
-//                                                request.clientImage,
-//                                                currentMsgTime
-//                                            )
-//                                        )
-//                                    _loadingStatus.value = View.GONE
-//                                    _navigateToChatRoom.value = true
-//                                }.addOnFailureListener {
-//                                    _loadingStatus.value = View.GONE
-//                                    _navigateToChatRoom.value = false
-//                                }
-//                        }
-//                }
+            val firestoreDB = Firebase.firestore
+            //add user to companion contacts
+            firestoreDB
+                .collection(receivedBid.companionID)
+                .document(clientID)//userID
+                .set(
+                    ChatRoom(
+                        clientID,
+                        clientName,
+                        clientImage,
+                        Constants.CHAT_ACCEPTANCE_INITIAL_MSG,
+                        currentMsgTime
+
+                    )
+                ).addOnSuccessListener {
+                    //add companion to user contacts
+                    firestoreDB.collection(clientID)
+                        .document(receivedBid.companionID)
+                        .set(
+                            ChatRoom(
+                                receivedBid.companionID,
+                                receivedBid.companionName,
+                                receivedBid.companionImage.toString(),
+                                Constants.CHAT_ACCEPTANCE_INITIAL_MSG,
+                                currentMsgTime
+                            )
+                        ).addOnSuccessListener {
+                            //open chat Room
+                            val collectionName =
+                                if (receivedBid.companionID <= clientID) {
+                                    receivedBid.companionID + clientID!!
+                                } else {
+                                    clientID + receivedBid.companionID
+                                }
+                            //add companion first msg to chat
+                            firestoreDB.collection(collectionName)
+                                .add(
+                                    Message(
+                                        Constants.CHAT_BID_INITIAL_MSG,
+                                        clientID,
+                                        receivedBid.companionID,
+                                        Constants.REQUEST_SENDER_DUMMY_MAIL,//it should be replaced with user email but it's never used anyway
+                                        receivedBid.companionName,
+                                        currentMsgTime
+                                    )
+
+                                ).addOnSuccessListener {
+                                    //add user first msg to chat
+                                    firestoreDB.collection(collectionName)
+                                        .add(
+                                            Message(
+                                                Constants.CHAT_ACCEPTANCE_INITIAL_MSG,
+                                                receivedBid.companionID,
+                                                clientID,
+                                                clientEmail,
+                                                clientImage,
+                                                currentMsgTime
+                                            )
+                                        )
+                                    _loadingStatus.value = View.GONE
+                                    _navigateToChatRoom.value = true
+                                }.addOnFailureListener {
+                                    _loadingStatus.value = View.GONE
+                                    _navigateToChatRoom.value = false
+                                }
+                        }
+                }
         }
     }
 

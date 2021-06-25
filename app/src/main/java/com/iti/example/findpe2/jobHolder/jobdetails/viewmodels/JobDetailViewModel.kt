@@ -1,17 +1,13 @@
 package com.iti.example.findpe2.jobHolder.jobdetails.viewmodels
 
-import android.content.Intent
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.*
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.iti.example.findpe2.constants.Constants
-import com.iti.example.findpe2.constants.Keys
-import com.iti.example.findpe2.jobsendrequest.views.JobRequestActivity
 import com.iti.example.findpe2.pojos.*
 import kotlinx.coroutines.launch
 import java.util.*
@@ -133,7 +129,7 @@ class JobDetailViewModel(private val request: ReceivedJobRequest?, private val j
                         request.clientID,
                         request.clientName,
                         request.clientImage,
-                        Constants.CHAT_COMP_INITIAL_MSG,
+                        Constants.CHAT_ACCEPTANCE_INITIAL_MSG,
                         currentMsgTime
                     )
                 ).addOnSuccessListener {
@@ -145,38 +141,39 @@ class JobDetailViewModel(private val request: ReceivedJobRequest?, private val j
                                 companionID,
                                 companionName,
                                 companionImageUrl.toString(),
-                                Constants.CHAT_USER_INITIAL_MSG,
+                                Constants.CHAT_ACCEPTANCE_INITIAL_MSG,
                                 currentMsgTime
                             )
                         ).addOnSuccessListener {
                             //open chat Room
                             val collectionName =
-                                if (companionID <= request.clientID!!) {
-                                    companionID + request.clientID!!
+                                if (companionID <= request.clientID) {
+                                    companionID + request.clientID
                                 } else {
-                                    request.clientID!! + companionID
+                                    request.clientID + companionID
                                 }
                             //add companion first msg to chat
                             firestoreDB.collection(collectionName)
                                 .add(
                                     Message(
-                                        Constants.CHAT_COMP_INITIAL_MSG,
-                                        request.clientID!!,
+                                        Constants.CHAT_JOB_INITIAL_MSG,
                                         companionID,
-                                        companionEmail,
-                                        companionImageUrl.toString(),
+                                        request.clientID,
+                                        Constants.REQUEST_SENDER_DUMMY_MAIL,//it should be replaced with user email but it's never used anyway
+                                        request.clientImage,
                                         currentMsgTime
                                     )
+
                                 ).addOnSuccessListener {
                                     //add user first msg to chat
                                     firestoreDB.collection(collectionName)
                                         .add(
                                             Message(
-                                                Constants.CHAT_USER_INITIAL_MSG,
+                                                Constants.CHAT_ACCEPTANCE_INITIAL_MSG,
+                                                request.clientID,
                                                 companionID,
-                                                request.clientID!!,
-                                                Constants.REQUEST_SENDER_DUMMY_MAIL,//it should be replaced with user email but it's never used anyway
-                                                request.clientImage,
+                                                companionEmail,
+                                                companionImageUrl,
                                                 currentMsgTime
                                             )
                                         )

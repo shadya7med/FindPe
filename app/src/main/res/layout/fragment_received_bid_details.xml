@@ -102,7 +102,8 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bid_offer_text"
-            app:rippleColor="@color/colorBlueLight" />
+            app:rippleColor="@color/colorBlueLight"
+            app:visibilityAgainstStatus="@{viewModel.loadingStatus}" />
 
         <Button
             android:id="@+id/bid_reject_btn"
@@ -117,7 +118,8 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/bid_accept_btn"
             app:layout_constraintTop_toTopOf="@+id/bid_accept_btn"
-            app:rippleColor="@color/colorRedLight" />
+            app:rippleColor="@color/colorRedLight"
+            app:visibilityAgainstStatus="@{viewModel.loadingStatus}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
