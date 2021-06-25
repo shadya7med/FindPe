@@ -175,7 +175,7 @@ class ReceivedBidsDetailsViewModel (private val receivedBid: ReceivedBid) :
                     clientName,
                     receivedBid.proposal,
                     receivedBid.offer,
-                    RequestStatus.ACCEPTED.value
+                    RequestStatus.REJECTED.value
                 )
             )
         _navigateUp.value = true
