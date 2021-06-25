@@ -73,67 +73,6 @@ class FilterViewModel : ViewModel() {
 
     }
 
-    /*fun getAWeekCenteredAround(dateInMillis: Long): ArrayList<Pair<String, String>> {
-        val daysList = ArrayList<Pair<String, String>>()
-        val dateFormat = SimpleDateFormat("EEE,dd", Locale.US)
-        val cal = Calendar.getInstance()
-        cal.timeInMillis = dateInMillis
-        cal.add(Calendar.DATE, -3)
-        for (index in 0..6) {
-            val date = dateFormat.format(cal.time)
-            daysList.add("${date[0]}" to date.substring(4))
-            cal.add(Calendar.DATE, +1)
-        }
-        return daysList
-    }*/
-
-    /*fun showDatePicker(type: Int): MaterialDatePicker<Long> {
-        var datePicker = MaterialDatePicker<Long>()
-        when (type) {
-            0 -> {
-                datePicker =
-                    MaterialDatePicker.Builder.datePicker()
-                        .setTitleText("Select date")
-                        .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
-                        .setCalendarConstraints(
-                            CalendarConstraints.Builder()
-                                .setValidator(DateValidatorPointForward.now())
-                                .build()
-                        )
-                        .build()
-                datePicker.addOnPositiveButtonClickListener {
-                    fromSelectedDateMillis = it
-                    _fromDaysList.value = getAWeekCenteredAround(fromSelectedDateMillis)
-                    if (fromSelectedDateMillis > toSelectedDateMillis) {
-                        toSelectedDateMillis = fromSelectedDateMillis + MORE_DAYS_MILLIS
-                        _toDaysList.value = getAWeekCenteredAround(toSelectedDateMillis)
-                    }
-
-                }
-
-            }
-            1 -> {
-                datePicker =
-                    MaterialDatePicker.Builder.datePicker()
-                        .setTitleText("Select date")
-                        .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
-                        .setCalendarConstraints(
-                            CalendarConstraints.Builder()
-                                .setValidator(DateValidatorPointForward.from(fromSelectedDateMillis))
-                                .build()
-                        )
-                        .build()
-                datePicker.addOnPositiveButtonClickListener {
-                    toSelectedDateMillis = it
-                    _toDaysList.value = getAWeekCenteredAround(toSelectedDateMillis)
-                }
-
-            }
-        }
-
-        return datePicker
-
-    }*/
 
     fun setFromSelectedCity(fromCityPosition:Int){
         if (fromCityPosition != -1){
@@ -186,8 +125,8 @@ class FilterViewModel : ViewModel() {
         viewModelScope.launch {
             try {
 
-                _autoCompleteFromPlacesList.value = TripApi.getAllFromCities()
-                _autoCompleteToPlacesList.value = TripApi.getAllToCities()
+                _autoCompleteFromPlacesList.value = TripApi.getAllFromCities().distinct()
+                _autoCompleteToPlacesList.value = TripApi.getAllToCities().distinct()
                 _loadingStatus.value = View.GONE
             } catch (e: Exception) {
                 Log.i("Filter", e.localizedMessage)
