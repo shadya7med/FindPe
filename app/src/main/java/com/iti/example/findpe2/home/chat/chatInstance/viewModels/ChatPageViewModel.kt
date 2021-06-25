@@ -6,11 +6,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.iti.example.findpe2.pojos.ChatRoom
 import com.iti.example.findpe2.pojos.Message
+import com.iti.example.findpe2.pojos.UserLocation
 import java.util.*
 
 class ChatPageViewModel(val chatRoom: ChatRoom) : ViewModel() {
@@ -33,16 +35,20 @@ class ChatPageViewModel(val chatRoom: ChatRoom) : ViewModel() {
         get() = _onSendMsgSuccess
 
     private val _loadingStatus = MutableLiveData<Int?>()
-    val loadingStatus:LiveData<Int?>
+    val loadingStatus: LiveData<Int?>
         get() = _loadingStatus
 
     private val _errorStatus = MutableLiveData<Int?>()
-    val errorStatus:LiveData<Int?>
+    val errorStatus: LiveData<Int?>
         get() = _errorStatus
 
     private val _emptyListStatus = MutableLiveData<Int?>()
-    val emptyListStatus:LiveData<Int?>
+    val emptyListStatus: LiveData<Int?>
         get() = _emptyListStatus
+
+    private val _onPermissionsGrantedEvent = MutableLiveData<Pair<Double, Double>?>()
+    val onPermissionsGrantedEvent: LiveData<Pair<Double, Double>?>
+        get() = _onPermissionsGrantedEvent
 
 //    private val _onSendMsgFailed = MutableLiveData<Boolean?>()
 //    val onSendMsgFailed:LiveData<Boolean?>
@@ -63,6 +69,22 @@ class ChatPageViewModel(val chatRoom: ChatRoom) : ViewModel() {
         _navigateUpToHome.value = null
     }
 
+    fun onPermissionsGranted() {
+        Firebase.auth.currentUser?.let { user ->
+            FirebaseDatabase.getInstance().reference
+                .child("UsersLocation")
+                .child(user.uid)
+                .get().addOnSuccessListener {
+                    it.getValue(UserLocation::class.java)?.let { userLocation ->
+                        _onPermissionsGrantedEvent.value = userLocation.lat to userLocation.lon
+                    }
+                }
+        }
+    }
+
+    fun onDoneOpeningMap() {
+        _onPermissionsGrantedEvent.value = null
+    }
 
     private fun getChatPageMessages() {
         val currentUser = Firebase.auth.currentUser
@@ -82,9 +104,9 @@ class ChatPageViewModel(val chatRoom: ChatRoom) : ViewModel() {
                     _loadingStatus.value = View.GONE
                     _errorStatus.value = View.GONE
                     _messagesList.value = result.toObjects(Message::class.java)
-                    if(result.isEmpty){
+                    if (result.isEmpty) {
                         _emptyListStatus.value = View.VISIBLE
-                    }else{
+                    } else {
                         _emptyListStatus.value = View.GONE
                     }
                 }
@@ -106,9 +128,9 @@ class ChatPageViewModel(val chatRoom: ChatRoom) : ViewModel() {
                     _loadingStatus.value = View.GONE
                     _errorStatus.value = View.GONE
                     _messagesList.value = result.toObjects(Message::class.java)
-                    if(result.isEmpty){
+                    if (result.isEmpty) {
                         _emptyListStatus.value = View.VISIBLE
-                    }else{
+                    } else {
                         _emptyListStatus.value = View.GONE
                     }
                 }

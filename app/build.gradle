@@ -118,5 +118,6 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-scalars:$version_retrofit"
 
 
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
 
 }

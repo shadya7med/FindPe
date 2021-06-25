@@ -239,4 +239,5 @@
     <string name="proposal_text">Proposal</string>
     <string name="job_id">"Job ID : "</string>
     <string name="bid_details">Bid Details</string>
+    <string name="show_loc">Open map</string>
 </resources>

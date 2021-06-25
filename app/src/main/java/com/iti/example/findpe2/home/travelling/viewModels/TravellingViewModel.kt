@@ -5,11 +5,9 @@ import android.view.View
 import androidx.lifecycle.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.iti.example.findpe2.constants.Constants
 import com.iti.example.findpe2.constants.Keys
 import com.iti.example.findpe2.models.TripApi
 import com.iti.example.findpe2.pojos.Trip
-import com.iti.example.findpe2.pojos.User
 import kotlinx.coroutines.launch
 
 class TravellingViewModel : ViewModel() {
@@ -56,52 +54,10 @@ class TravellingViewModel : ViewModel() {
         _status.value = View.GONE
         _errorMsgStatus.value = View.GONE
         _isFilteredShown.value = View.GONE
-        saveCurrentUser()
         getTrips()
     }
 
-    private fun saveCurrentUser() {
-        viewModelScope.launch {
-            val currentUser = Firebase.auth.currentUser
-            currentUser?.let { currentUser ->
-                try {
-                    val users =
-                        TripApi.getAllUsers() //it should be replaced with getting a single user
-                    val usersIDs = users.map {
-                        it.userID
-                    }
-                    if (usersIDs.contains(currentUser.uid)) {
-                        //Do Nothing it's already registered
-                    } else {
-                        val email = currentUser.email ?: currentUser.providerData[1].email
-                        email?.let { email ->
-                            try {
-                                TripApi.addANewUser(
-                                    User(
-                                        currentUser.uid,
-                                        currentUser.displayName ?: Constants.USER_DEFAULT_NAME,
-                                        Constants.USER_DEFAULT_PASSWORD,
-                                        email,
-                                        currentUser.photoUrl.toString(),
-                                        false,
-                                        0,
-                                        currentUser.photoUrl.toString(),
-                                        "user"
-                                    )
-                                )
-                            } catch (e: Exception) {
-                                Log.i("TravelingVM", "user is not posted ${e.localizedMessage}")
-                            }
 
-                        }
-                    }
-                } catch (e: Exception) {
-                    Log.i("TravelingVM", e.localizedMessage)
-                }
-            }
-
-        }
-    }
 
     fun getTripSaveState() = isSaved
 

@@ -10,5 +10,6 @@ class Constants {
         const val CHAT_COMP_INITIAL_MSG = "Accepted"
         const val CHAT_USER_INITIAL_MSG = "A new job requested"
         const val REQUEST_SENDER_DUMMY_MAIL = "dummy@gmail.com"
+        const val MY_PERMISSIONS_REQUEST_LOCATION = 99
     }
 }
