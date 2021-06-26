@@ -2,6 +2,7 @@ package com.iti.example.findpe2.home
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -155,7 +156,7 @@ class HomeActivity : AppCompatActivity() {
                     startActivity(jobOffersIntent)
                 }
                 R.id.Bid -> {
-                    startActivity(Intent(this@HomeActivity, BidActivity::class.java))
+                    requestsActivityLauncher.launch(Intent(this@HomeActivity, BidActivity::class.java))
                 }
             }
             true

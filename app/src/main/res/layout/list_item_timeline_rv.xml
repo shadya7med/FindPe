@@ -80,6 +80,7 @@
                         app:layout_constraintHorizontal_bias="0.47"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
+                        app:imageUrlTimelineSlot="@{slot.slotTitle}"
                         app:srcCompat="@drawable/trip_pic" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

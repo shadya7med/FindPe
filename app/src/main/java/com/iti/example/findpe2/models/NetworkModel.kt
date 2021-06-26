@@ -99,6 +99,8 @@ object TripApi {
     suspend fun addANewJob(job: Job) = tripsApi.addANewJob(job)
     suspend fun updateJob(job: Job) = tripsApi.updateJob(job)
     suspend fun getAllJobs() = tripsApi.getAllJobs()
+    suspend fun deleteJob(jobId: Int) = tripsApi.deleteJob(jobId, jobId)
+
 
     //hotel
     suspend fun getHotelForID(hotelID:Int) = tripsApi.getHotelForID(hotelID)

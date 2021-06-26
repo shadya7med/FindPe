@@ -79,6 +79,7 @@
                         android:layout_marginBottom="24dp"
                         android:text="@string/num_of_trips"
                         android:textColor="@color/black"
+                        android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
@@ -89,6 +90,7 @@
                         android:layout_marginStart="5dp"
                         android:text="@string/trips"
                         android:textColor="@color/black"
+                        android:visibility="invisible"
                         app:layout_constraintBaseline_toBaselineOf="@+id/nature_count_text"
                         app:layout_constraintStart_toEndOf="@+id/nature_count_text" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -151,6 +153,7 @@
                         android:layout_marginBottom="24dp"
                         android:text="@string/num_of_trips"
                         android:textColor="@color/black"
+                        android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
@@ -160,6 +163,7 @@
                         android:layout_marginStart="5dp"
                         android:text="@string/trips"
                         android:textColor="@color/black"
+                        android:visibility="invisible"
                         app:layout_constraintBaseline_toBaselineOf="@+id/culture_count_text"
                         app:layout_constraintStart_toEndOf="@+id/culture_count_text" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -222,6 +226,7 @@
                         android:shadowColor="@color/browser_actions_bg_grey"
                         android:text="@string/num_of_trips"
                         android:textColor="@color/black"
+                        android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
@@ -231,6 +236,7 @@
                         android:layout_marginStart="5dp"
                         android:text="@string/trips"
                         android:textColor="@color/black"
+                        android:visibility="invisible"
                         app:layout_constraintBaseline_toBaselineOf="@+id/modern_life_count_text"
                         app:layout_constraintStart_toEndOf="@+id/modern_life_count_text" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -292,6 +298,7 @@
                         android:layout_marginBottom="24dp"
                         android:text="@string/num_of_trips"
                         android:textColor="@color/black"
+                        android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
@@ -301,6 +308,7 @@
                         android:layout_marginStart="5dp"
                         android:text="@string/trips"
                         android:textColor="@color/black"
+                        android:visibility="invisible"
                         app:layout_constraintBaseline_toBaselineOf="@+id/popularity_count_text"
                         app:layout_constraintStart_toEndOf="@+id/popularity_count_text" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -366,6 +374,7 @@
                         android:shadowColor="@color/browser_actions_bg_grey"
                         android:text="@string/num_of_trips"
                         android:textColor="@color/black"
+                        android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
@@ -375,6 +384,7 @@
                         android:layout_marginStart="5dp"
                         android:text="@string/trips"
                         android:textColor="@color/black"
+                        android:visibility="invisible"
                         app:layout_constraintBaseline_toBaselineOf="@+id/sun_sand_count_text"
                         app:layout_constraintStart_toEndOf="@+id/sun_sand_count_text" />
                 </androidx.constraintlayout.widget.ConstraintLayout>

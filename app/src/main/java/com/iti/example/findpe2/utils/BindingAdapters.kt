@@ -210,7 +210,6 @@ fun ImageView.bindImage(tripImages: List<TripImage>?) {
         return
     }
     setImageResource(R.drawable.dahab)
-
 }
 
 @BindingAdapter("tripId")
@@ -456,4 +455,22 @@ fun RecyclerView.listReceivedBids(list: List<ReceivedBid>?) {
 fun RecyclerView.listUserJobs(list: List<String>?) {
     visibility = if (list.isNullOrEmpty()) View.GONE else View.VISIBLE
     (this.adapter as UserJobsAdapter).submitList(list)
+}
+@BindingAdapter("imageUrlTimelineSlot")
+fun ImageView.imageUrlTimelineSlot(title: String?) {
+    var imageUrl = ""
+    if (title != null) {
+        imageUrl = when(title){
+            "Breakfast" -> "https://simply-delicious-food.com/wp-content/uploads/2018/10/breakfast-board-500x500.jpg"
+            "Lunch" -> "https://img.taste.com.au/45Y4XB7k/w1200-h630-cfill/taste/2018/02/barbecued-chicken-rice-bowls-taste-135064-1.jpg"
+            else -> "https://assets.kraftfoods.com/recipe_images/opendeploy/62663_640x428.jpg"
+        }
+        Glide.with(this.context)
+            .load(imageUrl)
+            .placeholder(R.drawable.loading_animation)
+            .error(R.drawable.ic_broken_image)
+            .into(this)
+    } else {
+        this.setImageResource(R.drawable.no_image_preview)
+    }
 }

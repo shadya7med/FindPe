@@ -11,6 +11,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.iti.example.findpe2.constants.Constants
+import com.iti.example.findpe2.models.TripApi
 import com.iti.example.findpe2.pojos.*
 import kotlinx.coroutines.launch
 import java.util.*
@@ -72,14 +73,14 @@ class ReceivedBidsDetailsViewModel (private val receivedBid: ReceivedBid) :
             val clientEmail = FirebaseAuth.getInstance().currentUser?.email
                 ?: FirebaseAuth.getInstance().currentUser?.providerData?.get(1)?.email!!
 
+            TripApi.deleteJob(receivedBid.jobID!!.toInt())
 
             database.child("ReceivedBidOffers")
                 .child(clientID)
                 .child(receivedBid.jobID.toString())
-                .child(receivedBid.companionID!!)
                 .removeValue()
             database.child("SentBidOffers")
-                .child(receivedBid.companionID)
+                .child(receivedBid.companionID!!)
                 .child(receivedBid.jobID.toString())
                 .setValue(
                     SentBid(
