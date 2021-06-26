@@ -153,10 +153,10 @@ class HomeActivity : AppCompatActivity() {
                 }
                 R.id.jobsFragmentHome -> {
                     val jobOffersIntent = Intent(this@HomeActivity, JobOffersActivity::class.java)
-                    startActivity(jobOffersIntent)
+                    requestsActivityLauncher.launch(jobOffersIntent)
                 }
                 R.id.Bid -> {
-                    requestsActivityLauncher.launch(Intent(this@HomeActivity, BidActivity::class.java))
+                    startActivity(Intent(this@HomeActivity, BidActivity::class.java))
                 }
             }
             true
